@@ -10,3 +10,6 @@
 /* Buttons */
 @import "./button.css";
 @import "./button-group.css";
+
+/* Typography */
+@import "./typography.css";

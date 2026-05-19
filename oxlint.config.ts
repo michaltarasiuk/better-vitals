@@ -6,5 +6,7 @@ export default defineConfig({
   extends: [core, react],
   rules: {
     "func-style": "off",
+    "typescript/no-empty-interface": "off",
+    "typescript/no-empty-object-type": "off",
   },
 });
