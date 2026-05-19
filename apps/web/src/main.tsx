@@ -1,7 +1,8 @@
+import { Button } from "@lite-app-vitals/ui/components/button";
 import { createRoot } from "react-dom/client";
 
 function App() {
-  return null;
+  return <Button>Click Me</Button>;
 }
 
 const root = document.querySelector("#app");

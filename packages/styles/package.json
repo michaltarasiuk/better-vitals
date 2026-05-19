@@ -4,6 +4,15 @@
   "exports": {
     ".": {
       "style": "./index.css"
+    },
+    "./css": {
+      "style": "./index.css",
+      "default": "./index.css"
+    },
+    "./components/*": {
+      "types": "./src/components/*/index.ts",
+      "import": "./src/components/*/index.ts",
+      "default": "./src/components/*/index.ts"
     }
   },
   "dependencies": {

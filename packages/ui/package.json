@@ -1,0 +1,23 @@
+{
+  "name": "@lite-app-vitals/ui",
+  "type": "module",
+  "exports": {
+    "./components/*": {
+      "types": "./src/components/*/index.ts",
+      "import": "./src/components/*/index.ts",
+      "default": "./src/components/*/index.ts"
+    }
+  },
+  "dependencies": {
+    "@lite-app-vitals/styles": "workspace:*",
+    "@react-aria/utils": "^3.34.0",
+    "react": "catalog:",
+    "react-aria-components": "^1.17.0",
+    "tailwind-variants": "catalog:"
+  },
+  "devDependencies": {
+    "@lite-app-vitals/typescript-config": "workspace:*",
+    "@types/node": "^25.9.0",
+    "@types/react": "catalog:"
+  }
+}

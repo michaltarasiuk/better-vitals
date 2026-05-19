@@ -1,0 +1,12 @@
+/**
+ * Component Styles
+ *
+ * CRITICAL: Import order matters for CSS specificity and style overrides.
+ *
+ * General Rule: Shared/primitive components MUST be imported FIRST, before components that use them.
+ * This ensures that parent component styles can properly override shared component defaults.
+ */
+
+/* Buttons */
+@import "./button.css";
+@import "./button-group.css";

@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@lite-app-vitals/styles": "workspace:*",
+    "@lite-app-vitals/ui": "workspace:*",
     "@tailwindcss/vite": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
