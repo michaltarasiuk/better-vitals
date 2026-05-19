@@ -2,24 +2,30 @@
   "name": "@lite-app-vitals/web",
   "type": "module",
   "scripts": {
-    "dev": "vite --clearScreen false",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "dev": "react-router dev",
+    "build": "react-router build",
+    "start": "react-router-serve ./build/server/index.js",
+    "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
     "@lite-app-vitals/styles": "workspace:*",
     "@lite-app-vitals/ui": "workspace:*",
-    "@tailwindcss/vite": "catalog:",
+    "@react-router/node": "7.15.1",
+    "@react-router/serve": "7.15.1",
+    "isbot": "^5.1.36",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "tailwindcss": "catalog:"
+    "react-router": "7.15.1"
   },
   "devDependencies": {
     "@lite-app-vitals/typescript-config": "workspace:*",
+    "@react-router/dev": "7.15.1",
+    "@tailwindcss/vite": "^4.3.0",
+    "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
-    "@vitejs/plugin-react": "^5.1.4",
+    "tailwindcss": "catalog:",
     "typescript": "catalog:",
-    "vite": "^5.1.4"
+    "vite": "^8.0.3"
   }
 }

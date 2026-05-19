@@ -1,8 +1,16 @@
 {
   "extends": "@lite-app-vitals/typescript-config/vite.json",
-  "include": ["src"],
+  "include": [
+    "**/*",
+    "**/.server/**/*",
+    "**/.client/**/*",
+    ".react-router/types/**/*"
+  ],
   "compilerOptions": {
-    "jsx": "react-jsx",
-    "strictNullChecks": true
+    "types": ["node", "vite/client"],
+    "rootDirs": [".", "./.react-router/types"],
+    "paths": {
+      "~/*": ["./app/*"]
+    }
   }
 }
