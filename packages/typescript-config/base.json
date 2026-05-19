@@ -5,6 +5,8 @@
     "declaration": true,
     "declarationMap": true,
     "esModuleInterop": true,
+    "target": "ESNext",
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "forceConsistentCasingInFileNames": true,
     "inlineSources": false,
     "isolatedModules": true,

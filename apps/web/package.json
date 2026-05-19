@@ -7,17 +7,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@lite-app-vitals/ui": "workspace:*",
-    "react": "^19.2.6",
-    "react-dom": "^19.2.6"
+    "@lite-app-vitals/styles": "workspace:*",
+    "@tailwindcss/vite": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "tailwindcss": "catalog:"
   },
   "devDependencies": {
     "@lite-app-vitals/typescript-config": "workspace:*",
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
     "@vitejs/plugin-react": "^5.1.4",
-    "eslint": "^8.57.0",
-    "typescript": "5.5.4",
+    "typescript": "catalog:",
     "vite": "^5.1.4"
   }
 }

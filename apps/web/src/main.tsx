@@ -1,6 +1,8 @@
 import { createRoot } from "react-dom/client";
 
-const App = () => null;
+function App() {
+  return null;
+}
 
 const root = document.querySelector("#app");
 if (!root) {

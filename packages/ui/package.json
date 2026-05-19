@@ -1,7 +1,0 @@
-{
-  "name": "@lite-app-vitals/ui",
-  "type": "module",
-  "devDependencies": {
-    "@lite-app-vitals/typescript-config": "workspace:*"
-  }
-}
