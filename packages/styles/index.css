@@ -7,7 +7,7 @@
 @import "tw-animate-css";
 
 /* Base styles */
-@import "./base/base.css" layer(base);
+@import "./base/index.css" layer(base);
 
 /* Base component structures (unstyled) */
 @import "./components/index.css" layer(components);
