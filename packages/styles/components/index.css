@@ -7,6 +7,14 @@
  * This ensures that parent component styles can properly override shared component defaults.
  */
 
+/*
+ * Shared Components - MUST Import FIRST
+ *
+ * These are used by multiple components and must be imported early to allow proper overrides.
+ */
+@import "./description.css";
+@import "./label.css";
+
 /* Buttons */
 @import "./button.css";
 @import "./button-group.css";
