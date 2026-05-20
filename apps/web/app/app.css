@@ -1,2 +1,6 @@
 @import "tailwindcss";
 @import "@lite-app-vitals/styles";
+
+body {
+  @apply bg-background;
+}
