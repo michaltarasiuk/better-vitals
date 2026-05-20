@@ -16,6 +16,9 @@
 @import "./field-error.css";
 @import "./label.css";
 
+/* Navigation */
+@import "./link.css";
+
 /* Buttons */
 @import "./button.css";
 @import "./button-group.css";
