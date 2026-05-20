@@ -13,6 +13,7 @@
  * These are used by multiple components and must be imported early to allow proper overrides.
  */
 @import "./description.css";
+@import "./field-error.css";
 @import "./label.css";
 
 /* Buttons */
