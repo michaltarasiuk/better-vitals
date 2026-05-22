@@ -1,0 +1,102 @@
+.button-group {
+  @apply inline-flex h-auto items-center justify-center gap-0;
+}
+
+.button-group--horizontal {
+  @apply flex-row;
+}
+
+.button-group--vertical {
+  @apply flex-col;
+}
+
+.button-group .button {
+  @apply rounded-none;
+}
+
+.button-group--horizontal .button:first-child {
+  @apply rounded-s-3xl;
+}
+
+.button-group--horizontal .button:last-child {
+  @apply rounded-e-3xl;
+}
+
+.button-group--horizontal .button:first-child:last-child {
+  @apply rounded-3xl;
+}
+
+.button-group--vertical .button:first-child {
+  @apply rounded-t-3xl;
+}
+
+.button-group--vertical .button:last-child {
+  @apply rounded-b-3xl;
+}
+
+.button-group--vertical .button:first-child:last-child {
+  @apply rounded-3xl;
+}
+
+.button-group .button:active,
+.button-group .button[data-pressed="true"] {
+  transform: none;
+}
+
+.button-group .button:focus-visible:not(:focus),
+.button-group .button[data-focus-visible="true"] {
+  --tw-ring-offset-width: 0px;
+
+  @apply ring-inset;
+}
+
+.button-group__separator {
+  @apply rounded-sm bg-current opacity-15;
+  position: absolute;
+  pointer-events: none;
+
+  transition: opacity 150ms var(--ease-smooth);
+  @apply motion-reduce:transition-none;
+
+  .button-group--horizontal & {
+    left: -1px;
+    top: 25%;
+    width: 1px;
+    height: 50%;
+  }
+
+  .button-group--vertical & {
+    left: 25%;
+    top: -1px;
+    width: 50%;
+    height: 1px;
+  }
+}
+
+.button-group--horizontal .button--outline:first-child {
+  @apply border-e-0;
+}
+
+.button-group--horizontal .button--outline:last-child {
+  @apply border-s-0;
+}
+
+.button-group--horizontal .button--outline:not(:first-child):not(:last-child) {
+  @apply border-x-0;
+}
+
+.button-group--vertical .button--outline:first-child {
+  @apply border-b-0;
+}
+
+.button-group--vertical .button--outline:last-child {
+  @apply border-t-0;
+}
+
+.button-group--vertical .button--outline:not(:first-child):not(:last-child) {
+  @apply border-y-0;
+}
+
+.button-group--full-width {
+  @apply w-full;
+}

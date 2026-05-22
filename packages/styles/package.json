@@ -3,16 +3,16 @@
   "type": "module",
   "exports": {
     ".": {
-      "style": "./index.css"
+      "style": "./src/index.css"
     },
     "./css": {
-      "style": "./index.css",
-      "default": "./index.css"
+      "style": "./src/index.css",
+      "default": "./src/index.css"
     },
     "./components/*": {
-      "types": "./src/components/*/index.ts",
-      "import": "./src/components/*/index.ts",
-      "default": "./src/components/*/index.ts"
+      "types": "./src/components/*.ts",
+      "import": "./src/components/*.ts",
+      "default": "./src/components/*.ts"
     }
   },
   "dependencies": {
