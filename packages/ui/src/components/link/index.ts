@@ -30,6 +30,6 @@ export type {
 /*
  * Variants
  */
-export { linkVariants } from "@lite-app-vitals/styles/components/link";
+export { linkVariants } from "@lite-app/styles/components/link";
 
-export type { LinkVariants } from "@lite-app-vitals/styles/components/link";
+export type { LinkVariants } from "@lite-app/styles/components/link";

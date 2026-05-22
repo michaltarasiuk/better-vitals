@@ -1,7 +1,7 @@
 "use client";
 
-import type { TextFieldVariants } from "@lite-app-vitals/styles/components/textfield";
-import { textFieldVariants } from "@lite-app-vitals/styles/components/textfield";
+import type { TextFieldVariants } from "@lite-app/styles/components/textfield";
+import { textFieldVariants } from "@lite-app/styles/components/textfield";
 import type { ComponentPropsWithRef } from "react";
 import React, { createContext } from "react";
 import { TextField as TextFieldPrimitive } from "react-aria-components/TextField";

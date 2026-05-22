@@ -56,6 +56,6 @@ export type {
 /*
  * Variants
  */
-export { cardVariants } from "@lite-app-vitals/styles/components/card";
+export { cardVariants } from "@lite-app/styles/components/card";
 
-export type { CardVariants } from "@lite-app-vitals/styles/components/card";
+export type { CardVariants } from "@lite-app/styles/components/card";

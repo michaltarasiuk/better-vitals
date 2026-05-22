@@ -1,10 +1,22 @@
-import { reactRouter } from "@react-router/dev/vite";
+import { unstable_reactRouterRSC as reactRouterRSC } from "@react-router/dev/vite";
 import tailwindcss from "@tailwindcss/vite";
+import rsc from "@vitejs/plugin-rsc";
 import { defineConfig } from "vite";
+import devtoolsJson from "vite-plugin-devtools-json";
 
 export default defineConfig({
-  plugins: [tailwindcss(), reactRouter()],
+  plugins: [tailwindcss(), reactRouterRSC(), rsc(), devtoolsJson()],
   resolve: {
     tsconfigPaths: true,
+  },
+  ssr: {
+    noExternal: [
+      "react-aria",
+      "react-aria-components",
+      "@react-aria",
+      "@react-stately",
+      "@react-types",
+      "react-stately",
+    ],
   },
 });

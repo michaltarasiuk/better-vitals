@@ -1,7 +1,7 @@
 "use client";
 
-import type { SurfaceVariants } from "@lite-app-vitals/styles/components/surface";
-import { surfaceVariants } from "@lite-app-vitals/styles/components/surface";
+import type { SurfaceVariants } from "@lite-app/styles/components/surface";
+import { surfaceVariants } from "@lite-app/styles/components/surface";
 import type { ReactNode } from "react";
 import React, { createContext } from "react";
 

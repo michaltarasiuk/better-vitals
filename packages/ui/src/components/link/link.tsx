@@ -1,7 +1,7 @@
 "use client";
 
-import type { LinkVariants } from "@lite-app-vitals/styles/components/link";
-import { linkVariants } from "@lite-app-vitals/styles/components/link";
+import type { LinkVariants } from "@lite-app/styles/components/link";
+import { linkVariants } from "@lite-app/styles/components/link";
 import type { ComponentPropsWithRef, ReactNode } from "react";
 import React, { createContext, useContext } from "react";
 import { Link as LinkPrimitive } from "react-aria-components/Link";

@@ -30,6 +30,6 @@ export { BUTTON_GROUP_CHILD };
 /*
  * Variants
  */
-export { buttonVariants } from "@lite-app-vitals/styles/components/button";
+export { buttonVariants } from "@lite-app/styles/components/button";
 
-export type { ButtonVariants } from "@lite-app-vitals/styles/components/button";
+export type { ButtonVariants } from "@lite-app/styles/components/button";

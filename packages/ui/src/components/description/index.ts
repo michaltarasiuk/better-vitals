@@ -27,6 +27,6 @@ export type {
 /*
  * Variants
  */
-export { descriptionVariants } from "@lite-app-vitals/styles/components/description";
+export { descriptionVariants } from "@lite-app/styles/components/description";
 
-export type { DescriptionVariants } from "@lite-app-vitals/styles/components/description";
+export type { DescriptionVariants } from "@lite-app/styles/components/description";

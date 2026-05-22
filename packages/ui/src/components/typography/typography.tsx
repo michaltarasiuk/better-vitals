@@ -1,7 +1,7 @@
 "use client";
 
-import type { TypographyVariants } from "@lite-app-vitals/styles/components/typography";
-import { typographyVariants } from "@lite-app-vitals/styles/components/typography";
+import type { TypographyVariants } from "@lite-app/styles/components/typography";
+import { typographyVariants } from "@lite-app/styles/components/typography";
 import type { ComponentPropsWithRef, ReactNode } from "react";
 import { Text as TextPrimitive } from "react-aria-components/Text";
 

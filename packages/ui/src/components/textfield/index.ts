@@ -32,6 +32,6 @@ export { TextFieldContext } from "./textfield";
 /*
  * Variants
  */
-export { textFieldVariants } from "@lite-app-vitals/styles/components/textfield";
+export { textFieldVariants } from "@lite-app/styles/components/textfield";
 
-export type { TextFieldVariants } from "@lite-app-vitals/styles/components/textfield";
+export type { TextFieldVariants } from "@lite-app/styles/components/textfield";

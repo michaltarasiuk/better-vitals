@@ -1,7 +1,7 @@
 "use client";
 
-import type { ButtonGroupVariants } from "@lite-app-vitals/styles/components/button-group";
-import { buttonGroupVariants } from "@lite-app-vitals/styles/components/button-group";
+import type { ButtonGroupVariants } from "@lite-app/styles/components/button-group";
+import { buttonGroupVariants } from "@lite-app/styles/components/button-group";
 import type {
   Attributes,
   ComponentProps,

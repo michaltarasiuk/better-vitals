@@ -1,7 +1,7 @@
 "use client";
 
-import type { DescriptionVariants } from "@lite-app-vitals/styles/components/description";
-import { descriptionVariants } from "@lite-app-vitals/styles/components/description";
+import type { DescriptionVariants } from "@lite-app/styles/components/description";
+import { descriptionVariants } from "@lite-app/styles/components/description";
 import type { ComponentPropsWithRef } from "react";
 import type { TextProps } from "react-aria-components/Text";
 import { Text } from "react-aria-components/Text";

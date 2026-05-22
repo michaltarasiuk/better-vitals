@@ -27,6 +27,6 @@ export type {
 /*
  * Variants
  */
-export { fieldErrorVariants } from "@lite-app-vitals/styles/components/field-error";
+export { fieldErrorVariants } from "@lite-app/styles/components/field-error";
 
-export type { FieldErrorVariants } from "@lite-app-vitals/styles/components/field-error";
+export type { FieldErrorVariants } from "@lite-app/styles/components/field-error";

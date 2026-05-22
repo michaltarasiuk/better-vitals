@@ -46,6 +46,6 @@ export { ComboBoxContext } from "./combo-box";
 /*
  * Variants
  */
-export { comboBoxVariants } from "@lite-app-vitals/styles/components/combo-box";
+export { comboBoxVariants } from "@lite-app/styles/components/combo-box";
 
-export type { ComboBoxVariants } from "@lite-app-vitals/styles/components/combo-box";
+export type { ComboBoxVariants } from "@lite-app/styles/components/combo-box";

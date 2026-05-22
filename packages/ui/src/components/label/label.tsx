@@ -1,7 +1,7 @@
 "use client";
 
-import type { LabelVariants } from "@lite-app-vitals/styles/components/label";
-import { labelVariants } from "@lite-app-vitals/styles/components/label";
+import type { LabelVariants } from "@lite-app/styles/components/label";
+import { labelVariants } from "@lite-app/styles/components/label";
 import type { ComponentPropsWithRef } from "react";
 import { Label as LabelPrimitive } from "react-aria-components/Label";
 

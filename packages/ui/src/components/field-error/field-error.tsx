@@ -1,7 +1,7 @@
 "use client";
 
-import type { FieldErrorVariants } from "@lite-app-vitals/styles/components/field-error";
-import { fieldErrorVariants } from "@lite-app-vitals/styles/components/field-error";
+import type { FieldErrorVariants } from "@lite-app/styles/components/field-error";
+import { fieldErrorVariants } from "@lite-app/styles/components/field-error";
 import type { ComponentPropsWithRef } from "react";
 import { FieldError as FieldErrorPrimitive } from "react-aria-components/FieldError";
 

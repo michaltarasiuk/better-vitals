@@ -32,6 +32,6 @@ export { SurfaceContext } from "./surface";
 /*
  * Variants
  */
-export { surfaceVariants } from "@lite-app-vitals/styles/components/surface";
+export { surfaceVariants } from "@lite-app/styles/components/surface";
 
-export type { SurfaceVariants } from "@lite-app-vitals/styles/components/surface";
+export type { SurfaceVariants } from "@lite-app/styles/components/surface";

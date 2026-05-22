@@ -1,7 +1,7 @@
 "use client";
 
-import type { InputVariants } from "@lite-app-vitals/styles/components/input";
-import { inputVariants } from "@lite-app-vitals/styles/components/input";
+import type { InputVariants } from "@lite-app/styles/components/input";
+import { inputVariants } from "@lite-app/styles/components/input";
 import type { ComponentPropsWithRef } from "react";
 import { useContext } from "react";
 import { Input as InputPrimitive } from "react-aria-components/Input";

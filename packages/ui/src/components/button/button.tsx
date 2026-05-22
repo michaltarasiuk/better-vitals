@@ -1,7 +1,7 @@
 "use client";
 
-import type { ButtonVariants } from "@lite-app-vitals/styles/components/button";
-import { buttonVariants } from "@lite-app-vitals/styles/components/button";
+import type { ButtonVariants } from "@lite-app/styles/components/button";
+import { buttonVariants } from "@lite-app/styles/components/button";
 import type { ComponentPropsWithRef } from "react";
 import { useContext } from "react";
 import { Button as ButtonPrimitive } from "react-aria-components/Button";

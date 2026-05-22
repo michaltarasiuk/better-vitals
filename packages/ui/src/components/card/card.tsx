@@ -1,8 +1,8 @@
 "use client";
 
-import type { CardVariants } from "@lite-app-vitals/styles/components/card";
-import { cardVariants } from "@lite-app-vitals/styles/components/card";
-import type { SurfaceVariants } from "@lite-app-vitals/styles/components/surface";
+import type { CardVariants } from "@lite-app/styles/components/card";
+import { cardVariants } from "@lite-app/styles/components/card";
+import type { SurfaceVariants } from "@lite-app/styles/components/surface";
 import type { ReactNode } from "react";
 import React, { createContext, useContext } from "react";
 

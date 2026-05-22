@@ -1,5 +1,5 @@
 {
-  "name": "lite-app-vitals",
+  "name": "lite-app",
   "workspaces": {
     "packages": [
       "apps/*",

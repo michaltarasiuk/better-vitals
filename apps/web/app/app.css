@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "@lite-app-vitals/styles";
+@import "@lite-app/styles";
 
 body {
   @apply bg-background;

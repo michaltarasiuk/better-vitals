@@ -24,6 +24,6 @@ export type { LabelRootProps as LabelProps, LabelRootProps } from "./label";
 /*
  * Variants
  */
-export { labelVariants } from "@lite-app-vitals/styles/components/label";
+export { labelVariants } from "@lite-app/styles/components/label";
 
-export type { LabelVariants } from "@lite-app-vitals/styles/components/label";
+export type { LabelVariants } from "@lite-app/styles/components/label";

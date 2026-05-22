@@ -1,7 +1,7 @@
 "use client";
 
-import type { ComboBoxVariants } from "@lite-app-vitals/styles/components/combo-box";
-import { comboBoxVariants } from "@lite-app-vitals/styles/components/combo-box";
+import type { ComboBoxVariants } from "@lite-app/styles/components/combo-box";
+import { comboBoxVariants } from "@lite-app/styles/components/combo-box";
 import type { ComponentPropsWithRef, ReactNode } from "react";
 import React, { createContext, useContext } from "react";
 import type { ButtonProps } from "react-aria-components/Button";
