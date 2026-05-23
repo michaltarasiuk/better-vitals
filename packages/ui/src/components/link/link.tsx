@@ -2,7 +2,11 @@
 
 import type { LinkVariants } from "@lite-app/styles/components/link";
 import { linkVariants } from "@lite-app/styles/components/link";
-import type { ComponentPropsWithRef, ReactNode } from "react";
+import type {
+  ComponentPropsWithoutRef,
+  ComponentPropsWithRef,
+  ReactNode,
+} from "react";
 import React, { createContext, useContext } from "react";
 import { Link as LinkPrimitive } from "react-aria-components/Link";
 
@@ -11,8 +15,6 @@ import {
   composeSlotClassName,
   composeTwRenderProps,
 } from "../../utils/compose";
-import type { DOMRenderProps } from "../../utils/dom";
-import { dom } from "../../utils/dom";
 import { ExternalLinkIcon } from "../icons";
 
 interface LinkContext {
@@ -42,30 +44,22 @@ function LinkRoot({ href, className, children, ...rest }: LinkRootProps) {
   );
 }
 
-interface LinkIconProps<
-  E extends keyof React.JSX.IntrinsicElements = "span",
-> extends DOMRenderProps<E, undefined> {
+interface LinkIconProps extends ComponentPropsWithoutRef<"span"> {
   children?: ReactNode;
-  className?: string;
 }
 
-function LinkIcon<E extends keyof React.JSX.IntrinsicElements = "span">({
-  className,
-  children,
-  ...rest
-}: LinkIconProps<E> &
-  Omit<React.JSX.IntrinsicElements[E], keyof LinkIconProps<E>>) {
+function LinkIcon({ className, children, ...rest }: LinkIconProps) {
   const { slots } = useContext(LinkContext);
 
   return (
-    <dom.span
+    <span
       data-slot="link-icon"
       data-default-icon={dataAttr(!children)}
       className={composeSlotClassName(slots?.icon, className)}
-      {...(rest as React.ComponentProps<typeof dom.span>)}
+      {...rest}
     >
       {children ?? <ExternalLinkIcon data-slot="link-default-icon" />}
-    </dom.span>
+    </span>
   );
 }
 

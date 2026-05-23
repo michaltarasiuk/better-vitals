@@ -2,13 +2,10 @@
 
 import type { SpinnerVariants } from "@lite-app/styles/components/spinner";
 import { spinnerVariants } from "@lite-app/styles/components/spinner";
-import type { ComponentPropsWithRef } from "react";
-import React, { useId } from "react";
+import type { ComponentPropsWithoutRef } from "react";
+import { useId } from "react";
 
-import type { DOMRenderProps } from "../../utils/dom";
-import { dom } from "../../utils/dom";
-
-interface SpinnerPrimitiveProps extends ComponentPropsWithRef<"svg"> {}
+interface SpinnerPrimitiveProps extends ComponentPropsWithoutRef<"svg"> {}
 
 function SpinnerPrimitive(props: SpinnerPrimitiveProps) {
   const id = useId();
@@ -54,33 +51,24 @@ function SpinnerPrimitive(props: SpinnerPrimitiveProps) {
   );
 }
 
-interface SpinnerRootProps<
-  E extends keyof React.JSX.IntrinsicElements = "span",
-> extends DOMRenderProps<E, undefined> {
+interface SpinnerRootProps extends ComponentPropsWithoutRef<"span"> {
   color?: SpinnerVariants["color"];
   size?: SpinnerVariants["size"];
-  className?: string;
 }
 
-function SpinnerRoot<E extends keyof React.JSX.IntrinsicElements = "span">({
-  color,
-  size,
-  className,
-  ...rest
-}: SpinnerRootProps<E> &
-  Omit<React.JSX.IntrinsicElements[E], keyof SpinnerRootProps<E>>) {
+function SpinnerRoot({ color, size, className, ...rest }: SpinnerRootProps) {
   return (
-    <dom.span
+    <span
       data-slot="spinner"
       className={spinnerVariants({
         className,
         color,
         size,
       })}
-      {...(rest as React.ComponentProps<typeof dom.span>)}
+      {...rest}
     >
       <SpinnerPrimitive role="presentation" aria-hidden />
-    </dom.span>
+    </span>
   );
 }
 

@@ -4,9 +4,8 @@ import type { ButtonGroupVariants } from "@lite-app/styles/components/button-gro
 import { buttonGroupVariants } from "@lite-app/styles/components/button-group";
 import type {
   Attributes,
-  ComponentProps,
+  ComponentPropsWithoutRef,
   ComponentPropsWithRef,
-  ReactNode,
 } from "react";
 import React, {
   Children,
@@ -22,8 +21,6 @@ import {
   composeSlotClassName,
   composeTwRenderProps,
 } from "../../utils/compose";
-import type { DOMRenderProps } from "../../utils/dom";
-import { dom } from "../../utils/dom";
 import type { ButtonProps } from "../button";
 
 interface ButtonGroupContext {
@@ -89,28 +86,20 @@ function ButtonGroupRoot({
   );
 }
 
-interface ButtonGroupSeparatorProps<
-  E extends keyof React.JSX.IntrinsicElements = "span",
-> extends DOMRenderProps<E, undefined> {
-  children?: ReactNode;
-  className?: string;
-}
+interface ButtonGroupSeparatorProps extends ComponentPropsWithoutRef<"span"> {}
 
-function ButtonGroupSeparator<
-  E extends keyof React.JSX.IntrinsicElements = "span",
->({
+function ButtonGroupSeparator({
   className,
   ...rest
-}: ButtonGroupSeparatorProps<E> &
-  Omit<React.JSX.IntrinsicElements[E], keyof ButtonGroupSeparatorProps<E>>) {
+}: ButtonGroupSeparatorProps) {
   const { slots } = useContext(ButtonGroupContext);
 
   return (
-    <dom.span
+    <span
       data-slot="button-group-separator"
       className={composeSlotClassName(slots?.separator, className)}
       aria-hidden="true"
-      {...(rest as ComponentProps<typeof dom.span>)}
+      {...rest}
     />
   );
 }
