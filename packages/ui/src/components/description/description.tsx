@@ -12,20 +12,22 @@ import { Text } from "react-aria-components/Text";
 interface DescriptionRootProps
   extends ComponentPropsWithRef<typeof Text>, TextProps, DescriptionVariants {}
 
-const DescriptionRoot = ({
+function DescriptionRoot({
   children,
   className,
   ...rest
-}: DescriptionRootProps) => (
-  <Text
-    className={descriptionVariants({ className })}
-    data-slot="description"
-    slot="description"
-    {...rest}
-  >
-    {children}
-  </Text>
-);
+}: DescriptionRootProps) {
+  return (
+    <Text
+      className={descriptionVariants({ className })}
+      data-slot="description"
+      slot="description"
+      {...rest}
+    >
+      {children}
+    </Text>
+  );
+}
 
 /*
  * Exports

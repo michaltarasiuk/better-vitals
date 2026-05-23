@@ -15,22 +15,20 @@ interface FieldErrorRootProps
     ComponentPropsWithRef<typeof FieldErrorPrimitive>,
     FieldErrorVariants {}
 
-const FieldErrorRoot = ({
-  children,
-  className,
-  ...rest
-}: FieldErrorRootProps) => (
-  <FieldErrorPrimitive
-    data-visible
-    className={composeTwRenderProps(className, fieldErrorVariants())}
-    data-slot="field-error"
-    {...rest}
-  >
-    {(renderProps) =>
-      typeof children === "function" ? children(renderProps) : children
-    }
-  </FieldErrorPrimitive>
-);
+function FieldErrorRoot({ children, className, ...rest }: FieldErrorRootProps) {
+  return (
+    <FieldErrorPrimitive
+      data-visible
+      className={composeTwRenderProps(className, fieldErrorVariants())}
+      data-slot="field-error"
+      {...rest}
+    >
+      {(renderProps) =>
+        typeof children === "function" ? children(renderProps) : children
+      }
+    </FieldErrorPrimitive>
+  );
+}
 
 /*
  * Exports

@@ -29,13 +29,13 @@ interface TextFieldRootProps
   variant?: "primary" | "secondary";
 }
 
-const TextFieldRoot = ({
+function TextFieldRoot({
   children,
   className,
   fullWidth,
   variant,
   ...props
-}: TextFieldRootProps) => {
+}: TextFieldRootProps) {
   const styles = React.useMemo(
     () => textFieldVariants({ fullWidth }),
     [fullWidth]
@@ -54,7 +54,7 @@ const TextFieldRoot = ({
       )}
     </TextFieldPrimitive>
   );
-};
+}
 
 /*
  * Exports

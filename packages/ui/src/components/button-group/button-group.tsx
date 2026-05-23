@@ -54,7 +54,7 @@ interface ButtonGroupRootProps
   orientation?: "horizontal" | "vertical";
 }
 
-const ButtonGroupRoot = ({
+function ButtonGroupRoot({
   children,
   className,
   fullWidth,
@@ -63,7 +63,7 @@ const ButtonGroupRoot = ({
   size,
   variant,
   ...rest
-}: ButtonGroupRootProps) => {
+}: ButtonGroupRootProps) {
   const racContext = useSlottedContext(RACToggleButtonGroupContext);
   const orientation =
     orientationProp ?? racContext?.orientation ?? "horizontal";
@@ -97,7 +97,7 @@ const ButtonGroupRoot = ({
       </Group>
     </ButtonGroupContext>
   );
-};
+}
 
 /*
  * ButtonGroup Separator
@@ -109,13 +109,13 @@ interface ButtonGroupSeparatorProps<
   className?: string;
 }
 
-const ButtonGroupSeparator = <
+function ButtonGroupSeparator<
   E extends keyof React.JSX.IntrinsicElements = "span",
 >({
   className,
   ...props
 }: ButtonGroupSeparatorProps<E> &
-  Omit<React.JSX.IntrinsicElements[E], keyof ButtonGroupSeparatorProps<E>>) => {
+  Omit<React.JSX.IntrinsicElements[E], keyof ButtonGroupSeparatorProps<E>>) {
   const { slots } = useContext(ButtonGroupContext);
 
   return (
@@ -126,7 +126,7 @@ const ButtonGroupSeparator = <
       {...(props as ComponentProps<typeof dom.span>)}
     />
   );
-};
+}
 
 /*
  * Exports

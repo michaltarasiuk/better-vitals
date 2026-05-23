@@ -32,13 +32,13 @@ interface CardRootProps<
   variant?: CardVariants["variant"];
 }
 
-const CardRoot = <E extends keyof React.JSX.IntrinsicElements = "div">({
+function CardRoot<E extends keyof React.JSX.IntrinsicElements = "div">({
   children,
   className,
   variant = "default",
   ...props
 }: CardRootProps<E> &
-  Omit<React.JSX.IntrinsicElements[E], keyof CardRootProps<E>>) => {
+  Omit<React.JSX.IntrinsicElements[E], keyof CardRootProps<E>>) {
   const slots = React.useMemo(() => cardVariants({ variant }), [variant]);
 
   const content = (
@@ -67,7 +67,7 @@ const CardRoot = <E extends keyof React.JSX.IntrinsicElements = "div">({
       )}
     </CardContext>
   );
-};
+}
 
 /*
  * Card Header
@@ -79,11 +79,11 @@ interface CardHeaderProps<
   className?: string;
 }
 
-const CardHeader = <E extends keyof React.JSX.IntrinsicElements = "div">({
+function CardHeader<E extends keyof React.JSX.IntrinsicElements = "div">({
   className,
   ...props
 }: CardHeaderProps<E> &
-  Omit<React.JSX.IntrinsicElements[E], keyof CardHeaderProps<E>>) => {
+  Omit<React.JSX.IntrinsicElements[E], keyof CardHeaderProps<E>>) {
   const { slots } = useContext(CardContext);
 
   return (
@@ -93,7 +93,7 @@ const CardHeader = <E extends keyof React.JSX.IntrinsicElements = "div">({
       {...(props as React.ComponentProps<typeof dom.div>)}
     />
   );
-};
+}
 
 /*
  * Card Title
@@ -105,12 +105,12 @@ interface CardTitleProps<
   className?: string;
 }
 
-const CardTitle = <E extends keyof React.JSX.IntrinsicElements = "h3">({
+function CardTitle<E extends keyof React.JSX.IntrinsicElements = "h3">({
   children,
   className,
   ...props
 }: CardTitleProps<E> &
-  Omit<React.JSX.IntrinsicElements[E], keyof CardTitleProps<E>>) => {
+  Omit<React.JSX.IntrinsicElements[E], keyof CardTitleProps<E>>) {
   const { slots } = useContext(CardContext);
 
   return (
@@ -122,7 +122,7 @@ const CardTitle = <E extends keyof React.JSX.IntrinsicElements = "h3">({
       {children}
     </dom.h3>
   );
-};
+}
 
 /*
  * Card Description
@@ -134,12 +134,12 @@ interface CardDescriptionProps<
   className?: string;
 }
 
-const CardDescription = <E extends keyof React.JSX.IntrinsicElements = "p">({
+function CardDescription<E extends keyof React.JSX.IntrinsicElements = "p">({
   children,
   className,
   ...props
 }: CardDescriptionProps<E> &
-  Omit<React.JSX.IntrinsicElements[E], keyof CardDescriptionProps<E>>) => {
+  Omit<React.JSX.IntrinsicElements[E], keyof CardDescriptionProps<E>>) {
   const { slots } = useContext(CardContext);
 
   return (
@@ -151,7 +151,7 @@ const CardDescription = <E extends keyof React.JSX.IntrinsicElements = "p">({
       {children}
     </dom.p>
   );
-};
+}
 
 /*
  * Card Content
@@ -163,11 +163,11 @@ interface CardContentProps<
   className?: string;
 }
 
-const CardContent = <E extends keyof React.JSX.IntrinsicElements = "div">({
+function CardContent<E extends keyof React.JSX.IntrinsicElements = "div">({
   className,
   ...props
 }: CardContentProps<E> &
-  Omit<React.JSX.IntrinsicElements[E], keyof CardContentProps<E>>) => {
+  Omit<React.JSX.IntrinsicElements[E], keyof CardContentProps<E>>) {
   const { slots } = useContext(CardContext);
 
   return (
@@ -177,7 +177,7 @@ const CardContent = <E extends keyof React.JSX.IntrinsicElements = "div">({
       {...(props as React.ComponentProps<typeof dom.div>)}
     />
   );
-};
+}
 
 /*
  * Card Footer
@@ -189,11 +189,11 @@ interface CardFooterProps<
   className?: string;
 }
 
-const CardFooter = <E extends keyof React.JSX.IntrinsicElements = "div">({
+function CardFooter<E extends keyof React.JSX.IntrinsicElements = "div">({
   className,
   ...props
 }: CardFooterProps<E> &
-  Omit<React.JSX.IntrinsicElements[E], keyof CardFooterProps<E>>) => {
+  Omit<React.JSX.IntrinsicElements[E], keyof CardFooterProps<E>>) {
   const { slots } = useContext(CardContext);
 
   return (
@@ -203,7 +203,7 @@ const CardFooter = <E extends keyof React.JSX.IntrinsicElements = "div">({
       {...(props as React.ComponentProps<typeof dom.div>)}
     />
   );
-};
+}
 
 /*
  * Exports

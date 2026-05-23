@@ -30,7 +30,7 @@ const LinkContext = createContext<LinkContext>({});
 interface LinkRootProps
   extends ComponentPropsWithRef<typeof LinkPrimitive>, LinkVariants {}
 
-const LinkRoot = ({ children, className, ...props }: LinkRootProps) => {
+function LinkRoot({ children, className, ...props }: LinkRootProps) {
   const slots = React.useMemo(() => linkVariants(), []);
 
   return (
@@ -45,7 +45,7 @@ const LinkRoot = ({ children, className, ...props }: LinkRootProps) => {
       </LinkPrimitive>
     </LinkContext>
   );
-};
+}
 
 /*
  * Link Icon
@@ -57,12 +57,12 @@ interface LinkIconProps<
   className?: string;
 }
 
-const LinkIcon = <E extends keyof React.JSX.IntrinsicElements = "span">({
+function LinkIcon<E extends keyof React.JSX.IntrinsicElements = "span">({
   children,
   className,
   ...rest
 }: LinkIconProps<E> &
-  Omit<React.JSX.IntrinsicElements[E], keyof LinkIconProps<E>>) => {
+  Omit<React.JSX.IntrinsicElements[E], keyof LinkIconProps<E>>) {
   const { slots } = useContext(LinkContext);
 
   return (
@@ -75,7 +75,7 @@ const LinkIcon = <E extends keyof React.JSX.IntrinsicElements = "span">({
       {children ?? <ExternalLinkIcon data-slot="link-default-icon" />}
     </dom.span>
   );
-};
+}
 
 /*
  * Exports

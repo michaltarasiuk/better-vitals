@@ -44,14 +44,14 @@ interface ComboBoxRootProps<T extends object>
   variant?: "primary" | "secondary";
 }
 
-const ComboBoxRoot = <T extends object = object>({
+function ComboBoxRoot<T extends object = object>({
   children,
   className,
   fullWidth,
   menuTrigger = "focus",
   variant,
   ...props
-}: ComboBoxRootProps<T>) => {
+}: ComboBoxRootProps<T>) {
   const slots = React.useMemo(
     () => comboBoxVariants({ fullWidth }),
     [fullWidth]
@@ -71,18 +71,18 @@ const ComboBoxRoot = <T extends object = object>({
       </ComboBoxPrimitive>
     </ComboBoxContext>
   );
-};
+}
 
 /*
  * ComboBox InputGroup
  */
 interface ComboBoxInputGroupProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-const ComboBoxInputGroup = ({
+function ComboBoxInputGroup({
   children,
   className,
   ...props
-}: ComboBoxInputGroupProps) => {
+}: ComboBoxInputGroupProps) {
   const { slots } = useContext(ComboBoxContext);
   const inputGroupClassName = composeSlotClassName(
     slots?.inputGroup,
@@ -98,7 +98,7 @@ const ComboBoxInputGroup = ({
       {children}
     </div>
   );
-};
+}
 
 /*
  * ComboBox Trigger
@@ -108,11 +108,11 @@ interface ComboBoxTriggerProps extends ButtonProps {
   children?: ReactNode;
 }
 
-const ComboBoxTrigger = ({
+function ComboBoxTrigger({
   children,
   className,
   ...rest
-}: ComboBoxTriggerProps) => {
+}: ComboBoxTriggerProps) {
   const { slots } = useContext(ComboBoxContext);
   const state = useContext(ComboBoxStateContext);
 
@@ -128,7 +128,7 @@ const ComboBoxTrigger = ({
       )}
     </Button>
   );
-};
+}
 
 /*
  * ComboBox Popover
@@ -140,12 +140,12 @@ interface ComboBoxPopoverProps extends Omit<
   children: React.ReactNode;
 }
 
-const ComboBoxPopover = ({
+function ComboBoxPopover({
   children,
   className,
   placement = "bottom",
   ...props
-}: ComboBoxPopoverProps) => {
+}: ComboBoxPopoverProps) {
   const { slots } = useContext(ComboBoxContext);
 
   return (
@@ -163,7 +163,7 @@ const ComboBoxPopover = ({
       </PopoverPrimitive>
     </SurfaceContext>
   );
-};
+}
 
 /*
  * Exports

@@ -8,7 +8,9 @@ import { Form as FormPrimitive } from "react-aria-components/Form";
  */
 interface FormRootProps extends ComponentPropsWithRef<typeof FormPrimitive> {}
 
-const FormRoot = ({ ...props }: FormRootProps) => <FormPrimitive {...props} />;
+function FormRoot({ ...props }: FormRootProps) {
+  return <FormPrimitive {...props} />;
+}
 
 /*
  * Exports

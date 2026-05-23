@@ -38,7 +38,7 @@ interface TypographyRootProps extends Omit<
   weight?: TypographyWeight;
 }
 
-const TypographyRoot = ({
+function TypographyRoot({
   align = "start",
   children,
   className,
@@ -47,7 +47,7 @@ const TypographyRoot = ({
   type = "body",
   weight,
   ...props
-}: TypographyRootProps) => {
+}: TypographyRootProps) {
   const slots = typographyVariants({ align, color, truncate, type, weight });
 
   return (
@@ -61,35 +61,37 @@ const TypographyRoot = ({
       {children}
     </TextPrimitive>
   );
-};
+}
 
 interface HeadingProps extends Omit<TypographyRootProps, "type"> {
   level?: 1 | 2 | 3 | 4 | 5 | 6;
 }
 
-const Heading = ({ level = 1, ...props }: HeadingProps) => (
-  <TypographyRoot type={`h${level}` as TypographyType} {...props} />
-);
+function Heading({ level = 1, ...props }: HeadingProps) {
+  return <TypographyRoot type={`h${level}` as TypographyType} {...props} />;
+}
 
 interface ParagraphProps extends Omit<TypographyRootProps, "type"> {
   size?: "base" | "sm" | "xs";
 }
 
-const Paragraph = ({ size = "base", ...props }: ParagraphProps) => {
+function Paragraph({ size = "base", ...props }: ParagraphProps) {
   const type = size === "base" ? "body" : (`body-${size}` as TypographyType);
 
   return <TypographyRoot type={type} {...props} />;
-};
+}
 
 interface CodeProps extends Omit<TypographyRootProps, "type"> {}
 
-const Code = (props: CodeProps) => <TypographyRoot type="code" {...props} />;
+function Code(props: CodeProps) {
+  return <TypographyRoot type="code" {...props} />;
+}
 
 interface ProseProps extends Omit<ComponentPropsWithRef<"div">, "color"> {
   children: ReactNode;
 }
 
-const Prose = ({ children, className, ...props }: ProseProps) => {
+function Prose({ children, className, ...props }: ProseProps) {
   const slots = typographyVariants();
 
   return (
@@ -101,7 +103,7 @@ const Prose = ({ children, className, ...props }: ProseProps) => {
       {children}
     </div>
   );
-};
+}
 
 export { Code, Heading, Paragraph, Prose, TypographyRoot };
 

@@ -16,12 +16,12 @@ import { TextFieldContext } from "../textfield";
 interface InputRootProps
   extends ComponentPropsWithRef<typeof InputPrimitive>, InputVariants {}
 
-const InputRoot = ({
+function InputRoot({
   className,
   fullWidth,
   variant: variantProp,
   ...rest
-}: InputRootProps) => {
+}: InputRootProps) {
   const textFieldContext = useContext(TextFieldContext);
   const comboBoxContext = useContext(ComboBoxContext);
 
@@ -39,7 +39,7 @@ const InputRoot = ({
       {...rest}
     />
   );
-};
+}
 
 /*
  * Exports

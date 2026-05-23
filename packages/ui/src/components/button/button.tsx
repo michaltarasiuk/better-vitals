@@ -17,7 +17,7 @@ interface ButtonRootProps
   [BUTTON_GROUP_CHILD]?: boolean;
 }
 
-const ButtonRoot = ({
+function ButtonRoot({
   children,
   className,
   fullWidth,
@@ -29,7 +29,7 @@ const ButtonRoot = ({
   variant,
   [BUTTON_GROUP_CHILD]: isButtonGroupChild,
   ...rest
-}: ButtonRootProps) => {
+}: ButtonRootProps) {
   const buttonGroupContext = useContext(ButtonGroupContext);
 
   // Only use context if this button is a direct child of ButtonGroup
@@ -67,7 +67,7 @@ const ButtonRoot = ({
       }
     </ButtonPrimitive>
   );
-};
+}
 
 /*
  * Exports
