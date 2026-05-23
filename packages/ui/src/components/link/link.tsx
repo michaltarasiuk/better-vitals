@@ -30,8 +30,8 @@ function LinkRoot({ children, className, ...props }: LinkRootProps) {
   return (
     <LinkContext value={{ slots }}>
       <LinkPrimitive
-        {...props}
         className={composeTwRenderProps(className, slots?.base())}
+        {...props}
       >
         {(values) => (
           <>{typeof children === "function" ? children(values) : children}</>
@@ -58,9 +58,9 @@ function LinkIcon<E extends keyof React.JSX.IntrinsicElements = "span">({
 
   return (
     <dom.span
-      className={composeSlotClassName(slots?.icon, className)}
-      data-default-icon={dataAttr(!children)}
       data-slot="link-icon"
+      data-default-icon={dataAttr(!children)}
+      className={composeSlotClassName(slots?.icon, className)}
       {...(rest as React.ComponentProps<typeof dom.span>)}
     >
       {children ?? <ExternalLinkIcon data-slot="link-default-icon" />}

@@ -14,7 +14,7 @@ function SpinnerPrimitive({ ...props }: SpinnerPrimitiveProps) {
   const id = useId();
 
   return (
-    <svg data-slot="spinner-icon" viewBox="0 0 24 24" {...props}>
+    <svg viewBox="0 0 24 24" data-slot="spinner-icon" {...props}>
       <defs>
         <linearGradient
           id={`«data-slot-icon-def-1»-${id}`}
@@ -57,29 +57,29 @@ function SpinnerPrimitive({ ...props }: SpinnerPrimitiveProps) {
 interface SpinnerRootProps<
   E extends keyof React.JSX.IntrinsicElements = "span",
 > extends DOMRenderProps<E, undefined> {
-  className?: string;
   color?: SpinnerVariants["color"];
   size?: SpinnerVariants["size"];
+  className?: string;
 }
 
 function SpinnerRoot<E extends keyof React.JSX.IntrinsicElements = "span">({
-  className,
   color,
   size,
+  className,
   ...props
 }: SpinnerRootProps<E> &
   Omit<React.JSX.IntrinsicElements[E], keyof SpinnerRootProps<E>>) {
   return (
     <dom.span
       data-slot="spinner"
-      {...(props as React.ComponentProps<typeof dom.span>)}
       className={spinnerVariants({
         className,
         color,
         size,
       })}
+      {...(props as React.ComponentProps<typeof dom.span>)}
     >
-      <SpinnerPrimitive aria-hidden role="presentation" />
+      <SpinnerPrimitive role="presentation" aria-hidden />
     </dom.span>
   );
 }

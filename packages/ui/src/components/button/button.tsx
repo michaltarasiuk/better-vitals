@@ -15,15 +15,15 @@ interface ButtonRootProps
 }
 
 function ButtonRoot({
-  children,
-  className,
-  fullWidth,
-  isDisabled,
-  isIconOnly,
-  size,
-  slot,
-  style,
   variant,
+  size,
+  isDisabled,
+  fullWidth,
+  isIconOnly,
+  children,
+  slot,
+  className,
+  style,
   [BUTTON_GROUP_CHILD]: isButtonGroupChild,
   ...rest
 }: ButtonRootProps) {
@@ -50,10 +50,10 @@ function ButtonRoot({
 
   return (
     <ButtonPrimitive
-      className={composeTwRenderProps(className, styles)}
       data-slot="button"
       isDisabled={finalIsDisabled}
       slot={slot}
+      className={composeTwRenderProps(className, styles)}
       style={style}
       {...rest}
     >

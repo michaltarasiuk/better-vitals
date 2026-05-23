@@ -30,16 +30,16 @@ const ComboBoxContext = createContext<ComboBoxContext>({});
 
 interface ComboBoxRootProps<T extends object>
   extends ComponentPropsWithRef<typeof ComboBoxPrimitive<T>>, ComboBoxVariants {
-  items?: Iterable<T>;
   variant?: "primary" | "secondary";
+  items?: Iterable<T>;
 }
 
 function ComboBoxRoot<T extends object = object>({
-  children,
-  className,
+  variant,
   fullWidth,
   menuTrigger = "focus",
-  variant,
+  children,
+  className,
   ...props
 }: ComboBoxRootProps<T>) {
   const slots = React.useMemo(
@@ -52,8 +52,8 @@ function ComboBoxRoot<T extends object = object>({
       <ComboBoxPrimitive
         data-slot="combo-box"
         menuTrigger={menuTrigger}
-        {...props}
         className={composeTwRenderProps(className, slots?.base())}
+        {...props}
       >
         {(values) => (
           <>{typeof children === "function" ? children(values) : children}</>
@@ -102,9 +102,9 @@ function ComboBoxTrigger({
 
   return (
     <Button
-      className={composeTwRenderProps(className, slots?.trigger())}
-      data-open={dataAttr(state?.isOpen)}
       data-slot="combo-box-trigger"
+      data-open={dataAttr(state?.isOpen)}
+      className={composeTwRenderProps(className, slots?.trigger())}
       {...rest}
     >
       {children ?? (
@@ -122,9 +122,9 @@ interface ComboBoxPopoverProps extends Omit<
 }
 
 function ComboBoxPopover({
+  placement = "bottom",
   children,
   className,
-  placement = "bottom",
   ...props
 }: ComboBoxPopoverProps) {
   const { slots } = useContext(ComboBoxContext);
@@ -136,9 +136,9 @@ function ComboBoxPopover({
       }}
     >
       <PopoverPrimitive
-        {...props}
-        className={composeTwRenderProps(className, slots?.popover())}
         placement={placement}
+        className={composeTwRenderProps(className, slots?.popover())}
+        {...props}
       >
         {children}
       </PopoverPrimitive>

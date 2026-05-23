@@ -9,22 +9,22 @@ interface LabelRootProps
   extends ComponentPropsWithRef<typeof LabelPrimitive>, LabelVariants {}
 
 function LabelRoot({
+  isRequired,
+  isInvalid,
+  isDisabled,
   children,
   className,
-  isDisabled,
-  isInvalid,
-  isRequired,
   ...rest
 }: LabelRootProps) {
   return (
     <LabelPrimitive
+      data-slot="label"
       className={labelVariants({
         className,
         isDisabled,
         isInvalid,
         isRequired,
       })}
-      data-slot="label"
       {...rest}
     >
       {children}

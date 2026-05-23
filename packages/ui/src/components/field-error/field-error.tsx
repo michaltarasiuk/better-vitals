@@ -15,9 +15,9 @@ interface FieldErrorRootProps
 function FieldErrorRoot({ children, className, ...rest }: FieldErrorRootProps) {
   return (
     <FieldErrorPrimitive
+      data-slot="field-error"
       data-visible
       className={composeTwRenderProps(className, fieldErrorVariants())}
-      data-slot="field-error"
       {...rest}
     >
       {(renderProps) =>

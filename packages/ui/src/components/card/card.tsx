@@ -20,15 +20,15 @@ const CardContext = createContext<CardContext>({});
 interface CardRootProps<
   E extends keyof React.JSX.IntrinsicElements = "div",
 > extends DOMRenderProps<E, undefined> {
+  variant?: CardVariants["variant"];
   children: ReactNode;
   className?: string;
-  variant?: CardVariants["variant"];
 }
 
 function CardRoot<E extends keyof React.JSX.IntrinsicElements = "div">({
+  variant = "default",
   children,
   className,
-  variant = "default",
   ...props
 }: CardRootProps<E> &
   Omit<React.JSX.IntrinsicElements[E], keyof CardRootProps<E>>) {
@@ -36,8 +36,8 @@ function CardRoot<E extends keyof React.JSX.IntrinsicElements = "div">({
 
   const content = (
     <dom.div
-      className={slots.base({ className })}
       data-slot="card"
+      className={slots.base({ className })}
       {...(props as React.ComponentProps<typeof dom.div>)}
     >
       {children}
@@ -77,8 +77,8 @@ function CardHeader<E extends keyof React.JSX.IntrinsicElements = "div">({
 
   return (
     <dom.div
-      className={composeSlotClassName(slots?.header, className)}
       data-slot="card-header"
+      className={composeSlotClassName(slots?.header, className)}
       {...(props as React.ComponentProps<typeof dom.div>)}
     />
   );
@@ -101,8 +101,8 @@ function CardTitle<E extends keyof React.JSX.IntrinsicElements = "h3">({
 
   return (
     <dom.h3
-      className={composeSlotClassName(slots?.title, className)}
       data-slot="card-title"
+      className={composeSlotClassName(slots?.title, className)}
       {...(props as React.ComponentProps<typeof dom.h3>)}
     >
       {children}
@@ -127,8 +127,8 @@ function CardDescription<E extends keyof React.JSX.IntrinsicElements = "p">({
 
   return (
     <dom.p
-      className={composeSlotClassName(slots?.description, className)}
       data-slot="card-description"
+      className={composeSlotClassName(slots?.description, className)}
       {...(props as React.ComponentProps<typeof dom.p>)}
     >
       {children}
@@ -152,8 +152,8 @@ function CardContent<E extends keyof React.JSX.IntrinsicElements = "div">({
 
   return (
     <dom.div
-      className={composeSlotClassName(slots?.content, className)}
       data-slot="card-content"
+      className={composeSlotClassName(slots?.content, className)}
       {...(props as React.ComponentProps<typeof dom.div>)}
     />
   );
@@ -175,8 +175,8 @@ function CardFooter<E extends keyof React.JSX.IntrinsicElements = "div">({
 
   return (
     <dom.div
-      className={composeSlotClassName(slots?.footer, className)}
       data-slot="card-footer"
+      className={composeSlotClassName(slots?.footer, className)}
       {...(props as React.ComponentProps<typeof dom.div>)}
     />
   );

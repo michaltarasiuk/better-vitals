@@ -29,33 +29,33 @@ interface TypographyRootProps extends Omit<
   ComponentPropsWithRef<typeof TextPrimitive>,
   "className" | "elementType"
 > {
+  type?: TypographyType;
   align?: TypographyAlign;
+  color?: TypographyColor;
+  weight?: TypographyWeight;
+  truncate?: boolean;
   children?: ReactNode;
   className?: string;
-  color?: TypographyColor;
-  type?: TypographyType;
-  truncate?: boolean;
-  weight?: TypographyWeight;
 }
 
 function TypographyRoot({
+  type = "body",
   align = "start",
+  color = "default",
+  weight,
+  truncate,
   children,
   className,
-  color = "default",
-  truncate,
-  type = "body",
-  weight,
   ...props
 }: TypographyRootProps) {
   const slots = typographyVariants({ align, color, truncate, type, weight });
 
   return (
     <TextPrimitive
-      className={composeSlotClassName(slots.base, className)}
+      elementType={defaultElementByType[type]}
       data-slot="typography"
       data-type={type}
-      elementType={defaultElementByType[type]}
+      className={composeSlotClassName(slots.base, className)}
       {...props}
     >
       {children}
@@ -96,8 +96,8 @@ function Prose({ children, className, ...props }: ProseProps) {
 
   return (
     <div
-      className={composeSlotClassName(slots.prose, className)}
       data-slot="prose"
+      className={composeSlotClassName(slots.prose, className)}
       {...props}
     >
       {children}

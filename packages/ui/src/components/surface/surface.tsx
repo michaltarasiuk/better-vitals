@@ -17,23 +17,23 @@ const SurfaceContext = createContext<SurfaceContext>({});
 interface SurfaceRootProps<
   E extends keyof React.JSX.IntrinsicElements = "div",
 > extends DOMRenderProps<E, undefined> {
+  variant?: SurfaceVariants["variant"];
   children: ReactNode;
   className?: string;
-  variant?: SurfaceVariants["variant"];
 }
 
 function SurfaceRoot<E extends keyof React.JSX.IntrinsicElements = "div">({
+  variant = "default",
   children,
   className,
-  variant = "default",
   ...rest
 }: SurfaceRootProps<E> &
   Omit<React.JSX.IntrinsicElements[E], keyof SurfaceRootProps<E>>) {
   return (
     <SurfaceContext value={{ variant }}>
       <dom.div
-        className={surfaceVariants({ className, variant })}
         data-slot="surface"
+        className={surfaceVariants({ className, variant })}
         {...(rest as React.ComponentProps<typeof dom.div>)}
       >
         {children}

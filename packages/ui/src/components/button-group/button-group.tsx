@@ -27,11 +27,11 @@ import { dom } from "../../utils/dom";
 import type { ButtonProps } from "../button";
 
 interface ButtonGroupContext {
-  slots?: ReturnType<typeof buttonGroupVariants>;
-  size?: ButtonProps["size"];
   variant?: ButtonProps["variant"];
+  size?: ButtonProps["size"];
   isDisabled?: ButtonProps["isDisabled"];
   fullWidth?: ButtonProps["fullWidth"];
+  slots?: ReturnType<typeof buttonGroupVariants>;
 }
 
 const ButtonGroupContext = createContext<ButtonGroupContext>({});
@@ -47,13 +47,13 @@ interface ButtonGroupRootProps
 }
 
 function ButtonGroupRoot({
+  variant,
+  size,
+  orientation: orientationProp,
+  isDisabled,
+  fullWidth,
   children,
   className,
-  fullWidth,
-  isDisabled,
-  orientation: orientationProp,
-  size,
-  variant,
   ...rest
 }: ButtonGroupRootProps) {
   const racContext = useSlottedContext(RACToggleButtonGroupContext);
@@ -78,9 +78,9 @@ function ButtonGroupRoot({
   return (
     <ButtonGroupContext value={{ fullWidth, isDisabled, size, slots, variant }}>
       <Group
-        className={composeTwRenderProps(className, slots.base())}
         data-slot="button-group"
         isDisabled={isDisabled}
+        className={composeTwRenderProps(className, slots.base())}
         {...rest}
       >
         {wrappedChildren}
@@ -107,9 +107,9 @@ function ButtonGroupSeparator<
 
   return (
     <dom.span
-      aria-hidden="true"
-      className={composeSlotClassName(slots?.separator, className)}
       data-slot="button-group-separator"
+      className={composeSlotClassName(slots?.separator, className)}
+      aria-hidden="true"
       {...(props as ComponentProps<typeof dom.span>)}
     />
   );

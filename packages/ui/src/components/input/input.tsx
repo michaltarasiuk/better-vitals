@@ -14,9 +14,9 @@ interface InputRootProps
   extends ComponentPropsWithRef<typeof InputPrimitive>, InputVariants {}
 
 function InputRoot({
-  className,
-  fullWidth,
   variant: variantProp,
+  fullWidth,
+  className,
   ...rest
 }: InputRootProps) {
   const textFieldContext = useContext(TextFieldContext);
@@ -27,11 +27,11 @@ function InputRoot({
 
   return (
     <InputPrimitive
+      data-slot="input"
       className={composeTwRenderProps(
         className,
         inputVariants({ fullWidth, variant })
       )}
-      data-slot="input"
       {...rest}
     />
   );

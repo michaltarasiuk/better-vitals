@@ -16,9 +16,9 @@ function DescriptionRoot({
 }: DescriptionRootProps) {
   return (
     <Text
-      className={descriptionVariants({ className })}
-      data-slot="description"
       slot="description"
+      data-slot="description"
+      className={descriptionVariants({ className })}
       {...rest}
     >
       {children}
