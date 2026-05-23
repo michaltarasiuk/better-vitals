@@ -17,7 +17,7 @@ import { getFieldNameForAuthError, isAuthError } from "~/lib/auth/error";
 import { comparePasswords } from "~/lib/auth/validation";
 import { withMinimumDelay } from "~/lib/utils/delay";
 import { invariant } from "~/lib/utils/invariant";
-import { isNotNullish } from "~/lib/utils/is-not-nullish";
+import { isDefined } from "~/lib/utils/is-defined";
 
 export default function Signup() {
   const [validationErrors, setValidationErrors] = useState<
@@ -29,7 +29,7 @@ export default function Signup() {
     const formData = new FormData(e.currentTarget);
 
     const passwordValidationErrors = comparePasswords(formData);
-    if (isNotNullish(passwordValidationErrors)) {
+    if (isDefined(passwordValidationErrors)) {
       setValidationErrors(passwordValidationErrors);
       return;
     }

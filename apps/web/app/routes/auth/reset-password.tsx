@@ -18,7 +18,7 @@ import { getFieldNameForAuthError, isAuthError } from "~/lib/auth/error";
 import { comparePasswords } from "~/lib/auth/validation";
 import { withMinimumDelay } from "~/lib/utils/delay";
 import { invariant } from "~/lib/utils/invariant";
-import { isNotNullish } from "~/lib/utils/is-not-nullish";
+import { isDefined } from "~/lib/utils/is-defined";
 
 export default function ResetPassword() {
   const [validationErrors, setValidationErrors] = useState<
@@ -31,7 +31,7 @@ export default function ResetPassword() {
     const token = new URLSearchParams(window.location.search).get("token");
 
     const passwordValidationErrors = comparePasswords(formData);
-    if (isNotNullish(passwordValidationErrors)) {
+    if (isDefined(passwordValidationErrors)) {
       setValidationErrors(passwordValidationErrors);
       return;
     }
@@ -96,7 +96,7 @@ async function action(formData: FormData, token: string | null) {
 
   const result = await resetPassword({
     newPassword: password,
-    ...(isNotNullish(token) ? { token } : {}),
+    ...(isDefined(token) ? { token } : {}),
   });
   return result;
 }
