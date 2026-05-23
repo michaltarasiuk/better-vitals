@@ -57,10 +57,7 @@ function ButtonGroupRoot({
   const orientation =
     orientationProp ?? racContext?.orientation ?? "horizontal";
 
-  const slots = React.useMemo(
-    () => buttonGroupVariants({ fullWidth, orientation }),
-    [fullWidth, orientation]
-  );
+  const slots = buttonGroupVariants({ fullWidth, orientation });
 
   const wrappedChildren = Children.map(children as React.ReactNode, (child) => {
     if (!isValidElement(child)) {

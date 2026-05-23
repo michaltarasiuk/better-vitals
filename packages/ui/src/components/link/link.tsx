@@ -7,7 +7,7 @@ import type {
   ComponentPropsWithRef,
   ReactNode,
 } from "react";
-import React, { createContext, useContext } from "react";
+import { createContext, useContext } from "react";
 import { Link as LinkPrimitive } from "react-aria-components/Link";
 
 import { dataAttr } from "../../utils/assertion";
@@ -27,7 +27,7 @@ interface LinkRootProps
   extends ComponentPropsWithRef<typeof LinkPrimitive>, LinkVariants {}
 
 function LinkRoot({ href, className, children, ...rest }: LinkRootProps) {
-  const slots = React.useMemo(() => linkVariants(), []);
+  const slots = linkVariants();
 
   return (
     <LinkContext value={{ slots }}>

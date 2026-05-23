@@ -4,7 +4,7 @@ import type { CardVariants } from "@lite-app/styles/components/card";
 import { cardVariants } from "@lite-app/styles/components/card";
 import type { SurfaceVariants } from "@lite-app/styles/components/surface";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
-import React, { createContext, useContext } from "react";
+import { createContext, useContext } from "react";
 
 import { composeSlotClassName } from "../../utils/compose";
 import { SurfaceContext } from "../surface";
@@ -26,7 +26,7 @@ function CardRoot({
   children,
   ...rest
 }: CardRootProps) {
-  const slots = React.useMemo(() => cardVariants({ variant }), [variant]);
+  const slots = cardVariants({ variant });
 
   const content = (
     <div data-slot="card" className={slots.base({ className })} {...rest}>

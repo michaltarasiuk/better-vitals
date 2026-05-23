@@ -29,10 +29,7 @@ function TextFieldRoot({
   children,
   ...rest
 }: TextFieldRootProps) {
-  const styles = React.useMemo(
-    () => textFieldVariants({ fullWidth }),
-    [fullWidth]
-  );
+  const styles = textFieldVariants({ fullWidth });
 
   return (
     <TextFieldPrimitive

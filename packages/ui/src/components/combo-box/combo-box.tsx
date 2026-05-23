@@ -43,10 +43,7 @@ function ComboBoxRoot<T extends object = object>({
   children,
   ...rest
 }: ComboBoxRootProps<T>) {
-  const slots = React.useMemo(
-    () => comboBoxVariants({ fullWidth }),
-    [fullWidth]
-  );
+  const slots = comboBoxVariants({ fullWidth });
 
   return (
     <ComboBoxContext value={{ slots, variant }}>
