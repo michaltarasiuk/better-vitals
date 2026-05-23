@@ -25,9 +25,9 @@ export function IconChevronDown(props: IconProps) {
 }
 
 export function ExternalLinkIcon({
-  height = 9,
   width = 9,
-  ...props
+  height = 9,
+  ...rest
 }: IconProps) {
   return (
     <svg
@@ -38,7 +38,7 @@ export function ExternalLinkIcon({
       fill="none"
       role="presentation"
       aria-hidden="true"
-      {...props}
+      {...rest}
     >
       <path
         d="M1.20592 6.84333L0.379822 6.01723L4.52594 1.8672H1.37819L1.38601 0.731812H6.48742V5.83714H5.34421L5.35203 2.6933L1.20592 6.84333Z"

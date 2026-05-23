@@ -16,6 +16,8 @@ interface InputRootProps
 function InputRoot({
   variant: variantProp,
   fullWidth,
+  type,
+  name,
   className,
   ...rest
 }: InputRootProps) {
@@ -28,6 +30,8 @@ function InputRoot({
   return (
     <InputPrimitive
       data-slot="input"
+      type={type}
+      name={name}
       className={composeTwRenderProps(
         className,
         inputVariants({ fullWidth, variant })

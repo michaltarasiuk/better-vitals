@@ -10,8 +10,8 @@ interface DescriptionRootProps
   extends ComponentPropsWithRef<typeof Text>, TextProps, DescriptionVariants {}
 
 function DescriptionRoot({
-  children,
   className,
+  children,
   ...rest
 }: DescriptionRootProps) {
   return (

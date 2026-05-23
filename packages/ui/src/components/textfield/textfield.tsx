@@ -22,9 +22,12 @@ interface TextFieldRootProps
 function TextFieldRoot({
   variant,
   fullWidth,
-  children,
+  isDisabled,
+  isRequired,
+  isInvalid,
   className,
-  ...props
+  children,
+  ...rest
 }: TextFieldRootProps) {
   const styles = React.useMemo(
     () => textFieldVariants({ fullWidth }),
@@ -34,8 +37,11 @@ function TextFieldRoot({
   return (
     <TextFieldPrimitive
       data-slot="textfield"
+      isDisabled={isDisabled}
+      isRequired={isRequired}
+      isInvalid={isInvalid}
       className={composeTwRenderProps(className, styles)}
-      {...props}
+      {...rest}
     >
       {(values) => (
         <TextFieldContext value={{ variant }}>

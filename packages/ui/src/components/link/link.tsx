@@ -24,14 +24,15 @@ const LinkContext = createContext<LinkContext>({});
 interface LinkRootProps
   extends ComponentPropsWithRef<typeof LinkPrimitive>, LinkVariants {}
 
-function LinkRoot({ children, className, ...props }: LinkRootProps) {
+function LinkRoot({ href, className, children, ...rest }: LinkRootProps) {
   const slots = React.useMemo(() => linkVariants(), []);
 
   return (
     <LinkContext value={{ slots }}>
       <LinkPrimitive
+        href={href}
         className={composeTwRenderProps(className, slots?.base())}
-        {...props}
+        {...rest}
       >
         {(values) => (
           <>{typeof children === "function" ? children(values) : children}</>
@@ -49,8 +50,8 @@ interface LinkIconProps<
 }
 
 function LinkIcon<E extends keyof React.JSX.IntrinsicElements = "span">({
-  children,
   className,
+  children,
   ...rest
 }: LinkIconProps<E> &
   Omit<React.JSX.IntrinsicElements[E], keyof LinkIconProps<E>>) {

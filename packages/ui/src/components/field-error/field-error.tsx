@@ -12,7 +12,7 @@ interface FieldErrorRootProps
     ComponentPropsWithRef<typeof FieldErrorPrimitive>,
     FieldErrorVariants {}
 
-function FieldErrorRoot({ children, className, ...rest }: FieldErrorRootProps) {
+function FieldErrorRoot({ className, children, ...rest }: FieldErrorRootProps) {
   return (
     <FieldErrorPrimitive
       data-slot="field-error"

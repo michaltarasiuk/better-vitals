@@ -27,9 +27,9 @@ interface CardRootProps<
 
 function CardRoot<E extends keyof React.JSX.IntrinsicElements = "div">({
   variant = "default",
-  children,
   className,
-  ...props
+  children,
+  ...rest
 }: CardRootProps<E> &
   Omit<React.JSX.IntrinsicElements[E], keyof CardRootProps<E>>) {
   const slots = React.useMemo(() => cardVariants({ variant }), [variant]);
@@ -38,7 +38,7 @@ function CardRoot<E extends keyof React.JSX.IntrinsicElements = "div">({
     <dom.div
       data-slot="card"
       className={slots.base({ className })}
-      {...(props as React.ComponentProps<typeof dom.div>)}
+      {...(rest as React.ComponentProps<typeof dom.div>)}
     >
       {children}
     </dom.div>
@@ -70,7 +70,8 @@ interface CardHeaderProps<
 
 function CardHeader<E extends keyof React.JSX.IntrinsicElements = "div">({
   className,
-  ...props
+  children,
+  ...rest
 }: CardHeaderProps<E> &
   Omit<React.JSX.IntrinsicElements[E], keyof CardHeaderProps<E>>) {
   const { slots } = useContext(CardContext);
@@ -79,8 +80,10 @@ function CardHeader<E extends keyof React.JSX.IntrinsicElements = "div">({
     <dom.div
       data-slot="card-header"
       className={composeSlotClassName(slots?.header, className)}
-      {...(props as React.ComponentProps<typeof dom.div>)}
-    />
+      {...(rest as React.ComponentProps<typeof dom.div>)}
+    >
+      {children}
+    </dom.div>
   );
 }
 
@@ -92,9 +95,9 @@ interface CardTitleProps<
 }
 
 function CardTitle<E extends keyof React.JSX.IntrinsicElements = "h3">({
-  children,
   className,
-  ...props
+  children,
+  ...rest
 }: CardTitleProps<E> &
   Omit<React.JSX.IntrinsicElements[E], keyof CardTitleProps<E>>) {
   const { slots } = useContext(CardContext);
@@ -103,7 +106,7 @@ function CardTitle<E extends keyof React.JSX.IntrinsicElements = "h3">({
     <dom.h3
       data-slot="card-title"
       className={composeSlotClassName(slots?.title, className)}
-      {...(props as React.ComponentProps<typeof dom.h3>)}
+      {...(rest as React.ComponentProps<typeof dom.h3>)}
     >
       {children}
     </dom.h3>
@@ -118,9 +121,9 @@ interface CardDescriptionProps<
 }
 
 function CardDescription<E extends keyof React.JSX.IntrinsicElements = "p">({
-  children,
   className,
-  ...props
+  children,
+  ...rest
 }: CardDescriptionProps<E> &
   Omit<React.JSX.IntrinsicElements[E], keyof CardDescriptionProps<E>>) {
   const { slots } = useContext(CardContext);
@@ -129,7 +132,7 @@ function CardDescription<E extends keyof React.JSX.IntrinsicElements = "p">({
     <dom.p
       data-slot="card-description"
       className={composeSlotClassName(slots?.description, className)}
-      {...(props as React.ComponentProps<typeof dom.p>)}
+      {...(rest as React.ComponentProps<typeof dom.p>)}
     >
       {children}
     </dom.p>
@@ -145,7 +148,8 @@ interface CardContentProps<
 
 function CardContent<E extends keyof React.JSX.IntrinsicElements = "div">({
   className,
-  ...props
+  children,
+  ...rest
 }: CardContentProps<E> &
   Omit<React.JSX.IntrinsicElements[E], keyof CardContentProps<E>>) {
   const { slots } = useContext(CardContext);
@@ -154,8 +158,10 @@ function CardContent<E extends keyof React.JSX.IntrinsicElements = "div">({
     <dom.div
       data-slot="card-content"
       className={composeSlotClassName(slots?.content, className)}
-      {...(props as React.ComponentProps<typeof dom.div>)}
-    />
+      {...(rest as React.ComponentProps<typeof dom.div>)}
+    >
+      {children}
+    </dom.div>
   );
 }
 
@@ -168,7 +174,8 @@ interface CardFooterProps<
 
 function CardFooter<E extends keyof React.JSX.IntrinsicElements = "div">({
   className,
-  ...props
+  children,
+  ...rest
 }: CardFooterProps<E> &
   Omit<React.JSX.IntrinsicElements[E], keyof CardFooterProps<E>>) {
   const { slots } = useContext(CardContext);
@@ -177,8 +184,10 @@ function CardFooter<E extends keyof React.JSX.IntrinsicElements = "div">({
     <dom.div
       data-slot="card-footer"
       className={composeSlotClassName(slots?.footer, className)}
-      {...(props as React.ComponentProps<typeof dom.div>)}
-    />
+      {...(rest as React.ComponentProps<typeof dom.div>)}
+    >
+      {children}
+    </dom.div>
   );
 }
 

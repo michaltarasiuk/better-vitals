@@ -44,9 +44,9 @@ function TypographyRoot({
   color = "default",
   weight,
   truncate,
-  children,
   className,
-  ...props
+  children,
+  ...rest
 }: TypographyRootProps) {
   const slots = typographyVariants({ align, color, truncate, type, weight });
 
@@ -56,7 +56,7 @@ function TypographyRoot({
       data-slot="typography"
       data-type={type}
       className={composeSlotClassName(slots.base, className)}
-      {...props}
+      {...rest}
     >
       {children}
     </TextPrimitive>
@@ -67,18 +67,18 @@ interface HeadingProps extends Omit<TypographyRootProps, "type"> {
   level?: 1 | 2 | 3 | 4 | 5 | 6;
 }
 
-function Heading({ level = 1, ...props }: HeadingProps) {
-  return <TypographyRoot type={`h${level}` as TypographyType} {...props} />;
+function Heading({ level = 1, ...rest }: HeadingProps) {
+  return <TypographyRoot type={`h${level}` as TypographyType} {...rest} />;
 }
 
 interface ParagraphProps extends Omit<TypographyRootProps, "type"> {
   size?: "base" | "sm" | "xs";
 }
 
-function Paragraph({ size = "base", ...props }: ParagraphProps) {
+function Paragraph({ size = "base", ...rest }: ParagraphProps) {
   const type = size === "base" ? "body" : (`body-${size}` as TypographyType);
 
-  return <TypographyRoot type={type} {...props} />;
+  return <TypographyRoot type={type} {...rest} />;
 }
 
 interface CodeProps extends Omit<TypographyRootProps, "type"> {}
@@ -91,14 +91,14 @@ interface ProseProps extends Omit<ComponentPropsWithRef<"div">, "color"> {
   children: ReactNode;
 }
 
-function Prose({ children, className, ...props }: ProseProps) {
+function Prose({ className, children, ...rest }: ProseProps) {
   const slots = typographyVariants();
 
   return (
     <div
       data-slot="prose"
       className={composeSlotClassName(slots.prose, className)}
-      {...props}
+      {...rest}
     >
       {children}
     </div>

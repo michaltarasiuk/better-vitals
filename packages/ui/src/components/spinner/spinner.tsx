@@ -10,7 +10,7 @@ import { dom } from "../../utils/dom";
 
 interface SpinnerPrimitiveProps extends ComponentPropsWithRef<"svg"> {}
 
-function SpinnerPrimitive({ ...props }: SpinnerPrimitiveProps) {
+function SpinnerPrimitive(props: SpinnerPrimitiveProps) {
   const id = useId();
 
   return (
@@ -66,7 +66,7 @@ function SpinnerRoot<E extends keyof React.JSX.IntrinsicElements = "span">({
   color,
   size,
   className,
-  ...props
+  ...rest
 }: SpinnerRootProps<E> &
   Omit<React.JSX.IntrinsicElements[E], keyof SpinnerRootProps<E>>) {
   return (
@@ -77,7 +77,7 @@ function SpinnerRoot<E extends keyof React.JSX.IntrinsicElements = "span">({
         color,
         size,
       })}
-      {...(props as React.ComponentProps<typeof dom.span>)}
+      {...(rest as React.ComponentProps<typeof dom.span>)}
     >
       <SpinnerPrimitive role="presentation" aria-hidden />
     </dom.span>

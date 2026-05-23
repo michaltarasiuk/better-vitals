@@ -5,8 +5,12 @@ import { Form as FormPrimitive } from "react-aria-components/Form";
 
 interface FormRootProps extends ComponentPropsWithRef<typeof FormPrimitive> {}
 
-function FormRoot({ ...props }: FormRootProps) {
-  return <FormPrimitive {...props} />;
+function FormRoot({ children, onSubmit, ...rest }: FormRootProps) {
+  return (
+    <FormPrimitive onSubmit={onSubmit} {...rest}>
+      {children}
+    </FormPrimitive>
+  );
 }
 
 export { FormRoot };

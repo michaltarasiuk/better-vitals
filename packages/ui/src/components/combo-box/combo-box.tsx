@@ -38,9 +38,10 @@ function ComboBoxRoot<T extends object = object>({
   variant,
   fullWidth,
   menuTrigger = "focus",
-  children,
+  items,
   className,
-  ...props
+  children,
+  ...rest
 }: ComboBoxRootProps<T>) {
   const slots = React.useMemo(
     () => comboBoxVariants({ fullWidth }),
@@ -52,8 +53,9 @@ function ComboBoxRoot<T extends object = object>({
       <ComboBoxPrimitive
         data-slot="combo-box"
         menuTrigger={menuTrigger}
+        items={items}
         className={composeTwRenderProps(className, slots?.base())}
-        {...props}
+        {...rest}
       >
         {(values) => (
           <>{typeof children === "function" ? children(values) : children}</>
@@ -66,9 +68,9 @@ function ComboBoxRoot<T extends object = object>({
 interface ComboBoxInputGroupProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 function ComboBoxInputGroup({
-  children,
   className,
-  ...props
+  children,
+  ...rest
 }: ComboBoxInputGroupProps) {
   const { slots } = useContext(ComboBoxContext);
   const inputGroupClassName = composeSlotClassName(
@@ -80,7 +82,7 @@ function ComboBoxInputGroup({
     <div
       className={inputGroupClassName}
       data-slot="combo-box-input-group"
-      {...props}
+      {...rest}
     >
       {children}
     </div>
@@ -88,13 +90,14 @@ function ComboBoxInputGroup({
 }
 
 interface ComboBoxTriggerProps extends ButtonProps {
-  className?: string;
   children?: ReactNode;
+  className?: string;
 }
 
 function ComboBoxTrigger({
-  children,
+  isDisabled,
   className,
+  children,
   ...rest
 }: ComboBoxTriggerProps) {
   const { slots } = useContext(ComboBoxContext);
@@ -104,6 +107,7 @@ function ComboBoxTrigger({
     <Button
       data-slot="combo-box-trigger"
       data-open={dataAttr(state?.isOpen)}
+      isDisabled={isDisabled}
       className={composeTwRenderProps(className, slots?.trigger())}
       {...rest}
     >
@@ -123,9 +127,9 @@ interface ComboBoxPopoverProps extends Omit<
 
 function ComboBoxPopover({
   placement = "bottom",
-  children,
   className,
-  ...props
+  children,
+  ...rest
 }: ComboBoxPopoverProps) {
   const { slots } = useContext(ComboBoxContext);
 
@@ -138,7 +142,7 @@ function ComboBoxPopover({
       <PopoverPrimitive
         placement={placement}
         className={composeTwRenderProps(className, slots?.popover())}
-        {...props}
+        {...rest}
       >
         {children}
       </PopoverPrimitive>

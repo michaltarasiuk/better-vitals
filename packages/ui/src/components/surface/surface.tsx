@@ -24,8 +24,8 @@ interface SurfaceRootProps<
 
 function SurfaceRoot<E extends keyof React.JSX.IntrinsicElements = "div">({
   variant = "default",
-  children,
   className,
+  children,
   ...rest
 }: SurfaceRootProps<E> &
   Omit<React.JSX.IntrinsicElements[E], keyof SurfaceRootProps<E>>) {

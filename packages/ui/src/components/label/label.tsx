@@ -12,8 +12,8 @@ function LabelRoot({
   isRequired,
   isInvalid,
   isDisabled,
-  children,
   className,
+  children,
   ...rest
 }: LabelRootProps) {
   return (

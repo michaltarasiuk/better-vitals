@@ -52,8 +52,8 @@ function ButtonGroupRoot({
   orientation: orientationProp,
   isDisabled,
   fullWidth,
-  children,
   className,
+  children,
   ...rest
 }: ButtonGroupRootProps) {
   const racContext = useSlottedContext(RACToggleButtonGroupContext);
@@ -100,7 +100,7 @@ function ButtonGroupSeparator<
   E extends keyof React.JSX.IntrinsicElements = "span",
 >({
   className,
-  ...props
+  ...rest
 }: ButtonGroupSeparatorProps<E> &
   Omit<React.JSX.IntrinsicElements[E], keyof ButtonGroupSeparatorProps<E>>) {
   const { slots } = useContext(ButtonGroupContext);
@@ -110,7 +110,7 @@ function ButtonGroupSeparator<
       data-slot="button-group-separator"
       className={composeSlotClassName(slots?.separator, className)}
       aria-hidden="true"
-      {...(props as ComponentProps<typeof dom.span>)}
+      {...(rest as ComponentProps<typeof dom.span>)}
     />
   );
 }

@@ -20,11 +20,11 @@ function ButtonRoot({
   isDisabled,
   fullWidth,
   isIconOnly,
-  children,
   slot,
   className,
   style,
   [BUTTON_GROUP_CHILD]: isButtonGroupChild,
+  children,
   ...rest
 }: ButtonRootProps) {
   const buttonGroupContext = useContext(ButtonGroupContext);
