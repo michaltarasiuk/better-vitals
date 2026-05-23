@@ -17,9 +17,9 @@
 
   &:focus,
   &:focus-visible,
+  &:focus-within,
   &[data-focused="true"],
   &[data-focus-visible="true"],
-  &:focus-within,
   &[data-focus-within="true"] {
     --tw-ring-offset-width: 0px;
 
