@@ -79,7 +79,7 @@ function SpinnerRoot<E extends keyof React.JSX.IntrinsicElements = "span">({
         size,
       })}
     >
-      <SpinnerPrimitive aria-hidden aria-label="Loading" role="presentation" />
+      <SpinnerPrimitive aria-hidden role="presentation" />
     </dom.span>
   );
 }
