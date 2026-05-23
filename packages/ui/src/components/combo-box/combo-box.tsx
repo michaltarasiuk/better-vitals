@@ -12,7 +12,6 @@ import {
   Popover as PopoverPrimitive,
 } from "react-aria-components/ComboBox";
 
-import { dataAttr } from "../../utils/assertion";
 import {
   composeSlotClassName,
   composeTwRenderProps,
@@ -103,7 +102,7 @@ function ComboBoxTrigger({
   return (
     <Button
       data-slot="combo-box-trigger"
-      data-open={dataAttr(state?.isOpen)}
+      data-open={state?.isOpen}
       isDisabled={isDisabled}
       className={composeTwRenderProps(className, slots?.trigger())}
       {...rest}

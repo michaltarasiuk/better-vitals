@@ -10,7 +10,6 @@ import type {
 import { createContext, useContext } from "react";
 import { Link as LinkPrimitive } from "react-aria-components/Link";
 
-import { dataAttr } from "../../utils/assertion";
 import {
   composeSlotClassName,
   composeTwRenderProps,
@@ -54,7 +53,7 @@ function LinkIcon({ className, children, ...rest }: LinkIconProps) {
   return (
     <span
       data-slot="link-icon"
-      data-default-icon={dataAttr(!children)}
+      data-default-icon={!children}
       className={composeSlotClassName(slots?.icon, className)}
       {...rest}
     >
