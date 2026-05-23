@@ -8,24 +8,17 @@ import React, { createContext } from "react";
 import type { DOMRenderProps } from "../../utils/dom";
 import { dom } from "../../utils/dom";
 
-/*
- * Surface Context
- */
 interface SurfaceContext {
   variant?: SurfaceVariants["variant"];
 }
 
 const SurfaceContext = createContext<SurfaceContext>({});
 
-/*
- * Surface Root
- */
 interface SurfaceRootProps<
   E extends keyof React.JSX.IntrinsicElements = "div",
 > extends DOMRenderProps<E, undefined> {
   children: ReactNode;
   className?: string;
-  /** Visual variant. @default "default" */
   variant?: SurfaceVariants["variant"];
 }
 
@@ -49,9 +42,6 @@ function SurfaceRoot<E extends keyof React.JSX.IntrinsicElements = "div">({
   );
 }
 
-/*
- * Exports
- */
 export { SurfaceContext, SurfaceRoot };
 
 export type { SurfaceRootProps };

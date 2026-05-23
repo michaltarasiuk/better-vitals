@@ -7,9 +7,6 @@ import {
   ComboBoxTrigger,
 } from "./combo-box";
 
-/*
- * Compound Component
- */
 export const ComboBox = Object.assign(ComboBoxRoot, {
   InputGroup: ComboBoxInputGroup,
   Popover: ComboBoxPopover,
@@ -25,9 +22,6 @@ export interface ComboBox<T extends object = object> {
   PopoverProps: ComponentProps<typeof ComboBoxPopover>;
 }
 
-/*
- * Named Component
- */
 export { ComboBoxInputGroup, ComboBoxPopover, ComboBoxRoot, ComboBoxTrigger };
 
 export type {
@@ -38,14 +32,8 @@ export type {
   ComboBoxTriggerProps,
 } from "./combo-box";
 
-/*
- * Context
- */
 export { ComboBoxContext } from "./combo-box";
 
-/*
- * Variants
- */
 export { comboBoxVariants } from "@lite-app/styles/components/combo-box";
 
 export type { ComboBoxVariants } from "@lite-app/styles/components/combo-box";

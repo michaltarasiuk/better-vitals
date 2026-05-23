@@ -2,9 +2,6 @@ import type { ComponentProps } from "react";
 
 import { SurfaceRoot } from "./surface";
 
-/*
- * Compound Component
- */
 export const Surface = Object.assign(SurfaceRoot, {
   Root: SurfaceRoot,
 });
@@ -14,9 +11,6 @@ export interface Surface {
   RootProps: ComponentProps<typeof SurfaceRoot>;
 }
 
-/*
- * Named Component
- */
 export { SurfaceRoot } from "./surface";
 
 export type {
@@ -24,14 +18,8 @@ export type {
   SurfaceRootProps,
 } from "./surface";
 
-/*
- * Context
- */
 export { SurfaceContext } from "./surface";
 
-/*
- * Variants
- */
 export { surfaceVariants } from "@lite-app/styles/components/surface";
 
 export type { SurfaceVariants } from "@lite-app/styles/components/surface";

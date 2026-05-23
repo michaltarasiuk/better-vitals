@@ -8,11 +8,6 @@ import React, { useId } from "react";
 import type { DOMRenderProps } from "../../utils/dom";
 import { dom } from "../../utils/dom";
 
-/*
- * Internal
- * -------------------------------------------------------------------------------------------------
- * Spinner Primitive
- */
 interface SpinnerPrimitiveProps extends ComponentPropsWithRef<"svg"> {}
 
 function SpinnerPrimitive({ ...props }: SpinnerPrimitiveProps) {
@@ -59,16 +54,11 @@ function SpinnerPrimitive({ ...props }: SpinnerPrimitiveProps) {
   );
 }
 
-/*
- * Spinner Root
- */
 interface SpinnerRootProps<
   E extends keyof React.JSX.IntrinsicElements = "span",
 > extends DOMRenderProps<E, undefined> {
   className?: string;
-  /** Spinner color. */
   color?: SpinnerVariants["color"];
-  /** Spinner size. */
   size?: SpinnerVariants["size"];
 }
 
@@ -94,9 +84,6 @@ function SpinnerRoot<E extends keyof React.JSX.IntrinsicElements = "span">({
   );
 }
 
-/*
- * Exports
- */
 export { SpinnerRoot };
 
 export type { SpinnerRootProps };

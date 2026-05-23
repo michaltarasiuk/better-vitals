@@ -21,9 +21,6 @@ import { IconChevronDown } from "../icons";
 import type { SurfaceVariants } from "../surface";
 import { SurfaceContext } from "../surface";
 
-/*
- * ComboBox Context
- */
 interface ComboBoxContext {
   slots?: ReturnType<typeof comboBoxVariants>;
   variant?: "primary" | "secondary";
@@ -31,16 +28,9 @@ interface ComboBoxContext {
 
 const ComboBoxContext = createContext<ComboBoxContext>({});
 
-/*
- * ComboBox Root
- */
 interface ComboBoxRootProps<T extends object>
   extends ComponentPropsWithRef<typeof ComboBoxPrimitive<T>>, ComboBoxVariants {
   items?: Iterable<T>;
-  /**
-   * The variant of the combo box.
-   * @default "primary"
-   */
   variant?: "primary" | "secondary";
 }
 
@@ -73,9 +63,6 @@ function ComboBoxRoot<T extends object = object>({
   );
 }
 
-/*
- * ComboBox InputGroup
- */
 interface ComboBoxInputGroupProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 function ComboBoxInputGroup({
@@ -100,9 +87,6 @@ function ComboBoxInputGroup({
   );
 }
 
-/*
- * ComboBox Trigger
- */
 interface ComboBoxTriggerProps extends ButtonProps {
   className?: string;
   children?: ReactNode;
@@ -130,9 +114,6 @@ function ComboBoxTrigger({
   );
 }
 
-/*
- * ComboBox Popover
- */
 interface ComboBoxPopoverProps extends Omit<
   ComponentPropsWithRef<typeof PopoverPrimitive>,
   "children"
@@ -165,9 +146,6 @@ function ComboBoxPopover({
   );
 }
 
-/*
- * Exports
- */
 export {
   ComboBoxContext,
   ComboBoxInputGroup,

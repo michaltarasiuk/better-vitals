@@ -2,9 +2,6 @@ import type { ComponentProps } from "react";
 
 import { DescriptionRoot } from "./description";
 
-/*
- * Compound Component
- */
 export const Description = Object.assign(DescriptionRoot, {
   Root: DescriptionRoot,
 });
@@ -14,9 +11,6 @@ export interface Description {
   RootProps: ComponentProps<typeof DescriptionRoot>;
 }
 
-/*
- * Named Component
- */
 export { DescriptionRoot };
 
 export type {
@@ -24,9 +18,6 @@ export type {
   DescriptionRootProps,
 } from "./description";
 
-/*
- * Variants
- */
 export { descriptionVariants } from "@lite-app/styles/components/description";
 
 export type { DescriptionVariants } from "@lite-app/styles/components/description";

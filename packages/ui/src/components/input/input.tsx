@@ -10,9 +10,6 @@ import { composeTwRenderProps } from "../../utils/compose";
 import { ComboBoxContext } from "../combo-box";
 import { TextFieldContext } from "../textfield";
 
-/*
- * Input Root
- */
 interface InputRootProps
   extends ComponentPropsWithRef<typeof InputPrimitive>, InputVariants {}
 
@@ -25,7 +22,6 @@ function InputRoot({
   const textFieldContext = useContext(TextFieldContext);
   const comboBoxContext = useContext(ComboBoxContext);
 
-  // Use variant from context if not explicitly provided
   const variant =
     variantProp ?? textFieldContext.variant ?? comboBoxContext.variant;
 
@@ -41,9 +37,6 @@ function InputRoot({
   );
 }
 
-/*
- * Exports
- */
 export { InputRoot };
 
 export type { InputRootProps };

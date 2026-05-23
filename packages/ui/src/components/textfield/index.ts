@@ -2,9 +2,6 @@ import type { ComponentProps } from "react";
 
 import { TextFieldRoot } from "./textfield";
 
-/*
- * Compound Component
- */
 export const TextField = Object.assign(TextFieldRoot, {
   Root: TextFieldRoot,
 });
@@ -14,9 +11,6 @@ export interface TextField {
   RootProps: ComponentProps<typeof TextFieldRoot>;
 }
 
-/*
- * Named Component
- */
 export { TextFieldRoot };
 
 export type {
@@ -24,14 +18,8 @@ export type {
   TextFieldRootProps,
 } from "./textfield";
 
-/*
- * Context
- */
 export { TextFieldContext } from "./textfield";
 
-/*
- * Variants
- */
 export { textFieldVariants } from "@lite-app/styles/components/textfield";
 
 export type { TextFieldVariants } from "@lite-app/styles/components/textfield";

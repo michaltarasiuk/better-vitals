@@ -2,9 +2,6 @@ import type { ComponentProps } from "react";
 
 import { SpinnerRoot } from "./spinner";
 
-/*
- * Compound Component
- */
 export const Spinner = Object.assign(SpinnerRoot, {
   Root: SpinnerRoot,
 });
@@ -14,9 +11,6 @@ export interface Spinner {
   RootProps: ComponentProps<typeof SpinnerRoot>;
 }
 
-/*
- * Named Component
- */
 export { SpinnerRoot };
 
 export type {
@@ -24,9 +18,6 @@ export type {
   SpinnerRootProps,
 } from "./spinner";
 
-/*
- * Variants
- */
 export { spinnerVariants } from "@lite-app/styles/components/spinner";
 
 export type { SpinnerVariants } from "@lite-app/styles/components/spinner";

@@ -2,9 +2,6 @@ import type { ComponentProps } from "react";
 
 import { ButtonGroupRoot, ButtonGroupSeparator } from "./button-group";
 
-/*
- * Compound Component
- */
 export const ButtonGroup = Object.assign(ButtonGroupRoot, {
   Root: ButtonGroupRoot,
   Separator: ButtonGroupSeparator,
@@ -16,9 +13,6 @@ export interface ButtonGroup {
   SeparatorProps: ComponentProps<typeof ButtonGroupSeparator>;
 }
 
-/*
- * Named Component
- */
 export { ButtonGroupRoot, ButtonGroupSeparator };
 
 export type {
@@ -27,14 +21,8 @@ export type {
   ButtonGroupSeparatorProps,
 } from "./button-group";
 
-/*
- * Context
- */
 export { BUTTON_GROUP_CHILD, ButtonGroupContext } from "./button-group";
 
-/*
- * Variants
- */
 export { buttonGroupVariants } from "@lite-app/styles/components/button-group";
 
 export type { ButtonGroupVariants } from "@lite-app/styles/components/button-group";

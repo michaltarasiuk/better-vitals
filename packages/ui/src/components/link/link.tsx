@@ -15,18 +15,12 @@ import type { DOMRenderProps } from "../../utils/dom";
 import { dom } from "../../utils/dom";
 import { ExternalLinkIcon } from "../icons";
 
-/*
- * Link Context
- */
 interface LinkContext {
   slots?: ReturnType<typeof linkVariants>;
 }
 
 const LinkContext = createContext<LinkContext>({});
 
-/*
- * Link Root
- */
 interface LinkRootProps
   extends ComponentPropsWithRef<typeof LinkPrimitive>, LinkVariants {}
 
@@ -47,9 +41,6 @@ function LinkRoot({ children, className, ...props }: LinkRootProps) {
   );
 }
 
-/*
- * Link Icon
- */
 interface LinkIconProps<
   E extends keyof React.JSX.IntrinsicElements = "span",
 > extends DOMRenderProps<E, undefined> {
@@ -77,9 +68,6 @@ function LinkIcon<E extends keyof React.JSX.IntrinsicElements = "span">({
   );
 }
 
-/*
- * Exports
- */
 export { LinkIcon, LinkRoot };
 
 export type { LinkIconProps, LinkRootProps };

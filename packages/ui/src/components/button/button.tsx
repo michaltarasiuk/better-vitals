@@ -9,9 +9,6 @@ import { Button as ButtonPrimitive } from "react-aria-components/Button";
 import { composeTwRenderProps } from "../../utils/compose";
 import { BUTTON_GROUP_CHILD, ButtonGroupContext } from "../button-group";
 
-/*
- * Button Root
- */
 interface ButtonRootProps
   extends ComponentPropsWithRef<typeof ButtonPrimitive>, ButtonVariants {
   [BUTTON_GROUP_CHILD]?: boolean;
@@ -32,10 +29,8 @@ function ButtonRoot({
 }: ButtonRootProps) {
   const buttonGroupContext = useContext(ButtonGroupContext);
 
-  // Only use context if this button is a direct child of ButtonGroup
   const shouldUseContext = isButtonGroupChild === true;
 
-  // Merge props with precedence: direct props > context props
   const finalSize =
     size ?? (shouldUseContext ? buttonGroupContext?.size : undefined);
   const finalVariant =
@@ -69,9 +64,6 @@ function ButtonRoot({
   );
 }
 
-/*
- * Exports
- */
 export { ButtonRoot };
 
 export type { ButtonRootProps };

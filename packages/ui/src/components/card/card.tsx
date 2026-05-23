@@ -11,24 +11,17 @@ import type { DOMRenderProps } from "../../utils/dom";
 import { dom } from "../../utils/dom";
 import { SurfaceContext } from "../surface";
 
-/*
- * Card Context
- */
 interface CardContext {
   slots?: ReturnType<typeof cardVariants>;
 }
 
 const CardContext = createContext<CardContext>({});
 
-/*
- * Card Root
- */
 interface CardRootProps<
   E extends keyof React.JSX.IntrinsicElements = "div",
 > extends DOMRenderProps<E, undefined> {
   children: ReactNode;
   className?: string;
-  /** Visual variant. @default "default" */
   variant?: CardVariants["variant"];
 }
 
@@ -56,7 +49,6 @@ function CardRoot<E extends keyof React.JSX.IntrinsicElements = "div">({
       {variant === "transparent" ? (
         content
       ) : (
-        // Allows inner components to apply "on-surface" colors for proper contrast
         <SurfaceContext
           value={{
             variant: variant as SurfaceVariants["variant"],
@@ -69,9 +61,6 @@ function CardRoot<E extends keyof React.JSX.IntrinsicElements = "div">({
   );
 }
 
-/*
- * Card Header
- */
 interface CardHeaderProps<
   E extends keyof React.JSX.IntrinsicElements = "div",
 > extends DOMRenderProps<E, undefined> {
@@ -95,9 +84,6 @@ function CardHeader<E extends keyof React.JSX.IntrinsicElements = "div">({
   );
 }
 
-/*
- * Card Title
- */
 interface CardTitleProps<
   E extends keyof React.JSX.IntrinsicElements = "h3",
 > extends DOMRenderProps<E, undefined> {
@@ -124,9 +110,6 @@ function CardTitle<E extends keyof React.JSX.IntrinsicElements = "h3">({
   );
 }
 
-/*
- * Card Description
- */
 interface CardDescriptionProps<
   E extends keyof React.JSX.IntrinsicElements = "p",
 > extends DOMRenderProps<E, undefined> {
@@ -153,9 +136,6 @@ function CardDescription<E extends keyof React.JSX.IntrinsicElements = "p">({
   );
 }
 
-/*
- * Card Content
- */
 interface CardContentProps<
   E extends keyof React.JSX.IntrinsicElements = "div",
 > extends DOMRenderProps<E, undefined> {
@@ -179,9 +159,6 @@ function CardContent<E extends keyof React.JSX.IntrinsicElements = "div">({
   );
 }
 
-/*
- * Card Footer
- */
 interface CardFooterProps<
   E extends keyof React.JSX.IntrinsicElements = "div",
 > extends DOMRenderProps<E, undefined> {
@@ -205,9 +182,6 @@ function CardFooter<E extends keyof React.JSX.IntrinsicElements = "div">({
   );
 }
 
-/*
- * Exports
- */
 export {
   CardContent,
   CardDescription,

@@ -6,9 +6,6 @@ import type { ComponentPropsWithRef } from "react";
 import type { TextProps } from "react-aria-components/Text";
 import { Text } from "react-aria-components/Text";
 
-/*
- * Description Root
- */
 interface DescriptionRootProps
   extends ComponentPropsWithRef<typeof Text>, TextProps, DescriptionVariants {}
 
@@ -29,9 +26,6 @@ function DescriptionRoot({
   );
 }
 
-/*
- * Exports
- */
 export { DescriptionRoot };
 
 export type { DescriptionRootProps };

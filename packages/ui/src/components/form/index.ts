@@ -2,9 +2,6 @@ import type { ComponentProps } from "react";
 
 import { FormRoot } from "./form";
 
-/*
- * Compound Component
- */
 export const Form = Object.assign(FormRoot, {
   Root: FormRoot,
 });
@@ -14,9 +11,6 @@ export interface Form {
   RootProps: ComponentProps<typeof FormRoot>;
 }
 
-/*
- * Named Component
- */
 export { FormRoot };
 
 export type { FormRootProps as FormProps, FormRootProps } from "./form";

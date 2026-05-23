@@ -5,9 +5,6 @@ import { labelVariants } from "@lite-app/styles/components/label";
 import type { ComponentPropsWithRef } from "react";
 import { Label as LabelPrimitive } from "react-aria-components/Label";
 
-/*
- * Label Root
- */
 interface LabelRootProps
   extends ComponentPropsWithRef<typeof LabelPrimitive>, LabelVariants {}
 
@@ -35,9 +32,6 @@ function LabelRoot({
   );
 }
 
-/*
- * Exports
- */
 export { LabelRoot };
 
 export type { LabelRootProps };

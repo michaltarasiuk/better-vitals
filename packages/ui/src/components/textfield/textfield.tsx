@@ -8,24 +8,14 @@ import { TextField as TextFieldPrimitive } from "react-aria-components/TextField
 
 import { composeTwRenderProps } from "../../utils/compose";
 
-/*
- * TextField Context
- */
 interface TextFieldContext {
   variant?: "primary" | "secondary";
 }
 
 const TextFieldContext = createContext<TextFieldContext>({});
 
-/*
- * TextField Root
- */
 interface TextFieldRootProps
   extends ComponentPropsWithRef<typeof TextFieldPrimitive>, TextFieldVariants {
-  /**
-   * The variant of the text field.
-   * @default "primary"
-   */
   variant?: "primary" | "secondary";
 }
 
@@ -56,9 +46,6 @@ function TextFieldRoot({
   );
 }
 
-/*
- * Exports
- */
 export { TextFieldContext, TextFieldRoot };
 
 export type { TextFieldRootProps };

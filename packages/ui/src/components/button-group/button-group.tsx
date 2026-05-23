@@ -26,9 +26,6 @@ import type { DOMRenderProps } from "../../utils/dom";
 import { dom } from "../../utils/dom";
 import type { ButtonProps } from "../button";
 
-/*
- * ButtonGroup Context
- */
 interface ButtonGroupContext {
   slots?: ReturnType<typeof buttonGroupVariants>;
   size?: ButtonProps["size"];
@@ -39,18 +36,13 @@ interface ButtonGroupContext {
 
 const ButtonGroupContext = createContext<ButtonGroupContext>({});
 
-// Property name to mark direct children of ButtonGroup
 export const BUTTON_GROUP_CHILD = "__button_group_child";
 
-/*
- * ButtonGroup Root
- */
 interface ButtonGroupRootProps
   extends
     ComponentPropsWithRef<typeof Group>,
     Pick<ButtonProps, "size" | "variant">,
     ButtonGroupVariants {
-  /** The orientation of the button group */
   orientation?: "horizontal" | "vertical";
 }
 
@@ -73,13 +65,11 @@ function ButtonGroupRoot({
     [fullWidth, orientation]
   );
 
-  // Wrap only direct children with context provider
   const wrappedChildren = Children.map(children as React.ReactNode, (child) => {
     if (!isValidElement(child)) {
       return child;
     }
 
-    // Clone the child and add the special prop
     return React.cloneElement(child, {
       [BUTTON_GROUP_CHILD]: true,
     } as Attributes);
@@ -99,9 +89,6 @@ function ButtonGroupRoot({
   );
 }
 
-/*
- * ButtonGroup Separator
- */
 interface ButtonGroupSeparatorProps<
   E extends keyof React.JSX.IntrinsicElements = "span",
 > extends DOMRenderProps<E, undefined> {
@@ -128,9 +115,6 @@ function ButtonGroupSeparator<
   );
 }
 
-/*
- * Exports
- */
 export { ButtonGroupContext, ButtonGroupRoot, ButtonGroupSeparator };
 
 export type { ButtonGroupRootProps, ButtonGroupSeparatorProps };

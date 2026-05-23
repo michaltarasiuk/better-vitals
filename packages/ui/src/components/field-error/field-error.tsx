@@ -7,9 +7,6 @@ import { FieldError as FieldErrorPrimitive } from "react-aria-components/FieldEr
 
 import { composeTwRenderProps } from "../../utils/compose";
 
-/*
- * Field Error Root
- */
 interface FieldErrorRootProps
   extends
     ComponentPropsWithRef<typeof FieldErrorPrimitive>,
@@ -30,9 +27,6 @@ function FieldErrorRoot({ children, className, ...rest }: FieldErrorRootProps) {
   );
 }
 
-/*
- * Exports
- */
 export { FieldErrorRoot };
 
 export type { FieldErrorRootProps };

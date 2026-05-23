@@ -9,9 +9,6 @@ import {
   CardTitle,
 } from "./card";
 
-/*
- * Compound Component
- */
 export const Card = Object.assign(CardRoot, {
   Content: CardContent,
   Description: CardDescription,
@@ -31,9 +28,6 @@ export interface Card {
   FooterProps: ComponentProps<typeof CardFooter>;
 }
 
-/*
- * Named Component
- */
 export {
   CardContent,
   CardDescription,
@@ -53,9 +47,6 @@ export type {
   CardTitleProps,
 } from "./card";
 
-/*
- * Variants
- */
 export { cardVariants } from "@lite-app/styles/components/card";
 
 export type { CardVariants } from "@lite-app/styles/components/card";
