@@ -1,5 +1,5 @@
 {
-  "extends": "@lite-app/tsconfig/react-library.json",
+  "extends": "@lite-app/tsconfig/react.json",
   "include": ["."],
   "exclude": ["node_modules", "src/utils/dom.tsx"],
   "compilerOptions": {
