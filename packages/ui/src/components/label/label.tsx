@@ -1,37 +1,39 @@
 "use client";
 
-import type { ComponentPropsWithRef } from "react";
-import { Label as LabelPrimitive } from "react-aria-components/Label";
+import type { LabelProps as RACLabelProps } from "react-aria-components/Label";
+import { Label as RACLabel } from "react-aria-components/Label";
 import { cn } from "tailwind-variants";
 
 import type { LabelVariants } from "./label.variants";
 import { labelVariants } from "./label.variants";
 
-interface LabelRootProps
-  extends ComponentPropsWithRef<typeof LabelPrimitive>, LabelVariants {}
+interface LabelProps extends RACLabelProps, LabelVariants {}
 
-function LabelRoot({
+function Label({
   isRequired,
   isInvalid,
   isDisabled,
   className,
   children,
   ...rest
-}: LabelRootProps) {
+}: LabelProps) {
   return (
-    <LabelPrimitive
+    <RACLabel
       data-slot="label"
       className={cn(
-        labelVariants({ isDisabled, isInvalid, isRequired }),
+        labelVariants({
+          isDisabled,
+          isInvalid,
+          isRequired,
+        }),
         className
       )}
       {...rest}
     >
       {children}
-    </LabelPrimitive>
+    </RACLabel>
   );
 }
 
-export { LabelRoot };
-
-export type { LabelRootProps };
+export { Label };
+export type { LabelProps };

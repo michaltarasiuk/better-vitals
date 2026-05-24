@@ -1,32 +1,26 @@
 "use client";
 
-import type { ComponentPropsWithRef } from "react";
-import { FieldError as FieldErrorPrimitive } from "react-aria-components/FieldError";
+import type { FieldErrorProps as RACFieldErrorProps } from "react-aria-components/FieldError";
+import { FieldError as RACFieldError } from "react-aria-components/FieldError";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
 import type { FieldErrorVariants } from "./field-error.variants";
 import { fieldErrorVariants } from "./field-error.variants";
 
-interface FieldErrorRootProps
-  extends
-    ComponentPropsWithRef<typeof FieldErrorPrimitive>,
-    FieldErrorVariants {}
+interface FieldErrorProps extends RACFieldErrorProps, FieldErrorVariants {}
 
-function FieldErrorRoot({ className, children, ...rest }: FieldErrorRootProps) {
+function FieldError({ className, children, ...rest }: FieldErrorProps) {
   return (
-    <FieldErrorPrimitive
+    <RACFieldError
       data-slot="field-error"
       data-visible
       className={cnRenderProps(className, fieldErrorVariants())}
       {...rest}
     >
-      {(renderProps) =>
-        typeof children === "function" ? children(renderProps) : children
-      }
-    </FieldErrorPrimitive>
+      {children}
+    </RACFieldError>
   );
 }
 
-export { FieldErrorRoot };
-
-export type { FieldErrorRootProps };
+export { FieldError };
+export type { FieldErrorProps };

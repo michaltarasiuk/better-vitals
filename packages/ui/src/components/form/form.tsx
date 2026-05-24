@@ -1,18 +1,17 @@
 "use client";
 
-import type { ComponentPropsWithRef } from "react";
-import { Form as FormPrimitive } from "react-aria-components/Form";
+import type { FormProps as RACFormProps } from "react-aria-components/Form";
+import { Form as RACForm } from "react-aria-components/Form";
 
-interface FormRootProps extends ComponentPropsWithRef<typeof FormPrimitive> {}
+interface FormProps extends RACFormProps {}
 
-function FormRoot({ children, onSubmit, ...rest }: FormRootProps) {
+function Form({ children, onSubmit, ...rest }: FormProps) {
   return (
-    <FormPrimitive onSubmit={onSubmit} {...rest}>
+    <RACForm onSubmit={onSubmit} {...rest}>
       {children}
-    </FormPrimitive>
+    </RACForm>
   );
 }
 
-export { FormRoot };
-
-export type { FormRootProps };
+export { Form };
+export type { FormProps };

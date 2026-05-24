@@ -1,6 +1,5 @@
 "use client";
 
-import type { ComponentPropsWithRef } from "react";
 import type { TextProps } from "react-aria-components/Text";
 import { Text } from "react-aria-components/Text";
 import { cn } from "tailwind-variants";
@@ -8,14 +7,9 @@ import { cn } from "tailwind-variants";
 import type { DescriptionVariants } from "./description.variants";
 import { descriptionVariants } from "./description.variants";
 
-interface DescriptionRootProps
-  extends ComponentPropsWithRef<typeof Text>, TextProps, DescriptionVariants {}
+interface DescriptionProps extends TextProps, DescriptionVariants {}
 
-function DescriptionRoot({
-  className,
-  children,
-  ...rest
-}: DescriptionRootProps) {
+function Description({ className, children, ...rest }: DescriptionProps) {
   return (
     <Text
       slot="description"
@@ -28,6 +22,5 @@ function DescriptionRoot({
   );
 }
 
-export { DescriptionRoot };
-
-export type { DescriptionRootProps };
+export { Description };
+export type { DescriptionProps };

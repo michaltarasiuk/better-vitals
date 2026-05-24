@@ -153,7 +153,6 @@ export {
   CardRoot,
   CardTitle,
 };
-
 export type {
   CardContentProps,
   CardDescriptionProps,
