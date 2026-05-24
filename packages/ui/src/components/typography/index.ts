@@ -30,6 +30,6 @@ export type {
   TypographyRootProps,
 } from "./typography";
 
-export { typographyVariants } from "@lite-app/styles/components/typography";
+export { typographyVariants } from "./typography.variants";
 
-export type { TypographyVariants } from "@lite-app/styles/components/typography";
+export type { TypographyVariants } from "./typography.variants";

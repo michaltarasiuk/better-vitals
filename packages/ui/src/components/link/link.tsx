@@ -1,7 +1,5 @@
 "use client";
 
-import type { LinkVariants } from "@lite-app/styles/components/link";
-import { linkVariants } from "@lite-app/styles/components/link";
 import type {
   ComponentPropsWithoutRef,
   ComponentPropsWithRef,
@@ -13,6 +11,8 @@ import { cn } from "tailwind-variants";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
 import { ExternalLinkIcon } from "../icons";
+import type { LinkVariants } from "./link.variants";
+import { linkVariants } from "./link.variants";
 
 interface LinkContext {
   slots?: ReturnType<typeof linkVariants>;

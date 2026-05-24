@@ -18,6 +18,6 @@ export type {
   DescriptionRootProps,
 } from "./description";
 
-export { descriptionVariants } from "@lite-app/styles/components/description";
+export { descriptionVariants } from "./description.variants";
 
-export type { DescriptionVariants } from "@lite-app/styles/components/description";
+export type { DescriptionVariants } from "./description.variants";

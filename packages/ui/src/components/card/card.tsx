@@ -1,13 +1,13 @@
 "use client";
 
-import type { CardVariants } from "@lite-app/styles/components/card";
-import { cardVariants } from "@lite-app/styles/components/card";
-import type { SurfaceVariants } from "@lite-app/styles/components/surface";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { createContext, useContext } from "react";
 import { cn } from "tailwind-variants";
 
 import { SurfaceContext } from "../surface";
+import type { SurfaceVariants } from "../surface/surface.variants";
+import type { CardVariants } from "./card.variants";
+import { cardVariants } from "./card.variants";
 
 interface CardContext {
   slots?: ReturnType<typeof cardVariants>;

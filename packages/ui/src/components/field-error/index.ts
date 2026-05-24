@@ -18,6 +18,6 @@ export type {
   FieldErrorRootProps,
 } from "./field-error";
 
-export { fieldErrorVariants } from "@lite-app/styles/components/field-error";
+export { fieldErrorVariants } from "./field-error.variants";
 
-export type { FieldErrorVariants } from "@lite-app/styles/components/field-error";
+export type { FieldErrorVariants } from "./field-error.variants";

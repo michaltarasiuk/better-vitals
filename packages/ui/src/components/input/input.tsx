@@ -1,13 +1,13 @@
 "use client";
 
-import type { InputVariants } from "@lite-app/styles/components/input";
-import { inputVariants } from "@lite-app/styles/components/input";
 import type { ComponentPropsWithRef } from "react";
 import { useContext } from "react";
 import { Input as InputPrimitive } from "react-aria-components/Input";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
 import { TextFieldContext } from "../textfield";
+import type { InputVariants } from "./input.variants";
+import { inputVariants } from "./input.variants";
 
 interface InputRootProps
   extends ComponentPropsWithRef<typeof InputPrimitive>, InputVariants {}

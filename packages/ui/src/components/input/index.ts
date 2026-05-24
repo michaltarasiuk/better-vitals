@@ -15,6 +15,6 @@ export { InputRoot };
 
 export type { InputRootProps as InputProps, InputRootProps } from "./input";
 
-export { inputVariants } from "@lite-app/styles/components/input";
+export { inputVariants } from "./input.variants";
 
-export type { InputVariants } from "@lite-app/styles/components/input";
+export type { InputVariants } from "./input.variants";

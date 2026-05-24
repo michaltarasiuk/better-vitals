@@ -20,6 +20,6 @@ export type {
 
 export { TextFieldContext } from "./textfield";
 
-export { textFieldVariants } from "@lite-app/styles/components/textfield";
+export { textFieldVariants } from "./textfield.variants";
 
-export type { TextFieldVariants } from "@lite-app/styles/components/textfield";
+export type { TextFieldVariants } from "./textfield.variants";

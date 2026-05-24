@@ -47,6 +47,6 @@ export type {
   CardTitleProps,
 } from "./card";
 
-export { cardVariants } from "@lite-app/styles/components/card";
+export { cardVariants } from "./card.variants";
 
-export type { CardVariants } from "@lite-app/styles/components/card";
+export type { CardVariants } from "./card.variants";

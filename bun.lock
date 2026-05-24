@@ -16,7 +16,6 @@
     "apps/web": {
       "name": "@lite-app/web",
       "dependencies": {
-        "@lite-app/styles": "workspace:*",
         "@lite-app/ui": "workspace:*",
         "@react-router/serve": "7.15.1",
         "@remix-run/node-fetch-server": "^0.13.2",
@@ -48,28 +47,20 @@
         "vite-plugin-devtools-json": "^1.0.0",
       },
     },
-    "packages/styles": {
-      "name": "@lite-app/styles",
-      "dependencies": {
-        "tailwind-merge": "catalog:",
-        "tailwind-variants": "catalog:",
-        "tailwindcss": "catalog:",
-        "tw-animate-css": "catalog:",
-      },
-    },
     "packages/typescript-config": {
       "name": "@lite-app/typescript-config",
     },
     "packages/ui": {
       "name": "@lite-app/ui",
       "dependencies": {
-        "@lite-app/styles": "workspace:*",
         "@react-aria/utils": "^3.34.0",
         "react": "catalog:",
         "react-aria-components": "^1.17.0",
         "react-dom": "catalog:",
         "tailwind-merge": "catalog:",
         "tailwind-variants": "catalog:",
+        "tailwindcss": "catalog:",
+        "tw-animate-css": "catalog:",
       },
       "devDependencies": {
         "@lite-app/typescript-config": "workspace:*",
@@ -249,8 +240,6 @@
     "@jridgewell/sourcemap-codec": ["@jridgewell/sourcemap-codec@1.5.5", "", {}, "sha512-cYQ9310grqxueWbl+WuIUIaiUaDcj7WOq5fVhEljNVgRfOUhY9fy2zTvfoqWsnebh8Sl70VScFbICvJnLKB0Og=="],
 
     "@jridgewell/trace-mapping": ["@jridgewell/trace-mapping@0.3.31", "", { "dependencies": { "@jridgewell/resolve-uri": "^3.1.0", "@jridgewell/sourcemap-codec": "^1.4.14" } }, "sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw=="],
-
-    "@lite-app/styles": ["@lite-app/styles@workspace:packages/styles"],
 
     "@lite-app/typescript-config": ["@lite-app/typescript-config@workspace:packages/typescript-config"],
 

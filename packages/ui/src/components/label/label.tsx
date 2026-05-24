@@ -1,10 +1,11 @@
 "use client";
 
-import type { LabelVariants } from "@lite-app/styles/components/label";
-import { labelVariants } from "@lite-app/styles/components/label";
 import type { ComponentPropsWithRef } from "react";
 import { Label as LabelPrimitive } from "react-aria-components/Label";
 import { cn } from "tailwind-variants";
+
+import type { LabelVariants } from "./label.variants";
+import { labelVariants } from "./label.variants";
 
 interface LabelRootProps
   extends ComponentPropsWithRef<typeof LabelPrimitive>, LabelVariants {}

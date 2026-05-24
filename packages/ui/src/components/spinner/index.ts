@@ -18,6 +18,6 @@ export type {
   SpinnerRootProps,
 } from "./spinner";
 
-export { spinnerVariants } from "@lite-app/styles/components/spinner";
+export { spinnerVariants } from "./spinner.variants";
 
-export type { SpinnerVariants } from "@lite-app/styles/components/spinner";
+export type { SpinnerVariants } from "./spinner.variants";

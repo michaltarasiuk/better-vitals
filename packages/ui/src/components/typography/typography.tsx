@@ -1,10 +1,11 @@
 "use client";
 
-import type { TypographyVariants } from "@lite-app/styles/components/typography";
-import { typographyVariants } from "@lite-app/styles/components/typography";
 import type { ComponentPropsWithRef, ReactNode } from "react";
 import { Text as TextPrimitive } from "react-aria-components/Text";
 import { cn } from "tailwind-variants";
+
+import type { TypographyVariants } from "./typography.variants";
+import { typographyVariants } from "./typography.variants";
 
 type TypographyType = NonNullable<TypographyVariants["type"]>;
 type TypographyAlign = NonNullable<TypographyVariants["align"]>;

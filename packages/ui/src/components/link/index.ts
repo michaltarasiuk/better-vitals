@@ -21,6 +21,6 @@ export type {
   LinkRootProps,
 } from "./link";
 
-export { linkVariants } from "@lite-app/styles/components/link";
+export { linkVariants } from "./link.variants";
 
-export type { LinkVariants } from "@lite-app/styles/components/link";
+export type { LinkVariants } from "./link.variants";

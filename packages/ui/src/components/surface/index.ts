@@ -20,6 +20,6 @@ export type {
 
 export { SurfaceContext } from "./surface";
 
-export { surfaceVariants } from "@lite-app/styles/components/surface";
+export { surfaceVariants } from "./surface.variants";
 
-export type { SurfaceVariants } from "@lite-app/styles/components/surface";
+export type { SurfaceVariants } from "./surface.variants";

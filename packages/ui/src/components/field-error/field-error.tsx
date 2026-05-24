@@ -1,11 +1,11 @@
 "use client";
 
-import type { FieldErrorVariants } from "@lite-app/styles/components/field-error";
-import { fieldErrorVariants } from "@lite-app/styles/components/field-error";
 import type { ComponentPropsWithRef } from "react";
 import { FieldError as FieldErrorPrimitive } from "react-aria-components/FieldError";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
+import type { FieldErrorVariants } from "./field-error.variants";
+import { fieldErrorVariants } from "./field-error.variants";
 
 interface FieldErrorRootProps
   extends

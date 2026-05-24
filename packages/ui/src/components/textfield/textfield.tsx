@@ -1,12 +1,12 @@
 "use client";
 
-import type { TextFieldVariants } from "@lite-app/styles/components/textfield";
-import { textFieldVariants } from "@lite-app/styles/components/textfield";
 import type { ComponentPropsWithRef } from "react";
 import { createContext } from "react";
 import { TextField as TextFieldPrimitive } from "react-aria-components/TextField";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
+import type { TextFieldVariants } from "./textfield.variants";
+import { textFieldVariants } from "./textfield.variants";
 
 interface TextFieldContext {
   variant?: "primary" | "secondary";

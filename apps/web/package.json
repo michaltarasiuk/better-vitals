@@ -12,7 +12,6 @@
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
-    "@lite-app/styles": "workspace:*",
     "@lite-app/ui": "workspace:*",
     "@react-router/serve": "7.15.1",
     "@remix-run/node-fetch-server": "^0.13.2",
