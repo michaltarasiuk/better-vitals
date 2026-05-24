@@ -62,9 +62,6 @@
   }
 }
 
-.button--md {
-}
-
 .button--lg {
   @apply h-11 text-base md:h-10;
 

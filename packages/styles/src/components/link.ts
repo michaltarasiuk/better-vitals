@@ -8,15 +8,4 @@ export const linkVariants = tv({
   },
 });
 
-type LinkRenderPropsKeys =
-  | "isCurrent"
-  | "isHovered"
-  | "isPressed"
-  | "isFocused"
-  | "isFocusVisible"
-  | "isDisabled";
-
-export type LinkVariants = Omit<
-  VariantProps<typeof linkVariants>,
-  LinkRenderPropsKeys
->;
+export type LinkVariants = VariantProps<typeof linkVariants>;

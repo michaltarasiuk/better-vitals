@@ -13,7 +13,6 @@ export const comboBoxVariants = tv({
   },
   variants: {
     fullWidth: {
-      false: {},
       true: {
         base: "combo-box--full-width",
         inputGroup: "combo-box__input-group--full-width",

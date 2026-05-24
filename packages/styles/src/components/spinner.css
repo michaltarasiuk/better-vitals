@@ -6,9 +6,6 @@
   @apply size-4;
 }
 
-.spinner--md {
-}
-
 .spinner--lg {
   @apply size-8;
 }

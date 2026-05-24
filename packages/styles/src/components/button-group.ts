@@ -12,7 +12,6 @@ export const buttonGroupVariants = tv({
   },
   variants: {
     fullWidth: {
-      false: {},
       true: {
         base: "button-group--full-width",
       },

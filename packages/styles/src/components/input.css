@@ -38,9 +38,6 @@
   }
 }
 
-.input--primary {
-}
-
 .input--secondary {
   --input-bg: var(--default);
   --input-bg-hover: var(--default-hover);
