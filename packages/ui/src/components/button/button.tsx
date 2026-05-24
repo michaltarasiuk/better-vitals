@@ -3,16 +3,12 @@
 import type { ButtonVariants } from "@lite-app/styles/components/button";
 import { buttonVariants } from "@lite-app/styles/components/button";
 import type { ComponentPropsWithRef } from "react";
-import { useContext } from "react";
 import { Button as ButtonPrimitive } from "react-aria-components/Button";
 
 import { composeCn } from "../../utils/cn";
-import { BUTTON_GROUP_CHILD, ButtonGroupContext } from "../button-group";
 
 interface ButtonRootProps
-  extends ComponentPropsWithRef<typeof ButtonPrimitive>, ButtonVariants {
-  [BUTTON_GROUP_CHILD]?: boolean;
-}
+  extends ComponentPropsWithRef<typeof ButtonPrimitive>, ButtonVariants {}
 
 function ButtonRoot({
   variant,
@@ -23,35 +19,20 @@ function ButtonRoot({
   slot,
   className,
   style,
-  [BUTTON_GROUP_CHILD]: isButtonGroupChild,
   children,
   ...rest
 }: ButtonRootProps) {
-  const buttonGroupContext = useContext(ButtonGroupContext);
-
-  const shouldUseContext = isButtonGroupChild === true;
-
-  const finalSize =
-    size ?? (shouldUseContext ? buttonGroupContext?.size : undefined);
-  const finalVariant =
-    variant ?? (shouldUseContext ? buttonGroupContext?.variant : undefined);
-  const finalIsDisabled =
-    isDisabled ??
-    (shouldUseContext ? buttonGroupContext?.isDisabled : undefined);
-  const finalFullWidth =
-    fullWidth ?? (shouldUseContext ? buttonGroupContext?.fullWidth : undefined);
-
   const styles = buttonVariants({
-    fullWidth: finalFullWidth,
+    fullWidth,
     isIconOnly,
-    size: finalSize,
-    variant: finalVariant,
+    size,
+    variant,
   });
 
   return (
     <ButtonPrimitive
       data-slot="button"
-      isDisabled={finalIsDisabled}
+      isDisabled={isDisabled}
       slot={slot}
       className={composeCn(className, styles)}
       style={style}
