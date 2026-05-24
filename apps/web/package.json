@@ -27,7 +27,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@lite-app/typescript-config": "workspace:*",
+    "@lite-app/tsconfig": "workspace:*",
     "@react-router/dev": "7.15.1",
     "@react-router/fs-routes": "^7.15.1",
     "@tailwindcss/vite": "^4.3.0",

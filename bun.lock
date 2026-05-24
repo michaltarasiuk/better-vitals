@@ -31,7 +31,7 @@
         "zod": "^4.4.3",
       },
       "devDependencies": {
-        "@lite-app/typescript-config": "workspace:*",
+        "@lite-app/tsconfig": "workspace:*",
         "@react-router/dev": "7.15.1",
         "@react-router/fs-routes": "^7.15.1",
         "@tailwindcss/vite": "^4.3.0",
@@ -47,8 +47,8 @@
         "vite-plugin-devtools-json": "^1.0.0",
       },
     },
-    "packages/typescript-config": {
-      "name": "@lite-app/typescript-config",
+    "packages/tsconfig": {
+      "name": "@lite-app/tsconfig",
     },
     "packages/ui": {
       "name": "@lite-app/ui",
@@ -63,7 +63,7 @@
         "tw-animate-css": "catalog:",
       },
       "devDependencies": {
-        "@lite-app/typescript-config": "workspace:*",
+        "@lite-app/tsconfig": "workspace:*",
         "@types/node": "^25.9.0",
         "@types/react": "catalog:",
         "@types/react-dom": "catalog:",
@@ -241,7 +241,7 @@
 
     "@jridgewell/trace-mapping": ["@jridgewell/trace-mapping@0.3.31", "", { "dependencies": { "@jridgewell/resolve-uri": "^3.1.0", "@jridgewell/sourcemap-codec": "^1.4.14" } }, "sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw=="],
 
-    "@lite-app/typescript-config": ["@lite-app/typescript-config@workspace:packages/typescript-config"],
+    "@lite-app/tsconfig": ["@lite-app/tsconfig@workspace:packages/tsconfig"],
 
     "@lite-app/ui": ["@lite-app/ui@workspace:packages/ui"],
 

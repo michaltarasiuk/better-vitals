@@ -27,7 +27,7 @@
     "tw-animate-css": "catalog:"
   },
   "devDependencies": {
-    "@lite-app/typescript-config": "workspace:*",
+    "@lite-app/tsconfig": "workspace:*",
     "@types/node": "^25.9.0",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:"

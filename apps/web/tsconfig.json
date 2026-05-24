@@ -1,5 +1,5 @@
 {
-  "extends": "@lite-app/typescript-config/vite.json",
+  "extends": "@lite-app/tsconfig/vite.json",
   "include": ["**/*.ts", "**/*.tsx", "./.react-router/types/**/*"],
   "compilerOptions": {
     "types": ["vite/client", "@vitejs/plugin-rsc/types"],
