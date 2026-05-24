@@ -2,7 +2,7 @@
 
 import { useContext } from "react";
 import type { InputProps as RACInputProps } from "react-aria-components/Input";
-import { Input as InputPrimitive } from "react-aria-components/Input";
+import { Input as RACInput } from "react-aria-components/Input";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
 import { TextFieldContext } from "../textfield";
@@ -14,7 +14,7 @@ interface InputProps extends RACInputProps, InputVariants {}
 function Input({ variant, fullWidth, className, ...rest }: InputProps) {
   const textFieldContext = useContext(TextFieldContext);
   return (
-    <InputPrimitive
+    <RACInput
       data-slot="input"
       className={cnRenderProps(
         className,

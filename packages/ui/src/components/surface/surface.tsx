@@ -1,34 +1,31 @@
 "use client";
 
-import type { ComponentPropsWithoutRef, ReactNode } from "react";
+import type { ComponentProps } from "react";
 import { createContext } from "react";
 import { cn } from "tailwind-variants";
 
 import type { SurfaceVariants } from "./surface.variants";
 import { surfaceVariants } from "./surface.variants";
 
-interface SurfaceContext {
-  variant?: SurfaceVariants["variant"];
-}
+const SurfaceContext = createContext<Pick<SurfaceVariants, "variant">>({});
 
-const SurfaceContext = createContext<SurfaceContext>({});
+interface SurfaceProps extends ComponentProps<"div">, SurfaceVariants {}
 
-interface SurfaceRootProps extends ComponentPropsWithoutRef<"div"> {
-  variant?: SurfaceVariants["variant"];
-  children: ReactNode;
-}
-
-function SurfaceRoot({
-  variant = "default",
-  className,
-  children,
-  ...rest
-}: SurfaceRootProps) {
+function Surface({ variant, className, children, ...rest }: SurfaceProps) {
   return (
-    <SurfaceContext value={{ variant }}>
+    <SurfaceContext
+      value={{
+        variant,
+      }}
+    >
       <div
         data-slot="surface"
-        className={cn(surfaceVariants({ variant }), className)}
+        className={cn(
+          surfaceVariants({
+            variant,
+          }),
+          className
+        )}
         {...rest}
       >
         {children}
@@ -37,6 +34,5 @@ function SurfaceRoot({
   );
 }
 
-export { SurfaceContext, SurfaceRoot };
-
-export type { SurfaceRootProps };
+export { Surface, SurfaceContext };
+export type { SurfaceProps };
