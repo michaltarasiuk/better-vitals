@@ -7,7 +7,6 @@ import { useContext } from "react";
 import { Input as InputPrimitive } from "react-aria-components/Input";
 
 import { composeCn } from "../../utils/cn";
-import { ComboBoxContext } from "../combo-box";
 import { TextFieldContext } from "../textfield";
 
 interface InputRootProps
@@ -22,10 +21,8 @@ function InputRoot({
   ...rest
 }: InputRootProps) {
   const textFieldContext = useContext(TextFieldContext);
-  const comboBoxContext = useContext(ComboBoxContext);
 
-  const variant =
-    variantProp ?? textFieldContext.variant ?? comboBoxContext.variant;
+  const variant = variantProp ?? textFieldContext.variant;
 
   return (
     <InputPrimitive
