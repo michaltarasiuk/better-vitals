@@ -1,12 +1,8 @@
 "use client";
 
-import type {
-  ComponentPropsWithoutRef,
-  ComponentPropsWithRef,
-  ReactNode,
-} from "react";
-import { createContext, useContext } from "react";
-import { Link as LinkPrimitive } from "react-aria-components/Link";
+import type { ComponentProps } from "react";
+import type { LinkProps as RACLinkProps } from "react-aria-components/Link";
+import { Link as RACLink } from "react-aria-components/Link";
 import { cn } from "tailwind-variants";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
@@ -14,45 +10,30 @@ import { ExternalLinkIcon } from "../icons";
 import type { LinkVariants } from "./link.variants";
 import { linkVariants } from "./link.variants";
 
-interface LinkContext {
-  slots?: ReturnType<typeof linkVariants>;
-}
+const slots = linkVariants();
 
-const LinkContext = createContext<LinkContext>({});
+interface LinkProps extends RACLinkProps, LinkVariants {}
 
-interface LinkRootProps
-  extends ComponentPropsWithRef<typeof LinkPrimitive>, LinkVariants {}
-
-function LinkRoot({ href, className, children, ...rest }: LinkRootProps) {
-  const slots = linkVariants();
-
+function Link({ className, children, ...rest }: LinkProps) {
   return (
-    <LinkContext value={{ slots }}>
-      <LinkPrimitive
-        href={href}
-        className={cnRenderProps(className, slots?.base())}
-        {...rest}
-      >
-        {(values) => (
-          <>{typeof children === "function" ? children(values) : children}</>
-        )}
-      </LinkPrimitive>
-    </LinkContext>
+    <RACLink
+      data-slot="link"
+      className={cnRenderProps(className, slots.base())}
+      {...rest}
+    >
+      {children}
+    </RACLink>
   );
 }
 
-interface LinkIconProps extends ComponentPropsWithoutRef<"span"> {
-  children?: ReactNode;
-}
+interface LinkIconProps extends ComponentProps<"span"> {}
 
 function LinkIcon({ className, children, ...rest }: LinkIconProps) {
-  const { slots } = useContext(LinkContext);
-
   return (
     <span
       data-slot="link-icon"
       data-default-icon={!children}
-      className={cn(slots?.icon?.(), className)}
+      className={cn(slots.icon(), className)}
       {...rest}
     >
       {children ?? <ExternalLinkIcon data-slot="link-default-icon" />}
@@ -60,6 +41,5 @@ function LinkIcon({ className, children, ...rest }: LinkIconProps) {
   );
 }
 
-export { LinkIcon, LinkRoot };
-
-export type { LinkIconProps, LinkRootProps };
+export { Link, LinkIcon };
+export type { LinkIconProps, LinkProps };
