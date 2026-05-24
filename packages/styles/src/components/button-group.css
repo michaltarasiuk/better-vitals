@@ -59,17 +59,11 @@
   @apply motion-reduce:transition-none;
 
   .button-group--horizontal & {
-    left: -1px;
-    top: 25%;
-    width: 1px;
-    height: 50%;
+    @apply -left-px top-1/4 h-1/2 w-px;
   }
 
   .button-group--vertical & {
-    left: 25%;
-    top: -1px;
-    width: 50%;
-    height: 1px;
+    @apply -top-px left-1/4 h-px w-1/2;
   }
 }
 
