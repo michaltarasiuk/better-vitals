@@ -6,7 +6,7 @@ import type { ComponentPropsWithRef } from "react";
 import { createContext } from "react";
 import { TextField as TextFieldPrimitive } from "react-aria-components/TextField";
 
-import { composeCn } from "../../utils/cn";
+import { cnRenderProps } from "../../utils/cn-render-props";
 
 interface TextFieldContext {
   variant?: "primary" | "secondary";
@@ -37,7 +37,7 @@ function TextFieldRoot({
       isDisabled={isDisabled}
       isRequired={isRequired}
       isInvalid={isInvalid}
-      className={composeCn(className, styles)}
+      className={cnRenderProps(className, styles)}
       {...rest}
     >
       {(values) => (

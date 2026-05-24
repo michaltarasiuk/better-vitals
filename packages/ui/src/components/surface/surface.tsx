@@ -4,8 +4,7 @@ import type { SurfaceVariants } from "@lite-app/styles/components/surface";
 import { surfaceVariants } from "@lite-app/styles/components/surface";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { createContext } from "react";
-
-import { cn } from "../../utils/cn";
+import { cn } from "tailwind-variants";
 
 interface SurfaceContext {
   variant?: SurfaceVariants["variant"];

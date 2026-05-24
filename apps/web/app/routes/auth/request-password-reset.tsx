@@ -11,9 +11,9 @@ import { Link } from "@lite-app/ui/components/link";
 import { Spinner } from "@lite-app/ui/components/spinner";
 import { TextField } from "@lite-app/ui/components/textfield";
 import { Typography } from "@lite-app/ui/components/typography";
-import { cn } from "@lite-app/ui/utils/cn";
 import { useState, useTransition } from "react";
 import { href } from "react-router";
+import { cn } from "tailwind-variants";
 
 import { requestPasswordReset } from "~/lib/auth/client";
 import { getFieldNameForAuthError, isAuthError } from "~/lib/auth/error";

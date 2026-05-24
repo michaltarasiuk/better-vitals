@@ -1,5 +1,5 @@
-import { cn } from "@lite-app/ui/utils/cn";
 import { Outlet } from "react-router";
+import { cn } from "tailwind-variants";
 
 export default function AuthLayout() {
   return (

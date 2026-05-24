@@ -1,4 +1,3 @@
-import { cn } from "@lite-app/ui/utils/cn";
 import {
   isRouteErrorResponse,
   Links,
@@ -6,6 +5,7 @@ import {
   Outlet,
   ScrollRestoration,
 } from "react-router";
+import { cn } from "tailwind-variants";
 
 import type { Route } from "./+types/root";
 

@@ -5,7 +5,7 @@ import { buttonVariants } from "@lite-app/styles/components/button";
 import type { ComponentPropsWithRef } from "react";
 import { Button as ButtonPrimitive } from "react-aria-components/Button";
 
-import { composeCn } from "../../utils/cn";
+import { cnRenderProps } from "../../utils/cn-render-props";
 
 interface ButtonRootProps
   extends ComponentPropsWithRef<typeof ButtonPrimitive>, ButtonVariants {}
@@ -34,7 +34,7 @@ function ButtonRoot({
       data-slot="button"
       isDisabled={isDisabled}
       slot={slot}
-      className={composeCn(className, styles)}
+      className={cnRenderProps(className, styles)}
       style={style}
       {...rest}
     >

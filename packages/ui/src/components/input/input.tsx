@@ -6,7 +6,7 @@ import type { ComponentPropsWithRef } from "react";
 import { useContext } from "react";
 import { Input as InputPrimitive } from "react-aria-components/Input";
 
-import { composeCn } from "../../utils/cn";
+import { cnRenderProps } from "../../utils/cn-render-props";
 import { TextFieldContext } from "../textfield";
 
 interface InputRootProps
@@ -29,7 +29,10 @@ function InputRoot({
       data-slot="input"
       type={type}
       name={name}
-      className={composeCn(className, inputVariants({ fullWidth, variant }))}
+      className={cnRenderProps(
+        className,
+        inputVariants({ fullWidth, variant })
+      )}
       {...rest}
     />
   );

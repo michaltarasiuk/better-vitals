@@ -4,8 +4,7 @@ import type { SpinnerVariants } from "@lite-app/styles/components/spinner";
 import { spinnerVariants } from "@lite-app/styles/components/spinner";
 import type { ComponentPropsWithoutRef } from "react";
 import { useId } from "react";
-
-import { cn } from "../../utils/cn";
+import { cn } from "tailwind-variants";
 
 interface SpinnerPrimitiveProps extends ComponentPropsWithoutRef<"svg"> {}
 

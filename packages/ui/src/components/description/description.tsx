@@ -5,8 +5,7 @@ import { descriptionVariants } from "@lite-app/styles/components/description";
 import type { ComponentPropsWithRef } from "react";
 import type { TextProps } from "react-aria-components/Text";
 import { Text } from "react-aria-components/Text";
-
-import { cn } from "../../utils/cn";
+import { cn } from "tailwind-variants";
 
 interface DescriptionRootProps
   extends ComponentPropsWithRef<typeof Text>, TextProps, DescriptionVariants {}

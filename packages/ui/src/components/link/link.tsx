@@ -9,8 +9,9 @@ import type {
 } from "react";
 import { createContext, useContext } from "react";
 import { Link as LinkPrimitive } from "react-aria-components/Link";
+import { cn } from "tailwind-variants";
 
-import { cn, composeCn } from "../../utils/cn";
+import { cnRenderProps } from "../../utils/cn-render-props";
 import { ExternalLinkIcon } from "../icons";
 
 interface LinkContext {
@@ -29,7 +30,7 @@ function LinkRoot({ href, className, children, ...rest }: LinkRootProps) {
     <LinkContext value={{ slots }}>
       <LinkPrimitive
         href={href}
-        className={composeCn(className, slots?.base())}
+        className={cnRenderProps(className, slots?.base())}
         {...rest}
       >
         {(values) => (

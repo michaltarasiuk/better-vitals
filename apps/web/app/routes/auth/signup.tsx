@@ -10,8 +10,8 @@ import { Label } from "@lite-app/ui/components/label";
 import { Spinner } from "@lite-app/ui/components/spinner";
 import { TextField } from "@lite-app/ui/components/textfield";
 import { Typography } from "@lite-app/ui/components/typography";
-import { cn } from "@lite-app/ui/utils/cn";
 import { useState, useTransition } from "react";
+import { cn } from "tailwind-variants";
 
 import { signUp } from "~/lib/auth/client";
 import { getFieldNameForAuthError, isAuthError } from "~/lib/auth/error";

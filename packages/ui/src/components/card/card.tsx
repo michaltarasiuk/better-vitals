@@ -5,8 +5,8 @@ import { cardVariants } from "@lite-app/styles/components/card";
 import type { SurfaceVariants } from "@lite-app/styles/components/surface";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { createContext, useContext } from "react";
+import { cn } from "tailwind-variants";
 
-import { cn } from "../../utils/cn";
 import { SurfaceContext } from "../surface";
 
 interface CardContext {
