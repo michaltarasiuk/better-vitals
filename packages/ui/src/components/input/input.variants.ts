@@ -12,7 +12,7 @@ export const inputVariants = tv({
       true: "input--full-width",
     },
     variant: {
-      primary: "input--primary",
+      primary: null,
       secondary: "input--secondary",
     },
   },

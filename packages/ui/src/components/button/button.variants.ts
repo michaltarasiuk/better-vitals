@@ -18,7 +18,7 @@ export const buttonVariants = tv({
     },
     size: {
       lg: "button--lg",
-      md: "button--md",
+      md: null,
       sm: "button--sm",
     },
     variant: {

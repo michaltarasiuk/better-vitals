@@ -17,7 +17,7 @@ export const spinnerVariants = tv({
     },
     size: {
       lg: "spinner--lg",
-      md: "spinner--md",
+      md: null,
       sm: "spinner--sm",
       xl: "spinner--xl",
     },
