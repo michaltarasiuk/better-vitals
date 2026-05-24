@@ -1,7 +1,13 @@
 "use client";
 
 import { Button } from "@lite-app/ui/components/button";
-import { Card } from "@lite-app/ui/components/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+} from "@lite-app/ui/components/card";
 import { FieldError } from "@lite-app/ui/components/field-error";
 import type { FormProps } from "@lite-app/ui/components/form";
 import { Form } from "@lite-app/ui/components/form";
@@ -49,16 +55,16 @@ export default function ResetPassword() {
   };
   return (
     <Card>
-      <Card.Header className={cn("items-center gap-1")}>
+      <CardHeader className={cn("items-center gap-1")}>
         <Typography.Heading align="center" level={1} className={cn("text-xl")}>
           Reset password
         </Typography.Heading>
-        <Card.Description className={cn("text-center")}>
+        <CardDescription className={cn("text-center")}>
           Enter your new password.
-        </Card.Description>
-      </Card.Header>
+        </CardDescription>
+      </CardHeader>
       <Form validationErrors={validationErrors} onSubmit={handleSubmit}>
-        <Card.Content>
+        <CardContent>
           <div className={cn("flex flex-col gap-4")}>
             <TextField name="password" type="password" isRequired>
               <Label>Password</Label>
@@ -71,8 +77,8 @@ export default function ResetPassword() {
               <FieldError />
             </TextField>
           </div>
-        </Card.Content>
-        <Card.Footer className={cn("mt-4 flex flex-col gap-2")}>
+        </CardContent>
+        <CardFooter className={cn("mt-4 flex flex-col gap-2")}>
           <Button className={cn("w-full")} type="submit" isPending={isPending}>
             {(props) => (
               <>
@@ -84,7 +90,7 @@ export default function ResetPassword() {
           <Link className={cn("text-center text-sm")} href="/signin">
             Back to sign in
           </Link>
-        </Card.Footer>
+        </CardFooter>
       </Form>
     </Card>
   );

@@ -1,7 +1,13 @@
 "use client";
 
 import { Button } from "@lite-app/ui/components/button";
-import { Card } from "@lite-app/ui/components/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+} from "@lite-app/ui/components/card";
 import { FieldError } from "@lite-app/ui/components/field-error";
 import type { FormProps } from "@lite-app/ui/components/form";
 import { Form } from "@lite-app/ui/components/form";
@@ -47,16 +53,16 @@ export default function Signup() {
   };
   return (
     <Card>
-      <Card.Header className={cn("items-center gap-1")}>
+      <CardHeader className={cn("items-center gap-1")}>
         <Typography.Heading align="center" level={1} className={cn("text-xl")}>
           Sign Up
         </Typography.Heading>
-        <Card.Description className={cn("text-center")}>
+        <CardDescription className={cn("text-center")}>
           Enter your name, email, and password.
-        </Card.Description>
-      </Card.Header>
+        </CardDescription>
+      </CardHeader>
       <Form validationErrors={validationErrors} onSubmit={handleSubmit}>
-        <Card.Content>
+        <CardContent>
           <div className={cn("flex flex-col gap-4")}>
             <TextField name="name" type="text" isRequired>
               <Label>Name</Label>
@@ -79,8 +85,8 @@ export default function Signup() {
               <FieldError />
             </TextField>
           </div>
-        </Card.Content>
-        <Card.Footer className={cn("mt-4")}>
+        </CardContent>
+        <CardFooter className={cn("mt-4")}>
           <Button className={cn("w-full")} type="submit" isPending={isPending}>
             {(props) => (
               <>
@@ -89,7 +95,7 @@ export default function Signup() {
               </>
             )}
           </Button>
-        </Card.Footer>
+        </CardFooter>
       </Form>
     </Card>
   );

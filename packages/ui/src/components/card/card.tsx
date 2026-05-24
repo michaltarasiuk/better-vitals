@@ -1,67 +1,68 @@
 "use client";
 
-import type { ComponentPropsWithoutRef, ReactNode } from "react";
+import type { ComponentProps } from "react";
 import { createContext, useContext } from "react";
 import { cn } from "tailwind-variants";
 
 import { SurfaceContext } from "../surface";
-import type { SurfaceVariants } from "../surface/surface.variants";
 import type { CardVariants } from "./card.variants";
 import { cardVariants } from "./card.variants";
 
-interface CardContext {
-  slots?: ReturnType<typeof cardVariants>;
-}
+const slots = cardVariants();
 
-const CardContext = createContext<CardContext>({});
+const CardContext = createContext<Pick<CardVariants, "variant">>({});
 
-interface CardRootProps extends ComponentPropsWithoutRef<"div"> {
-  variant?: CardVariants["variant"];
-  children: ReactNode;
-}
+interface CardProps extends ComponentProps<"div">, CardVariants {}
 
-function CardRoot({
-  variant = "default",
-  className,
-  children,
-  ...rest
-}: CardRootProps) {
-  const slots = cardVariants({ variant });
-
-  const content = (
-    <div data-slot="card" className={cn(slots.base(), className)} {...rest}>
+function Card({ variant, className, children, ...rest }: CardProps) {
+  const root = (
+    <div
+      data-slot="card"
+      className={cn(
+        slots.base({
+          variant,
+        }),
+        className
+      )}
+      {...rest}
+    >
       {children}
     </div>
   );
-
   return (
-    <CardContext value={{ slots }}>
+    <CardContext
+      value={{
+        variant,
+      }}
+    >
       {variant === "transparent" ? (
-        content
+        root
       ) : (
         <SurfaceContext
           value={{
-            variant: variant as SurfaceVariants["variant"],
+            variant,
           }}
         >
-          {content}
+          {root}
         </SurfaceContext>
       )}
     </CardContext>
   );
 }
 
-interface CardHeaderProps extends ComponentPropsWithoutRef<"div"> {
-  children?: ReactNode;
-}
+interface CardHeaderProps extends ComponentProps<"div"> {}
 
 function CardHeader({ className, children, ...rest }: CardHeaderProps) {
-  const { slots } = useContext(CardContext);
-
+  const { variant } = useContext(CardContext);
   return (
     <div
       data-slot="card-header"
-      className={cn(slots?.header?.(), className)}
+      className={cn(
+        slots.header({
+          variant,
+        }),
+        className
+      )}
       {...rest}
     >
       {children}
@@ -69,17 +70,19 @@ function CardHeader({ className, children, ...rest }: CardHeaderProps) {
   );
 }
 
-interface CardTitleProps extends ComponentPropsWithoutRef<"h3"> {
-  children?: ReactNode;
-}
+interface CardTitleProps extends ComponentProps<"h3"> {}
 
 function CardTitle({ className, children, ...rest }: CardTitleProps) {
-  const { slots } = useContext(CardContext);
-
+  const { variant } = useContext(CardContext);
   return (
     <h3
       data-slot="card-title"
-      className={cn(slots?.title?.(), className)}
+      className={cn(
+        slots.title({
+          variant,
+        }),
+        className
+      )}
       {...rest}
     >
       {children}
@@ -87,21 +90,23 @@ function CardTitle({ className, children, ...rest }: CardTitleProps) {
   );
 }
 
-interface CardDescriptionProps extends ComponentPropsWithoutRef<"p"> {
-  children?: ReactNode;
-}
+interface CardDescriptionProps extends ComponentProps<"p"> {}
 
 function CardDescription({
   className,
   children,
   ...rest
 }: CardDescriptionProps) {
-  const { slots } = useContext(CardContext);
-
+  const { variant } = useContext(CardContext);
   return (
     <p
       data-slot="card-description"
-      className={cn(slots?.description?.(), className)}
+      className={cn(
+        slots.description({
+          variant,
+        }),
+        className
+      )}
       {...rest}
     >
       {children}
@@ -109,17 +114,19 @@ function CardDescription({
   );
 }
 
-interface CardContentProps extends ComponentPropsWithoutRef<"div"> {
-  children?: ReactNode;
-}
+interface CardContentProps extends ComponentProps<"div"> {}
 
 function CardContent({ className, children, ...rest }: CardContentProps) {
-  const { slots } = useContext(CardContext);
-
+  const { variant } = useContext(CardContext);
   return (
     <div
       data-slot="card-content"
-      className={cn(slots?.content?.(), className)}
+      className={cn(
+        slots.content({
+          variant,
+        }),
+        className
+      )}
       {...rest}
     >
       {children}
@@ -127,17 +134,19 @@ function CardContent({ className, children, ...rest }: CardContentProps) {
   );
 }
 
-interface CardFooterProps extends ComponentPropsWithoutRef<"div"> {
-  children?: ReactNode;
-}
+interface CardFooterProps extends ComponentProps<"div"> {}
 
 function CardFooter({ className, children, ...rest }: CardFooterProps) {
-  const { slots } = useContext(CardContext);
-
+  const { variant } = useContext(CardContext);
   return (
     <div
       data-slot="card-footer"
-      className={cn(slots?.footer?.(), className)}
+      className={cn(
+        slots.footer({
+          variant,
+        }),
+        className
+      )}
       {...rest}
     >
       {children}
@@ -146,11 +155,11 @@ function CardFooter({ className, children, ...rest }: CardFooterProps) {
 }
 
 export {
+  Card,
   CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
-  CardRoot,
   CardTitle,
 };
 export type {
@@ -158,6 +167,6 @@ export type {
   CardDescriptionProps,
   CardFooterProps,
   CardHeaderProps,
-  CardRootProps,
+  CardProps,
   CardTitleProps,
 };

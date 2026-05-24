@@ -1,6 +1,5 @@
 .card {
-  @apply relative flex flex-col gap-3 overflow-hidden p-4;
-  @apply shadow-surface;
+  @apply relative flex flex-col gap-3 overflow-hidden p-4 shadow-surface;
   border-radius: min(32px, var(--radius-3xl));
 }
 

@@ -1,52 +1,19 @@
-import type { ComponentProps } from "react";
-
-import {
+export {
+  Card,
   CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
-  CardRoot,
   CardTitle,
 } from "./card";
-
-export const Card = Object.assign(CardRoot, {
-  Content: CardContent,
-  Description: CardDescription,
-  Footer: CardFooter,
-  Header: CardHeader,
-  Root: CardRoot,
-  Title: CardTitle,
-});
-
-export interface Card {
-  Props: ComponentProps<typeof CardRoot>;
-  RootProps: ComponentProps<typeof CardRoot>;
-  HeaderProps: ComponentProps<typeof CardHeader>;
-  TitleProps: ComponentProps<typeof CardTitle>;
-  DescriptionProps: ComponentProps<typeof CardDescription>;
-  ContentProps: ComponentProps<typeof CardContent>;
-  FooterProps: ComponentProps<typeof CardFooter>;
-}
-
-export {
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardRoot,
-  CardTitle,
-};
+export { cardVariants } from "./card.variants";
 
 export type {
   CardContentProps,
   CardDescriptionProps,
   CardFooterProps,
   CardHeaderProps,
-  CardRootProps as CardProps,
-  CardRootProps,
+  CardProps,
   CardTitleProps,
 } from "./card";
-
-export { cardVariants } from "./card.variants";
-
 export type { CardVariants } from "./card.variants";
