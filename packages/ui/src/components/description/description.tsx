@@ -6,6 +6,8 @@ import type { ComponentPropsWithRef } from "react";
 import type { TextProps } from "react-aria-components/Text";
 import { Text } from "react-aria-components/Text";
 
+import { cn } from "../../utils/cn";
+
 interface DescriptionRootProps
   extends ComponentPropsWithRef<typeof Text>, TextProps, DescriptionVariants {}
 
@@ -18,7 +20,7 @@ function DescriptionRoot({
     <Text
       slot="description"
       data-slot="description"
-      className={descriptionVariants({ className })}
+      className={cn(descriptionVariants(), className)}
       {...rest}
     >
       {children}

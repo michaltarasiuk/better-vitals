@@ -12,10 +12,7 @@ import {
   Popover as PopoverPrimitive,
 } from "react-aria-components/ComboBox";
 
-import {
-  composeSlotClassName,
-  composeTwRenderProps,
-} from "../../utils/compose";
+import { cn, composeCn } from "../../utils/cn";
 import { IconChevronDown } from "../icons";
 import type { SurfaceVariants } from "../surface";
 import { SurfaceContext } from "../surface";
@@ -50,7 +47,7 @@ function ComboBoxRoot<T extends object = object>({
         data-slot="combo-box"
         menuTrigger={menuTrigger}
         items={items}
-        className={composeTwRenderProps(className, slots?.base())}
+        className={composeCn(className, slots?.base())}
         {...rest}
       >
         {(values) => (
@@ -69,14 +66,9 @@ function ComboBoxInputGroup({
   ...rest
 }: ComboBoxInputGroupProps) {
   const { slots } = useContext(ComboBoxContext);
-  const inputGroupClassName = composeSlotClassName(
-    slots?.inputGroup,
-    className
-  );
-
   return (
     <div
-      className={inputGroupClassName}
+      className={cn(slots?.inputGroup?.(), className)}
       data-slot="combo-box-input-group"
       {...rest}
     >
@@ -104,7 +96,7 @@ function ComboBoxTrigger({
       data-slot="combo-box-trigger"
       data-open={state?.isOpen}
       isDisabled={isDisabled}
-      className={composeTwRenderProps(className, slots?.trigger())}
+      className={composeCn(className, slots?.trigger())}
       {...rest}
     >
       {children ?? (
@@ -137,7 +129,7 @@ function ComboBoxPopover({
     >
       <PopoverPrimitive
         placement={placement}
-        className={composeTwRenderProps(className, slots?.popover())}
+        className={composeCn(className, slots?.popover())}
         {...rest}
       >
         {children}

@@ -6,7 +6,7 @@ import type { SurfaceVariants } from "@lite-app/styles/components/surface";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { createContext, useContext } from "react";
 
-import { composeSlotClassName } from "../../utils/compose";
+import { cn } from "../../utils/cn";
 import { SurfaceContext } from "../surface";
 
 interface CardContext {
@@ -29,7 +29,7 @@ function CardRoot({
   const slots = cardVariants({ variant });
 
   const content = (
-    <div data-slot="card" className={slots.base({ className })} {...rest}>
+    <div data-slot="card" className={cn(slots.base(), className)} {...rest}>
       {children}
     </div>
   );
@@ -61,7 +61,7 @@ function CardHeader({ className, children, ...rest }: CardHeaderProps) {
   return (
     <div
       data-slot="card-header"
-      className={composeSlotClassName(slots?.header, className)}
+      className={cn(slots?.header?.(), className)}
       {...rest}
     >
       {children}
@@ -79,7 +79,7 @@ function CardTitle({ className, children, ...rest }: CardTitleProps) {
   return (
     <h3
       data-slot="card-title"
-      className={composeSlotClassName(slots?.title, className)}
+      className={cn(slots?.title?.(), className)}
       {...rest}
     >
       {children}
@@ -101,7 +101,7 @@ function CardDescription({
   return (
     <p
       data-slot="card-description"
-      className={composeSlotClassName(slots?.description, className)}
+      className={cn(slots?.description?.(), className)}
       {...rest}
     >
       {children}
@@ -119,7 +119,7 @@ function CardContent({ className, children, ...rest }: CardContentProps) {
   return (
     <div
       data-slot="card-content"
-      className={composeSlotClassName(slots?.content, className)}
+      className={cn(slots?.content?.(), className)}
       {...rest}
     >
       {children}
@@ -137,7 +137,7 @@ function CardFooter({ className, children, ...rest }: CardFooterProps) {
   return (
     <div
       data-slot="card-footer"
-      className={composeSlotClassName(slots?.footer, className)}
+      className={cn(slots?.footer?.(), className)}
       {...rest}
     >
       {children}

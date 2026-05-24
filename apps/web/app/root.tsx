@@ -1,3 +1,4 @@
+import { cn } from "@lite-app/ui/utils/cn";
 import {
   isRouteErrorResponse,
   Links,
@@ -64,11 +65,11 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   }
 
   return (
-    <main className="container p-4 pt-16 mx-auto">
+    <main className={cn("container p-4 pt-16 mx-auto")}>
       <h1>{message}</h1>
       <p>{details}</p>
       {stack && (
-        <pre className="overflow-x-auto p-4 w-full">
+        <pre className={cn("overflow-x-auto p-4 w-full")}>
           <code>{stack}</code>
         </pre>
       )}

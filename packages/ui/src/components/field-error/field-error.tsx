@@ -5,7 +5,7 @@ import { fieldErrorVariants } from "@lite-app/styles/components/field-error";
 import type { ComponentPropsWithRef } from "react";
 import { FieldError as FieldErrorPrimitive } from "react-aria-components/FieldError";
 
-import { composeTwRenderProps } from "../../utils/compose";
+import { composeCn } from "../../utils/cn";
 
 interface FieldErrorRootProps
   extends
@@ -17,7 +17,7 @@ function FieldErrorRoot({ className, children, ...rest }: FieldErrorRootProps) {
     <FieldErrorPrimitive
       data-slot="field-error"
       data-visible
-      className={composeTwRenderProps(className, fieldErrorVariants())}
+      className={composeCn(className, fieldErrorVariants())}
       {...rest}
     >
       {(renderProps) =>

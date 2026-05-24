@@ -3,10 +3,10 @@
 import type { TextFieldVariants } from "@lite-app/styles/components/textfield";
 import { textFieldVariants } from "@lite-app/styles/components/textfield";
 import type { ComponentPropsWithRef } from "react";
-import React, { createContext } from "react";
+import { createContext } from "react";
 import { TextField as TextFieldPrimitive } from "react-aria-components/TextField";
 
-import { composeTwRenderProps } from "../../utils/compose";
+import { composeCn } from "../../utils/cn";
 
 interface TextFieldContext {
   variant?: "primary" | "secondary";
@@ -37,7 +37,7 @@ function TextFieldRoot({
       isDisabled={isDisabled}
       isRequired={isRequired}
       isInvalid={isInvalid}
-      className={composeTwRenderProps(className, styles)}
+      className={composeCn(className, styles)}
       {...rest}
     >
       {(values) => (

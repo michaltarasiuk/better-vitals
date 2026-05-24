@@ -17,10 +17,7 @@ import { Group } from "react-aria-components/Group";
 import { useSlottedContext } from "react-aria-components/slots";
 import { ToggleButtonGroupContext as RACToggleButtonGroupContext } from "react-aria-components/ToggleButtonGroup";
 
-import {
-  composeSlotClassName,
-  composeTwRenderProps,
-} from "../../utils/compose";
+import { cn, composeCn } from "../../utils/cn";
 import type { ButtonProps } from "../button";
 
 interface ButtonGroupContext {
@@ -74,7 +71,7 @@ function ButtonGroupRoot({
       <Group
         data-slot="button-group"
         isDisabled={isDisabled}
-        className={composeTwRenderProps(className, slots.base())}
+        className={composeCn(className, slots.base())}
         {...rest}
       >
         {wrappedChildren}
@@ -94,7 +91,7 @@ function ButtonGroupSeparator({
   return (
     <span
       data-slot="button-group-separator"
-      className={composeSlotClassName(slots?.separator, className)}
+      className={cn(slots?.separator?.(), className)}
       aria-hidden="true"
       {...rest}
     />

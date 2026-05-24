@@ -5,6 +5,8 @@ import { spinnerVariants } from "@lite-app/styles/components/spinner";
 import type { ComponentPropsWithoutRef } from "react";
 import { useId } from "react";
 
+import { cn } from "../../utils/cn";
+
 interface SpinnerPrimitiveProps extends ComponentPropsWithoutRef<"svg"> {}
 
 function SpinnerPrimitive(props: SpinnerPrimitiveProps) {
@@ -60,11 +62,7 @@ function SpinnerRoot({ color, size, className, ...rest }: SpinnerRootProps) {
   return (
     <span
       data-slot="spinner"
-      className={spinnerVariants({
-        className,
-        color,
-        size,
-      })}
+      className={cn(spinnerVariants({ color, size }), className)}
       {...rest}
     >
       <SpinnerPrimitive role="presentation" aria-hidden />

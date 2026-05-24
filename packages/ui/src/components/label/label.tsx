@@ -5,6 +5,8 @@ import { labelVariants } from "@lite-app/styles/components/label";
 import type { ComponentPropsWithRef } from "react";
 import { Label as LabelPrimitive } from "react-aria-components/Label";
 
+import { cn } from "../../utils/cn";
+
 interface LabelRootProps
   extends ComponentPropsWithRef<typeof LabelPrimitive>, LabelVariants {}
 
@@ -19,12 +21,10 @@ function LabelRoot({
   return (
     <LabelPrimitive
       data-slot="label"
-      className={labelVariants({
-        className,
-        isDisabled,
-        isInvalid,
-        isRequired,
-      })}
+      className={cn(
+        labelVariants({ isDisabled, isInvalid, isRequired }),
+        className
+      )}
       {...rest}
     >
       {children}

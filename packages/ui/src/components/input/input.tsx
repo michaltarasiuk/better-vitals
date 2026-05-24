@@ -6,7 +6,7 @@ import type { ComponentPropsWithRef } from "react";
 import { useContext } from "react";
 import { Input as InputPrimitive } from "react-aria-components/Input";
 
-import { composeTwRenderProps } from "../../utils/compose";
+import { composeCn } from "../../utils/cn";
 import { ComboBoxContext } from "../combo-box";
 import { TextFieldContext } from "../textfield";
 
@@ -32,10 +32,7 @@ function InputRoot({
       data-slot="input"
       type={type}
       name={name}
-      className={composeTwRenderProps(
-        className,
-        inputVariants({ fullWidth, variant })
-      )}
+      className={composeCn(className, inputVariants({ fullWidth, variant }))}
       {...rest}
     />
   );

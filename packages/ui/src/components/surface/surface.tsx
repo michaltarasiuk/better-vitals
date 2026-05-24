@@ -5,6 +5,8 @@ import { surfaceVariants } from "@lite-app/styles/components/surface";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { createContext } from "react";
 
+import { cn } from "../../utils/cn";
+
 interface SurfaceContext {
   variant?: SurfaceVariants["variant"];
 }
@@ -26,7 +28,7 @@ function SurfaceRoot({
     <SurfaceContext value={{ variant }}>
       <div
         data-slot="surface"
-        className={surfaceVariants({ className, variant })}
+        className={cn(surfaceVariants({ variant }), className)}
         {...rest}
       >
         {children}

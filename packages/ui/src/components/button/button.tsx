@@ -6,7 +6,7 @@ import type { ComponentPropsWithRef } from "react";
 import { useContext } from "react";
 import { Button as ButtonPrimitive } from "react-aria-components/Button";
 
-import { composeTwRenderProps } from "../../utils/compose";
+import { composeCn } from "../../utils/cn";
 import { BUTTON_GROUP_CHILD, ButtonGroupContext } from "../button-group";
 
 interface ButtonRootProps
@@ -53,7 +53,7 @@ function ButtonRoot({
       data-slot="button"
       isDisabled={finalIsDisabled}
       slot={slot}
-      className={composeTwRenderProps(className, styles)}
+      className={composeCn(className, styles)}
       style={style}
       {...rest}
     >

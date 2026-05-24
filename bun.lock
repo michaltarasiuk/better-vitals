@@ -63,9 +63,11 @@
       "dependencies": {
         "@lite-app/styles": "workspace:*",
         "@react-aria/utils": "^3.34.0",
+        "clsx": "catalog:",
         "react": "catalog:",
         "react-aria-components": "^1.17.0",
         "react-dom": "catalog:",
+        "tailwind-merge": "catalog:",
         "tailwind-variants": "catalog:",
       },
       "devDependencies": {
@@ -80,6 +82,7 @@
     "@types/node": "^22",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "clsx": "^2.1.1",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "tailwind-merge": "^3.2.0",

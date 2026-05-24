@@ -10,6 +10,7 @@ import { Label } from "@lite-app/ui/components/label";
 import { Spinner } from "@lite-app/ui/components/spinner";
 import { TextField } from "@lite-app/ui/components/textfield";
 import { Typography } from "@lite-app/ui/components/typography";
+import { cn } from "@lite-app/ui/utils/cn";
 import { useState, useTransition } from "react";
 
 import { signUp } from "~/lib/auth/client";
@@ -46,17 +47,17 @@ export default function Signup() {
   };
   return (
     <Card>
-      <Card.Header className="items-center gap-1">
-        <Typography.Heading align="center" level={1} className="text-xl">
+      <Card.Header className={cn("items-center gap-1")}>
+        <Typography.Heading align="center" level={1} className={cn("text-xl")}>
           Sign Up
         </Typography.Heading>
-        <Card.Description className="text-center">
+        <Card.Description className={cn("text-center")}>
           Enter your name, email, and password.
         </Card.Description>
       </Card.Header>
       <Form validationErrors={validationErrors} onSubmit={handleSubmit}>
         <Card.Content>
-          <div className="flex flex-col gap-4">
+          <div className={cn("flex flex-col gap-4")}>
             <TextField name="name" type="text" isRequired>
               <Label>Name</Label>
               <Input variant="secondary" />
@@ -79,8 +80,8 @@ export default function Signup() {
             </TextField>
           </div>
         </Card.Content>
-        <Card.Footer className="mt-4">
-          <Button className="w-full" type="submit" isPending={isPending}>
+        <Card.Footer className={cn("mt-4")}>
+          <Button className={cn("w-full")} type="submit" isPending={isPending}>
             {(props) => (
               <>
                 {props.isPending ? <Spinner color="current" size="sm" /> : null}

@@ -11,6 +11,7 @@ import { Link } from "@lite-app/ui/components/link";
 import { Spinner } from "@lite-app/ui/components/spinner";
 import { TextField } from "@lite-app/ui/components/textfield";
 import { Typography } from "@lite-app/ui/components/typography";
+import { cn } from "@lite-app/ui/utils/cn";
 import { useState, useTransition } from "react";
 import { href } from "react-router";
 
@@ -39,11 +40,11 @@ export default function RequestPasswordReset() {
   };
   return (
     <Card>
-      <Card.Header className="items-center gap-1">
-        <Typography.Heading align="center" level={1} className="text-xl">
+      <Card.Header className={cn("items-center gap-1")}>
+        <Typography.Heading align="center" level={1} className={cn("text-xl")}>
           Request password reset
         </Typography.Heading>
-        <Card.Description className="text-center">
+        <Card.Description className={cn("text-center")}>
           Enter your email.
         </Card.Description>
       </Card.Header>
@@ -55,8 +56,8 @@ export default function RequestPasswordReset() {
             <FieldError />
           </TextField>
         </Card.Content>
-        <Card.Footer className="mt-4 flex flex-col gap-2">
-          <Button className="w-full" type="submit" isPending={isPending}>
+        <Card.Footer className={cn("mt-4 flex flex-col gap-2")}>
+          <Button className={cn("w-full")} type="submit" isPending={isPending}>
             {(props) => (
               <>
                 {props.isPending ? <Spinner color="current" size="sm" /> : null}
@@ -66,7 +67,7 @@ export default function RequestPasswordReset() {
               </>
             )}
           </Button>
-          <Link className="text-center text-sm" href="/signin">
+          <Link className={cn("text-center text-sm")} href="/signin">
             Back to sign in
           </Link>
         </Card.Footer>

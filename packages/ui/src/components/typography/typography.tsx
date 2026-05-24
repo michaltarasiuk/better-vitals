@@ -5,7 +5,7 @@ import { typographyVariants } from "@lite-app/styles/components/typography";
 import type { ComponentPropsWithRef, ReactNode } from "react";
 import { Text as TextPrimitive } from "react-aria-components/Text";
 
-import { composeSlotClassName } from "../../utils/compose";
+import { cn } from "../../utils/cn";
 
 type TypographyType = NonNullable<TypographyVariants["type"]>;
 type TypographyAlign = NonNullable<TypographyVariants["align"]>;
@@ -55,7 +55,7 @@ function TypographyRoot({
       elementType={defaultElementByType[type]}
       data-slot="typography"
       data-type={type}
-      className={composeSlotClassName(slots.base, className)}
+      className={cn(slots.base(), className)}
       {...rest}
     >
       {children}
@@ -95,11 +95,7 @@ function Prose({ className, children, ...rest }: ProseProps) {
   const slots = typographyVariants();
 
   return (
-    <div
-      data-slot="prose"
-      className={composeSlotClassName(slots.prose, className)}
-      {...rest}
-    >
+    <div data-slot="prose" className={cn(slots.prose(), className)} {...rest}>
       {children}
     </div>
   );

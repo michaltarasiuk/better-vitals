@@ -10,10 +10,7 @@ import type {
 import { createContext, useContext } from "react";
 import { Link as LinkPrimitive } from "react-aria-components/Link";
 
-import {
-  composeSlotClassName,
-  composeTwRenderProps,
-} from "../../utils/compose";
+import { cn, composeCn } from "../../utils/cn";
 import { ExternalLinkIcon } from "../icons";
 
 interface LinkContext {
@@ -32,7 +29,7 @@ function LinkRoot({ href, className, children, ...rest }: LinkRootProps) {
     <LinkContext value={{ slots }}>
       <LinkPrimitive
         href={href}
-        className={composeTwRenderProps(className, slots?.base())}
+        className={composeCn(className, slots?.base())}
         {...rest}
       >
         {(values) => (
@@ -54,7 +51,7 @@ function LinkIcon({ className, children, ...rest }: LinkIconProps) {
     <span
       data-slot="link-icon"
       data-default-icon={!children}
-      className={composeSlotClassName(slots?.icon, className)}
+      className={cn(slots?.icon?.(), className)}
       {...rest}
     >
       {children ?? <ExternalLinkIcon data-slot="link-default-icon" />}
