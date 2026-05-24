@@ -8,7 +8,6 @@ export const textFieldVariants = tv({
   },
   variants: {
     fullWidth: {
-      false: "",
       true: "textfield--full-width",
     },
   },

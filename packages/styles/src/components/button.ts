@@ -11,7 +11,6 @@ export const buttonVariants = tv({
   },
   variants: {
     fullWidth: {
-      false: "",
       true: "button--full-width",
     },
     isIconOnly: {

@@ -9,7 +9,6 @@ export const inputVariants = tv({
   },
   variants: {
     fullWidth: {
-      false: "",
       true: "input--full-width",
     },
     variant: {
