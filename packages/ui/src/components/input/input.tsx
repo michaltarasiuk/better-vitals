@@ -1,13 +1,14 @@
 "use client";
 
 import { useContext } from "react";
-import type { InputProps as RACInputProps } from "react-aria-components/Input";
-import { Input as RACInput } from "react-aria-components/Input";
+import {
+  Input as RACInput,
+  type InputProps as RACInputProps,
+} from "react-aria-components/Input";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
 import { TextFieldContext } from "../textfield";
-import type { InputVariants } from "./input.variants";
-import { inputVariants } from "./input.variants";
+import { inputVariants, type InputVariants } from "./input.variants";
 
 interface InputProps extends RACInputProps, InputVariants {}
 

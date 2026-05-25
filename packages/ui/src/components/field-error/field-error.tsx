@@ -1,11 +1,15 @@
 "use client";
 
-import type { FieldErrorProps as RACFieldErrorProps } from "react-aria-components/FieldError";
-import { FieldError as RACFieldError } from "react-aria-components/FieldError";
+import {
+  FieldError as RACFieldError,
+  type FieldErrorProps as RACFieldErrorProps,
+} from "react-aria-components/FieldError";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
-import type { FieldErrorVariants } from "./field-error.variants";
-import { fieldErrorVariants } from "./field-error.variants";
+import {
+  fieldErrorVariants,
+  type FieldErrorVariants,
+} from "./field-error.variants";
 
 interface FieldErrorProps extends RACFieldErrorProps, FieldErrorVariants {}
 

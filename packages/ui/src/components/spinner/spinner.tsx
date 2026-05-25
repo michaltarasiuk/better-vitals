@@ -1,11 +1,9 @@
 "use client";
 
-import type { ComponentProps } from "react";
-import { useId } from "react";
+import { useId, type ComponentProps } from "react";
 import { cn } from "tailwind-variants";
 
-import type { SpinnerVariants } from "./spinner.variants";
-import { spinnerVariants } from "./spinner.variants";
+import { spinnerVariants, type SpinnerVariants } from "./spinner.variants";
 
 interface SpinnerProps
   extends

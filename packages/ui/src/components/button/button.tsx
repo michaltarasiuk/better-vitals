@@ -1,11 +1,12 @@
 "use client";
 
-import type { ButtonProps as RACButtonProps } from "react-aria-components/Button";
-import { Button as RACButton } from "react-aria-components/Button";
+import {
+  Button as RACButton,
+  type ButtonProps as RACButtonProps,
+} from "react-aria-components/Button";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
-import type { ButtonVariants } from "./button.variants";
-import { buttonVariants } from "./button.variants";
+import { buttonVariants, type ButtonVariants } from "./button.variants";
 
 interface ButtonProps extends RACButtonProps, ButtonVariants {}
 

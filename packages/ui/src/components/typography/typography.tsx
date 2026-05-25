@@ -4,8 +4,10 @@ import type { ComponentPropsWithRef, ReactNode } from "react";
 import { Text as TextPrimitive } from "react-aria-components/Text";
 import { cn } from "tailwind-variants";
 
-import type { TypographyVariants } from "./typography.variants";
-import { typographyVariants } from "./typography.variants";
+import {
+  typographyVariants,
+  type TypographyVariants,
+} from "./typography.variants";
 
 type TypographyType = NonNullable<TypographyVariants["type"]>;
 type TypographyAlign = NonNullable<TypographyVariants["align"]>;

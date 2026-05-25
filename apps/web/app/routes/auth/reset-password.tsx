@@ -12,8 +12,7 @@ import {
   CardHeader,
 } from "@lite-app/ui/components/card";
 import { FieldError } from "@lite-app/ui/components/field-error";
-import type { FormProps } from "@lite-app/ui/components/form";
-import { Form } from "@lite-app/ui/components/form";
+import { Form, type FormProps } from "@lite-app/ui/components/form";
 import { Input } from "@lite-app/ui/components/input";
 import { Label } from "@lite-app/ui/components/label";
 import { Link } from "@lite-app/ui/components/link";

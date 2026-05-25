@@ -2,14 +2,15 @@
 
 import { isDefined } from "@lite-app/shared/is-defined";
 import type { ComponentProps } from "react";
-import type { LinkProps as RACLinkProps } from "react-aria-components/Link";
-import { Link as RACLink } from "react-aria-components/Link";
+import {
+  Link as RACLink,
+  type LinkProps as RACLinkProps,
+} from "react-aria-components/Link";
 import { cn } from "tailwind-variants";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
 import { ExternalLinkIcon } from "../icons";
-import type { LinkVariants } from "./link.variants";
-import { linkVariants } from "./link.variants";
+import { linkVariants, type LinkVariants } from "./link.variants";
 
 const slots = linkVariants();
 

@@ -1,11 +1,12 @@
 "use client";
 
-import type { LabelProps as RACLabelProps } from "react-aria-components/Label";
-import { Label as RACLabel } from "react-aria-components/Label";
+import {
+  Label as RACLabel,
+  type LabelProps as RACLabelProps,
+} from "react-aria-components/Label";
 import { cn } from "tailwind-variants";
 
-import type { LabelVariants } from "./label.variants";
-import { labelVariants } from "./label.variants";
+import { labelVariants, type LabelVariants } from "./label.variants";
 
 interface LabelProps extends RACLabelProps, LabelVariants {}
 

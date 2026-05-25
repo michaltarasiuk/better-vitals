@@ -1,12 +1,10 @@
 "use client";
 
-import type { ComponentProps } from "react";
-import { createContext, useContext } from "react";
+import { createContext, useContext, type ComponentProps } from "react";
 import { cn } from "tailwind-variants";
 
 import { SurfaceContext } from "../surface";
-import type { CardVariants } from "./card.variants";
-import { cardVariants } from "./card.variants";
+import { cardVariants, type CardVariants } from "./card.variants";
 
 const slots = cardVariants();
 

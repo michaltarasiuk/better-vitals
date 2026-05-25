@@ -1,11 +1,9 @@
 "use client";
 
-import type { ComponentProps } from "react";
-import { createContext } from "react";
+import { createContext, type ComponentProps } from "react";
 import { cn } from "tailwind-variants";
 
-import type { SurfaceVariants } from "./surface.variants";
-import { surfaceVariants } from "./surface.variants";
+import { surfaceVariants, type SurfaceVariants } from "./surface.variants";
 
 const SurfaceContext = createContext<Pick<SurfaceVariants, "variant">>({});
 

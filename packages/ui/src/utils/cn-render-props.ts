@@ -1,7 +1,8 @@
-import type { StyleRenderProps } from "react-aria-components";
-import { composeRenderProps } from "react-aria-components";
-import type { ClassValue } from "tailwind-variants";
-import { cn } from "tailwind-variants";
+import {
+  composeRenderProps,
+  type StyleRenderProps,
+} from "react-aria-components";
+import { cn, type ClassValue } from "tailwind-variants";
 
 export function cnRenderProps<T>(
   className: StyleRenderProps<T>["className"],

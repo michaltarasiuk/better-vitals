@@ -1,15 +1,17 @@
 "use client";
 
 import { createContext } from "react";
-import type { TextFieldProps as RACTextFieldProps } from "react-aria-components";
 import {
   TextField as RACTextField,
   composeRenderProps,
+  type TextFieldProps as RACTextFieldProps,
 } from "react-aria-components";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
-import type { TextFieldVariants } from "./textfield.variants";
-import { textFieldVariants } from "./textfield.variants";
+import {
+  textFieldVariants,
+  type TextFieldVariants,
+} from "./textfield.variants";
 
 interface TextFieldContext {
   variant?: "primary" | "secondary";
