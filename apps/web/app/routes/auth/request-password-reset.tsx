@@ -47,10 +47,10 @@ export default function RequestPasswordReset() {
     <Card>
       <CardHeader className={cn("items-center gap-1")}>
         <Heading align="center" level={1} className={cn("text-xl")}>
-          Request password reset
+          Forgot your password?
         </Heading>
         <CardDescription className={cn("text-center")}>
-          Enter your email.
+          Enter your email and we'll send you a reset link
         </CardDescription>
       </CardHeader>
       <Form validationErrors={validationErrors} onSubmit={handleSubmit}>
@@ -66,9 +66,7 @@ export default function RequestPasswordReset() {
             {(props) => (
               <>
                 {props.isPending ? <Spinner color="current" size="sm" /> : null}
-                {props.isPending
-                  ? "Requesting password reset"
-                  : "Request password reset"}
+                {props.isPending ? "Sending reset link" : "Send reset link"}
               </>
             )}
           </Button>

@@ -46,10 +46,10 @@ export default function Signin() {
     <Card>
       <CardHeader className={cn("items-center gap-1")}>
         <Heading align="center" level={1} className={cn("text-xl")}>
-          Sign In
+          Welcome back
         </Heading>
         <CardDescription className={cn("text-center")}>
-          Enter your email and password.
+          Sign in to your account
         </CardDescription>
       </CardHeader>
       <Form validationErrors={validationErrors} onSubmit={handleSubmit}>
@@ -80,7 +80,7 @@ export default function Signin() {
             className={cn("text-center text-sm")}
             href="/request-password-reset"
           >
-            Request password reset
+            Forgot password?
           </Link>
         </CardFooter>
       </Form>

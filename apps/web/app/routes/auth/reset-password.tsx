@@ -56,10 +56,10 @@ export default function ResetPassword() {
     <Card>
       <CardHeader className={cn("items-center gap-1")}>
         <Heading align="center" level={1} className={cn("text-xl")}>
-          Reset password
+          Set a new password
         </Heading>
         <CardDescription className={cn("text-center")}>
-          Enter your new password.
+          Enter and confirm your new password
         </CardDescription>
       </CardHeader>
       <Form validationErrors={validationErrors} onSubmit={handleSubmit}>
@@ -82,7 +82,7 @@ export default function ResetPassword() {
             {(props) => (
               <>
                 {props.isPending ? <Spinner color="current" size="sm" /> : null}
-                {props.isPending ? "Resetting password" : "Reset password"}
+                {props.isPending ? "Updating password" : "Update password"}
               </>
             )}
           </Button>

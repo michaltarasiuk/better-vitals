@@ -54,10 +54,10 @@ export default function Signup() {
     <Card>
       <CardHeader className={cn("items-center gap-1")}>
         <Heading align="center" level={1} className={cn("text-xl")}>
-          Sign Up
+          Create an account
         </Heading>
         <CardDescription className={cn("text-center")}>
-          Enter your name, email, and password.
+          Enter your details to get started
         </CardDescription>
       </CardHeader>
       <Form validationErrors={validationErrors} onSubmit={handleSubmit}>
