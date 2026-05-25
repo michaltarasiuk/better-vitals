@@ -1,17 +1,39 @@
 "use client";
 
-import type { ComponentPropsWithoutRef } from "react";
+import type { ComponentProps } from "react";
 import { useId } from "react";
 import { cn } from "tailwind-variants";
 
 import type { SpinnerVariants } from "./spinner.variants";
 import { spinnerVariants } from "./spinner.variants";
 
-interface SpinnerPrimitiveProps extends ComponentPropsWithoutRef<"svg"> {}
+interface SpinnerProps
+  extends
+    Omit<ComponentProps<"span">, keyof SpinnerVariants>,
+    SpinnerVariants {}
 
-function SpinnerPrimitive(props: SpinnerPrimitiveProps) {
+function Spinner({ color, size, className, ...rest }: SpinnerProps) {
+  return (
+    <span
+      data-slot="spinner"
+      className={cn(
+        spinnerVariants({
+          color,
+          size,
+        }),
+        className
+      )}
+      {...rest}
+    >
+      <SpinnerIcon role="presentation" aria-hidden />
+    </span>
+  );
+}
+
+interface SpinnerIconProps extends ComponentProps<"svg"> {}
+
+function SpinnerIcon(props: SpinnerIconProps) {
   const id = useId();
-
   return (
     <svg viewBox="0 0 24 24" data-slot="spinner-icon" {...props}>
       <defs>
@@ -53,23 +75,5 @@ function SpinnerPrimitive(props: SpinnerPrimitiveProps) {
   );
 }
 
-interface SpinnerRootProps extends ComponentPropsWithoutRef<"span"> {
-  color?: SpinnerVariants["color"];
-  size?: SpinnerVariants["size"];
-}
-
-function SpinnerRoot({ color, size, className, ...rest }: SpinnerRootProps) {
-  return (
-    <span
-      data-slot="spinner"
-      className={cn(spinnerVariants({ color, size }), className)}
-      {...rest}
-    >
-      <SpinnerPrimitive role="presentation" aria-hidden />
-    </span>
-  );
-}
-
-export { SpinnerRoot };
-
-export type { SpinnerRootProps };
+export { Spinner };
+export type { SpinnerProps };
