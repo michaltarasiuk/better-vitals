@@ -17,7 +17,7 @@ import { Label } from "@lite-app/ui/components/label";
 import { Link } from "@lite-app/ui/components/link";
 import { Spinner } from "@lite-app/ui/components/spinner";
 import { TextField } from "@lite-app/ui/components/textfield";
-import { Typography } from "@lite-app/ui/components/typography";
+import { Heading } from "@lite-app/ui/components/typography";
 import { useState, useTransition } from "react";
 import { href } from "react-router";
 import { cn } from "tailwind-variants";
@@ -46,9 +46,9 @@ export default function RequestPasswordReset() {
   return (
     <Card>
       <CardHeader className={cn("items-center gap-1")}>
-        <Typography.Heading align="center" level={1} className={cn("text-xl")}>
+        <Heading align="center" level={1} className={cn("text-xl")}>
           Request password reset
-        </Typography.Heading>
+        </Heading>
         <CardDescription className={cn("text-center")}>
           Enter your email.
         </CardDescription>

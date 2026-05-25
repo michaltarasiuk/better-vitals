@@ -18,7 +18,7 @@ import { Label } from "@lite-app/ui/components/label";
 import { Link } from "@lite-app/ui/components/link";
 import { Spinner } from "@lite-app/ui/components/spinner";
 import { TextField } from "@lite-app/ui/components/textfield";
-import { Typography } from "@lite-app/ui/components/typography";
+import { Heading } from "@lite-app/ui/components/typography";
 import { useState, useTransition } from "react";
 import { cn } from "tailwind-variants";
 
@@ -55,9 +55,9 @@ export default function ResetPassword() {
   return (
     <Card>
       <CardHeader className={cn("items-center gap-1")}>
-        <Typography.Heading align="center" level={1} className={cn("text-xl")}>
+        <Heading align="center" level={1} className={cn("text-xl")}>
           Reset password
-        </Typography.Heading>
+        </Heading>
         <CardDescription className={cn("text-center")}>
           Enter your new password.
         </CardDescription>

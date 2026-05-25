@@ -4,7 +4,7 @@ export const typographyVariants = tv({
   defaultVariants: {
     align: "start",
     color: "default",
-    type: "body",
+    type: "body-base",
   },
   slots: {
     base: "typography",
@@ -25,7 +25,7 @@ export const typographyVariants = tv({
       true: "typography--truncate",
     },
     type: {
-      body: "typography--body",
+      "body-base": "typography--body",
       "body-sm": "typography--body-sm",
       "body-xs": "typography--body-xs",
       code: "typography--code",

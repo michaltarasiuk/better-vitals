@@ -17,7 +17,7 @@ import { Input } from "@lite-app/ui/components/input";
 import { Label } from "@lite-app/ui/components/label";
 import { Spinner } from "@lite-app/ui/components/spinner";
 import { TextField } from "@lite-app/ui/components/textfield";
-import { Typography } from "@lite-app/ui/components/typography";
+import { Heading } from "@lite-app/ui/components/typography";
 import { useState, useTransition } from "react";
 import { cn } from "tailwind-variants";
 
@@ -53,9 +53,9 @@ export default function Signup() {
   return (
     <Card>
       <CardHeader className={cn("items-center gap-1")}>
-        <Typography.Heading align="center" level={1} className={cn("text-xl")}>
+        <Heading align="center" level={1} className={cn("text-xl")}>
           Sign Up
-        </Typography.Heading>
+        </Heading>
         <CardDescription className={cn("text-center")}>
           Enter your name, email, and password.
         </CardDescription>
