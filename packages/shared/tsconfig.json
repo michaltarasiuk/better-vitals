@@ -1,0 +1,4 @@
+{
+  "extends": "@lite-app/tsconfig/base.json",
+  "include": ["."]
+}

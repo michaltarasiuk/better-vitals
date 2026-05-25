@@ -1,5 +1,8 @@
 "use client";
 
+import { withMinimumDelay } from "@lite-app/shared/delay";
+import { invariant } from "@lite-app/shared/invariant";
+import { isDefined } from "@lite-app/shared/is-defined";
 import { Button } from "@lite-app/ui/components/button";
 import {
   Card,
@@ -23,9 +26,6 @@ import { cn } from "tailwind-variants";
 import { resetPassword } from "~/lib/auth/client";
 import { getFieldNameForAuthError, isAuthError } from "~/lib/auth/error";
 import { comparePasswords } from "~/lib/auth/validation";
-import { withMinimumDelay } from "~/lib/utils/delay";
-import { invariant } from "~/lib/utils/invariant";
-import { isDefined } from "~/lib/utils/is-defined";
 
 export default function ResetPassword() {
   const [validationErrors, setValidationErrors] = useState<

@@ -1,9 +1,5 @@
 {
   "extends": "@lite-app/tsconfig/react.json",
   "include": ["."],
-  "exclude": ["node_modules", "src/utils/dom.tsx"],
-  "compilerOptions": {
-    "strictNullChecks": true,
-    "types": ["node"]
-  }
+  "exclude": ["node_modules", "src/utils/dom.tsx"]
 }

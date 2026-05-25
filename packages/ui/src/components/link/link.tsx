@@ -1,5 +1,6 @@
 "use client";
 
+import { isDefined } from "@lite-app/shared/is-defined";
 import type { ComponentProps } from "react";
 import type { LinkProps as RACLinkProps } from "react-aria-components/Link";
 import { Link as RACLink } from "react-aria-components/Link";
@@ -32,7 +33,7 @@ function LinkIcon({ className, children, ...rest }: LinkIconProps) {
   return (
     <span
       data-slot="link-icon"
-      data-default-icon={!children}
+      data-default-icon={!isDefined(children)}
       className={cn(slots.icon(), className)}
       {...rest}
     >

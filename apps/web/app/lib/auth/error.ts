@@ -1,6 +1,5 @@
+import { assertNever } from "@lite-app/shared/assert-never";
 import { z } from "zod";
-
-import { assertNever } from "~/lib/utils/assert-never";
 
 export type AuthError = z.infer<typeof authErrorSchema>;
 export type AuthErrorCode = z.infer<typeof authErrorCodeSchema>;
