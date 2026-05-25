@@ -7,7 +7,6 @@ interface ViteTypeOptions {
 interface ImportMetaEnv {
   readonly BETTER_AUTH_SECRET: string;
   readonly BETTER_AUTH_URL: string;
-  readonly DB_FILE_NAME: string;
 }
 
 interface ImportMeta {
