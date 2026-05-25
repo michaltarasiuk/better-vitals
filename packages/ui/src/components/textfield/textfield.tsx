@@ -1,8 +1,11 @@
 "use client";
 
-import type { ComponentPropsWithRef } from "react";
 import { createContext } from "react";
-import { TextField as TextFieldPrimitive } from "react-aria-components/TextField";
+import type { TextFieldProps as RACTextFieldProps } from "react-aria-components";
+import {
+  TextField as RACTextField,
+  composeRenderProps,
+} from "react-aria-components";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
 import type { TextFieldVariants } from "./textfield.variants";
@@ -14,41 +17,39 @@ interface TextFieldContext {
 
 const TextFieldContext = createContext<TextFieldContext>({});
 
-interface TextFieldRootProps
-  extends ComponentPropsWithRef<typeof TextFieldPrimitive>, TextFieldVariants {
-  variant?: "primary" | "secondary";
-}
+interface TextFieldProps
+  extends RACTextFieldProps, TextFieldVariants, TextFieldContext {}
 
-function TextFieldRoot({
+function TextField({
   variant,
   fullWidth,
-  isDisabled,
-  isRequired,
-  isInvalid,
   className,
   children,
   ...rest
-}: TextFieldRootProps) {
-  const styles = textFieldVariants({ fullWidth });
-
+}: TextFieldProps) {
   return (
-    <TextFieldPrimitive
+    <RACTextField
       data-slot="textfield"
-      isDisabled={isDisabled}
-      isRequired={isRequired}
-      isInvalid={isInvalid}
-      className={cnRenderProps(className, styles)}
+      className={cnRenderProps(
+        className,
+        textFieldVariants({
+          fullWidth,
+        })
+      )}
       {...rest}
     >
-      {(values) => (
-        <TextFieldContext value={{ variant }}>
-          <>{typeof children === "function" ? children(values) : children}</>
-        </TextFieldContext>
-      )}
-    </TextFieldPrimitive>
+      {composeRenderProps(children, (userChildren) => (
+        <TextFieldContext.Provider
+          value={{
+            variant,
+          }}
+        >
+          {userChildren}
+        </TextFieldContext.Provider>
+      ))}
+    </RACTextField>
   );
 }
 
-export { TextFieldContext, TextFieldRoot };
-
-export type { TextFieldRootProps };
+export { TextField, TextFieldContext };
+export type { TextFieldProps };
