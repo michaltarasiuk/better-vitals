@@ -28,6 +28,9 @@ function Spinner({ color, size, className, ...rest }: SpinnerProps) {
   );
 }
 
+export { Spinner };
+export type { SpinnerProps };
+
 interface SpinnerIconProps extends ComponentProps<"svg"> {}
 
 function SpinnerIcon(props: SpinnerIconProps) {
@@ -72,6 +75,3 @@ function SpinnerIcon(props: SpinnerIconProps) {
     </svg>
   );
 }
-
-export { Spinner };
-export type { SpinnerProps };

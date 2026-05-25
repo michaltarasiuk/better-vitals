@@ -46,7 +46,6 @@ function Typography({
     type,
     weight,
   });
-
   return (
     <Text
       elementType={DEFAULT_ELEMENT_BY_TYPE[type]}
@@ -60,6 +59,9 @@ function Typography({
   );
 }
 
+export { Typography };
+export type { TypographyProps };
+
 interface HeadingProps extends Omit<TypographyProps, "type"> {
   level?: 1 | 2 | 3 | 4 | 5 | 6;
 }
@@ -67,6 +69,9 @@ interface HeadingProps extends Omit<TypographyProps, "type"> {
 function Heading({ level = 1, ...rest }: HeadingProps) {
   return <Typography type={`h${level}` satisfies TypographyType} {...rest} />;
 }
+
+export { Heading };
+export type { HeadingProps };
 
 interface ParagraphProps extends Omit<TypographyProps, "type"> {
   size?: "base" | "sm" | "xs";
@@ -77,11 +82,17 @@ function Paragraph({ size = "base", ...rest }: ParagraphProps) {
   return <Typography type={type} {...rest} />;
 }
 
+export { Paragraph };
+export type { ParagraphProps };
+
 interface CodeProps extends Omit<TypographyProps, "type"> {}
 
 function Code(props: CodeProps) {
   return <Typography type="code" {...props} />;
 }
+
+export { Code };
+export type { CodeProps };
 
 interface ProseProps extends ComponentProps<"div"> {}
 
@@ -94,11 +105,5 @@ function Prose({ className, children, ...rest }: ProseProps) {
   );
 }
 
-export { Code, Heading, Paragraph, Prose, Typography };
-export type {
-  CodeProps,
-  HeadingProps,
-  ParagraphProps,
-  ProseProps,
-  TypographyProps,
-};
+export { Prose };
+export type { ProseProps };

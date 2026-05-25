@@ -28,6 +28,9 @@ function Link({ className, children, ...rest }: LinkProps) {
   );
 }
 
+export { Link };
+export type { LinkProps };
+
 interface LinkIconProps extends ComponentProps<"span"> {}
 
 function LinkIcon({ className, children, ...rest }: LinkIconProps) {
@@ -43,5 +46,5 @@ function LinkIcon({ className, children, ...rest }: LinkIconProps) {
   );
 }
 
-export { Link, LinkIcon };
-export type { LinkIconProps, LinkProps };
+export { LinkIcon };
+export type { LinkIconProps };

@@ -48,6 +48,9 @@ function Card({ variant, className, children, ...rest }: CardProps) {
   );
 }
 
+export { Card };
+export type { CardProps };
+
 interface CardHeaderProps extends ComponentProps<"div"> {}
 
 function CardHeader({ className, children, ...rest }: CardHeaderProps) {
@@ -68,6 +71,9 @@ function CardHeader({ className, children, ...rest }: CardHeaderProps) {
   );
 }
 
+export { CardHeader };
+export type { CardHeaderProps };
+
 interface CardTitleProps extends ComponentProps<"h3"> {}
 
 function CardTitle({ className, children, ...rest }: CardTitleProps) {
@@ -87,6 +93,9 @@ function CardTitle({ className, children, ...rest }: CardTitleProps) {
     </h3>
   );
 }
+
+export { CardTitle };
+export type { CardTitleProps };
 
 interface CardDescriptionProps extends ComponentProps<"p"> {}
 
@@ -112,6 +121,9 @@ function CardDescription({
   );
 }
 
+export { CardDescription };
+export type { CardDescriptionProps };
+
 interface CardContentProps extends ComponentProps<"div"> {}
 
 function CardContent({ className, children, ...rest }: CardContentProps) {
@@ -131,6 +143,9 @@ function CardContent({ className, children, ...rest }: CardContentProps) {
     </div>
   );
 }
+
+export { CardContent };
+export type { CardContentProps };
 
 interface CardFooterProps extends ComponentProps<"div"> {}
 
@@ -152,19 +167,5 @@ function CardFooter({ className, children, ...rest }: CardFooterProps) {
   );
 }
 
-export {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-};
-export type {
-  CardContentProps,
-  CardDescriptionProps,
-  CardFooterProps,
-  CardHeaderProps,
-  CardProps,
-  CardTitleProps,
-};
+export { CardFooter };
+export type { CardFooterProps };

@@ -2,7 +2,7 @@ import React from "react";
 
 interface IconProps extends React.SVGProps<SVGSVGElement> {}
 
-export function IconChevronDown(props: IconProps) {
+function IconChevronDown(props: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -24,11 +24,9 @@ export function IconChevronDown(props: IconProps) {
   );
 }
 
-export function ExternalLinkIcon({
-  width = 9,
-  height = 9,
-  ...rest
-}: IconProps) {
+export { IconChevronDown };
+
+function ExternalLinkIcon({ width = 9, height = 9, ...rest }: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -47,3 +45,5 @@ export function ExternalLinkIcon({
     </svg>
   );
 }
+
+export { ExternalLinkIcon };
