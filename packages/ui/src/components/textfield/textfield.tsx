@@ -41,13 +41,13 @@ function TextField({
       {...rest}
     >
       {composeRenderProps(children, (userChildren) => (
-        <TextFieldContext.Provider
+        <TextFieldContext
           value={{
             variant,
           }}
         >
           {userChildren}
-        </TextFieldContext.Provider>
+        </TextFieldContext>
       ))}
     </RACTextField>
   );
