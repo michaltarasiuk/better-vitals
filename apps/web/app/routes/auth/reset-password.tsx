@@ -22,8 +22,8 @@ import { Heading } from "@lite-app/ui/components/typography";
 import { useState, useTransition } from "react";
 import { cn } from "tailwind-variants";
 
-import { resetPassword } from "~/lib/auth/client";
 import { getFieldNameForAuthError, isAuthError } from "~/lib/auth/error";
+import { resetPassword } from "~/lib/auth/index.client";
 import { comparePasswords } from "~/lib/auth/validation";
 
 export default function ResetPassword() {

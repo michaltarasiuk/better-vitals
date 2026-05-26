@@ -21,8 +21,8 @@ import { Heading } from "@lite-app/ui/components/typography";
 import { useState, useTransition } from "react";
 import { cn } from "tailwind-variants";
 
-import { signIn } from "~/lib/auth/client";
 import { getFieldNameForAuthError, isAuthError } from "~/lib/auth/error";
+import { signIn } from "~/lib/auth/index.client";
 
 export default function Signin() {
   const [validationErrors, setValidationErrors] = useState<
