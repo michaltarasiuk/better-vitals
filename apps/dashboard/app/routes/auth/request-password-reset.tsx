@@ -19,7 +19,6 @@ import { Spinner } from "@lite-app/ui/components/spinner";
 import { TextField } from "@lite-app/ui/components/textfield";
 import { Heading } from "@lite-app/ui/components/typography";
 import { useState, useTransition } from "react";
-import { href } from "react-router";
 import { cn } from "tailwind-variants";
 
 import { getFieldNameForAuthError, isAuthError } from "~/lib/auth/error";
@@ -50,7 +49,7 @@ export default function RequestPasswordReset() {
           Forgot your password?
         </Heading>
         <CardDescription className={cn("text-center")}>
-          Enter your email and we'll send you a reset link
+          We'll email you a link to reset your password
         </CardDescription>
       </CardHeader>
       <Form validationErrors={validationErrors} onSubmit={handleSubmit}>
@@ -66,7 +65,7 @@ export default function RequestPasswordReset() {
             {(props) => (
               <>
                 {props.isPending ? <Spinner color="current" size="sm" /> : null}
-                {props.isPending ? "Sending reset link" : "Send reset link"}
+                {props.isPending ? "Sending" : "Send reset link"}
               </>
             )}
           </Button>
@@ -86,7 +85,7 @@ async function action(formData: FormData) {
 
   const result = await requestPasswordReset({
     email,
-    redirectTo: href("/reset-password"),
+    redirectTo: "/reset-password",
   });
   return result;
 }

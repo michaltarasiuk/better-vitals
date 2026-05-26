@@ -7,5 +7,8 @@ export default [
     route("request-password-reset", "routes/auth/request-password-reset.tsx"),
     route("reset-password", "routes/auth/reset-password.tsx"),
   ]),
+  layout("routes/organization/layout.tsx", [
+    route("organization/create", "routes/organization/create.tsx"),
+  ]),
   route("api/auth/*", "routes/api.auth.$.ts"),
 ] satisfies RouteConfig;

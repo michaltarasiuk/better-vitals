@@ -8,8 +8,6 @@ export async function loader() {
   if (await hasExistingUser()) {
     throw redirect("/signin");
   }
-
-  return null;
 }
 
 export default function Signup() {

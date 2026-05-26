@@ -1,6 +1,8 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { admin } from "better-auth/plugins";
+import { admin, organization } from "better-auth/plugins";
+
+import { ADMIN_ROLE } from "~/lib/auth/session.client";
 
 import { db } from "../db";
 import * as schema from "../db/schema";
@@ -20,7 +22,7 @@ export const auth = betterAuth({
       create: {
         async before(data) {
           if (!(await hasExistingUser())) {
-            data.role = "admin";
+            data.role = ADMIN_ROLE;
           }
           return {
             data,
@@ -32,5 +34,5 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
   },
-  plugins: [admin()],
+  plugins: [admin(), organization()],
 });

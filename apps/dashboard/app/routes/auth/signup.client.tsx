@@ -19,6 +19,7 @@ import { Spinner } from "@lite-app/ui/components/spinner";
 import { TextField } from "@lite-app/ui/components/textfield";
 import { Heading } from "@lite-app/ui/components/typography";
 import { useState, useTransition } from "react";
+import { href, useNavigate } from "react-router";
 import { cn } from "tailwind-variants";
 
 import { getFieldNameForAuthError, isAuthError } from "~/lib/auth/error";
@@ -30,6 +31,7 @@ export function SignupForm() {
     FormProps["validationErrors"]
   >({});
   const [isPending, startTransition] = useTransition();
+  const navigate = useNavigate();
   const handleSubmit: FormProps["onSubmit"] = (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -47,7 +49,10 @@ export function SignupForm() {
         setValidationErrors({
           [getFieldNameForAuthError(result.error.code)]: result.error.message,
         });
+        return;
       }
+
+      navigate(href("/organization/create"));
     });
   };
   return (

@@ -1,5 +1,13 @@
-import { Outlet } from "react-router";
+import { href, type LoaderFunctionArgs, Outlet, redirect } from "react-router";
 import { cn } from "tailwind-variants";
+
+import { isLoggedIn } from "~/lib/auth/session.server";
+
+export async function loader({ request }: LoaderFunctionArgs) {
+  if (await isLoggedIn(request)) {
+    throw redirect(href("/"));
+  }
+}
 
 export default function AuthLayout() {
   return (
