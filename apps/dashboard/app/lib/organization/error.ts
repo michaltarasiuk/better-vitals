@@ -23,10 +23,8 @@ export function isOrganizationError(
   return organizationErrorSchema.safeParse(error).success;
 }
 
-export function getFieldNameForOrganizationError(
-  errorCode: OrganizationErrorCode
-) {
-  switch (errorCode) {
+export function getFieldNameForOrganizationError(code: OrganizationErrorCode) {
+  switch (code) {
     case "ORGANIZATION_ALREADY_EXISTS":
     case "ORGANIZATION_SLUG_ALREADY_TAKEN":
     case "YOU_ARE_NOT_ALLOWED_TO_CREATE_A_NEW_ORGANIZATION":
@@ -34,7 +32,7 @@ export function getFieldNameForOrganizationError(
       return "name";
     }
     default: {
-      assertNever(errorCode);
+      assertNever(code);
     }
   }
 }
