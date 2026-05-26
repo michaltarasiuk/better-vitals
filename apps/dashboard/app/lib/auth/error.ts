@@ -34,7 +34,7 @@ export function isAuthError(error: unknown): error is AuthError {
   return authErrorSchema.safeParse(error).success;
 }
 
-export function getFieldNameForAuthError(code: AuthErrorCode) {
+export function getAuthErrorField(code: AuthErrorCode) {
   switch (code) {
     case "USER_ALREADY_EXISTS":
     case "USER_ALREADY_EXISTS_USE_ANOTHER_EMAIL":

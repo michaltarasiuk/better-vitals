@@ -2,6 +2,7 @@
 
 import { withMinimumDelay } from "@lite-app/shared/delay";
 import { invariant } from "@lite-app/shared/invariant";
+import { isDefined } from "@lite-app/shared/is-defined";
 import { Button } from "@lite-app/ui/components/button";
 import {
   Card,
@@ -11,48 +12,71 @@ import {
   CardHeader,
 } from "@lite-app/ui/components/card";
 import { FieldError } from "@lite-app/ui/components/field-error";
-import { Form, type FormProps } from "@lite-app/ui/components/form";
 import { Input } from "@lite-app/ui/components/input";
 import { Label } from "@lite-app/ui/components/label";
 import { Link } from "@lite-app/ui/components/link";
 import { Spinner } from "@lite-app/ui/components/spinner";
 import { TextField } from "@lite-app/ui/components/textfield";
 import { Heading } from "@lite-app/ui/components/typography";
-import { useState, useTransition } from "react";
+import {
+  useActionData,
+  useNavigation,
+  type ClientActionFunctionArgs,
+} from "react-router";
 import { cn } from "tailwind-variants";
 
-import { getFieldNameForAuthError, isAuthError } from "~/lib/auth/error";
+import { Form } from "~/components/form";
+import { getAuthErrorField, isAuthError } from "~/lib/auth/error";
 import { requestPasswordReset } from "~/lib/auth/index.client";
 
-export default function RequestPasswordReset() {
-  const [validationErrors, setValidationErrors] = useState<
-    FormProps["validationErrors"]
-  >({});
-  const [isPending, startTransition] = useTransition();
-  const handleSubmit: FormProps["onSubmit"] = (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    startTransition(async () => {
-      const promise = action(formData);
-      const result = await withMinimumDelay(promise);
-      if (isAuthError(result.error)) {
-        setValidationErrors({
-          [getFieldNameForAuthError(result.error.code)]: result.error.message,
-        });
-      }
-    });
+export async function clientAction({ request }: ClientActionFunctionArgs) {
+  const formData = await request.formData();
+  const email = formData.get("email");
+
+  invariant(typeof email === "string", "Email is required");
+
+  const result = await withMinimumDelay(
+    requestPasswordReset({
+      email,
+      redirectTo: "/reset-password",
+    })
+  );
+
+  if (!isDefined(result.error)) {
+    return {
+      success: true,
+    };
+  } else if (!isAuthError(result.error)) {
+    return {
+      success: false,
+    };
+  }
+  return {
+    success: false,
+    validationErrors: {
+      [getAuthErrorField(result.error.code)]: result.error.message,
+    },
   };
+}
+
+export default function RequestPasswordReset() {
+  const actionData = useActionData<typeof clientAction>();
+  const navigation = useNavigation();
+
+  const validationErrors = actionData?.validationErrors ?? {};
+  const isSubmitting = navigation.state === "submitting";
+
   return (
     <Card>
       <CardHeader className={cn("items-center gap-1")}>
-        <Heading align="center" level={1} className={cn("text-xl")}>
+        <Heading level={1} align="center" className={cn("text-xl")}>
           Forgot your password?
         </Heading>
         <CardDescription className={cn("text-center")}>
           We'll email you a link to reset your password
         </CardDescription>
       </CardHeader>
-      <Form validationErrors={validationErrors} onSubmit={handleSubmit}>
+      <Form validationErrors={validationErrors}>
         <CardContent>
           <TextField name="email" type="email" isRequired>
             <Label>Email</Label>
@@ -61,7 +85,11 @@ export default function RequestPasswordReset() {
           </TextField>
         </CardContent>
         <CardFooter className={cn("mt-4 flex flex-col gap-2")}>
-          <Button className={cn("w-full")} type="submit" isPending={isPending}>
+          <Button
+            type="submit"
+            isPending={isSubmitting}
+            className={cn("w-full")}
+          >
             {(props) => (
               <>
                 {props.isPending ? <Spinner color="current" size="sm" /> : null}
@@ -69,23 +97,11 @@ export default function RequestPasswordReset() {
               </>
             )}
           </Button>
-          <Link className={cn("text-center text-sm")} href="/signin">
+          <Link href="/signin" className={cn("text-center text-sm")}>
             Back to sign in
           </Link>
         </CardFooter>
       </Form>
     </Card>
   );
-}
-
-async function action(formData: FormData) {
-  const email = formData.get("email");
-
-  invariant(typeof email === "string", "Email is required");
-
-  const result = await requestPasswordReset({
-    email,
-    redirectTo: "/reset-password",
-  });
-  return result;
 }

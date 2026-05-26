@@ -1,4 +1,4 @@
-export function getSlug(name: string) {
+export function slugify(name: string) {
   const slug = name
     .trim()
     .toLowerCase()

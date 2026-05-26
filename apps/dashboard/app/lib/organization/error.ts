@@ -23,7 +23,7 @@ export function isOrganizationError(
   return organizationErrorSchema.safeParse(error).success;
 }
 
-export function getFieldNameForOrganizationError(code: OrganizationErrorCode) {
+export function getOrganizationErrorField(code: OrganizationErrorCode) {
   switch (code) {
     case "ORGANIZATION_ALREADY_EXISTS":
     case "ORGANIZATION_SLUG_ALREADY_TAKEN":

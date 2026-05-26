@@ -2,6 +2,7 @@
 
 import { withMinimumDelay } from "@lite-app/shared/delay";
 import { invariant } from "@lite-app/shared/invariant";
+import { isDefined } from "@lite-app/shared/is-defined";
 import { Button } from "@lite-app/ui/components/button";
 import {
   Card,
@@ -11,48 +12,73 @@ import {
   CardHeader,
 } from "@lite-app/ui/components/card";
 import { FieldError } from "@lite-app/ui/components/field-error";
-import { Form, type FormProps } from "@lite-app/ui/components/form";
 import { Input } from "@lite-app/ui/components/input";
 import { Label } from "@lite-app/ui/components/label";
 import { Link } from "@lite-app/ui/components/link";
 import { Spinner } from "@lite-app/ui/components/spinner";
 import { TextField } from "@lite-app/ui/components/textfield";
 import { Heading } from "@lite-app/ui/components/typography";
-import { useState, useTransition } from "react";
+import {
+  useActionData,
+  useNavigation,
+  type ClientActionFunctionArgs,
+} from "react-router";
 import { cn } from "tailwind-variants";
 
-import { getFieldNameForAuthError, isAuthError } from "~/lib/auth/error";
+import { Form } from "~/components/form";
+import { getAuthErrorField, isAuthError } from "~/lib/auth/error";
 import { signIn } from "~/lib/auth/index.client";
 
-export default function Signin() {
-  const [validationErrors, setValidationErrors] = useState<
-    FormProps["validationErrors"]
-  >({});
-  const [isPending, startTransition] = useTransition();
-  const handleSubmit: FormProps["onSubmit"] = (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    startTransition(async () => {
-      const promise = action(formData);
-      const result = await withMinimumDelay(promise);
-      if (isAuthError(result.error)) {
-        setValidationErrors({
-          [getFieldNameForAuthError(result.error.code)]: result.error.message,
-        });
-      }
-    });
+export async function clientAction({ request }: ClientActionFunctionArgs) {
+  const formData = await request.formData();
+  const email = formData.get("email");
+  const password = formData.get("password");
+
+  invariant(typeof email === "string", "Email is required");
+  invariant(typeof password === "string", "Password is required");
+
+  const result = await withMinimumDelay(
+    signIn.email({
+      email,
+      password,
+    })
+  );
+
+  if (!isDefined(result.error)) {
+    return {
+      success: true,
+    };
+  } else if (!isAuthError(result.error)) {
+    return {
+      success: false,
+    };
+  }
+  return {
+    success: false,
+    validationErrors: {
+      [getAuthErrorField(result.error.code)]: result.error.message,
+    },
   };
+}
+
+export default function Signin() {
+  const actionData = useActionData<typeof clientAction>();
+  const navigation = useNavigation();
+
+  const validationErrors = actionData?.validationErrors ?? {};
+  const isSubmitting = navigation.state === "submitting";
+
   return (
     <Card>
       <CardHeader className={cn("items-center gap-1")}>
-        <Heading align="center" level={1} className={cn("text-xl")}>
+        <Heading level={1} align="center" className={cn("text-xl")}>
           Welcome back
         </Heading>
         <CardDescription className={cn("text-center")}>
           Sign in to your account
         </CardDescription>
       </CardHeader>
-      <Form validationErrors={validationErrors} onSubmit={handleSubmit}>
+      <Form validationErrors={validationErrors}>
         <CardContent>
           <div className={cn("flex flex-col gap-4")}>
             <TextField name="email" type="email" isRequired>
@@ -68,7 +94,11 @@ export default function Signin() {
           </div>
         </CardContent>
         <CardFooter className={cn("mt-4 flex flex-col gap-2")}>
-          <Button className={cn("w-full")} type="submit" isPending={isPending}>
+          <Button
+            type="submit"
+            isPending={isSubmitting}
+            className={cn("w-full")}
+          >
             {(props) => (
               <>
                 {props.isPending ? <Spinner color="current" size="sm" /> : null}
@@ -86,18 +116,4 @@ export default function Signin() {
       </Form>
     </Card>
   );
-}
-
-async function action(formData: FormData) {
-  const email = formData.get("email");
-  const password = formData.get("password");
-
-  invariant(typeof email === "string", "Email is required");
-  invariant(typeof password === "string", "Password is required");
-
-  const result = await signIn.email({
-    email,
-    password,
-  });
-  return result;
 }

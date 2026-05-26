@@ -3,8 +3,13 @@ export function comparePasswords(formData: FormData) {
   const confirmPassword = formData.get("confirmPassword");
   if (password !== confirmPassword) {
     return {
-      confirmPassword: "Passwords don't match.",
+      errors: {
+        confirmPassword: "Passwords don't match.",
+      },
+      success: false,
     };
   }
-  return null;
+  return {
+    success: true,
+  };
 }

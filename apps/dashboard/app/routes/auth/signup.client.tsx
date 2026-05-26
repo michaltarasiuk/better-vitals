@@ -12,59 +12,84 @@ import {
   CardHeader,
 } from "@lite-app/ui/components/card";
 import { FieldError } from "@lite-app/ui/components/field-error";
-import { Form, type FormProps } from "@lite-app/ui/components/form";
 import { Input } from "@lite-app/ui/components/input";
 import { Label } from "@lite-app/ui/components/label";
 import { Spinner } from "@lite-app/ui/components/spinner";
 import { TextField } from "@lite-app/ui/components/textfield";
 import { Heading } from "@lite-app/ui/components/typography";
-import { useState, useTransition } from "react";
-import { href, useNavigate } from "react-router";
+import {
+  href,
+  redirect,
+  useActionData,
+  useNavigation,
+  type ClientActionFunctionArgs,
+} from "react-router";
 import { cn } from "tailwind-variants";
 
-import { getFieldNameForAuthError, isAuthError } from "~/lib/auth/error";
+import { Form } from "~/components/form";
+import { getAuthErrorField, isAuthError } from "~/lib/auth/error";
 import { signUp } from "~/lib/auth/index.client";
 import { comparePasswords } from "~/lib/auth/validation";
 
-export function SignupForm() {
-  const [validationErrors, setValidationErrors] = useState<
-    FormProps["validationErrors"]
-  >({});
-  const [isPending, startTransition] = useTransition();
-  const navigate = useNavigate();
-  const handleSubmit: FormProps["onSubmit"] = (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
+export async function clientAction({ request }: ClientActionFunctionArgs) {
+  const formData = await request.formData();
+  const name = formData.get("name");
+  const email = formData.get("email");
+  const password = formData.get("password");
 
-    const passwordValidationErrors = comparePasswords(formData);
-    if (isDefined(passwordValidationErrors)) {
-      setValidationErrors(passwordValidationErrors);
-      return;
-    }
+  invariant(typeof name === "string", "Name is required");
+  invariant(typeof email === "string", "Email is required");
+  invariant(typeof password === "string", "Password is required");
 
-    startTransition(async () => {
-      const promise = action(formData);
-      const result = await withMinimumDelay(promise);
-      if (isAuthError(result.error)) {
-        setValidationErrors({
-          [getFieldNameForAuthError(result.error.code)]: result.error.message,
-        });
-        return;
-      }
-      await navigate(href("/organization/create"));
-    });
+  const passwordValidation = comparePasswords(formData);
+  if (!passwordValidation.success) {
+    return {
+      success: false,
+      validationErrors: passwordValidation.errors,
+    };
+  }
+
+  const result = await withMinimumDelay(
+    signUp.email({
+      email,
+      name,
+      password,
+    })
+  );
+
+  if (!isDefined(result.error)) {
+    throw redirect(href("/organization/create"));
+  } else if (!isAuthError(result.error)) {
+    return {
+      success: false,
+    };
+  }
+  return {
+    success: false,
+    validationErrors: {
+      [getAuthErrorField(result.error.code)]: result.error.message,
+    },
   };
+}
+
+export function Signup() {
+  const actionData = useActionData<typeof clientAction>();
+  const navigation = useNavigation();
+
+  const validationErrors = actionData?.validationErrors ?? {};
+  const isSubmitting = navigation.state === "submitting";
+
   return (
     <Card>
       <CardHeader className={cn("items-center gap-1")}>
-        <Heading align="center" level={1} className={cn("text-xl")}>
+        <Heading level={1} align="center" className={cn("text-xl")}>
           Create an account
         </Heading>
         <CardDescription className={cn("text-center")}>
           Enter your details to get started
         </CardDescription>
       </CardHeader>
-      <Form validationErrors={validationErrors} onSubmit={handleSubmit}>
+      <Form validationErrors={validationErrors}>
         <CardContent>
           <div className={cn("flex flex-col gap-4")}>
             <TextField name="name" type="text" isRequired>
@@ -90,7 +115,11 @@ export function SignupForm() {
           </div>
         </CardContent>
         <CardFooter className={cn("mt-4")}>
-          <Button className={cn("w-full")} type="submit" isPending={isPending}>
+          <Button
+            type="submit"
+            isPending={isSubmitting}
+            className={cn("w-full")}
+          >
             {(props) => (
               <>
                 {props.isPending ? <Spinner color="current" size="sm" /> : null}
@@ -102,21 +131,4 @@ export function SignupForm() {
       </Form>
     </Card>
   );
-}
-
-async function action(formData: FormData) {
-  const name = formData.get("name");
-  const email = formData.get("email");
-  const password = formData.get("password");
-
-  invariant(typeof name === "string", "Name is required");
-  invariant(typeof email === "string", "Email is required");
-  invariant(typeof password === "string", "Password is required");
-
-  const result = await signUp.email({
-    email,
-    name,
-    password,
-  });
-  return result;
 }
