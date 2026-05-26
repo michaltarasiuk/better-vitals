@@ -25,6 +25,7 @@ import {
   getFieldNameForOrganizationError,
   isOrganizationError,
 } from "~/lib/organization/error";
+import { getSlug } from "~/lib/organization/slug";
 
 export function CreateOrganizationForm() {
   const [validationErrors, setValidationErrors] = useState<
@@ -49,10 +50,10 @@ export function CreateOrganizationForm() {
     <Card>
       <CardHeader className={cn("items-center gap-1")}>
         <Heading align="center" level={1} className={cn("text-xl")}>
-          Create organization
+          Create an organization
         </Heading>
         <CardDescription className={cn("text-center")}>
-          Choose a name for your team workspace
+          Enter a name to get started
         </CardDescription>
       </CardHeader>
       <Form validationErrors={validationErrors} onSubmit={handleSubmit}>
@@ -85,7 +86,7 @@ async function action(formData: FormData) {
 
   const result = await organization.create({
     name,
-    slug: "my-organization",
+    slug: getSlug(name),
   });
   return result;
 }

@@ -51,8 +51,7 @@ export function SignupForm() {
         });
         return;
       }
-
-      navigate(href("/organization/create"));
+      await navigate(href("/organization/create"));
     });
   };
   return (
