@@ -5,18 +5,16 @@ import { createContext, useContext, type ComponentPropsWithRef } from "react";
 
 import { avatarVariants, type AvatarVariants } from "./avatar.variants";
 
-interface RadixProps {
-  Root: ComponentPropsWithRef<typeof RadixAvatar.Root>;
-  Image: ComponentPropsWithRef<typeof RadixAvatar.Image>;
-  Fallback: ComponentPropsWithRef<typeof RadixAvatar.Fallback>;
-}
+type RootProps = ComponentPropsWithRef<typeof RadixAvatar.Root>;
+type ImageProps = ComponentPropsWithRef<typeof RadixAvatar.Image>;
+type FallbackProps = ComponentPropsWithRef<typeof RadixAvatar.Fallback>;
 
 const slots = avatarVariants();
 
 export const AvatarContext = createContext<AvatarVariants>({});
 
 interface AvatarProps
-  extends Omit<RadixProps["Root"], keyof AvatarVariants>, AvatarVariants {}
+  extends Omit<RootProps, keyof AvatarVariants>, AvatarVariants {}
 
 function Avatar({
   children,
@@ -49,10 +47,7 @@ function Avatar({
 export { Avatar };
 export type { AvatarProps };
 
-interface AvatarImageProps extends Omit<
-  RadixProps["Image"],
-  keyof AvatarVariants
-> {}
+interface AvatarImageProps extends ImageProps {}
 
 function AvatarImage({ className, ...rest }: AvatarImageProps) {
   const { color, size, variant } = useContext(AvatarContext);
@@ -72,22 +67,19 @@ function AvatarImage({ className, ...rest }: AvatarImageProps) {
 export { AvatarImage };
 export type { AvatarImageProps };
 
-interface AvatarFallbackProps extends Omit<
-  RadixProps["Fallback"],
-  keyof AvatarVariants
-> {}
+interface AvatarFallbackProps extends FallbackProps {}
 
 function AvatarFallback({ className, ...rest }: AvatarFallbackProps) {
   const { color, size, variant } = useContext(AvatarContext);
   return (
     <RadixAvatar.Fallback
+      data-slot="avatar-fallback"
       className={slots.fallback({
         className,
         color,
         size,
         variant,
       })}
-      data-slot="avatar-fallback"
       {...rest}
     />
   );
