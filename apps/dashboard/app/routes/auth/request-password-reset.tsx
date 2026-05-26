@@ -19,6 +19,7 @@ import { Spinner } from "@lite-app/ui/components/spinner";
 import { TextField } from "@lite-app/ui/components/textfield";
 import { Heading } from "@lite-app/ui/components/typography";
 import {
+  href,
   useActionData,
   useNavigation,
   type ClientActionFunctionArgs,
@@ -38,7 +39,7 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
   const result = await withMinimumDelay(
     requestPasswordReset({
       email,
-      redirectTo: "/reset-password",
+      redirectTo: href("/reset-password"),
     })
   );
 

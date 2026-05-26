@@ -3,8 +3,8 @@ import { isDefined } from "@lite-app/shared/is-defined";
 import { auth } from "./index.server";
 import { ADMIN_ROLE } from "./session.client";
 
-export async function getServerSession(request: Request) {
-  return await auth.api.getSession({ headers: request.headers });
+export function getServerSession(request: Request) {
+  return auth.api.getSession({ headers: request.headers });
 }
 
 export async function isLoggedIn(request: Request) {
