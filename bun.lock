@@ -13,8 +13,8 @@
         "ultracite": "7.7.0",
       },
     },
-    "apps/web": {
-      "name": "@lite-app/web",
+    "apps/dashboard": {
+      "name": "@lite-app/dashboard",
       "dependencies": {
         "@lite-app/shared": "workspace:*",
         "@lite-app/ui": "workspace:*",
@@ -251,13 +251,13 @@
 
     "@jridgewell/trace-mapping": ["@jridgewell/trace-mapping@0.3.31", "", { "dependencies": { "@jridgewell/resolve-uri": "^3.1.0", "@jridgewell/sourcemap-codec": "^1.4.14" } }, "sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw=="],
 
+    "@lite-app/dashboard": ["@lite-app/dashboard@workspace:apps/dashboard"],
+
     "@lite-app/shared": ["@lite-app/shared@workspace:packages/shared"],
 
     "@lite-app/tsconfig": ["@lite-app/tsconfig@workspace:packages/tsconfig"],
 
     "@lite-app/ui": ["@lite-app/ui@workspace:packages/ui"],
-
-    "@lite-app/web": ["@lite-app/web@workspace:apps/web"],
 
     "@mjackson/node-fetch-server": ["@mjackson/node-fetch-server@0.2.0", "", {}, "sha512-EMlH1e30yzmTpGLQjlFmaDAjyOeZhng1/XCd7DExR8PNAnG/G1tyruZxEoUe11ClnwGhGrtsdnyyUx1frSzjng=="],
 

@@ -1,5 +1,5 @@
 {
-  "name": "@lite-app/web",
+  "name": "@lite-app/dashboard",
   "type": "module",
   "scripts": {
     "dev": "react-router dev",
