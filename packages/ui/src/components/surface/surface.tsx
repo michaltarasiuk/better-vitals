@@ -1,7 +1,6 @@
 "use client";
 
 import { createContext, type ComponentProps } from "react";
-import { cn } from "tailwind-variants";
 
 import { surfaceVariants, type SurfaceVariants } from "./surface.variants";
 
@@ -18,12 +17,10 @@ function Surface({ variant, className, children, ...rest }: SurfaceProps) {
     >
       <div
         data-slot="surface"
-        className={cn(
-          surfaceVariants({
-            variant,
-          }),
-          className
-        )}
+        className={surfaceVariants({
+          className,
+          variant,
+        })}
         {...rest}
       >
         {children}

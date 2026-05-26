@@ -4,7 +4,6 @@ import {
   Label as RACLabel,
   type LabelProps as RACLabelProps,
 } from "react-aria-components/Label";
-import { cn } from "tailwind-variants";
 
 import { labelVariants, type LabelVariants } from "./label.variants";
 
@@ -21,14 +20,12 @@ function Label({
   return (
     <RACLabel
       data-slot="label"
-      className={cn(
-        labelVariants({
-          isDisabled,
-          isInvalid,
-          isRequired,
-        }),
-        className
-      )}
+      className={labelVariants({
+        className,
+        isDisabled,
+        isInvalid,
+        isRequired,
+      })}
       {...rest}
     >
       {children}

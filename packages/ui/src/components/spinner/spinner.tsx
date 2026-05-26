@@ -1,7 +1,6 @@
 "use client";
 
 import { useId, type ComponentProps } from "react";
-import { cn } from "tailwind-variants";
 
 import { spinnerVariants, type SpinnerVariants } from "./spinner.variants";
 
@@ -14,13 +13,11 @@ function Spinner({ color, size, className, ...rest }: SpinnerProps) {
   return (
     <span
       data-slot="spinner"
-      className={cn(
-        spinnerVariants({
-          color,
-          size,
-        }),
-        className
-      )}
+      className={spinnerVariants({
+        className,
+        color,
+        size,
+      })}
       {...rest}
     >
       <SpinnerIcon role="presentation" aria-hidden />

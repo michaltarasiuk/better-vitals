@@ -1,7 +1,6 @@
 "use client";
 
 import { createContext, useContext, type ComponentProps } from "react";
-import { cn } from "tailwind-variants";
 
 import { SurfaceContext } from "../surface";
 import { cardVariants, type CardVariants } from "./card.variants";
@@ -16,12 +15,10 @@ function Card({ variant, className, children, ...rest }: CardProps) {
   const root = (
     <div
       data-slot="card"
-      className={cn(
-        slots.base({
-          variant,
-        }),
-        className
-      )}
+      className={slots.base({
+        className,
+        variant,
+      })}
       {...rest}
     >
       {children}
@@ -58,12 +55,10 @@ function CardHeader({ className, children, ...rest }: CardHeaderProps) {
   return (
     <div
       data-slot="card-header"
-      className={cn(
-        slots.header({
-          variant,
-        }),
-        className
-      )}
+      className={slots.header({
+        className,
+        variant,
+      })}
       {...rest}
     >
       {children}
@@ -81,12 +76,10 @@ function CardTitle({ className, children, ...rest }: CardTitleProps) {
   return (
     <h3
       data-slot="card-title"
-      className={cn(
-        slots.title({
-          variant,
-        }),
-        className
-      )}
+      className={slots.title({
+        className,
+        variant,
+      })}
       {...rest}
     >
       {children}
@@ -108,12 +101,10 @@ function CardDescription({
   return (
     <p
       data-slot="card-description"
-      className={cn(
-        slots.description({
-          variant,
-        }),
-        className
-      )}
+      className={slots.description({
+        className,
+        variant,
+      })}
       {...rest}
     >
       {children}
@@ -131,12 +122,10 @@ function CardContent({ className, children, ...rest }: CardContentProps) {
   return (
     <div
       data-slot="card-content"
-      className={cn(
-        slots.content({
-          variant,
-        }),
-        className
-      )}
+      className={slots.content({
+        className,
+        variant,
+      })}
       {...rest}
     >
       {children}
@@ -154,12 +143,10 @@ function CardFooter({ className, children, ...rest }: CardFooterProps) {
   return (
     <div
       data-slot="card-footer"
-      className={cn(
-        slots.footer({
-          variant,
-        }),
-        className
-      )}
+      className={slots.footer({
+        className,
+        variant,
+      })}
       {...rest}
     >
       {children}

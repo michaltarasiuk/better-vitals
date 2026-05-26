@@ -2,7 +2,6 @@
 
 import type { ComponentProps } from "react";
 import { Text, type TextProps } from "react-aria-components/Text";
-import { cn } from "tailwind-variants";
 
 import {
   typographyVariants,
@@ -51,7 +50,7 @@ function Typography({
       elementType={DEFAULT_ELEMENT_BY_TYPE[type]}
       data-slot="typography"
       data-type={type}
-      className={cn(slots.base(), className)}
+      className={slots.base({ className })}
       {...rest}
     >
       {children}
@@ -99,7 +98,7 @@ interface ProseProps extends ComponentProps<"div"> {}
 function Prose({ className, children, ...rest }: ProseProps) {
   const slots = typographyVariants();
   return (
-    <div data-slot="prose" className={cn(slots.prose(), className)} {...rest}>
+    <div data-slot="prose" className={slots.prose({ className })} {...rest}>
       {children}
     </div>
   );

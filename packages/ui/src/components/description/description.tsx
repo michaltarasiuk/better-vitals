@@ -1,7 +1,6 @@
 "use client";
 
 import { Text, type TextProps } from "react-aria-components/Text";
-import { cn } from "tailwind-variants";
 
 import {
   descriptionVariants,
@@ -15,7 +14,7 @@ function Description({ className, children, ...rest }: DescriptionProps) {
     <Text
       slot="description"
       data-slot="description"
-      className={cn(descriptionVariants(), className)}
+      className={descriptionVariants({ className })}
       {...rest}
     >
       {children}

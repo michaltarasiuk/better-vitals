@@ -6,7 +6,6 @@ import {
   Link as RACLink,
   type LinkProps as RACLinkProps,
 } from "react-aria-components/Link";
-import { cn } from "tailwind-variants";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
 import { ExternalLinkIcon } from "../icons";
@@ -38,7 +37,7 @@ function LinkIcon({ className, children, ...rest }: LinkIconProps) {
     <span
       data-slot="link-icon"
       data-default-icon={!isDefined(children)}
-      className={cn(slots.icon(), className)}
+      className={slots.icon({ className })}
       {...rest}
     >
       {children ?? <ExternalLinkIcon data-slot="link-default-icon" />}
