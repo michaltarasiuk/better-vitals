@@ -9,6 +9,7 @@
 @import "./input/input.css";
 @import "./label/label.css";
 @import "./link/link.css";
+@import "./modal/modal.css";
 @import "./separator/separator.css";
 @import "./spinner/spinner.css";
 @import "./surface/surface.css";
