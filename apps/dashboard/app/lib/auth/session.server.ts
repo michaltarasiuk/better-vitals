@@ -4,7 +4,9 @@ import { auth } from "./index.server";
 import { ADMIN_ROLE } from "./session.client";
 
 export function getServerSession(request: Request) {
-  return auth.api.getSession({ headers: request.headers });
+  return auth.api.getSession({
+    headers: request.headers,
+  });
 }
 
 export async function isLoggedIn(request: Request) {
