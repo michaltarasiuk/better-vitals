@@ -11,11 +11,12 @@ export default defineConfig({
   },
   ssr: {
     noExternal: [
-      "react-aria",
-      "react-aria-components",
+      "@radix-ui/react-avatar",
       "@react-aria",
       "@react-stately",
       "@react-types",
+      "react-aria",
+      "react-aria-components",
       "react-stately",
     ],
   },
