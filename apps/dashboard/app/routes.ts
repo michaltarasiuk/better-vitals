@@ -10,8 +10,5 @@ export default [
   layout("routes/organization/layout.tsx", [
     route("organization/create", "routes/organization/create.tsx"),
   ]),
-  layout("routes/demo/layout.tsx", [
-    route("demo/table", "routes/demo/table.tsx"),
-  ]),
   route("api/auth/*", "routes/api.auth.$.ts"),
 ] satisfies RouteConfig;
