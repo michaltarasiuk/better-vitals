@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext } from "react";
+import { createContext } from "@lite-app/shared/create-context";
 import {
   TextField as RACTextField,
   composeRenderProps,
@@ -17,7 +17,8 @@ interface TextFieldContext {
   variant?: "primary" | "secondary";
 }
 
-const TextFieldContext = createContext<TextFieldContext>({});
+const [TextFieldContext, useTextFieldContext] =
+  createContext<TextFieldContext>("TextFieldContext");
 
 interface TextFieldProps
   extends RACTextFieldProps, TextFieldVariants, TextFieldContext {}
@@ -53,5 +54,5 @@ function TextField({
   );
 }
 
-export { TextField, TextFieldContext };
+export { TextField, TextFieldContext, useTextFieldContext };
 export type { TextFieldProps };

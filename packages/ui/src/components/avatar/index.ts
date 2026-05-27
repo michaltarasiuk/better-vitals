@@ -1,4 +1,10 @@
-export { Avatar, AvatarContext, AvatarFallback, AvatarImage } from "./avatar";
+export {
+  Avatar,
+  AvatarContext,
+  AvatarFallback,
+  AvatarImage,
+  useAvatarContext,
+} from "./avatar";
 export { avatarVariants } from "./avatar.variants";
 
 export type { AvatarProps } from "./avatar";

@@ -1,19 +1,18 @@
 "use client";
 
-import { useContext } from "react";
 import {
   Input as RACInput,
   type InputProps as RACInputProps,
 } from "react-aria-components/Input";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
-import { TextFieldContext } from "../textfield";
+import { useTextFieldContext } from "../textfield";
 import { inputVariants, type InputVariants } from "./input.variants";
 
 interface InputProps extends RACInputProps, InputVariants {}
 
 function Input({ variant, fullWidth, className, ...rest }: InputProps) {
-  const textFieldContext = useContext(TextFieldContext);
+  const textFieldContext = useTextFieldContext();
   return (
     <RACInput
       data-slot="input"

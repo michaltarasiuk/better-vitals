@@ -1,11 +1,7 @@
 "use client";
 
-import {
-  createContext,
-  useContext,
-  type ComponentProps,
-  type ComponentType,
-} from "react";
+import { createContext } from "@lite-app/shared/create-context";
+import type { ComponentProps, ComponentType } from "react";
 import {
   Dialog as RACDialog,
   DialogTrigger as RACDialogTrigger,
@@ -39,19 +35,21 @@ const ALERT_DIALOG_STATUS_ICONS = {
 
 const slots = alertDialogVariants();
 
-interface AlertDialogContext extends AlertDialogVariants {
+interface AlertDialogContextValue extends AlertDialogVariants {
   placement?: "auto" | "top" | "center" | "bottom";
 }
 
-const AlertDialogContext = createContext<AlertDialogContext>({});
+const [AlertDialogContext, useAlertDialogContext] =
+  createContext<AlertDialogContextValue>("AlertDialogContext");
 
-interface AlertDialogProps extends RACDialogTriggerProps, AlertDialogContext {}
+interface AlertDialogProps
+  extends RACDialogTriggerProps, AlertDialogContextValue {}
 
 function AlertDialog({
   variant,
   size,
-  status = "danger",
-  placement = "auto",
+  status,
+  placement,
   children,
   ...rest
 }: AlertDialogProps) {
@@ -110,7 +108,7 @@ function AlertDialogBackdrop({
   onClick,
   ...rest
 }: AlertDialogBackdropProps) {
-  const { variant } = useContext(AlertDialogContext);
+  const { variant } = useAlertDialogContext();
   return (
     <RACModalOverlay
       data-slot="alert-dialog-backdrop"
@@ -141,7 +139,7 @@ function AlertDialogContainer({
   className,
   ...rest
 }: AlertDialogContainerProps) {
-  const { placement } = useContext(AlertDialogContext);
+  const { placement } = useAlertDialogContext();
   return (
     <RACModal
       data-slot="alert-dialog-container"
@@ -164,7 +162,7 @@ function AlertDialogDialog({
   className,
   ...rest
 }: AlertDialogDialogProps) {
-  const { size, placement } = useContext(AlertDialogContext);
+  const { size, placement } = useAlertDialogContext();
   return (
     <RACDialog
       role="alertdialog"
@@ -284,7 +282,7 @@ function AlertDialogIcon({
   className,
   ...rest
 }: AlertDialogIconProps) {
-  const { status = "danger" } = useContext(AlertDialogContext);
+  const { status = "danger" } = useAlertDialogContext();
   const Icon = ALERT_DIALOG_STATUS_ICONS[status];
   return (
     <div

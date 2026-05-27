@@ -1,6 +1,7 @@
 "use client";
 
-import { type ComponentProps, createContext, useContext } from "react";
+import { createContext } from "@lite-app/shared/create-context";
+import type { ComponentProps } from "react";
 import {
   Cell as RACCell,
   type CellProps as RACCellProps,
@@ -29,7 +30,8 @@ import { tableVariants, type TableVariants } from "./table.variants";
 
 const slots = tableVariants();
 
-const TableContext = createContext<Pick<TableVariants, "variant">>({});
+const [TableContext, useTableContext] =
+  createContext<Pick<TableVariants, "variant">>("TableContext");
 
 interface TableProps extends ComponentProps<"div">, TableVariants {}
 
@@ -64,7 +66,7 @@ function TableScrollContainer({
   className,
   ...rest
 }: TableScrollContainerProps) {
-  const { variant } = useContext(TableContext);
+  const { variant } = useTableContext();
   return (
     <div
       data-slot="table-scroll-container"
@@ -85,7 +87,7 @@ export type { TableScrollContainerProps };
 interface TableContentProps extends RACTableProps {}
 
 function TableContent({ className, ...rest }: TableContentProps) {
-  const { variant } = useContext(TableContext);
+  const { variant } = useTableContext();
   return (
     <RACTable
       data-slot="table-content"
@@ -109,7 +111,7 @@ function TableHeader<T extends object>({
   className,
   ...rest
 }: TableHeaderProps<T>) {
-  const { variant } = useContext(TableContext);
+  const { variant } = useTableContext();
   return (
     <RACTableHeader
       data-slot="table-header"
@@ -130,7 +132,7 @@ export type { TableHeaderProps };
 interface TableColumnProps extends RACColumnProps {}
 
 function TableColumn({ className, ...rest }: TableColumnProps) {
-  const { variant } = useContext(TableContext);
+  const { variant } = useTableContext();
   return (
     <RACColumn
       data-slot="table-column"
@@ -154,7 +156,7 @@ function TableBody<T extends object>({
   className,
   ...rest
 }: TableBodyProps<T>) {
-  const { variant } = useContext(TableContext);
+  const { variant } = useTableContext();
   return (
     <RACTableBody
       data-slot="table-body"
@@ -175,7 +177,7 @@ export type { TableBodyProps };
 interface TableRowProps<T extends object> extends RACRowProps<T> {}
 
 function TableRow<T extends object>({ className, ...rest }: TableRowProps<T>) {
-  const { variant } = useContext(TableContext);
+  const { variant } = useTableContext();
   return (
     <RACRow
       data-slot="table-row"
@@ -196,7 +198,7 @@ export type { TableRowProps };
 interface TableCellProps extends RACCellProps {}
 
 function TableCell({ className, ...rest }: TableCellProps) {
-  const { variant } = useContext(TableContext);
+  const { variant } = useTableContext();
   return (
     <RACCell
       data-slot="table-cell"
@@ -217,7 +219,7 @@ export type { TableCellProps };
 interface TableFooterProps extends ComponentProps<"div"> {}
 
 function TableFooter({ className, children, ...rest }: TableFooterProps) {
-  const { variant } = useContext(TableContext);
+  const { variant } = useTableContext();
   return (
     <div
       data-slot="table-footer"
@@ -256,7 +258,7 @@ export type { TableResizableContainerProps };
 interface TableColumnResizerProps extends RACColumnResizerProps {}
 
 function TableColumnResizer({ className, ...rest }: TableColumnResizerProps) {
-  const { variant } = useContext(TableContext);
+  const { variant } = useTableContext();
   return (
     <RACColumnResizer
       data-slot="table-column-resizer"
@@ -277,7 +279,7 @@ export type { TableColumnResizerProps };
 interface TableLoadMoreItemProps extends RACTableLoadMoreItemProps {}
 
 function TableLoadMoreItem({ className, ...rest }: TableLoadMoreItemProps) {
-  const { variant } = useContext(TableContext);
+  const { variant } = useTableContext();
   return (
     <RACTableLoadMoreItem
       data-slot="table-load-more"
@@ -300,7 +302,7 @@ function TableLoadMoreContent({
   className,
   ...rest
 }: TableLoadMoreContentProps) {
-  const { variant } = useContext(TableContext);
+  const { variant } = useTableContext();
   return (
     <div
       data-slot="table-load-more-content"

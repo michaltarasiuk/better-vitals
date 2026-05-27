@@ -1,13 +1,15 @@
 "use client";
 
-import { createContext, useContext, type ComponentProps } from "react";
+import { createContext } from "@lite-app/shared/create-context";
+import type { ComponentProps } from "react";
 
 import { SurfaceContext } from "../surface";
 import { cardVariants, type CardVariants } from "./card.variants";
 
 const slots = cardVariants();
 
-const CardContext = createContext<Pick<CardVariants, "variant">>({});
+const [CardContext, useCardContext] =
+  createContext<Pick<CardVariants, "variant">>("CardContext");
 
 interface CardProps extends ComponentProps<"div">, CardVariants {}
 
@@ -51,7 +53,7 @@ export type { CardProps };
 interface CardHeaderProps extends ComponentProps<"div"> {}
 
 function CardHeader({ className, children, ...rest }: CardHeaderProps) {
-  const { variant } = useContext(CardContext);
+  const { variant } = useCardContext();
   return (
     <div
       data-slot="card-header"
@@ -72,7 +74,7 @@ export type { CardHeaderProps };
 interface CardTitleProps extends ComponentProps<"h3"> {}
 
 function CardTitle({ className, children, ...rest }: CardTitleProps) {
-  const { variant } = useContext(CardContext);
+  const { variant } = useCardContext();
   return (
     <h3
       data-slot="card-title"
@@ -97,7 +99,7 @@ function CardDescription({
   children,
   ...rest
 }: CardDescriptionProps) {
-  const { variant } = useContext(CardContext);
+  const { variant } = useCardContext();
   return (
     <p
       data-slot="card-description"
@@ -118,7 +120,7 @@ export type { CardDescriptionProps };
 interface CardContentProps extends ComponentProps<"div"> {}
 
 function CardContent({ className, children, ...rest }: CardContentProps) {
-  const { variant } = useContext(CardContext);
+  const { variant } = useCardContext();
   return (
     <div
       data-slot="card-content"
@@ -139,7 +141,7 @@ export type { CardContentProps };
 interface CardFooterProps extends ComponentProps<"div"> {}
 
 function CardFooter({ className, children, ...rest }: CardFooterProps) {
-  const { variant } = useContext(CardContext);
+  const { variant } = useCardContext();
   return (
     <div
       data-slot="card-footer"

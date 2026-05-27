@@ -1,6 +1,7 @@
 "use client";
 
-import { createContext, useContext, type ComponentProps } from "react";
+import { createContext } from "@lite-app/shared/create-context";
+import { useContext, type ComponentProps } from "react";
 import {
   Button as RACButton,
   type ButtonProps as RACButtonProps,
@@ -29,13 +30,12 @@ import {
 
 const slots = accordionVariants();
 
-interface AccordionContext extends Pick<AccordionVariants, "variant"> {
+interface AccordionContextValue extends Pick<AccordionVariants, "variant"> {
   hideSeparator: boolean;
 }
 
-const AccordionContext = createContext<AccordionContext>({
-  hideSeparator: false,
-});
+const [AccordionContext, useAccordionContext] =
+  createContext<AccordionContextValue>("AccordionContext");
 
 interface AccordionProps extends RACDisclosureGroupProps, AccordionVariants {
   hideSeparator?: boolean;
@@ -90,7 +90,7 @@ export type { AccordionProps };
 interface AccordionItemProps extends RACDisclosureProps {}
 
 function AccordionItem({ children, className, ...rest }: AccordionItemProps) {
-  const { variant, hideSeparator } = useContext(AccordionContext);
+  const { variant, hideSeparator } = useAccordionContext();
   return (
     <RACDisclosure
       data-slot="accordion-item"
@@ -118,7 +118,7 @@ function AccordionIndicator({
   className,
   ...rest
 }: AccordionIndicatorProps) {
-  const { variant } = useContext(AccordionContext);
+  const { variant } = useAccordionContext();
   const { isExpanded = false } = useContext(DisclosureStateContext) ?? {};
   return (
     <span
@@ -141,7 +141,7 @@ export type { AccordionIndicatorProps };
 interface AccordionHeadingProps extends RACDisclosureHeadingProps {}
 
 function AccordionHeading({ className, ...rest }: AccordionHeadingProps) {
-  const { variant } = useContext(AccordionContext);
+  const { variant } = useAccordionContext();
   return (
     <RACDisclosureHeading
       data-slot="accordion-heading"
@@ -164,7 +164,7 @@ function AccordionTrigger({
   className,
   ...rest
 }: AccordionTriggerProps) {
-  const { variant } = useContext(AccordionContext);
+  const { variant } = useAccordionContext();
   return (
     <RACButton
       slot="trigger"
@@ -188,7 +188,7 @@ export type { AccordionTriggerProps };
 interface AccordionBodyProps extends ComponentProps<"div"> {}
 
 function AccordionBody({ children, className, ...rest }: AccordionBodyProps) {
-  const { variant } = useContext(AccordionContext);
+  const { variant } = useAccordionContext();
   return (
     <div
       data-slot="accordion-body"
@@ -215,7 +215,7 @@ export type { AccordionBodyProps };
 interface AccordionPanelProps extends RACDisclosurePanelProps {}
 
 function AccordionPanel({ children, className, ...rest }: AccordionPanelProps) {
-  const { variant } = useContext(AccordionContext);
+  const { variant } = useAccordionContext();
   const { isExpanded = false } = useContext(DisclosureStateContext) ?? {};
   return (
     <RACDisclosurePanel

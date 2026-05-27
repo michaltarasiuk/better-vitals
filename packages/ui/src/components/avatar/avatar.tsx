@@ -1,7 +1,8 @@
 "use client";
 
+import { createContext } from "@lite-app/shared/create-context";
 import * as RadixAvatar from "@radix-ui/react-avatar";
-import { createContext, useContext, type ComponentPropsWithRef } from "react";
+import type { ComponentPropsWithRef } from "react";
 
 import { avatarVariants, type AvatarVariants } from "./avatar.variants";
 
@@ -11,7 +12,8 @@ type FallbackProps = ComponentPropsWithRef<typeof RadixAvatar.Fallback>;
 
 const slots = avatarVariants();
 
-export const AvatarContext = createContext<AvatarVariants>({});
+export const [AvatarContext, useAvatarContext] =
+  createContext<AvatarVariants>("AvatarContext");
 
 interface AvatarProps
   extends Omit<RootProps, keyof AvatarVariants>, AvatarVariants {}
@@ -52,7 +54,7 @@ export type { AvatarProps };
 interface AvatarImageProps extends ImageProps {}
 
 function AvatarImage({ className, ...rest }: AvatarImageProps) {
-  const { color, size, variant } = useContext(AvatarContext);
+  const { color, size, variant } = useAvatarContext();
   return (
     <RadixAvatar.Image
       className={slots.image({
@@ -72,7 +74,7 @@ export type { AvatarImageProps };
 interface AvatarFallbackProps extends FallbackProps {}
 
 function AvatarFallback({ className, ...rest }: AvatarFallbackProps) {
-  const { color, size, variant } = useContext(AvatarContext);
+  const { color, size, variant } = useAvatarContext();
   return (
     <RadixAvatar.Fallback
       data-slot="avatar-fallback"

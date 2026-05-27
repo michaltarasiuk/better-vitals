@@ -53,7 +53,12 @@
       "devDependencies": {
         "@lite-app/tsconfig": "workspace:*",
         "@types/node": "catalog:",
+        "@types/react": "catalog:",
+        "react": "catalog:",
         "typescript": "catalog:",
+      },
+      "peerDependencies": {
+        "react": "catalog:",
       },
     },
     "packages/tsconfig": {
@@ -68,7 +73,6 @@
         "react": "catalog:",
         "react-aria-components": "^1.17.0",
         "react-dom": "catalog:",
-        "react-router": "7.15.1",
         "tailwind-merge": "catalog:",
         "tailwind-variants": "catalog:",
         "tailwindcss": "catalog:",
