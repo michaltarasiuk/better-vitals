@@ -35,6 +35,8 @@ function Avatar({
       <RadixAvatar.Root
         className={slots.base({
           className,
+          size,
+          variant,
         })}
         {...rest}
       >

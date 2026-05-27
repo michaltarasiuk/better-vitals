@@ -1,4 +1,14 @@
 @theme inline {
+  --radius-xs: calc(var(--radius) * 0.25); /* 0.125rem (2px) */
+  --radius-sm: calc(var(--radius) * 0.5); /* 0.25rem (4px) */
+  --radius-md: calc(var(--radius) * 0.75); /* 0.375rem (6px) */
+  --radius-lg: calc(var(--radius) * 1); /* 0.5rem (8px) */
+  --radius-xl: calc(var(--radius) * 1.5); /* 0.75rem (12px) */
+  --radius-2xl: calc(var(--radius) * 2); /* 1rem (16px) */
+  --radius-3xl: calc(var(--radius) * 3); /* 1.5rem (24px) */
+  --radius-4xl: calc(var(--radius) * 4); /* 2rem (32px) */
+  --radius-field: var(--field-radius, calc(var(--radius) * 1.5));
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-background-secondary: var(--background-secondary);
@@ -7,15 +17,23 @@
 
   --color-surface: var(--surface);
   --color-surface-foreground: var(--surface-foreground);
-  --color-surface-hover: var(--surface-hover);
   --color-surface-secondary: var(--surface-secondary);
   --color-surface-secondary-foreground: var(--surface-secondary-foreground);
   --color-surface-tertiary: var(--surface-tertiary);
   --color-surface-tertiary-foreground: var(--surface-tertiary-foreground);
+  --color-surface-hover: var(--surface-hover);
+
+  --color-overlay: var(--overlay);
+  --color-overlay-foreground: var(--overlay-foreground);
+  --color-backdrop: var(--backdrop);
 
   --color-default: var(--default);
   --color-default-foreground: var(--default-foreground);
   --color-default-hover: var(--default-hover);
+  --color-default-soft: var(--default-soft);
+  --color-default-soft-foreground: var(--default-soft-foreground);
+  --color-default-soft-hover: var(--default-soft-hover);
+
   --color-muted: var(--muted);
 
   --color-accent: var(--accent);
@@ -46,29 +64,26 @@
   --color-danger-soft-foreground: var(--danger-soft-foreground);
   --color-danger-soft-hover: var(--danger-soft-hover);
 
-  --color-overlay: var(--overlay);
-  --color-overlay-foreground: var(--overlay-foreground);
-  --color-backdrop: var(--backdrop);
+  --color-field: var(--field-background, var(--default));
+  --color-field-foreground: var(--field-foreground, var(--foreground));
+  --color-field-placeholder: var(--field-placeholder, var(--muted));
+  --color-field-border: var(--field-border, var(--border));
+  --border-width-field: var(--field-border-width, var(--border-width));
+  --color-field-hover: var(--field-hover);
+  --color-field-focus: var(--field-focus);
+  --color-field-border-hover: var(--field-border-hover);
+  --color-field-border-focus: var(--field-border-focus);
 
   --color-segment: var(--segment);
   --color-segment-foreground: var(--segment-foreground);
 
-  --color-field: var(--field-background, var(--default));
-  --color-field-foreground: var(--field-foreground, var(--foreground));
-  --color-field-hover: var(--field-hover);
-  --color-field-focus: var(--field-focus);
-  --color-field-placeholder: var(--field-placeholder, var(--muted));
-
   --color-border: var(--border);
   --color-border-secondary: var(--border-secondary);
   --color-border-tertiary: var(--border-tertiary);
+
   --color-separator: var(--separator);
   --color-separator-secondary: var(--separator-secondary);
   --color-separator-tertiary: var(--separator-tertiary);
-
-  --color-field-border: var(--field-border, var(--border));
-  --color-field-border-hover: var(--field-border-hover);
-  --color-field-border-focus: var(--field-border-focus);
 
   --color-focus: var(--focus);
   --color-link: var(--link);
@@ -77,21 +92,7 @@
   --shadow-overlay: var(--overlay-shadow);
   --shadow-field: var(--field-shadow);
 
-  --radius-xs: calc(var(--radius) * 0.25);
-  --radius-sm: calc(var(--radius) * 0.5);
-  --radius-md: calc(var(--radius) * 0.75);
-  --radius-lg: calc(var(--radius) * 1);
-  --radius-xl: calc(var(--radius) * 1.5);
-  --radius-2xl: calc(var(--radius) * 2);
-  --radius-3xl: calc(var(--radius) * 3);
-  --radius-4xl: calc(var(--radius) * 4);
-  --radius-field: var(--field-radius, calc(var(--radius) * 1.5));
-
-  --border-width-field: var(--field-border-width, var(--border-width));
-
-  --ease-linear: linear;
   --ease-smooth: ease;
-  --ease-out-fluid: cubic-bezier(0.32, 0.72, 0, 1);
 
   --ease-in-quad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
   --ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
@@ -107,12 +108,16 @@
   --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
   --ease-out-circ: cubic-bezier(0.075, 0.82, 0.165, 1);
 
+  --ease-out-fluid: cubic-bezier(0.32, 0.72, 0, 1);
+
   --ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
   --ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
   --ease-in-out-quart: cubic-bezier(0.77, 0, 0.175, 1);
   --ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
   --ease-in-out-expo: cubic-bezier(1, 0, 0, 1);
   --ease-in-out-circ: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+
+  --ease-linear: linear;
 
   --animate-spin-fast: spin 0.75s linear infinite;
   --animate-skeleton: skeleton 2s linear infinite;

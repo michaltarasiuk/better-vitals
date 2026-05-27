@@ -1,3 +1,4 @@
+@import "./avatar/avatar.css";
 @import "./button/button.css";
 @import "./card/card.css";
 @import "./close-button/close-button.css";
@@ -8,5 +9,6 @@
 @import "./link/link.css";
 @import "./spinner/spinner.css";
 @import "./surface/surface.css";
+@import "./table/table.css";
 @import "./textfield/textfield.css";
 @import "./typography/typography.css";

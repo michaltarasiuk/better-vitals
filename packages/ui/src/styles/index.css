@@ -4,7 +4,10 @@
 @import "tw-animate-css";
 
 @import "./base.css" layer(base);
+@import "./scrollbar.css" layer(base);
+
 @import "./themes/default/index.css" layer(theme);
 @import "../components/styles.css" layer(components);
+
 @import "./utilities.css";
 @import "./variants.css";
