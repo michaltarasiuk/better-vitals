@@ -1,6 +1,4 @@
-import React from "react";
-
-interface IconProps extends React.SVGProps<SVGSVGElement> {}
+interface IconProps extends React.ComponentProps<"svg"> {}
 
 export function IconChevronDown(props: IconProps) {
   return (
