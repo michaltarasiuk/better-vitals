@@ -68,7 +68,10 @@ function TableScrollContainer({
   return (
     <div
       data-slot="table-scroll-container"
-      className={slots.scrollContainer({ className, variant })}
+      className={slots.scrollContainer({
+        className,
+        variant,
+      })}
       {...rest}
     >
       {children}
@@ -86,7 +89,12 @@ function TableContent({ className, ...rest }: TableContentProps) {
   return (
     <RACTable
       data-slot="table-content"
-      className={cnRenderProps(className, slots.content({ variant }))}
+      className={cnRenderProps(
+        className,
+        slots.content({
+          variant,
+        })
+      )}
       {...rest}
     />
   );
@@ -105,7 +113,12 @@ function TableHeader<T extends object>({
   return (
     <RACTableHeader
       data-slot="table-header"
-      className={cnRenderProps(className, slots.header({ variant }))}
+      className={cnRenderProps(
+        className,
+        slots.header({
+          variant,
+        })
+      )}
       {...rest}
     />
   );
@@ -121,7 +134,12 @@ function TableColumn({ className, ...rest }: TableColumnProps) {
   return (
     <RACColumn
       data-slot="table-column"
-      className={cnRenderProps(className, slots.column({ variant }))}
+      className={cnRenderProps(
+        className,
+        slots.column({
+          variant,
+        })
+      )}
       {...rest}
     />
   );
@@ -140,7 +158,12 @@ function TableBody<T extends object>({
   return (
     <RACTableBody
       data-slot="table-body"
-      className={cnRenderProps(className, slots.body({ variant }))}
+      className={cnRenderProps(
+        className,
+        slots.body({
+          variant,
+        })
+      )}
       {...rest}
     />
   );
@@ -156,7 +179,12 @@ function TableRow<T extends object>({ className, ...rest }: TableRowProps<T>) {
   return (
     <RACRow
       data-slot="table-row"
-      className={cnRenderProps(className, slots.row({ variant }))}
+      className={cnRenderProps(
+        className,
+        slots.row({
+          variant,
+        })
+      )}
       {...rest}
     />
   );
@@ -172,7 +200,12 @@ function TableCell({ className, ...rest }: TableCellProps) {
   return (
     <RACCell
       data-slot="table-cell"
-      className={cnRenderProps(className, slots.cell({ variant }))}
+      className={cnRenderProps(
+        className,
+        slots.cell({
+          variant,
+        })
+      )}
       {...rest}
     />
   );
@@ -188,7 +221,10 @@ function TableFooter({ className, children, ...rest }: TableFooterProps) {
   return (
     <div
       data-slot="table-footer"
-      className={slots.footer({ className, variant })}
+      className={slots.footer({
+        className,
+        variant,
+      })}
       {...rest}
     >
       {children}
@@ -224,7 +260,12 @@ function TableColumnResizer({ className, ...rest }: TableColumnResizerProps) {
   return (
     <RACColumnResizer
       data-slot="table-column-resizer"
-      className={cnRenderProps(className, slots.columnResizer({ variant }))}
+      className={cnRenderProps(
+        className,
+        slots.columnResizer({
+          variant,
+        })
+      )}
       {...rest}
     />
   );
@@ -240,7 +281,10 @@ function TableLoadMoreItem({ className, ...rest }: TableLoadMoreItemProps) {
   return (
     <RACTableLoadMoreItem
       data-slot="table-load-more"
-      className={slots.loadMore({ className, variant })}
+      className={slots.loadMore({
+        className,
+        variant,
+      })}
       {...rest}
     />
   );
@@ -257,11 +301,13 @@ function TableLoadMoreContent({
   ...rest
 }: TableLoadMoreContentProps) {
   const { variant } = useContext(TableContext);
-
   return (
     <div
       data-slot="table-load-more-content"
-      className={slots.loadMoreContent({ className, variant })}
+      className={slots.loadMoreContent({
+        className,
+        variant,
+      })}
       {...rest}
     >
       {children}
