@@ -1,0 +1,193 @@
+.alert-dialog__trigger {
+  @apply inline-block cursor-(--cursor-interactive);
+
+  transition:
+    transform 250ms var(--ease-out-quart),
+    background-color 150ms var(--ease-smooth),
+    box-shadow 150ms var(--ease-out);
+  @apply motion-reduce:transition-none;
+
+  &:focus-visible:not(:focus),
+  &[data-focus-visible="true"] {
+    @apply status-focused;
+  }
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    @apply status-disabled;
+  }
+
+  &:active,
+  &[data-pressed="true"] {
+    transform: scale(0.97);
+  }
+}
+
+.alert-dialog__backdrop {
+  @apply fixed inset-0 z-50 flex flex-row items-center justify-center h-(--visual-viewport-height) w-full;
+
+  &[data-entering="true"] {
+    @apply animate-in duration-150 ease-out fade-in-0;
+  }
+
+  &[data-exiting="true"] {
+    @apply animate-out duration-100 ease-out fade-out-0;
+  }
+
+  &[data-entering="true"],
+  &[data-exiting="true"] {
+    @apply will-change-[opacity] motion-reduce:animate-none;
+  }
+}
+
+.alert-dialog__backdrop--transparent {
+  @apply bg-transparent;
+}
+
+.alert-dialog__backdrop--opaque {
+  @apply bg-backdrop;
+}
+
+.alert-dialog__backdrop--blur {
+  @apply bg-backdrop backdrop-blur-md;
+}
+
+.alert-dialog__container {
+  @apply flex flex-col items-center h-(--visual-viewport-height) w-full min-w-0 flex-1 p-4 sm:w-fit sm:p-10 pointer-events-none;
+
+  &[data-entering="true"] {
+    @apply animate-in duration-250 ease-out-quad fade-in-0 zoom-in-105;
+
+    &[data-placement="auto"] {
+      @apply slide-in-from-bottom-1 sm:slide-in-from-bottom-0;
+    }
+
+    &[data-placement="top"] {
+      @apply slide-in-from-top-1;
+    }
+
+    &[data-placement="center"] {
+      @apply slide-in-from-top-0;
+    }
+
+    &[data-placement="bottom"] {
+      @apply slide-in-from-bottom-1;
+    }
+  }
+
+  &[data-exiting="true"] {
+    @apply animate-out duration-100 ease-out-quad fade-out-0 zoom-out-95;
+  }
+
+  &[data-entering="true"],
+  &[data-exiting="true"] {
+    @apply will-change-[opacity,transform] motion-reduce:animate-none;
+  }
+}
+
+.alert-dialog__dialog {
+  @apply relative flex w-full flex-col bg-overlay shadow-overlay outline-none;
+  border-radius: min(32px, var(--radius-3xl));
+  @apply p-6 overflow-clip pointer-events-auto;
+
+  &[data-placement="auto"] {
+    @apply mt-auto sm:my-auto;
+  }
+
+  &[data-placement="center"] {
+    @apply my-auto;
+  }
+
+  &[data-placement="bottom"] {
+    @apply mt-auto;
+  }
+
+  &[data-placement="top"] {
+    @apply mt-0;
+  }
+}
+
+.alert-dialog__dialog--xs {
+  @apply max-w-xs;
+}
+
+.alert-dialog__dialog--sm {
+  @apply max-w-sm;
+}
+
+.alert-dialog__dialog--md {
+  @apply max-w-md;
+}
+
+.alert-dialog__dialog--lg {
+  @apply max-w-lg;
+}
+
+.alert-dialog__dialog--cover {
+  @apply h-full min-h-full w-full;
+}
+
+.alert-dialog__header {
+  @apply flex flex-col gap-3 mb-0;
+
+  & > .alert-dialog__icon {
+    @apply mb-0;
+  }
+}
+
+.alert-dialog__heading {
+  @apply align-middle text-base font-medium text-foreground;
+}
+
+.alert-dialog__icon {
+  @apply flex items-center justify-center size-10 shrink-0 rounded-3xl select-none;
+
+  [data-slot="alert-dialog-default-icon"] {
+    @apply box-content size-5;
+  }
+}
+
+.alert-dialog__icon--default {
+  @apply bg-default text-foreground;
+}
+
+.alert-dialog__icon--accent {
+  @apply bg-accent-soft text-accent-soft-foreground;
+}
+
+.alert-dialog__icon--success {
+  @apply bg-success-soft text-success-soft-foreground;
+}
+
+.alert-dialog__icon--warning {
+  @apply bg-warning-soft text-warning-soft-foreground;
+}
+
+.alert-dialog__icon--danger {
+  @apply bg-danger-soft text-danger-soft-foreground;
+}
+
+.alert-dialog__body {
+  @apply min-h-0 flex-1 scrollbar text-sm leading-[1.43] text-muted -m-[3px] my-0 p-[3px] overflow-y-auto overscroll-contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.alert-dialog__footer {
+  @apply flex flex-row items-center justify-end gap-2 mt-0;
+}
+
+.alert-dialog__close-trigger {
+  @apply absolute top-4 right-4;
+}
+
+.alert-dialog__header + .alert-dialog__body {
+  @apply mt-2;
+}
+
+.alert-dialog__header + .alert-dialog__footer {
+  @apply mt-5;
+}
+
+.alert-dialog__body + .alert-dialog__footer {
+  @apply mt-5;
+}
