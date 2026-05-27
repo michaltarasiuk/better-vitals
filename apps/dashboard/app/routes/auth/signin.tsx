@@ -19,6 +19,8 @@ import { Spinner } from "@lite-app/ui/components/spinner";
 import { TextField } from "@lite-app/ui/components/textfield";
 import { Heading } from "@lite-app/ui/components/typography";
 import {
+  href,
+  redirect,
   useActionData,
   useNavigation,
   type ClientActionFunctionArgs,
@@ -27,7 +29,7 @@ import { cn } from "tailwind-variants";
 
 import { Form } from "~/components/form";
 import { getAuthErrorField, isAuthError } from "~/lib/auth/error";
-import { signIn } from "~/lib/auth/index.client";
+import { organization, signIn } from "~/lib/auth/index.client";
 
 export async function clientAction({ request }: ClientActionFunctionArgs) {
   const formData = await request.formData();
@@ -45,9 +47,12 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
   );
 
   if (!isDefined(result.error)) {
-    return {
-      success: true,
-    };
+    const organizations = await organization.list();
+    const redirectTo =
+      isDefined(organizations.data) && organizations.data.length > 0
+        ? href("/")
+        : href("/organization/create");
+    throw redirect(redirectTo);
   } else if (!isAuthError(result.error)) {
     return {
       success: false,
