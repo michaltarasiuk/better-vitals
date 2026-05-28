@@ -1,5 +1,2 @@
-export { TextField, TextFieldContext, useTextFieldContext } from "./textfield";
-export { textFieldVariants } from "./textfield.variants";
-
-export type { TextFieldProps } from "./textfield";
-export type { TextFieldVariants } from "./textfield.variants";
+export * from "./textfield";
+export * from "./textfield.variants";

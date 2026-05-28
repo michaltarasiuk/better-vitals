@@ -1,5 +1,2 @@
-export { Label } from "./label";
-export { labelVariants } from "./label.variants";
-
-export type { LabelProps } from "./label";
-export type { LabelVariants } from "./label.variants";
+export * from "./label";
+export * from "./label.variants";

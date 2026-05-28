@@ -1,5 +1,2 @@
-export { Surface, SurfaceContext, useSurfaceContext } from "./surface";
-export { surfaceVariants } from "./surface.variants";
-
-export type { SurfaceProps } from "./surface";
-export type { SurfaceVariants } from "./surface.variants";
+export * from "./surface";
+export * from "./surface.variants";

@@ -1,5 +1,2 @@
-export { Input } from "./input";
-export { inputVariants } from "./input.variants";
-
-export type { InputProps } from "./input";
-export type { InputVariants } from "./input.variants";
+export * from "./input";
+export * from "./input.variants";

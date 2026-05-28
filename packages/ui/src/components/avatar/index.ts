@@ -1,11 +1,2 @@
-export {
-  Avatar,
-  AvatarContext,
-  AvatarFallback,
-  AvatarImage,
-  useAvatarContext,
-} from "./avatar";
-export { avatarVariants } from "./avatar.variants";
-
-export type { AvatarProps } from "./avatar";
-export type { AvatarVariants } from "./avatar.variants";
+export * from "./avatar";
+export * from "./avatar.variants";
