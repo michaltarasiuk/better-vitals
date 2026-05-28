@@ -19,6 +19,8 @@ import { Spinner } from "@lite-app/ui/components/spinner";
 import { TextField } from "@lite-app/ui/components/textfield";
 import { Heading } from "@lite-app/ui/components/typography";
 import {
+  href,
+  redirect,
   useActionData,
   useNavigation,
   type ClientActionFunctionArgs,
@@ -53,9 +55,7 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
   );
 
   if (!isDefined(result.error)) {
-    return {
-      success: true,
-    };
+    throw redirect(href("/signin"));
   } else if (!isAuthError(result.error)) {
     return {
       success: false,
