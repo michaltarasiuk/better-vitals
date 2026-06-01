@@ -11,6 +11,8 @@ export default defineConfig({
   },
   ssr: {
     noExternal: [
+      "@lite-app/ui",
+      "@lite-app/shared",
       "@radix-ui/react-avatar",
       "@react-aria",
       "@react-stately",

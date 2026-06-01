@@ -1,4 +1,8 @@
 {
+  "tailwindCSS.experimental.configFile": {
+    "packages/ui/**/*.css": "packages/ui/src/styles/index.css",
+    "apps/dashboard/**/*.css": "apps/dashboard/app/app.css"
+  },
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "emmet.showExpandedAbbreviation": "never",

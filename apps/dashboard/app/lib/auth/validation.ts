@@ -1,6 +1,4 @@
-export function comparePasswords(formData: FormData) {
-  const password = formData.get("password");
-  const confirmPassword = formData.get("confirmPassword");
+export function comparePasswords(password: string, confirmPassword: string) {
   if (password !== confirmPassword) {
     return {
       errors: {

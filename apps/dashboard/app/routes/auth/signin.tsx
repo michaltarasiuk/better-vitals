@@ -1,7 +1,6 @@
 "use client";
 
 import { withMinimumDelay } from "@lite-app/shared/delay";
-import { invariant } from "@lite-app/shared/invariant";
 import { isDefined } from "@lite-app/shared/is-defined";
 import { Button } from "@lite-app/ui/components/button";
 import {
@@ -26,18 +25,20 @@ import {
   type ClientActionFunctionArgs,
 } from "react-router";
 import { cn } from "tailwind-variants";
+import { z } from "zod";
 
-import { Form } from "~/components/form";
-import { getAuthErrorField, isAuthError } from "~/lib/auth/error";
+import { Form, type FormProps } from "~/components/form";
+import { getAuthErrorField, isKnownAuthError } from "~/lib/auth/error";
 import { organization, signIn } from "~/lib/auth/index.client";
+import { parseFormData } from "~/lib/parse-form-data";
+
+const FormDataSchema = z.object({
+  email: z.string(),
+  password: z.string(),
+});
 
 export async function clientAction({ request }: ClientActionFunctionArgs) {
-  const formData = await request.formData();
-  const email = formData.get("email");
-  const password = formData.get("password");
-
-  invariant(typeof email === "string", "Email is required");
-  invariant(typeof password === "string", "Password is required");
+  const { email, password } = await parseFormData(request, FormDataSchema);
 
   const result = await withMinimumDelay(
     signIn.email({
@@ -45,25 +46,29 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
       password,
     })
   );
+  const success = isDefined(result.data);
 
-  if (!isDefined(result.error)) {
-    const organizations = await organization.list();
-    const redirectTo =
-      isDefined(organizations.data) && organizations.data.length > 0
-        ? href("/")
-        : href("/organization/create");
-    throw redirect(redirectTo);
-  } else if (!isAuthError(result.error)) {
+  if (!success) {
+    if (!isKnownAuthError(result.error)) {
+      return {
+        success: false,
+      };
+    }
+    const validationErrors = {
+      [getAuthErrorField(result.error.code)]: result.error.message,
+    } satisfies FormProps["validationErrors"];
     return {
       success: false,
+      validationErrors,
     };
   }
-  return {
-    success: false,
-    validationErrors: {
-      [getAuthErrorField(result.error.code)]: result.error.message,
-    },
-  };
+
+  const organizations = await organization.list();
+  const redirectTo =
+    isDefined(organizations.data) && organizations.data.length > 0
+      ? href("/")
+      : href("/organization/create");
+  throw redirect(redirectTo);
 }
 
 export default function Signin() {

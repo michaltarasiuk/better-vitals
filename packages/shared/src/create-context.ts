@@ -1,25 +1,21 @@
 import {
   createContext as createReactContext,
   useContext as useReactContext,
-  type Context,
 } from "react";
 
-import { invariant } from "./invariant";
-
-const DEFAULT_VALUE = Symbol("createContext.defaultValue");
+import { isDefined } from "./is-defined";
 
 export function createContext<T>(displayName: string) {
-  const Context = createReactContext<T | typeof DEFAULT_VALUE>(DEFAULT_VALUE);
+  const Context = createReactContext<T | null>(null);
   Context.displayName = displayName;
 
   function useContext() {
     const value = useReactContext(Context);
-    invariant(
-      value !== DEFAULT_VALUE,
-      `${displayName} must be used within its provider`
-    );
+    if (!isDefined(value)) {
+      throw new Error(`${displayName} must be used within its provider`);
+    }
     return value;
   }
 
-  return [Context as Context<T>, useContext] as const;
+  return [Context, useContext] as const;
 }

@@ -1,5 +1,5 @@
 .separator {
-  @apply shrink-0 rounded-sm border-t-0 border-b-0 bg-separator h-px w-full;
+  @apply h-px w-full shrink-0 rounded-sm border-t-0 border-b-0 bg-separator;
 }
 
 .separator--horizontal {

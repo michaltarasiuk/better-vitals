@@ -83,9 +83,7 @@ function AlertDialogTrigger({
     <RACPressable>
       <div
         data-slot="alert-dialog-trigger"
-        className={slots.trigger({
-          className,
-        })}
+        className={slots.trigger({ className })}
         {...rest}
       >
         {children}
@@ -192,9 +190,7 @@ function AlertDialogHeader({
   return (
     <div
       data-slot="alert-dialog-header"
-      className={slots.header({
-        className,
-      })}
+      className={slots.header({ className })}
       {...rest}
     >
       {children}
@@ -216,9 +212,7 @@ function AlertDialogHeading({
     <RACHeading
       slot="title"
       data-slot="alert-dialog-heading"
-      className={slots.heading({
-        className,
-      })}
+      className={slots.heading({ className })}
       {...rest}
     >
       {children}
@@ -239,9 +233,7 @@ function AlertDialogBody({
   return (
     <div
       data-slot="alert-dialog-body"
-      className={slots.body({
-        className,
-      })}
+      className={slots.body({ className })}
       {...rest}
     >
       {children}
@@ -262,9 +254,7 @@ function AlertDialogFooter({
   return (
     <div
       data-slot="alert-dialog-footer"
-      className={slots.footer({
-        className,
-      })}
+      className={slots.footer({ className })}
       {...rest}
     >
       {children}

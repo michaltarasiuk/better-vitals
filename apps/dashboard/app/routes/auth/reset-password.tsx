@@ -1,7 +1,6 @@
 "use client";
 
 import { withMinimumDelay } from "@lite-app/shared/delay";
-import { invariant } from "@lite-app/shared/invariant";
 import { isDefined } from "@lite-app/shared/is-defined";
 import { Button } from "@lite-app/ui/components/button";
 import {
@@ -26,20 +25,27 @@ import {
   type ClientActionFunctionArgs,
 } from "react-router";
 import { cn } from "tailwind-variants";
+import { z } from "zod";
 
-import { Form } from "~/components/form";
-import { getAuthErrorField, isAuthError } from "~/lib/auth/error";
+import { Form, type FormProps } from "~/components/form";
+import { getAuthErrorField, isKnownAuthError } from "~/lib/auth/error";
 import { resetPassword } from "~/lib/auth/index.client";
 import { comparePasswords } from "~/lib/auth/validation";
+import { parseFormData } from "~/lib/parse-form-data";
+
+const FormDataSchema = z.object({
+  confirmPassword: z.string(),
+  password: z.string(),
+});
 
 export async function clientAction({ request }: ClientActionFunctionArgs) {
-  const formData = await request.formData();
-  const password = formData.get("password");
+  const { password, confirmPassword } = await parseFormData(
+    request,
+    FormDataSchema
+  );
   const token = getToken();
 
-  invariant(typeof password === "string", "Password is required");
-
-  const passwordValidation = comparePasswords(formData);
+  const passwordValidation = comparePasswords(password, confirmPassword);
   if (!passwordValidation.success) {
     return {
       success: false,
@@ -50,23 +56,26 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
   const result = await withMinimumDelay(
     resetPassword({
       newPassword: password,
-      ...(isDefined(token) ? { token } : {}),
+      ...(isDefined(token) && { token }),
     })
   );
+  const success = isDefined(result.data);
 
-  if (!isDefined(result.error)) {
-    throw redirect(href("/signin"));
-  } else if (!isAuthError(result.error)) {
+  if (!success) {
+    if (!isKnownAuthError(result.error)) {
+      return {
+        success: false,
+      };
+    }
+    const validationErrors = {
+      [getAuthErrorField(result.error.code)]: result.error.message,
+    } satisfies FormProps["validationErrors"];
     return {
       success: false,
+      validationErrors,
     };
   }
-  return {
-    success: false,
-    validationErrors: {
-      [getAuthErrorField(result.error.code)]: result.error.message,
-    },
-  };
+  throw redirect(href("/signin"));
 
   function getToken() {
     return new URL(request.url).searchParams.get("token");

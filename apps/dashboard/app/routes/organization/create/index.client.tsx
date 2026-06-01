@@ -1,7 +1,6 @@
 "use client";
 
 import { withMinimumDelay } from "@lite-app/shared/delay";
-import { invariant } from "@lite-app/shared/invariant";
 import { isDefined } from "@lite-app/shared/is-defined";
 import { Button } from "@lite-app/ui/components/button";
 import {
@@ -23,20 +22,23 @@ import {
   type ClientActionFunctionArgs,
 } from "react-router";
 import { cn } from "tailwind-variants";
+import { z } from "zod";
 
-import { Form } from "~/components/form";
+import { Form, type FormProps } from "~/components/form";
 import { organization } from "~/lib/auth/index.client";
 import {
   getOrganizationErrorField,
-  isOrganizationError,
+  isKnownOrganizationError,
 } from "~/lib/organization/error";
 import { slugify } from "~/lib/organization/slug";
+import { parseFormData } from "~/lib/parse-form-data";
+
+const FormDataSchema = z.object({
+  name: z.string(),
+});
 
 export async function clientAction({ request }: ClientActionFunctionArgs) {
-  const formData = await request.formData();
-  const name = formData.get("name");
-
-  invariant(typeof name === "string", "Name is required");
+  const { name } = await parseFormData(request, FormDataSchema);
 
   const result = await withMinimumDelay(
     organization.create({
@@ -44,21 +46,24 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
       slug: slugify(name),
     })
   );
+  const success = isDefined(result.data);
 
-  if (!isDefined(result.error)) {
-    return {
-      success: true,
-    };
-  } else if (!isOrganizationError(result.error)) {
+  if (!success) {
+    if (!isKnownOrganizationError(result.error)) {
+      return {
+        success: false,
+      };
+    }
+    const validationErrors = {
+      [getOrganizationErrorField(result.error.code)]: result.error.message,
+    } satisfies FormProps["validationErrors"];
     return {
       success: false,
+      validationErrors,
     };
   }
   return {
-    success: false,
-    validationErrors: {
-      [getOrganizationErrorField(result.error.code)]: result.error.message,
-    },
+    success: true,
   };
 }
 

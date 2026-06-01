@@ -14,6 +14,7 @@
   "dependencies": {
     "@lite-app/shared": "workspace:*",
     "@lite-app/ui": "workspace:*",
+    "@radix-ui/react-avatar": "^1.1.11",
     "@react-router/serve": "7.15.1",
     "@remix-run/node-fetch-server": "^0.13.2",
     "better-auth": "^1.6.11",

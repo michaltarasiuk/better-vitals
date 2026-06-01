@@ -1,7 +1,6 @@
 "use client";
 
 import { withMinimumDelay } from "@lite-app/shared/delay";
-import { invariant } from "@lite-app/shared/invariant";
 import { isDefined } from "@lite-app/shared/is-defined";
 import { Button } from "@lite-app/ui/components/button";
 import {
@@ -25,16 +24,19 @@ import {
   type ClientActionFunctionArgs,
 } from "react-router";
 import { cn } from "tailwind-variants";
+import { z } from "zod";
 
-import { Form } from "~/components/form";
-import { getAuthErrorField, isAuthError } from "~/lib/auth/error";
+import { Form, type FormProps } from "~/components/form";
+import { getAuthErrorField, isKnownAuthError } from "~/lib/auth/error";
 import { requestPasswordReset } from "~/lib/auth/index.client";
+import { parseFormData } from "~/lib/parse-form-data";
+
+const FormDataSchema = z.object({
+  email: z.string(),
+});
 
 export async function clientAction({ request }: ClientActionFunctionArgs) {
-  const formData = await request.formData();
-  const email = formData.get("email");
-
-  invariant(typeof email === "string", "Email is required");
+  const { email } = await parseFormData(request, FormDataSchema);
 
   const result = await withMinimumDelay(
     requestPasswordReset({
@@ -42,21 +44,24 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
       redirectTo: href("/reset-password"),
     })
   );
+  const success = isDefined(result.data);
 
-  if (!isDefined(result.error)) {
-    return {
-      success: true,
-    };
-  } else if (!isAuthError(result.error)) {
+  if (!success) {
+    if (!isKnownAuthError(result.error)) {
+      return {
+        success: false,
+      };
+    }
+    const validationErrors = {
+      [getAuthErrorField(result.error.code)]: result.error.message,
+    } satisfies FormProps["validationErrors"];
     return {
       success: false,
+      validationErrors,
     };
   }
   return {
-    success: false,
-    validationErrors: {
-      [getAuthErrorField(result.error.code)]: result.error.message,
-    },
+    success: true,
   };
 }
 
@@ -74,7 +79,7 @@ export default function RequestPasswordReset() {
           Forgot your password?
         </Heading>
         <CardDescription className={cn("text-center")}>
-          We'll email you a link to reset your password
+          We will email you a link to reset your password
         </CardDescription>
       </CardHeader>
       <Form validationErrors={validationErrors}>

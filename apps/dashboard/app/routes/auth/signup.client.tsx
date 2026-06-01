@@ -1,7 +1,6 @@
 "use client";
 
 import { withMinimumDelay } from "@lite-app/shared/delay";
-import { invariant } from "@lite-app/shared/invariant";
 import { isDefined } from "@lite-app/shared/is-defined";
 import { Button } from "@lite-app/ui/components/button";
 import {
@@ -25,23 +24,29 @@ import {
   type ClientActionFunctionArgs,
 } from "react-router";
 import { cn } from "tailwind-variants";
+import { z } from "zod";
 
-import { Form } from "~/components/form";
-import { getAuthErrorField, isAuthError } from "~/lib/auth/error";
+import { Form, type FormProps } from "~/components/form";
+import { getAuthErrorField, isKnownAuthError } from "~/lib/auth/error";
 import { signUp } from "~/lib/auth/index.client";
 import { comparePasswords } from "~/lib/auth/validation";
+import { parseFormData } from "~/lib/parse-form-data";
+import { pickAvatar } from "~/lib/user/avatar";
+
+const FormDataSchema = z.object({
+  confirmPassword: z.string(),
+  email: z.string(),
+  name: z.string(),
+  password: z.string(),
+});
 
 export async function clientAction({ request }: ClientActionFunctionArgs) {
-  const formData = await request.formData();
-  const name = formData.get("name");
-  const email = formData.get("email");
-  const password = formData.get("password");
+  const { name, email, password, confirmPassword } = await parseFormData(
+    request,
+    FormDataSchema
+  );
 
-  invariant(typeof name === "string", "Name is required");
-  invariant(typeof email === "string", "Email is required");
-  invariant(typeof password === "string", "Password is required");
-
-  const passwordValidation = comparePasswords(formData);
+  const passwordValidation = comparePasswords(password, confirmPassword);
   if (!passwordValidation.success) {
     return {
       success: false,
@@ -52,24 +57,28 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
   const result = await withMinimumDelay(
     signUp.email({
       email,
+      image: pickAvatar(),
       name,
       password,
     })
   );
+  const success = isDefined(result.data);
 
-  if (!isDefined(result.error)) {
-    throw redirect(href("/organization/create"));
-  } else if (!isAuthError(result.error)) {
+  if (!success) {
+    if (!isKnownAuthError(result.error)) {
+      return {
+        success: false,
+      };
+    }
+    const validationErrors = {
+      [getAuthErrorField(result.error.code)]: result.error.message,
+    } satisfies FormProps["validationErrors"];
     return {
       success: false,
+      validationErrors,
     };
   }
-  return {
-    success: false,
-    validationErrors: {
-      [getAuthErrorField(result.error.code)]: result.error.message,
-    },
-  };
+  throw redirect(href("/organization/create"));
 }
 
 export function Signup() {

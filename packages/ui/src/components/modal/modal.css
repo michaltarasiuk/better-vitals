@@ -24,7 +24,7 @@
 }
 
 .modal__backdrop {
-  @apply fixed inset-0 z-50 flex flex-row items-center justify-center h-(--visual-viewport-height) w-full;
+  @apply fixed inset-0 z-50 flex h-(--visual-viewport-height) w-full flex-row items-center justify-center;
 
   &[data-entering="true"] {
     @apply animate-in duration-150 ease-out fade-in-0;
@@ -53,7 +53,7 @@
 }
 
 .modal__container {
-  @apply flex flex-col items-center h-(--visual-viewport-height) w-full min-w-0 flex-1 p-4 sm:w-fit sm:p-10 pointer-events-none;
+  @apply pointer-events-none flex h-(--visual-viewport-height) w-full min-w-0 flex-1 flex-col items-center p-4 sm:w-fit sm:p-10;
 
   &[data-entering="true"] {
     @apply animate-in duration-250 ease-out-quad fade-in-0 zoom-in-105;
@@ -86,7 +86,7 @@
 }
 
 .modal__container--scroll-outside {
-  @apply scrollbar overflow-y-auto pointer-events-auto;
+  @apply pointer-events-auto scrollbar overflow-y-auto;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -105,7 +105,7 @@
 .modal__dialog {
   @apply relative flex w-full flex-col bg-overlay shadow-overlay outline-none;
   border-radius: min(32px, var(--radius-3xl));
-  @apply p-6 pointer-events-auto;
+  @apply pointer-events-auto p-6;
 
   &[data-placement="auto"] {
     @apply mt-auto sm:my-auto;
@@ -157,7 +157,7 @@
 }
 
 .modal__header {
-  @apply flex flex-col gap-3 mb-0;
+  @apply mb-0 flex flex-col gap-3;
 
   & > .modal__icon {
     @apply mb-0;
@@ -169,11 +169,11 @@
 }
 
 .modal__icon {
-  @apply flex items-center justify-center size-10 shrink-0 rounded-3xl select-none;
+  @apply flex size-10 shrink-0 items-center justify-center rounded-3xl select-none;
 }
 
 .modal__body {
-  @apply min-h-0 flex-1 text-sm leading-[1.43] text-muted m-[-3px] my-0 overflow-visible p-[3px];
+  @apply m-[-3px] my-0 min-h-0 flex-1 overflow-visible p-[3px] text-sm leading-[1.43] text-muted;
 }
 
 .modal__body--scroll-inside {
@@ -186,7 +186,7 @@
 }
 
 .modal__footer {
-  @apply flex flex-row items-center justify-end gap-2 mt-0;
+  @apply mt-0 flex flex-row items-center justify-end gap-2;
 }
 
 .modal__close-trigger {

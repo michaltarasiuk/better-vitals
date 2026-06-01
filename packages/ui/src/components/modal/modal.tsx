@@ -66,9 +66,7 @@ function ModalTrigger({ children, className, ...rest }: ModalTriggerProps) {
     <RACPressable>
       <div
         data-slot="modal-trigger"
-        className={slots.trigger({
-          className,
-        })}
+        className={slots.trigger({ className })}
         {...rest}
       >
         {children}
@@ -169,9 +167,7 @@ function ModalHeader({ children, className, ...rest }: ModalHeaderProps) {
   return (
     <div
       data-slot="modal-header"
-      className={slots.header({
-        className,
-      })}
+      className={slots.header({ className })}
       {...rest}
     >
       {children}
@@ -189,9 +185,7 @@ function ModalHeading({ children, className, ...rest }: ModalHeadingProps) {
     <RACHeading
       slot="title"
       data-slot="modal-heading"
-      className={slots.heading({
-        className,
-      })}
+      className={slots.heading({ className })}
       {...rest}
     >
       {children}
@@ -229,9 +223,7 @@ function ModalFooter({ children, className, ...rest }: ModalFooterProps) {
   return (
     <div
       data-slot="modal-footer"
-      className={slots.footer({
-        className,
-      })}
+      className={slots.footer({ className })}
       {...rest}
     >
       {children}
@@ -246,13 +238,7 @@ interface ModalIconProps extends ComponentProps<"div"> {}
 
 function ModalIcon({ children, className, ...rest }: ModalIconProps) {
   return (
-    <div
-      data-slot="modal-icon"
-      className={slots.icon({
-        className,
-      })}
-      {...rest}
-    >
+    <div data-slot="modal-icon" className={slots.icon({ className })} {...rest}>
       {children}
     </div>
   );
