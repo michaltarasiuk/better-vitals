@@ -7,18 +7,15 @@
     box-shadow 150ms var(--ease-out);
   @apply motion-reduce:transition-none;
 
-  &:focus-visible:not(:focus),
-  &[data-focus-visible="true"] {
+  @variant focus-visible {
     @apply status-focused;
   }
 
-  &:disabled,
-  &[aria-disabled="true"] {
+  @variant disabled {
     @apply status-disabled;
   }
 
-  &:active,
-  &[data-pressed="true"] {
+  @variant pressed {
     transform: scale(0.97);
   }
 }
@@ -26,17 +23,12 @@
 .alert-dialog__backdrop {
   @apply fixed inset-0 z-50 flex h-(--visual-viewport-height) w-full flex-row items-center justify-center;
 
-  &[data-entering="true"] {
-    @apply animate-in duration-150 ease-out fade-in-0;
+  @variant entering {
+    @apply animate-in duration-150 ease-out will-change-[opacity] fade-in-0 motion-reduce:animate-none;
   }
 
-  &[data-exiting="true"] {
-    @apply animate-out duration-100 ease-out fade-out-0;
-  }
-
-  &[data-entering="true"],
-  &[data-exiting="true"] {
-    @apply will-change-[opacity] motion-reduce:animate-none;
+  @variant exiting {
+    @apply animate-out duration-100 ease-out will-change-[opacity] fade-out-0 motion-reduce:animate-none;
   }
 }
 

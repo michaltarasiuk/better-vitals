@@ -15,12 +15,19 @@
 
   @apply outline-1 outline-danger outline-solid;
 
-  &:focus,
-  &:focus-visible,
-  &:focus-within,
-  &[data-focused="true"],
-  &[data-focus-visible="true"],
-  &[data-focus-within="true"] {
+  @variant focus {
+    --tw-ring-offset-width: 0px;
+
+    @apply ring-2 ring-danger ring-offset-0;
+  }
+
+  @variant focus-visible {
+    --tw-ring-offset-width: 0px;
+
+    @apply ring-2 ring-danger ring-offset-0;
+  }
+
+  @variant focus-within {
     --tw-ring-offset-width: 0px;
 
     @apply ring-2 ring-danger ring-offset-0;

@@ -11,19 +11,15 @@
 
   cursor: var(--cursor-interactive);
 
-  @media (hover: hover) {
-    &:hover,
-    &[data-hovered="true"] {
-      @apply decoration-muted;
+  @variant hover {
+    @apply decoration-muted;
 
-      .link__icon {
-        @apply opacity-100;
-      }
+    .link__icon {
+      @apply opacity-100;
     }
   }
 
-  &:focus-visible:not(:focus),
-  &[data-focus-visible="true"] {
+  @variant focus-visible {
     @apply status-focused;
 
     .link__icon {
@@ -31,7 +27,7 @@
     }
   }
 
-  &[aria-disabled="true"] {
+  @variant disabled {
     @apply status-disabled;
   }
 

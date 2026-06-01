@@ -10,30 +10,25 @@
     box-shadow 150ms var(--ease-out);
   @apply motion-reduce:transition-none;
 
-  @media (hover: hover) {
-    &:hover:not(:focus):not(:focus-visible),
-    &[data-hovered="true"]:not([data-focused="true"]):not(
-        [data-focus-visible="true"]
-      ) {
+  @variant hover {
+    &:not(:focus):not(:focus-visible) {
       @apply bg-field-hover;
       border-color: var(--field-border-hover);
     }
   }
 
-  &:focus,
-  &[data-focused="true"] {
+  @variant focus {
     @apply status-focused-field;
     border-color: var(--field-border-focus);
     background-color: var(--field-focus);
   }
 
-  &[data-invalid="true"] {
+  @variant invalid {
     @apply status-invalid-field;
     background-color: var(--field-focus);
   }
 
-  &[data-disabled="true"],
-  &[aria-disabled="true"] {
+  @variant disabled {
     @apply status-disabled;
   }
 }
@@ -46,21 +41,17 @@
   @apply shadow-none;
   background-color: var(--input-bg);
 
-  @media (hover: hover) {
-    &:hover:not(:focus):not(:focus-visible),
-    &[data-hovered="true"]:not([data-focus-visible="true"]):not(
-        [data-focused="true"]
-      ) {
+  @variant hover {
+    &:not(:focus):not(:focus-visible) {
       background-color: var(--input-bg-hover);
     }
   }
 
-  &:focus,
-  &[data-focused="true"] {
+  @variant focus {
     background-color: var(--input-bg-focus);
   }
 
-  &[data-invalid="true"] {
+  @variant invalid {
     @apply status-invalid-field;
     background-color: var(--input-bg-focus);
   }

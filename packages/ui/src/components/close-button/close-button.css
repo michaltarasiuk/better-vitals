@@ -10,17 +10,15 @@
     box-shadow 150ms var(--ease-out);
   @apply transform-gpu motion-reduce:transition-none;
 
-  &:focus-visible:not(:focus),
-  &[data-focus-visible="true"] {
+  @variant focus-visible {
     @apply status-focused;
   }
 
-  &:disabled,
-  &[aria-disabled="true"] {
+  @variant disabled {
     @apply status-disabled;
   }
 
-  &[data-pending="true"] {
+  @variant pending {
     @apply status-pending;
   }
 
@@ -32,15 +30,11 @@
 .close-button--default {
   @apply bg-default text-muted;
 
-  @media (hover: hover) {
-    &:hover,
-    &[data-hovered="true"] {
-      @apply bg-default-hover;
-    }
+  @variant hover {
+    @apply bg-default-hover;
   }
 
-  &:active,
-  &[data-pressed="true"] {
+  @variant pressed {
     transform: scale(0.93);
   }
 }

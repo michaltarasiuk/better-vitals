@@ -1,6 +1,7 @@
 @layer theme, base, components, utilities;
 
 @import "tailwindcss";
+@plugin "tailwindcss-react-aria-components";
 @import "tw-animate-css";
 
 @import "./base.css" layer(base);

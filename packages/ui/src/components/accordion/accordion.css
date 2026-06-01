@@ -22,7 +22,7 @@
     @apply size-full;
   }
 
-  &[data-expanded="true"] {
+  @variant expanded {
     @apply -rotate-180;
   }
 }
@@ -54,9 +54,8 @@
     box-shadow 150ms var(--ease-out);
   @apply motion-reduce:transition-none;
 
-  @media (hover: hover) {
-    &:hover:not([aria-expanded="true"]),
-    &[data-hovered="true"]:not([aria-expanded="true"]) {
+  @variant hover {
+    &:not([aria-expanded="true"]) {
       background-color: color-mix(
         in oklab,
         var(--foreground) 3%,
@@ -65,13 +64,11 @@
     }
   }
 
-  &:focus-visible:not(:focus),
-  &[data-focus-visible="true"] {
+  @variant focus-visible {
     @apply status-focused;
   }
 
-  &:disabled,
-  &[aria-disabled="true"] {
+  @variant disabled {
     @apply status-disabled;
   }
 }
@@ -86,7 +83,7 @@
     opacity 200ms var(--ease-out);
   @apply motion-reduce:transition-none;
 
-  &[data-expanded="true"] {
+  @variant expanded {
     will-change: height, opacity;
     opacity: 1;
   }
@@ -97,9 +94,8 @@
   border-radius: min(32px, var(--radius-3xl));
 
   .accordion__trigger {
-    @media (hover: hover) {
-      &:hover:not([aria-expanded="true"]),
-      &[data-hovered="true"]:not([aria-expanded="true"]) {
+    @variant hover {
+      &:not([aria-expanded="true"]) {
         @apply bg-default;
       }
     }

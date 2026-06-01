@@ -17,31 +17,25 @@
   background-color: var(--button-bg);
   color: var(--button-fg);
 
-  &:focus-visible:not(:focus),
-  &[data-focus-visible="true"] {
+  @variant focus-visible {
     @apply status-focused;
   }
 
-  &:disabled,
-  &[aria-disabled="true"] {
+  @variant disabled {
     @apply status-disabled;
   }
 
-  &[data-pending="true"] {
+  @variant pending {
     @apply status-pending;
   }
 
-  &:active,
-  &[data-pressed="true"] {
+  @variant pressed {
     background-color: var(--button-bg-pressed);
     transform: scale(0.97);
   }
 
-  @media (hover: hover) {
-    &:hover,
-    &[data-hovered="true"] {
-      background-color: var(--button-bg-hover);
-    }
+  @variant hover {
+    background-color: var(--button-bg-hover);
   }
 
   & svg:not([data-slot="spinner"] svg, [data-slot="link-icon"] svg) {
@@ -56,8 +50,7 @@
     @apply size-4;
   }
 
-  &:active,
-  &[data-pressed="true"] {
+  @variant pressed {
     transform: scale(0.98);
   }
 }
@@ -65,8 +58,7 @@
 .button--lg {
   @apply h-11 text-base md:h-10;
 
-  &:active,
-  &[data-pressed="true"] {
+  @variant pressed {
     transform: scale(0.96);
   }
 }
