@@ -1,7 +1,14 @@
 {
   "tailwindCSS.experimental.configFile": {
-    "packages/ui/**/*.css": "packages/ui/src/styles/index.css",
-    "apps/dashboard/**/*.css": "apps/dashboard/app/app.css"
+    "packages/ui/src/styles/index.css": "packages/ui/**",
+    "apps/dashboard/app/app.css": "apps/dashboard/**"
+  },
+  "tailwindCSS.classFunctions": ["cn", "clsx", "cva", "tv"],
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
+  "files.associations": {
+    "*.css": "tailwindcss"
   },
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
