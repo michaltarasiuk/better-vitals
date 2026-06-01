@@ -1,8 +1,7 @@
 .textfield {
   @apply flex flex-col gap-1;
 
-  &[data-invalid="true"],
-  &[aria-invalid="true"] {
+  @variant invalid {
     [data-slot="description"] {
       @apply hidden;
     }

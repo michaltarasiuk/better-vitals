@@ -82,17 +82,17 @@
     content: none;
   }
 
+  @variant focus-visible {
+    @apply rounded-lg outline-none;
+    box-shadow: inset 0 0 0 2px var(--focus);
+  }
+
   @variant allows-sorting {
-    cursor: var(--cursor-interactive);
+    @apply cursor-(--cursor-interactive);
 
     @variant hover {
       @apply text-foreground;
     }
-  }
-
-  @variant focus-visible {
-    @apply rounded-lg outline-none;
-    box-shadow: inset 0 0 0 2px var(--focus);
   }
 }
 
@@ -117,27 +117,10 @@
 }
 
 .table__row {
-  @apply relative h-full;
-  @apply border-b border-separator/50;
+  @apply relative h-full border-b border-separator/50;
 
   &:last-child {
     @apply border-b-0;
-  }
-
-  @variant hover {
-    .table__cell {
-      @apply bg-surface/40;
-    }
-  }
-
-  @variant selected {
-    .table__cell {
-      @apply bg-surface/10;
-    }
-  }
-
-  @variant disabled {
-    @apply status-disabled;
   }
 
   @variant focus-visible {
@@ -171,6 +154,22 @@
     }
   }
 
+  @variant disabled {
+    @apply status-disabled;
+  }
+
+  @variant hover {
+    .table__cell {
+      @apply bg-surface/40;
+    }
+  }
+
+  @variant selected {
+    .table__cell {
+      @apply bg-surface/10;
+    }
+  }
+
   @variant dragging {
     @apply opacity-50;
   }
@@ -189,10 +188,10 @@
     @apply rounded-lg outline-none;
     box-shadow: inset 0 0 0 2px var(--focus);
   }
-}
 
-.table__cell[data-tree-column] {
-  padding-inline-start: calc(1rem * var(--table-row-level, 1));
+  @variant tree-column {
+    padding-inline-start: calc(1rem * var(--table-row-level, 1));
+  }
 }
 
 .table__footer {
@@ -207,16 +206,16 @@
 .table__column-resizer {
   @apply absolute top-1/2 right-0 box-content h-4 w-px translate-x-1/2 -translate-y-1/2 cursor-col-resize touch-none rounded-sm border-none bg-separator bg-clip-content px-2 outline-none;
 
+  @variant focus-visible {
+    @apply h-full w-0.5 bg-focus;
+  }
+
   @variant hover {
     @apply h-full w-0.5 bg-accent;
   }
 
   @variant resizing {
     @apply h-full w-0.5 bg-accent;
-  }
-
-  @variant focus-visible {
-    @apply h-full w-0.5 bg-focus;
   }
 }
 

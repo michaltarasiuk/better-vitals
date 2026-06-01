@@ -1,7 +1,5 @@
 .close-button {
-  @apply relative isolate inline-flex h-6 w-6 shrink-0 origin-center items-center justify-center rounded-xl p-1 select-none no-highlight;
-
-  cursor: var(--cursor-interactive);
+  @apply relative isolate inline-flex h-6 w-6 shrink-0 origin-center cursor-(--cursor-interactive) items-center justify-center rounded-xl p-1 select-none no-highlight;
 
   transition:
     transform 250ms var(--ease-out-quart),
@@ -35,6 +33,6 @@
   }
 
   @variant pressed {
-    transform: scale(0.93);
+    @apply scale-[0.93];
   }
 }

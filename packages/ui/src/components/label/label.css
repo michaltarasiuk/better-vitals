@@ -1,24 +1,27 @@
 .label {
   @apply text-sm font-medium text-foreground;
+
+  @variant within-required {
+    @apply after:ml-0.5 after:text-danger after:content-['*'];
+  }
+
+  @variant within-disabled {
+    @apply status-disabled;
+  }
+
+  @variant within-invalid {
+    @apply text-danger;
+  }
 }
 
-.label--required,
-[data-required="true"]:not([role="group"]):not([role="radiogroup"]):not(
-    [role="checkboxgroup"]
-  )
-  > .label,
-[data-required="true"]:not([data-slot="radio"]):not([data-slot="checkbox"])
-  > .label {
+.label--required {
   @apply after:ml-0.5 after:text-danger after:content-['*'];
 }
 
-.label--disabled,
-[data-disabled="true"] .label {
+.label--disabled {
   @apply status-disabled;
 }
 
-.label--invalid,
-[data-invalid="true"] .label,
-[aria-invalid="true"] .label {
+.label--invalid {
   @apply text-danger;
 }

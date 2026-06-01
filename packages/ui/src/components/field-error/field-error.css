@@ -1,8 +1,12 @@
 .field-error {
-  @apply h-0 px-1 text-xs wrap-break-word text-danger opacity-0 data-[visible=true]:h-auto data-[visible=true]:opacity-100;
+  @apply h-0 px-1 text-xs wrap-break-word text-danger opacity-0;
 
   transition:
     opacity 150ms var(--ease-out),
     height 350ms var(--ease-smooth);
   @apply motion-reduce:transition-none;
+
+  @variant visible {
+    @apply h-auto opacity-100;
+  }
 }

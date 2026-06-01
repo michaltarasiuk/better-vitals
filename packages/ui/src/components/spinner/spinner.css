@@ -15,21 +15,21 @@
 }
 
 .spinner--current {
-  color: inherit;
+  @apply text-inherit;
 }
 
 .spinner--accent {
-  color: var(--accent);
+  @apply text-(--accent);
 }
 
 .spinner--danger {
-  color: var(--danger);
+  @apply text-(--danger);
 }
 
 .spinner--success {
-  color: var(--success);
+  @apply text-(--success);
 }
 
 .spinner--warning {
-  color: var(--warning);
+  @apply text-(--warning);
 }

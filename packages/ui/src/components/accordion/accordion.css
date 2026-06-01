@@ -18,17 +18,23 @@
 .accordion__indicator {
   @apply ml-auto inline-flex size-4 shrink-0 items-center justify-center text-muted transition duration-250 motion-reduce:transition-none;
 
-  & svg {
-    @apply size-full;
-  }
-
   @variant expanded {
     @apply -rotate-180;
+  }
+
+  & svg {
+    @apply size-full;
   }
 }
 
 .accordion__item {
   @apply relative border-none;
+
+  @variant hide-separator {
+    &::after {
+      display: none;
+    }
+  }
 }
 
 .accordion__item::after {
@@ -40,29 +46,13 @@
   content: none;
 }
 
-.accordion__item[data-hide-separator="true"]::after {
-  display: none;
-}
-
 .accordion__trigger {
-  cursor: var(--cursor-interactive);
-
-  @apply flex flex-1 items-center justify-between px-4 py-4 text-left text-sm font-medium no-highlight;
+  @apply flex flex-1 cursor-(--cursor-interactive) items-center justify-between px-4 py-4 text-left text-sm font-medium no-highlight;
 
   transition:
     opacity 150ms var(--ease-out),
     box-shadow 150ms var(--ease-out);
   @apply motion-reduce:transition-none;
-
-  @variant hover {
-    &:not([aria-expanded="true"]) {
-      background-color: color-mix(
-        in oklab,
-        var(--foreground) 3%,
-        transparent 90%
-      );
-    }
-  }
 
   @variant focus-visible {
     @apply status-focused;
@@ -70,6 +60,16 @@
 
   @variant disabled {
     @apply status-disabled;
+  }
+
+  @variant hover {
+    @variant collapsed {
+      background-color: color-mix(
+        in oklab,
+        var(--foreground) 3%,
+        transparent 90%
+      );
+    }
   }
 }
 
@@ -84,8 +84,8 @@
   @apply motion-reduce:transition-none;
 
   @variant expanded {
-    will-change: height, opacity;
     opacity: 1;
+    will-change: height, opacity;
   }
 }
 
@@ -95,7 +95,7 @@
 
   .accordion__trigger {
     @variant hover {
-      &:not([aria-expanded="true"]) {
+      @variant collapsed {
         @apply bg-default;
       }
     }

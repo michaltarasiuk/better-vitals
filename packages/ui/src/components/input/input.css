@@ -1,8 +1,7 @@
 .input {
-  @apply rounded-field border bg-field px-3 py-2 text-base text-field-foreground shadow-field outline-none placeholder:text-field-placeholder sm:text-sm;
+  @apply rounded-field border border-(--field-border) bg-field px-3 py-2 text-base text-field-foreground shadow-field outline-none placeholder:text-field-placeholder sm:text-sm;
 
   border-width: var(--border-width-field);
-  border-color: var(--field-border);
 
   transition:
     background-color 150ms var(--ease-smooth),
@@ -10,26 +9,22 @@
     box-shadow 150ms var(--ease-out);
   @apply motion-reduce:transition-none;
 
-  @variant hover {
-    &:not(:focus):not(:focus-visible) {
-      @apply bg-field-hover;
-      border-color: var(--field-border-hover);
-    }
-  }
-
   @variant focus {
-    @apply status-focused-field;
-    border-color: var(--field-border-focus);
-    background-color: var(--field-focus);
-  }
-
-  @variant invalid {
-    @apply status-invalid-field;
-    background-color: var(--field-focus);
+    @apply border-(--field-border-focus) bg-(--field-focus) status-focused-field;
   }
 
   @variant disabled {
     @apply status-disabled;
+  }
+
+  @variant hover {
+    &:not(:focus):not(:focus-visible) {
+      @apply border-(--field-border-hover) bg-field-hover;
+    }
+  }
+
+  @variant invalid {
+    @apply bg-(--field-focus) status-invalid-field;
   }
 }
 
@@ -38,22 +33,20 @@
   --input-bg-hover: var(--default-hover);
   --input-bg-focus: var(--default);
 
-  @apply shadow-none;
-  background-color: var(--input-bg);
+  @apply bg-(--input-bg) shadow-none;
+
+  @variant focus {
+    @apply bg-(--input-bg-focus);
+  }
 
   @variant hover {
     &:not(:focus):not(:focus-visible) {
-      background-color: var(--input-bg-hover);
+      @apply bg-(--input-bg-hover);
     }
   }
 
-  @variant focus {
-    background-color: var(--input-bg-focus);
-  }
-
   @variant invalid {
-    @apply status-invalid-field;
-    background-color: var(--input-bg-focus);
+    @apply bg-(--input-bg-focus) status-invalid-field;
   }
 }
 
