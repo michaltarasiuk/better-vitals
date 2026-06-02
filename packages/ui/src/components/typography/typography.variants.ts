@@ -8,7 +8,7 @@ export const typographyVariants = tv({
   },
   slots: {
     base: "typography",
-    prose: "typography-prose",
+    prose: "typography__prose",
   },
   variants: {
     align: {

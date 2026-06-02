@@ -2,79 +2,79 @@
   @apply text-foreground;
 }
 
-.typography-prose {
+.typography__prose {
   @apply text-foreground;
 }
 
-.typography-prose h1 {
+.typography__prose h1 {
   @apply text-4xl font-semibold tracking-tight;
 }
 
-.typography-prose h2 {
+.typography__prose h2 {
   @apply text-3xl font-semibold tracking-tight;
 }
 
-.typography-prose h3 {
+.typography__prose h3 {
   @apply text-2xl font-semibold tracking-tight;
 }
 
-.typography-prose h4 {
+.typography__prose h4 {
   @apply text-xl font-semibold tracking-tight;
 }
 
-.typography-prose h5 {
+.typography__prose h5 {
   @apply text-lg font-semibold tracking-tight;
 }
 
-.typography-prose h6 {
+.typography__prose h6 {
   @apply text-base font-semibold tracking-tight;
 }
 
-.typography-prose p {
+.typography__prose p {
   @apply text-base leading-7;
 }
 
-.typography-prose code {
+.typography__prose code {
   @apply rounded-md bg-default px-1.5 py-0.5 font-mono text-sm text-foreground;
 }
 
-.typography-prose a {
+.typography__prose a {
   @apply font-medium text-link underline underline-offset-4;
 }
 
-.typography-prose blockquote {
+.typography__prose blockquote {
   @apply mt-4 border-l-4 border-border pl-4 text-muted italic;
 }
 
-.typography-prose ul {
+.typography__prose ul {
   @apply my-4 list-disc space-y-2 pl-6;
 }
 
-.typography-prose ol {
+.typography__prose ol {
   @apply my-4 list-decimal space-y-2 pl-6;
 }
 
-.typography-prose li {
+.typography__prose li {
   @apply text-base leading-7;
 }
 
-.typography-prose hr {
+.typography__prose hr {
   @apply my-8 border-separator;
 }
 
-.typography-prose pre {
+.typography__prose pre {
   @apply my-4 overflow-x-auto rounded-xl bg-default p-4 font-mono text-sm leading-relaxed;
 }
 
-.typography-prose strong {
+.typography__prose strong {
   @apply font-semibold text-foreground;
 }
 
-.typography-prose em {
+.typography__prose em {
   @apply italic;
 }
 
-.typography-prose img {
+.typography__prose img {
   @apply my-4 rounded-xl;
 }
 

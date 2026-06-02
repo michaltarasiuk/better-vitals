@@ -5,7 +5,7 @@ const tableVariants = tv({
     variant: "primary",
   },
   slots: {
-    base: "table-root",
+    base: "table",
     body: "table__body",
     cell: "table__cell",
     column: "table__column",
@@ -22,10 +22,10 @@ const tableVariants = tv({
   variants: {
     variant: {
       primary: {
-        base: "table-root--primary",
+        base: "table--primary",
       },
       secondary: {
-        base: "table-root--secondary",
+        base: "table--secondary",
       },
     },
   },
