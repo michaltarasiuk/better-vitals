@@ -11,7 +11,7 @@ import { CloseIcon } from "../icons";
 import {
   closeButtonVariants,
   type CloseButtonVariants,
-} from "./close-button.variants";
+} from "./close-button.ts";
 
 interface CloseButtonProps extends RACButtonProps, CloseButtonVariants {}
 

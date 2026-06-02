@@ -83,10 +83,8 @@
   @apply motion-reduce:transition-none;
 
   @variant expanded {
-    @variant expanded {
-      @apply opacity-100;
-      will-change: opacity, height;
-    }
+    @apply opacity-100;
+    will-change: opacity, height;
   }
 }
 

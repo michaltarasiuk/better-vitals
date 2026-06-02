@@ -7,10 +7,7 @@ import {
 } from "react-aria-components/Separator";
 import { useSlottedContext } from "react-aria-components/slots";
 
-import {
-  separatorVariants,
-  type SeparatorVariants,
-} from "./separator.variants";
+import { separatorVariants, type SeparatorVariants } from "./separator.ts";
 
 interface SeparatorProps extends RACSeparatorProps, SeparatorVariants {}
 

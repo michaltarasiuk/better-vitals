@@ -1,2 +1,2 @@
-export * from "./alert-dialog";
-export * from "./alert-dialog.variants";
+export * from "./alert-dialog.tsx";
+export * from "./alert-dialog.ts";

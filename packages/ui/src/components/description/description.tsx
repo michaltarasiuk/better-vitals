@@ -5,7 +5,7 @@ import { Text, type TextProps } from "react-aria-components/Text";
 import {
   descriptionVariants,
   type DescriptionVariants,
-} from "./description.variants";
+} from "./description.ts";
 
 interface DescriptionProps extends TextProps, DescriptionVariants {}
 

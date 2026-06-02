@@ -1,2 +1,2 @@
-export * from "./textfield";
-export * from "./textfield.variants";
+export * from "./textfield.tsx";
+export * from "./textfield.ts";

@@ -1,2 +1,2 @@
-export * from "./button";
-export * from "./button.variants";
+export * from "./button.tsx";
+export * from "./button.ts";

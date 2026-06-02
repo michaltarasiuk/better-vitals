@@ -1,2 +1,2 @@
-export * from "./card";
-export * from "./card.variants";
+export * from "./card.tsx";
+export * from "./card.ts";

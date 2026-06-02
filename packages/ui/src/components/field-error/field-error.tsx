@@ -6,10 +6,7 @@ import {
 } from "react-aria-components/FieldError";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
-import {
-  fieldErrorVariants,
-  type FieldErrorVariants,
-} from "./field-error.variants";
+import { fieldErrorVariants, type FieldErrorVariants } from "./field-error.ts";
 
 interface FieldErrorProps extends RACFieldErrorProps, FieldErrorVariants {}
 

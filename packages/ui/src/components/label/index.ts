@@ -1,2 +1,2 @@
-export * from "./label";
-export * from "./label.variants";
+export * from "./label.tsx";
+export * from "./label.ts";

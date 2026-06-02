@@ -3,7 +3,7 @@
 import { createContext } from "@lite-app/shared/create-context";
 import type { ComponentProps } from "react";
 
-import { surfaceVariants, type SurfaceVariants } from "./surface.variants";
+import { surfaceVariants, type SurfaceVariants } from "./surface.ts";
 
 const [SurfaceContext, useSurfaceContext] =
   createContext<Pick<SurfaceVariants, "variant">>("SurfaceContext");

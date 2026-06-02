@@ -1,2 +1,2 @@
-export * from "./close-button";
-export * from "./close-button.variants";
+export * from "./close-button.tsx";
+export * from "./close-button.ts";

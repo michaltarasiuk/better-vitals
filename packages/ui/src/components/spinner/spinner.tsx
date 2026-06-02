@@ -2,7 +2,7 @@
 
 import { useId, type ComponentProps } from "react";
 
-import { spinnerVariants, type SpinnerVariants } from "./spinner.variants";
+import { spinnerVariants, type SpinnerVariants } from "./spinner.ts";
 
 interface SpinnerProps
   extends

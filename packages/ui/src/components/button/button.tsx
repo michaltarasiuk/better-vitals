@@ -6,7 +6,7 @@ import {
 } from "react-aria-components/Button";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
-import { buttonVariants, type ButtonVariants } from "./button.variants";
+import { buttonVariants, type ButtonVariants } from "./button.ts";
 
 interface ButtonProps extends RACButtonProps, ButtonVariants {}
 

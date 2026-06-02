@@ -19,7 +19,7 @@ import {
 
 import { cnRenderProps } from "../../utils/cn-render-props";
 import { CloseButton, type CloseButtonProps } from "../close-button";
-import { modalVariants, type ModalVariants } from "./modal.variants";
+import { modalVariants, type ModalVariants } from "./modal.ts";
 
 const slots = modalVariants();
 

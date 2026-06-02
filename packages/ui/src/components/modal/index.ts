@@ -1,2 +1,2 @@
-export * from "./modal";
-export * from "./modal.variants";
+export * from "./modal.tsx";
+export * from "./modal.ts";

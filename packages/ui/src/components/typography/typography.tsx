@@ -3,10 +3,7 @@
 import type { ComponentProps } from "react";
 import { Text, type TextProps } from "react-aria-components/Text";
 
-import {
-  typographyVariants,
-  type TypographyVariants,
-} from "./typography.variants";
+import { typographyVariants, type TypographyVariants } from "./typography.ts";
 
 type TypographyType = NonNullable<TypographyVariants["type"]>;
 

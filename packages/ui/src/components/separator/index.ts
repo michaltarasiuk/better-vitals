@@ -1,2 +1,2 @@
-export * from "./separator";
-export * from "./separator.variants";
+export * from "./separator.tsx";
+export * from "./separator.ts";

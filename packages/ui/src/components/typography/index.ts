@@ -1,2 +1,2 @@
-export * from "./typography";
-export * from "./typography.variants";
+export * from "./typography.tsx";
+export * from "./typography.ts";

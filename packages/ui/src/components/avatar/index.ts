@@ -1,2 +1,2 @@
-export * from "./avatar";
-export * from "./avatar.variants";
+export * from "./avatar.tsx";
+export * from "./avatar.ts";

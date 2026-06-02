@@ -26,7 +26,7 @@ import {
 import { cn } from "tailwind-variants";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
-import { tableVariants, type TableVariants } from "./table.variants";
+import { tableVariants, type TableVariants } from "./table.ts";
 
 const slots = tableVariants();
 

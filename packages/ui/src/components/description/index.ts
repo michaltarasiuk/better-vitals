@@ -1,2 +1,2 @@
-export * from "./description";
-export * from "./description.variants";
+export * from "./description.tsx";
+export * from "./description.ts";

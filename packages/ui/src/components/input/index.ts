@@ -1,2 +1,2 @@
-export * from "./input";
-export * from "./input.variants";
+export * from "./input.tsx";
+export * from "./input.ts";

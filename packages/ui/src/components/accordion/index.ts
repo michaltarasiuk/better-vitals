@@ -1,2 +1,2 @@
-export * from "./accordion";
-export * from "./accordion.variants";
+export * from "./accordion.tsx";
+export * from "./accordion.ts";

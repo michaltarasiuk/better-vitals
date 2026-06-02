@@ -23,7 +23,7 @@ import { DangerIcon, InfoIcon, SuccessIcon, WarningIcon } from "../icons";
 import {
   alertDialogVariants,
   type AlertDialogVariants,
-} from "./alert-dialog.variants";
+} from "./alert-dialog.ts";
 
 const ALERT_DIALOG_STATUS_ICONS = {
   accent: InfoIcon,

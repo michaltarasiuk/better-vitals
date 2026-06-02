@@ -23,10 +23,7 @@ import {
 import { cnRenderProps } from "../../utils/cn-render-props";
 import { IconChevronDown } from "../icons";
 import { SurfaceContext } from "../surface";
-import {
-  accordionVariants,
-  type AccordionVariants,
-} from "./accordion.variants";
+import { accordionVariants, type AccordionVariants } from "./accordion.ts";
 
 const slots = accordionVariants();
 

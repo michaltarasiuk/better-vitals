@@ -9,7 +9,7 @@ import {
 
 import { cnRenderProps } from "../../utils/cn-render-props";
 import { ExternalLinkIcon } from "../icons";
-import { linkVariants, type LinkVariants } from "./link.variants";
+import { linkVariants, type LinkVariants } from "./link.ts";
 
 const slots = linkVariants();
 

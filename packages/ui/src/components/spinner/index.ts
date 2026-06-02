@@ -1,2 +1,2 @@
-export * from "./spinner";
-export * from "./spinner.variants";
+export * from "./spinner.tsx";
+export * from "./spinner.ts";

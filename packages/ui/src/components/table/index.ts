@@ -1,2 +1,2 @@
-export * from "./table";
-export * from "./table.variants";
+export * from "./table.tsx";
+export * from "./table.ts";

@@ -4,7 +4,7 @@ import { createContext } from "@lite-app/shared/create-context";
 import type { ComponentProps } from "react";
 
 import { SurfaceContext } from "../surface";
-import { cardVariants, type CardVariants } from "./card.variants";
+import { cardVariants, type CardVariants } from "./card.ts";
 
 const slots = cardVariants();
 

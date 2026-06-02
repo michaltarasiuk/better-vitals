@@ -1,2 +1,2 @@
-export * from "./field-error";
-export * from "./field-error.variants";
+export * from "./field-error.tsx";
+export * from "./field-error.ts";
