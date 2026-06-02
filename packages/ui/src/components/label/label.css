@@ -5,12 +5,12 @@
     @apply after:ml-0.5 after:text-danger after:content-['*'];
   }
 
-  @variant within-disabled {
-    @apply status-disabled;
-  }
-
   @variant within-invalid {
     @apply text-danger;
+  }
+
+  @variant within-disabled {
+    @apply status-disabled;
   }
 }
 

@@ -10,21 +10,19 @@
   @apply motion-reduce:transition-none;
 
   @variant focus {
-    @apply border-(--field-border-focus) bg-(--field-focus) status-focused-field;
+    @apply border-field-border-focus bg-field-focus status-focused-field;
+  }
+
+  @variant hover {
+    @apply border-field-border-hover bg-field-hover;
+  }
+
+  @variant invalid {
+    @apply bg-field-focus status-invalid-field;
   }
 
   @variant disabled {
     @apply status-disabled;
-  }
-
-  @variant hover {
-    &:not(:focus):not(:focus-visible) {
-      @apply border-(--field-border-hover) bg-field-hover;
-    }
-  }
-
-  @variant invalid {
-    @apply bg-(--field-focus) status-invalid-field;
   }
 }
 
@@ -40,9 +38,7 @@
   }
 
   @variant hover {
-    &:not(:focus):not(:focus-visible) {
-      @apply bg-(--input-bg-hover);
-    }
+    @apply bg-(--input-bg-hover);
   }
 
   @variant invalid {

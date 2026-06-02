@@ -12,24 +12,24 @@
     box-shadow 100ms var(--ease-out);
   @apply transform-gpu motion-reduce:transition-none;
 
-  @variant focus-visible {
-    @apply status-focused;
-  }
-
-  @variant disabled {
-    @apply status-disabled;
-  }
-
-  @variant pending {
-    @apply status-pending;
-  }
-
   @variant hover {
     @apply bg-(--button-bg-hover);
   }
 
   @variant pressed {
     @apply scale-[0.97] bg-(--button-bg-pressed);
+  }
+
+  @variant focus-visible {
+    @apply status-focused;
+  }
+
+  @variant pending {
+    @apply status-pending;
+  }
+
+  @variant disabled {
+    @apply status-disabled;
   }
 
   & svg:not([data-slot="spinner"] svg, [data-slot="link-icon"] svg) {

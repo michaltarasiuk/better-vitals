@@ -12,12 +12,12 @@
     @apply status-focused;
   }
 
-  @variant disabled {
-    @apply status-disabled;
-  }
-
   @variant pending {
     @apply status-pending;
+  }
+
+  @variant disabled {
+    @apply status-disabled;
   }
 
   & svg {

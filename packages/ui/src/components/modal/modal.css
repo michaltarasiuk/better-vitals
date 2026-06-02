@@ -11,12 +11,12 @@
     @apply status-focused;
   }
 
-  @variant disabled {
-    @apply status-disabled;
-  }
-
   @variant pressed {
     @apply scale-[0.97];
+  }
+
+  @variant disabled {
+    @apply status-disabled;
   }
 }
 

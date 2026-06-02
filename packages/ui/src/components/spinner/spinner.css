@@ -19,17 +19,17 @@
 }
 
 .spinner--accent {
-  @apply text-(--accent);
-}
-
-.spinner--danger {
-  @apply text-(--danger);
+  @apply text-accent;
 }
 
 .spinner--success {
-  @apply text-(--success);
+  @apply text-success;
 }
 
 .spinner--warning {
-  @apply text-(--warning);
+  @apply text-warning;
+}
+
+.spinner--danger {
+  @apply text-danger;
 }

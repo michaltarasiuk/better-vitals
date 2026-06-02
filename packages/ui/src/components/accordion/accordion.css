@@ -32,7 +32,7 @@
 
   @variant hide-separator {
     &::after {
-      display: none;
+      @apply hidden;
     }
   }
 }
@@ -43,7 +43,7 @@
 }
 
 .accordion__item:last-child::after {
-  content: none;
+  @apply content-none;
 }
 
 .accordion__trigger {
@@ -54,14 +54,6 @@
     box-shadow 150ms var(--ease-out);
   @apply motion-reduce:transition-none;
 
-  @variant focus-visible {
-    @apply status-focused;
-  }
-
-  @variant disabled {
-    @apply status-disabled;
-  }
-
   @variant hover {
     @variant collapsed {
       background-color: color-mix(
@@ -71,12 +63,19 @@
       );
     }
   }
+
+  @variant focus-visible {
+    @apply status-focused;
+  }
+
+  @variant disabled {
+    @apply status-disabled;
+  }
 }
 
 .accordion__panel {
-  opacity: 0;
+  @apply overflow-clip opacity-0;
   height: var(--disclosure-panel-height);
-  overflow: clip;
 
   transition:
     height 200ms var(--ease-out-quad),
@@ -84,8 +83,10 @@
   @apply motion-reduce:transition-none;
 
   @variant expanded {
-    opacity: 1;
-    will-change: height, opacity;
+    @variant expanded {
+      @apply opacity-100;
+      will-change: opacity, height;
+    }
   }
 }
 

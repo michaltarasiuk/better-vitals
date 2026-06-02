@@ -154,7 +154,7 @@
 }
 
 .alert-dialog__body {
-  @apply -m-[3px] my-0 min-h-0 flex-1 scrollbar overflow-y-auto overscroll-contain p-[3px] text-sm leading-[1.43] text-muted;
+  @apply m-[-3px] my-0 min-h-0 flex-1 scrollbar overflow-y-auto overscroll-contain p-[3px] text-sm leading-[1.43] text-muted;
   -webkit-overflow-scrolling: touch;
 }
 

@@ -9,26 +9,6 @@
     opacity 100ms var(--ease-out);
   @apply motion-reduce:transition-none;
 
-  @variant focus-visible {
-    @apply status-focused;
-
-    .link__icon {
-      @apply opacity-100;
-    }
-  }
-
-  @variant disabled {
-    @apply status-disabled;
-  }
-
-  @variant hover {
-    @apply decoration-muted;
-
-    .link__icon {
-      @apply opacity-100;
-    }
-  }
-
   .link__icon {
     @apply pointer-events-none inline-flex size-2 shrink-0 items-center justify-center text-current opacity-60;
 
@@ -46,5 +26,25 @@
 
   &.button {
     @apply gap-0 no-underline;
+  }
+
+  @variant hover {
+    @apply decoration-muted;
+
+    .link__icon {
+      @apply opacity-100;
+    }
+  }
+
+  @variant focus-visible {
+    @apply status-focused;
+
+    .link__icon {
+      @apply opacity-100;
+    }
+  }
+
+  @variant disabled {
+    @apply status-disabled;
   }
 }
