@@ -12,8 +12,12 @@
   },
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
   "emmet.showExpandedAbbreviation": "never",
   "[css]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[tailwindcss]": {
     "editor.defaultFormatter": "oxc.oxc-vscode"
   },
   "[graphql]": {
