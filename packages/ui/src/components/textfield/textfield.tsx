@@ -3,7 +3,6 @@
 import { createContext } from "@lite-app/shared/create-context";
 import {
   TextField as RACTextField,
-  composeRenderProps,
   type TextFieldProps as RACTextFieldProps,
 } from "react-aria-components";
 
@@ -28,26 +27,24 @@ function TextField({
   ...rest
 }: TextFieldProps) {
   return (
-    <RACTextField
-      data-slot="textfield"
-      className={cnRenderProps(
-        className,
-        textFieldVariants({
-          fullWidth,
-        })
-      )}
-      {...rest}
+    <TextFieldContext
+      value={{
+        variant,
+      }}
     >
-      {composeRenderProps(children, (userChildren) => (
-        <TextFieldContext
-          value={{
-            variant,
-          }}
-        >
-          {userChildren}
-        </TextFieldContext>
-      ))}
-    </RACTextField>
+      <RACTextField
+        data-slot="textfield"
+        className={cnRenderProps(
+          className,
+          textFieldVariants({
+            fullWidth,
+          })
+        )}
+        {...rest}
+      >
+        {children}
+      </RACTextField>
+    </TextFieldContext>
   );
 }
 
