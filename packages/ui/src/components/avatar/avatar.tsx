@@ -2,13 +2,12 @@
 
 import { createContext } from "@lite-app/shared/create-context";
 import * as RadixAvatar from "@radix-ui/react-avatar";
-import type { ComponentPropsWithRef } from "react";
 
 import { avatarVariants, type AvatarVariants } from "./avatar.ts";
 
-type RootProps = ComponentPropsWithRef<typeof RadixAvatar.Root>;
-type ImageProps = ComponentPropsWithRef<typeof RadixAvatar.Image>;
-type FallbackProps = ComponentPropsWithRef<typeof RadixAvatar.Fallback>;
+type RootProps = React.ComponentPropsWithRef<typeof RadixAvatar.Root>;
+type ImageProps = React.ComponentPropsWithRef<typeof RadixAvatar.Image>;
+type FallbackProps = React.ComponentPropsWithRef<typeof RadixAvatar.Fallback>;
 
 const slots = avatarVariants();
 
@@ -73,7 +72,7 @@ export type { AvatarImageProps };
 
 interface AvatarFallbackProps extends FallbackProps {}
 
-function AvatarFallback({ className, ...rest }: AvatarFallbackProps) {
+function AvatarFallback({ children, className, ...rest }: AvatarFallbackProps) {
   const { color, size, variant } = useAvatarContext();
   return (
     <RadixAvatar.Fallback
@@ -85,7 +84,9 @@ function AvatarFallback({ className, ...rest }: AvatarFallbackProps) {
         variant,
       })}
       {...rest}
-    />
+    >
+      {children}
+    </RadixAvatar.Fallback>
   );
 }
 

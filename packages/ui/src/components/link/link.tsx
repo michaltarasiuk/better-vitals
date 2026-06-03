@@ -1,7 +1,6 @@
 "use client";
 
 import { isDefined } from "@lite-app/shared/is-defined";
-import type { ComponentProps } from "react";
 import {
   Link as RACLink,
   type LinkProps as RACLinkProps,
@@ -30,7 +29,7 @@ function Link({ className, children, ...rest }: LinkProps) {
 export { Link };
 export type { LinkProps };
 
-interface LinkIconProps extends ComponentProps<"span"> {}
+interface LinkIconProps extends React.ComponentProps<"span"> {}
 
 function LinkIcon({ className, children, ...rest }: LinkIconProps) {
   return (

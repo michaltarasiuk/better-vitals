@@ -1,7 +1,6 @@
 "use client";
 
 import { createContext } from "@lite-app/shared/create-context";
-import type { ComponentProps } from "react";
 import {
   Dialog as RACDialog,
   DialogTrigger as RACDialogTrigger,
@@ -59,7 +58,7 @@ function Modal({
 export { Modal };
 export type { ModalProps };
 
-interface ModalTriggerProps extends ComponentProps<"div"> {}
+interface ModalTriggerProps extends React.ComponentProps<"div"> {}
 
 function ModalTrigger({ children, className, ...rest }: ModalTriggerProps) {
   return (
@@ -161,7 +160,7 @@ function ModalDialog({ children, className, ...rest }: ModalDialogProps) {
 export { ModalDialog };
 export type { ModalDialogProps };
 
-interface ModalHeaderProps extends ComponentProps<"div"> {}
+interface ModalHeaderProps extends React.ComponentProps<"div"> {}
 
 function ModalHeader({ children, className, ...rest }: ModalHeaderProps) {
   return (
@@ -196,7 +195,7 @@ function ModalHeading({ children, className, ...rest }: ModalHeadingProps) {
 export { ModalHeading };
 export type { ModalHeadingProps };
 
-interface ModalBodyProps extends ComponentProps<"div"> {}
+interface ModalBodyProps extends React.ComponentProps<"div"> {}
 
 function ModalBody({ children, className, ...rest }: ModalBodyProps) {
   const { scroll } = useModalContext();
@@ -217,7 +216,7 @@ function ModalBody({ children, className, ...rest }: ModalBodyProps) {
 export { ModalBody };
 export type { ModalBodyProps };
 
-interface ModalFooterProps extends ComponentProps<"div"> {}
+interface ModalFooterProps extends React.ComponentProps<"div"> {}
 
 function ModalFooter({ children, className, ...rest }: ModalFooterProps) {
   return (
@@ -234,7 +233,7 @@ function ModalFooter({ children, className, ...rest }: ModalFooterProps) {
 export { ModalFooter };
 export type { ModalFooterProps };
 
-interface ModalIconProps extends ComponentProps<"div"> {}
+interface ModalIconProps extends React.ComponentProps<"div"> {}
 
 function ModalIcon({ children, className, ...rest }: ModalIconProps) {
   return (
@@ -249,10 +248,16 @@ export type { ModalIconProps };
 
 interface ModalCloseTriggerProps extends CloseButtonProps {}
 
-function ModalCloseTrigger({ className, ...rest }: ModalCloseTriggerProps) {
+function ModalCloseTrigger({
+  children,
+  className,
+  ...rest
+}: ModalCloseTriggerProps) {
   return (
     <div data-slot="modal-close-trigger" className={slots.closeTrigger()}>
-      <CloseButton slot="close" className={className} {...rest} />
+      <CloseButton slot="close" className={className} {...rest}>
+        {children}
+      </CloseButton>
     </div>
   );
 }

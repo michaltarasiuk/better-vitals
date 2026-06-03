@@ -67,7 +67,7 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
   };
 }
 
-export function CreateOrganization() {
+export function OrganizationCreate() {
   const actionData = useActionData<typeof clientAction>();
   const navigation = useNavigation();
 

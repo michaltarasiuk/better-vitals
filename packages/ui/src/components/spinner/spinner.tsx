@@ -1,12 +1,12 @@
 "use client";
 
-import { useId, type ComponentProps } from "react";
+import { useId } from "react";
 
 import { spinnerVariants, type SpinnerVariants } from "./spinner.ts";
 
 interface SpinnerProps
   extends
-    Omit<ComponentProps<"span">, keyof SpinnerVariants>,
+    Omit<React.ComponentProps<"span">, keyof SpinnerVariants>,
     SpinnerVariants {}
 
 function Spinner({ color, size, className, ...rest }: SpinnerProps) {
@@ -28,7 +28,7 @@ function Spinner({ color, size, className, ...rest }: SpinnerProps) {
 export { Spinner };
 export type { SpinnerProps };
 
-interface SpinnerIconProps extends ComponentProps<"svg"> {}
+interface SpinnerIconProps extends React.ComponentProps<"svg"> {}
 
 function SpinnerIcon(props: SpinnerIconProps) {
   const id = useId();

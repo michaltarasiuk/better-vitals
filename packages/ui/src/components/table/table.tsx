@@ -1,7 +1,6 @@
 "use client";
 
 import { createContext } from "@lite-app/shared/create-context";
-import type { ComponentProps } from "react";
 import {
   Cell as RACCell,
   type CellProps as RACCellProps,
@@ -33,7 +32,7 @@ const slots = tableVariants();
 const [TableContext, useTableContext] =
   createContext<Pick<TableVariants, "variant">>("TableContext");
 
-interface TableProps extends ComponentProps<"div">, TableVariants {}
+interface TableProps extends React.ComponentProps<"div">, TableVariants {}
 
 function Table({ children, variant, className, ...rest }: TableProps) {
   return (
@@ -59,7 +58,7 @@ function Table({ children, variant, className, ...rest }: TableProps) {
 export { Table };
 export type { TableProps };
 
-interface TableScrollContainerProps extends ComponentProps<"div"> {}
+interface TableScrollContainerProps extends React.ComponentProps<"div"> {}
 
 function TableScrollContainer({
   children,
@@ -86,7 +85,7 @@ export type { TableScrollContainerProps };
 
 interface TableContentProps extends RACTableProps {}
 
-function TableContent({ className, ...rest }: TableContentProps) {
+function TableContent({ children, className, ...rest }: TableContentProps) {
   const { variant } = useTableContext();
   return (
     <RACTable
@@ -98,7 +97,9 @@ function TableContent({ className, ...rest }: TableContentProps) {
         })
       )}
       {...rest}
-    />
+    >
+      {children}
+    </RACTable>
   );
 }
 
@@ -108,6 +109,7 @@ export type { TableContentProps };
 interface TableHeaderProps<T> extends RACTableHeaderProps<T> {}
 
 function TableHeader<T extends object>({
+  children,
   className,
   ...rest
 }: TableHeaderProps<T>) {
@@ -122,7 +124,9 @@ function TableHeader<T extends object>({
         })
       )}
       {...rest}
-    />
+    >
+      {children}
+    </RACTableHeader>
   );
 }
 
@@ -131,7 +135,7 @@ export type { TableHeaderProps };
 
 interface TableColumnProps extends RACColumnProps {}
 
-function TableColumn({ className, ...rest }: TableColumnProps) {
+function TableColumn({ children, className, ...rest }: TableColumnProps) {
   const { variant } = useTableContext();
   return (
     <RACColumn
@@ -143,7 +147,9 @@ function TableColumn({ className, ...rest }: TableColumnProps) {
         })
       )}
       {...rest}
-    />
+    >
+      {children}
+    </RACColumn>
   );
 }
 
@@ -153,6 +159,7 @@ export type { TableColumnProps };
 interface TableBodyProps<T extends object> extends RACTableBodyProps<T> {}
 
 function TableBody<T extends object>({
+  children,
   className,
   ...rest
 }: TableBodyProps<T>) {
@@ -167,7 +174,9 @@ function TableBody<T extends object>({
         })
       )}
       {...rest}
-    />
+    >
+      {children}
+    </RACTableBody>
   );
 }
 
@@ -176,7 +185,11 @@ export type { TableBodyProps };
 
 interface TableRowProps<T extends object> extends RACRowProps<T> {}
 
-function TableRow<T extends object>({ className, ...rest }: TableRowProps<T>) {
+function TableRow<T extends object>({
+  children,
+  className,
+  ...rest
+}: TableRowProps<T>) {
   const { variant } = useTableContext();
   return (
     <RACRow
@@ -188,7 +201,9 @@ function TableRow<T extends object>({ className, ...rest }: TableRowProps<T>) {
         })
       )}
       {...rest}
-    />
+    >
+      {children}
+    </RACRow>
   );
 }
 
@@ -197,7 +212,7 @@ export type { TableRowProps };
 
 interface TableCellProps extends RACCellProps {}
 
-function TableCell({ className, ...rest }: TableCellProps) {
+function TableCell({ children, className, ...rest }: TableCellProps) {
   const { variant } = useTableContext();
   return (
     <RACCell
@@ -209,14 +224,16 @@ function TableCell({ className, ...rest }: TableCellProps) {
         })
       )}
       {...rest}
-    />
+    >
+      {children}
+    </RACCell>
   );
 }
 
 export { TableCell };
 export type { TableCellProps };
 
-interface TableFooterProps extends ComponentProps<"div"> {}
+interface TableFooterProps extends React.ComponentProps<"div"> {}
 
 function TableFooter({ className, children, ...rest }: TableFooterProps) {
   const { variant } = useTableContext();
@@ -240,6 +257,7 @@ export type { TableFooterProps };
 interface TableResizableContainerProps extends RACResizableTableContainerProps {}
 
 function TableResizableContainer({
+  children,
   className,
   ...rest
 }: TableResizableContainerProps) {
@@ -248,7 +266,9 @@ function TableResizableContainer({
       data-slot="table-resizable-container"
       className={cn("table__resizable-container", className)}
       {...rest}
-    />
+    >
+      {children}
+    </RACResizableTableContainer>
   );
 }
 
@@ -257,7 +277,11 @@ export type { TableResizableContainerProps };
 
 interface TableColumnResizerProps extends RACColumnResizerProps {}
 
-function TableColumnResizer({ className, ...rest }: TableColumnResizerProps) {
+function TableColumnResizer({
+  children,
+  className,
+  ...rest
+}: TableColumnResizerProps) {
   const { variant } = useTableContext();
   return (
     <RACColumnResizer
@@ -269,7 +293,9 @@ function TableColumnResizer({ className, ...rest }: TableColumnResizerProps) {
         })
       )}
       {...rest}
-    />
+    >
+      {children}
+    </RACColumnResizer>
   );
 }
 
@@ -278,7 +304,11 @@ export type { TableColumnResizerProps };
 
 interface TableLoadMoreItemProps extends RACTableLoadMoreItemProps {}
 
-function TableLoadMoreItem({ className, ...rest }: TableLoadMoreItemProps) {
+function TableLoadMoreItem({
+  children,
+  className,
+  ...rest
+}: TableLoadMoreItemProps) {
   const { variant } = useTableContext();
   return (
     <RACTableLoadMoreItem
@@ -288,14 +318,16 @@ function TableLoadMoreItem({ className, ...rest }: TableLoadMoreItemProps) {
         variant,
       })}
       {...rest}
-    />
+    >
+      {children}
+    </RACTableLoadMoreItem>
   );
 }
 
 export { TableLoadMoreItem };
 export type { TableLoadMoreItemProps };
 
-interface TableLoadMoreContentProps extends ComponentProps<"div"> {}
+interface TableLoadMoreContentProps extends React.ComponentProps<"div"> {}
 
 function TableLoadMoreContent({
   children,

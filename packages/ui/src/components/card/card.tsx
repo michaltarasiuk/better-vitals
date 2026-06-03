@@ -1,7 +1,6 @@
 "use client";
 
 import { createContext } from "@lite-app/shared/create-context";
-import type { ComponentProps } from "react";
 
 import { SurfaceContext } from "../surface";
 import { cardVariants, type CardVariants } from "./card.ts";
@@ -11,7 +10,7 @@ const slots = cardVariants();
 const [CardContext, useCardContext] =
   createContext<Pick<CardVariants, "variant">>("CardContext");
 
-interface CardProps extends ComponentProps<"div">, CardVariants {}
+interface CardProps extends React.ComponentProps<"div">, CardVariants {}
 
 function Card({ variant, className, children, ...rest }: CardProps) {
   const root = (
@@ -50,7 +49,7 @@ function Card({ variant, className, children, ...rest }: CardProps) {
 export { Card };
 export type { CardProps };
 
-interface CardHeaderProps extends ComponentProps<"div"> {}
+interface CardHeaderProps extends React.ComponentProps<"div"> {}
 
 function CardHeader({ className, children, ...rest }: CardHeaderProps) {
   const { variant } = useCardContext();
@@ -71,7 +70,7 @@ function CardHeader({ className, children, ...rest }: CardHeaderProps) {
 export { CardHeader };
 export type { CardHeaderProps };
 
-interface CardTitleProps extends ComponentProps<"h3"> {}
+interface CardTitleProps extends React.ComponentProps<"h3"> {}
 
 function CardTitle({ className, children, ...rest }: CardTitleProps) {
   const { variant } = useCardContext();
@@ -92,7 +91,7 @@ function CardTitle({ className, children, ...rest }: CardTitleProps) {
 export { CardTitle };
 export type { CardTitleProps };
 
-interface CardDescriptionProps extends ComponentProps<"p"> {}
+interface CardDescriptionProps extends React.ComponentProps<"p"> {}
 
 function CardDescription({
   className,
@@ -117,7 +116,7 @@ function CardDescription({
 export { CardDescription };
 export type { CardDescriptionProps };
 
-interface CardContentProps extends ComponentProps<"div"> {}
+interface CardContentProps extends React.ComponentProps<"div"> {}
 
 function CardContent({ className, children, ...rest }: CardContentProps) {
   const { variant } = useCardContext();
@@ -138,7 +137,7 @@ function CardContent({ className, children, ...rest }: CardContentProps) {
 export { CardContent };
 export type { CardContentProps };
 
-interface CardFooterProps extends ComponentProps<"div"> {}
+interface CardFooterProps extends React.ComponentProps<"div"> {}
 
 function CardFooter({ className, children, ...rest }: CardFooterProps) {
   const { variant } = useCardContext();

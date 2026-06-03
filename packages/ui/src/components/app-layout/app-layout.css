@@ -1,0 +1,11 @@
+.app-layout__body {
+  @apply flex min-h-0 min-w-0 flex-1 flex-col;
+}
+
+.app-layout__header {
+  @apply sticky top-0 z-40 shrink-0;
+}
+
+.app-layout__main {
+  @apply min-w-0 flex-1;
+}

@@ -1,7 +1,6 @@
 "use client";
 
 import { createContext } from "@lite-app/shared/create-context";
-import type { ComponentProps, ComponentType } from "react";
 import {
   Dialog as RACDialog,
   DialogTrigger as RACDialogTrigger,
@@ -31,7 +30,7 @@ const ALERT_DIALOG_STATUS_ICONS = {
   default: InfoIcon,
   success: SuccessIcon,
   warning: WarningIcon,
-} satisfies Record<string, ComponentType<ComponentProps<"svg">>>;
+} satisfies Record<string, React.ComponentType<React.ComponentProps<"svg">>>;
 
 const slots = alertDialogVariants();
 
@@ -72,7 +71,7 @@ function AlertDialog({
 export { AlertDialog };
 export type { AlertDialogProps };
 
-interface AlertDialogTriggerProps extends ComponentProps<"div"> {}
+interface AlertDialogTriggerProps extends React.ComponentProps<"div"> {}
 
 function AlertDialogTrigger({
   children,
@@ -180,7 +179,7 @@ function AlertDialogDialog({
 export { AlertDialogDialog };
 export type { AlertDialogDialogProps };
 
-interface AlertDialogHeaderProps extends ComponentProps<"div"> {}
+interface AlertDialogHeaderProps extends React.ComponentProps<"div"> {}
 
 function AlertDialogHeader({
   children,
@@ -223,7 +222,7 @@ function AlertDialogHeading({
 export { AlertDialogHeading };
 export type { AlertDialogHeadingProps };
 
-interface AlertDialogBodyProps extends ComponentProps<"div"> {}
+interface AlertDialogBodyProps extends React.ComponentProps<"div"> {}
 
 function AlertDialogBody({
   children,
@@ -244,7 +243,7 @@ function AlertDialogBody({
 export { AlertDialogBody };
 export type { AlertDialogBodyProps };
 
-interface AlertDialogFooterProps extends ComponentProps<"div"> {}
+interface AlertDialogFooterProps extends React.ComponentProps<"div"> {}
 
 function AlertDialogFooter({
   children,
@@ -265,7 +264,7 @@ function AlertDialogFooter({
 export { AlertDialogFooter };
 export type { AlertDialogFooterProps };
 
-interface AlertDialogIconProps extends ComponentProps<"div"> {}
+interface AlertDialogIconProps extends React.ComponentProps<"div"> {}
 
 function AlertDialogIcon({
   children,
@@ -294,6 +293,7 @@ export type { AlertDialogIconProps };
 interface AlertDialogCloseTriggerProps extends CloseButtonProps {}
 
 function AlertDialogCloseTrigger({
+  children,
   className,
   ...rest
 }: AlertDialogCloseTriggerProps) {
@@ -302,7 +302,9 @@ function AlertDialogCloseTrigger({
       data-slot="alert-dialog-close-trigger"
       className={slots.closeTrigger()}
     >
-      <CloseButton slot="close" className={className} {...rest} />
+      <CloseButton slot="close" className={className} {...rest}>
+        {children}
+      </CloseButton>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext } from "@lite-app/shared/create-context";
-import { useContext, type ComponentProps } from "react";
+import { useContext } from "react";
 import {
   Button as RACButton,
   type ButtonProps as RACButtonProps,
@@ -108,7 +108,7 @@ function AccordionItem({ children, className, ...rest }: AccordionItemProps) {
 export { AccordionItem };
 export type { AccordionItemProps };
 
-interface AccordionIndicatorProps extends ComponentProps<"span"> {}
+interface AccordionIndicatorProps extends React.ComponentProps<"span"> {}
 
 function AccordionIndicator({
   children,
@@ -137,7 +137,11 @@ export type { AccordionIndicatorProps };
 
 interface AccordionHeadingProps extends RACDisclosureHeadingProps {}
 
-function AccordionHeading({ className, ...rest }: AccordionHeadingProps) {
+function AccordionHeading({
+  children,
+  className,
+  ...rest
+}: AccordionHeadingProps) {
   const { variant } = useAccordionContext();
   return (
     <RACDisclosureHeading
@@ -147,7 +151,9 @@ function AccordionHeading({ className, ...rest }: AccordionHeadingProps) {
         variant,
       })}
       {...rest}
-    />
+    >
+      {children}
+    </RACDisclosureHeading>
   );
 }
 
@@ -182,7 +188,7 @@ function AccordionTrigger({
 export { AccordionTrigger };
 export type { AccordionTriggerProps };
 
-interface AccordionBodyProps extends ComponentProps<"div"> {}
+interface AccordionBodyProps extends React.ComponentProps<"div"> {}
 
 function AccordionBody({ children, className, ...rest }: AccordionBodyProps) {
   const { variant } = useAccordionContext();

@@ -1,6 +1,5 @@
 "use client";
 
-import type { ComponentProps } from "react";
 import { Text, type TextProps } from "react-aria-components/Text";
 
 import { typographyVariants, type TypographyVariants } from "./typography.ts";
@@ -62,8 +61,12 @@ interface HeadingProps extends Omit<TypographyProps, "type"> {
   level?: 1 | 2 | 3 | 4 | 5 | 6;
 }
 
-function Heading({ level = 1, ...rest }: HeadingProps) {
-  return <Typography type={`h${level}` satisfies TypographyType} {...rest} />;
+function Heading({ level = 1, children, ...rest }: HeadingProps) {
+  return (
+    <Typography type={`h${level}` satisfies TypographyType} {...rest}>
+      {children}
+    </Typography>
+  );
 }
 
 export { Heading };
@@ -73,9 +76,13 @@ interface ParagraphProps extends Omit<TypographyProps, "type"> {
   size?: "base" | "sm" | "xs";
 }
 
-function Paragraph({ size = "base", ...rest }: ParagraphProps) {
+function Paragraph({ size = "base", children, ...rest }: ParagraphProps) {
   const type = `body-${size}` satisfies TypographyType;
-  return <Typography type={type} {...rest} />;
+  return (
+    <Typography type={type} {...rest}>
+      {children}
+    </Typography>
+  );
 }
 
 export { Paragraph };
@@ -83,14 +90,18 @@ export type { ParagraphProps };
 
 interface CodeProps extends Omit<TypographyProps, "type"> {}
 
-function Code(props: CodeProps) {
-  return <Typography type="code" {...props} />;
+function Code({ children, ...rest }: CodeProps) {
+  return (
+    <Typography type="code" {...rest}>
+      {children}
+    </Typography>
+  );
 }
 
 export { Code };
 export type { CodeProps };
 
-interface ProseProps extends ComponentProps<"div"> {}
+interface ProseProps extends React.ComponentProps<"div"> {}
 
 function Prose({ className, children, ...rest }: ProseProps) {
   const slots = typographyVariants();

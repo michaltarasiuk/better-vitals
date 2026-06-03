@@ -1,14 +1,13 @@
 "use client";
 
 import { createContext } from "@lite-app/shared/create-context";
-import type { ComponentProps } from "react";
 
 import { surfaceVariants, type SurfaceVariants } from "./surface.ts";
 
 const [SurfaceContext, useSurfaceContext] =
   createContext<Pick<SurfaceVariants, "variant">>("SurfaceContext");
 
-interface SurfaceProps extends ComponentProps<"div">, SurfaceVariants {}
+interface SurfaceProps extends React.ComponentProps<"div">, SurfaceVariants {}
 
 function Surface({ variant, className, children, ...rest }: SurfaceProps) {
   return (

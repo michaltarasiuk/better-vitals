@@ -3,7 +3,7 @@ import { href, redirect, type LoaderFunctionArgs } from "react-router";
 import { isAdmin, isLoggedIn } from "~/lib/auth/session.server";
 import { getUserOrganizations } from "~/lib/organization/session.server";
 
-export { clientAction, CreateOrganization as default } from "./index.client";
+export { clientAction, OrganizationCreate as default } from "./index.client";
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const loggedIn = await isLoggedIn(request);
