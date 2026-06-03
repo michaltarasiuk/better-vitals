@@ -6,12 +6,7 @@ interface AppLayoutProps extends React.ComponentProps<"div"> {
   navbar: React.ReactNode;
 }
 
-export function AppLayout({
-  navbar,
-  children,
-  className,
-  ...rest
-}: AppLayoutProps) {
+function AppLayout({ navbar, children, className, ...rest }: AppLayoutProps) {
   return (
     <div
       data-slot="app-layout-body"
@@ -27,3 +22,6 @@ export function AppLayout({
     </div>
   );
 }
+
+export { AppLayout };
+export type { AppLayoutProps };
