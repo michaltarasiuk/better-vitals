@@ -94,7 +94,7 @@ export default function ResetPassword() {
       <CardHeader className={cn("items-center gap-1")}>
         <h1
           className={cardVariants().title({
-            className: "text-xl",
+            className: "text-xl font-medium",
           })}
         >
           Set a new password
