@@ -2,10 +2,19 @@ import { unstable_reactRouterRSC as reactRouterRSC } from "@react-router/dev/vit
 import tailwindcss from "@tailwindcss/vite";
 import rsc from "@vitejs/plugin-rsc";
 import { defineConfig } from "vite";
+import { denyImports } from "vite-env-only";
 import devtoolsJson from "vite-plugin-devtools-json";
 
 export default defineConfig({
-  plugins: [tailwindcss(), reactRouterRSC(), rsc(), devtoolsJson()],
+  plugins: [
+    tailwindcss(),
+    denyImports({
+      client: { files: ["**/.server/*", "**/*.server.*"] },
+    }),
+    reactRouterRSC(),
+    rsc(),
+    devtoolsJson(),
+  ],
   resolve: {
     tsconfigPaths: true,
   },
