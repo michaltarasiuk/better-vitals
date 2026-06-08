@@ -1,0 +1,14 @@
+.navbar {
+  --navbar-height: 4rem;
+  --navbar-max-width: 100%;
+
+  @apply flex flex-col bg-background;
+}
+
+.navbar__header {
+  @apply flex h-(--navbar-height) items-center gap-4 px-6;
+}
+
+.navbar__spacer {
+  @apply flex-1;
+}
