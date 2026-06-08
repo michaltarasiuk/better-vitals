@@ -14,7 +14,9 @@ function Description({ className, children, ...rest }: DescriptionProps) {
     <Text
       slot="description"
       data-slot="description"
-      className={descriptionVariants({ className })}
+      className={descriptionVariants({
+        className,
+      })}
       {...rest}
     >
       {children}
