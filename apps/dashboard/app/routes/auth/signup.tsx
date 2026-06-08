@@ -1,11 +1,14 @@
-import { redirect } from "react-router";
+import { href, redirect } from "react-router";
 
 import { hasExistingUser } from "~/lib/auth/index.server";
 
-export { clientAction, Signup as default } from "./signup.client";
+import { Signup } from "./signup.client";
 
-export async function loader() {
+export { clientAction } from "./signup.client";
+
+export async function ServerComponent() {
   if (await hasExistingUser()) {
-    throw redirect("/signin");
+    throw redirect(href("/signin"));
   }
+  return <Signup />;
 }

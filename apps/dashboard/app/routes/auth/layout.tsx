@@ -1,13 +1,11 @@
-import { href, type LoaderFunctionArgs, Outlet, redirect } from "react-router";
+import { Outlet } from "react-router";
 import { cn } from "tailwind-variants";
 
-import { isLoggedIn } from "~/lib/auth/session.server";
+import { requireUnauthenticated } from "~/lib/auth/middleware.server";
 
-export async function loader({ request }: LoaderFunctionArgs) {
-  if (await isLoggedIn(request)) {
-    throw redirect(href("/"));
-  }
-}
+import type { Route } from "./+types/layout";
+
+export const middleware: Route.MiddlewareFunction[] = [requireUnauthenticated];
 
 export default function AuthLayout() {
   return (

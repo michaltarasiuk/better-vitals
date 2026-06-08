@@ -1,20 +1,9 @@
-import { href, redirect, type LoaderFunctionArgs } from "react-router";
+import { requireAdminWithoutOrganization } from "~/lib/organization/middleware.server";
 
-import { isAdmin, isLoggedIn } from "~/lib/auth/session.server";
-import { getUserOrganizations } from "~/lib/organization/session.server";
+import type { Route } from "./+types/index";
 
 export { clientAction, OrganizationCreate as default } from "./index.client";
 
-export async function loader({ request }: LoaderFunctionArgs) {
-  const loggedIn = await isLoggedIn(request);
-  if (!loggedIn) {
-    throw redirect(href("/signin"));
-  }
-  const [admin, organizations] = await Promise.all([
-    isAdmin(request),
-    getUserOrganizations(request),
-  ]);
-  if (!admin || organizations.length > 0) {
-    throw redirect(href("/"));
-  }
-}
+export const middleware: Route.MiddlewareFunction[] = [
+  requireAdminWithoutOrganization,
+];

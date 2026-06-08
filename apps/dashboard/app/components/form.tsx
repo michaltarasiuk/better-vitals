@@ -18,15 +18,15 @@ export function Form({
   return (
     <UIForm
       method={method}
-      onSubmit={(event) => {
-        onSubmit?.(event);
+      onSubmit={(e) => {
+        onSubmit?.(e);
 
         // If the consumer called e.preventDefault() in their custom onSubmit,
         // we should bail out and let them handle the submission entirely.
-        if (!event.isDefaultPrevented()) {
-          event.preventDefault();
+        if (!e.isDefaultPrevented()) {
+          e.preventDefault();
           if (method === "get" || method === "post") {
-            submit(event.currentTarget, {
+            submit(e.currentTarget, {
               method,
             });
           }

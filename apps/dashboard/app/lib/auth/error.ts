@@ -4,16 +4,14 @@ import { z } from "zod";
 export type AuthError = z.infer<typeof AuthErrorSchema>;
 export type AuthErrorCode = z.infer<typeof AuthErrorCodeSchema>;
 
-const AUTH_ERROR_CODES = [
+export const AuthErrorCodeSchema = z.enum([
   "USER_ALREADY_EXISTS",
   "USER_ALREADY_EXISTS_USE_ANOTHER_EMAIL",
   "INVALID_EMAIL",
   "INVALID_PASSWORD",
   "PASSWORD_TOO_SHORT",
   "PASSWORD_TOO_LONG",
-] as const;
-
-export const AuthErrorCodeSchema = z.enum(AUTH_ERROR_CODES);
+]);
 export const AuthErrorSchema = z.object({
   code: AuthErrorCodeSchema,
   message: z.string(),
