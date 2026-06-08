@@ -9,13 +9,13 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
+  cardVariants,
 } from "@lite-app/ui/components/card";
 import { FieldError } from "@lite-app/ui/components/field-error";
 import { Input } from "@lite-app/ui/components/input";
 import { Label } from "@lite-app/ui/components/label";
 import { Spinner } from "@lite-app/ui/components/spinner";
 import { TextField } from "@lite-app/ui/components/textfield";
-import { Heading } from "@lite-app/ui/components/typography";
 import {
   useActionData,
   useNavigation,
@@ -77,9 +77,13 @@ export function OrganizationCreate() {
   return (
     <Card>
       <CardHeader className={cn("items-center gap-1")}>
-        <Heading level={1} align="center" className={cn("text-xl")}>
+        <h1
+          className={cardVariants().title({
+            className: "text-xl",
+          })}
+        >
           Create an organization
-        </Heading>
+        </h1>
         <CardDescription className={cn("text-center")}>
           Enter a name to get started
         </CardDescription>

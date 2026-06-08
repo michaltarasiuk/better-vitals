@@ -9,6 +9,7 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
+  cardVariants,
 } from "@lite-app/ui/components/card";
 import { FieldError } from "@lite-app/ui/components/field-error";
 import { Input } from "@lite-app/ui/components/input";
@@ -16,7 +17,6 @@ import { Label } from "@lite-app/ui/components/label";
 import { Link } from "@lite-app/ui/components/link";
 import { Spinner } from "@lite-app/ui/components/spinner";
 import { TextField } from "@lite-app/ui/components/textfield";
-import { Heading } from "@lite-app/ui/components/typography";
 import {
   href,
   useActionData,
@@ -75,9 +75,13 @@ export default function RequestPasswordReset() {
   return (
     <Card>
       <CardHeader className={cn("items-center gap-1")}>
-        <Heading level={1} align="center" className={cn("text-xl")}>
+        <h1
+          className={cardVariants().title({
+            className: "text-xl",
+          })}
+        >
           Forgot your password?
-        </Heading>
+        </h1>
         <CardDescription className={cn("text-center")}>
           We will email you a link to reset your password
         </CardDescription>
