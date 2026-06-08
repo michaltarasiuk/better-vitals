@@ -20,6 +20,7 @@
     "@lite-app/shared": "workspace:*",
     "@radix-ui/react-avatar": "^1.1.11",
     "@react-aria/utils": "^3.34.0",
+    "lucide-react": "^0.511.0",
     "react": "catalog:",
     "react-aria-components": "^1.17.0",
     "react-dom": "catalog:",

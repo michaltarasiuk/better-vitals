@@ -1,5 +1,6 @@
 "use client";
 
+import { XIcon } from "lucide-react";
 import { composeRenderProps } from "react-aria-components";
 import {
   Button as RACButton,
@@ -7,7 +8,6 @@ import {
 } from "react-aria-components/Button";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
-import { CloseIcon } from "../icons";
 import {
   closeButtonVariants,
   type CloseButtonVariants,
@@ -35,7 +35,9 @@ function CloseButton({
       {composeRenderProps(
         children,
         (userChildren) =>
-          userChildren ?? <CloseIcon data-slot="close-button-icon" />
+          userChildren ?? (
+            <XIcon aria-hidden data-slot="close-button-icon" size={16} />
+          )
       )}
     </RACButton>
   );

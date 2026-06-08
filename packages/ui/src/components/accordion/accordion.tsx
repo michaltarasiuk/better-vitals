@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext } from "@lite-app/shared/create-context";
+import { ChevronDownIcon } from "lucide-react";
 import { useContext } from "react";
 import {
   Button as RACButton,
@@ -21,7 +22,6 @@ import {
 } from "react-aria-components/DisclosureGroup";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
-import { IconChevronDown } from "../icons";
 import { SurfaceContext } from "../surface";
 import { accordionVariants, type AccordionVariants } from "./accordion.ts";
 
@@ -127,7 +127,7 @@ function AccordionIndicator({
       })}
       {...rest}
     >
-      {children ?? <IconChevronDown aria-hidden="true" />}
+      {children ?? <ChevronDownIcon aria-hidden size={16} />}
     </span>
   );
 }

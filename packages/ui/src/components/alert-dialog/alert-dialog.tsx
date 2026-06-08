@@ -2,6 +2,13 @@
 
 import { createContext } from "@lite-app/shared/create-context";
 import {
+  CircleAlertIcon,
+  CircleCheckIcon,
+  InfoIcon,
+  TriangleAlertIcon,
+  type LucideIcon,
+} from "lucide-react";
+import {
   Dialog as RACDialog,
   DialogTrigger as RACDialogTrigger,
   Heading as RACHeading,
@@ -18,7 +25,6 @@ import {
 
 import { cnRenderProps } from "../../utils/cn-render-props";
 import { CloseButton, type CloseButtonProps } from "../close-button";
-import { DangerIcon, InfoIcon, SuccessIcon, WarningIcon } from "../icons";
 import {
   alertDialogVariants,
   type AlertDialogVariants,
@@ -26,11 +32,11 @@ import {
 
 const ALERT_DIALOG_STATUS_ICONS = {
   accent: InfoIcon,
-  danger: DangerIcon,
+  danger: CircleAlertIcon,
   default: InfoIcon,
-  success: SuccessIcon,
-  warning: WarningIcon,
-} satisfies Record<string, React.ComponentType<React.ComponentProps<"svg">>>;
+  success: CircleCheckIcon,
+  warning: TriangleAlertIcon,
+} satisfies Record<string, LucideIcon>;
 
 const slots = alertDialogVariants();
 
@@ -82,7 +88,9 @@ function AlertDialogTrigger({
     <RACPressable>
       <div
         data-slot="alert-dialog-trigger"
-        className={slots.trigger({ className })}
+        className={slots.trigger({
+          className,
+        })}
         {...rest}
       >
         {children}
@@ -115,9 +123,9 @@ function AlertDialogBackdrop({
           variant,
         })
       )}
-      onClick={(event) => {
-        event.stopPropagation();
-        onClick?.(event);
+      onClick={(e) => {
+        e.stopPropagation();
+        onClick?.(e);
       }}
       {...rest}
     >
@@ -189,7 +197,9 @@ function AlertDialogHeader({
   return (
     <div
       data-slot="alert-dialog-header"
-      className={slots.header({ className })}
+      className={slots.header({
+        className,
+      })}
       {...rest}
     >
       {children}
@@ -211,7 +221,9 @@ function AlertDialogHeading({
     <RACHeading
       slot="title"
       data-slot="alert-dialog-heading"
-      className={slots.heading({ className })}
+      className={slots.heading({
+        className,
+      })}
       {...rest}
     >
       {children}
@@ -232,7 +244,9 @@ function AlertDialogBody({
   return (
     <div
       data-slot="alert-dialog-body"
-      className={slots.body({ className })}
+      className={slots.body({
+        className,
+      })}
       {...rest}
     >
       {children}
@@ -253,7 +267,9 @@ function AlertDialogFooter({
   return (
     <div
       data-slot="alert-dialog-footer"
-      className={slots.footer({ className })}
+      className={slots.footer({
+        className,
+      })}
       {...rest}
     >
       {children}
@@ -282,7 +298,9 @@ function AlertDialogIcon({
       })}
       {...rest}
     >
-      {children ?? <Icon data-slot="alert-dialog-default-icon" />}
+      {children ?? (
+        <Icon aria-hidden data-slot="alert-dialog-default-icon" size={16} />
+      )}
     </div>
   );
 }
