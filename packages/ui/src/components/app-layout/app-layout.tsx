@@ -1,25 +1,38 @@
+import { SidebarProvider } from "../sidebar";
 import { appLayoutVariants } from "./app-layout";
 
 const slots = appLayoutVariants();
 
 interface AppLayoutProps extends React.ComponentProps<"div"> {
   navbar: React.ReactNode;
+  sidebar: React.ReactNode;
 }
 
-function AppLayout({ navbar, children, className, ...rest }: AppLayoutProps) {
+function AppLayout({
+  navbar,
+  sidebar,
+  children,
+  className,
+  ...rest
+}: AppLayoutProps) {
   return (
-    <div
-      data-slot="app-layout-body"
-      className={slots.body({ className })}
-      {...rest}
-    >
-      <div data-slot="app-layout-header" className={slots.header()}>
-        {navbar}
+    <SidebarProvider>
+      {sidebar}
+      <div
+        data-slot="app-layout-body"
+        className={slots.body({
+          className,
+        })}
+        {...rest}
+      >
+        <header data-slot="app-layout-navbar" className={slots.header()}>
+          {navbar}
+        </header>
+        <main data-slot="app-layout-main" className={slots.main()}>
+          {children}
+        </main>
       </div>
-      <div data-slot="app-layout-main" className={slots.main()}>
-        {children}
-      </div>
-    </div>
+    </SidebarProvider>
   );
 }
 

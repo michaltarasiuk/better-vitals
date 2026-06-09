@@ -33,6 +33,6 @@
   }
 
   @variant pressed {
-    @apply scale-[0.93];
+    @apply scale-[0.97];
   }
 }

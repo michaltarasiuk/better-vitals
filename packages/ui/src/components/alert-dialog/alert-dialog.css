@@ -73,8 +73,7 @@
 }
 
 .alert-dialog__dialog {
-  @apply pointer-events-auto relative flex w-full flex-col overflow-clip bg-overlay p-6 shadow-overlay outline-none;
-  border-radius: min(32px, var(--radius-3xl));
+  @apply pointer-events-auto relative flex w-full flex-col overflow-clip radius-surface bg-overlay p-6 shadow-overlay outline-none;
 
   @variant placement-auto {
     @apply mt-auto sm:my-auto;

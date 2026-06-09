@@ -172,6 +172,27 @@
     --ring-offset-width: 2px;
     --link: var(--foreground);
 
+    --fill-subtle: color-mix(in oklab, var(--foreground) 3%, transparent);
+    --fill-surface-muted: color-mix(in oklab, var(--surface) 40%, transparent);
+    --fill-surface-faint: color-mix(in oklab, var(--surface) 10%, transparent);
+    --fill-default-muted: color-mix(in oklab, var(--default) 50%, transparent);
+    --separator-muted: color-mix(in oklab, var(--separator) 50%, transparent);
+    --separator-tertiary-muted: color-mix(
+      in oklab,
+      var(--separator-tertiary) 50%,
+      transparent
+    );
+    --surface-foreground-muted: color-mix(
+      in oklab,
+      var(--surface-foreground) 6%,
+      transparent
+    );
+    --sidebar-edge-outline: color-mix(
+      in oklab,
+      var(--foreground) 8%,
+      transparent
+    );
+
     --scrollbar: var(--scrollbar-thumb);
     --scrollbar-thumb: color-mix(in oklch, var(--foreground) 15%, transparent);
     --scrollbar-track: transparent;
@@ -344,6 +365,12 @@
 
     --focus: var(--accent);
     --link: var(--foreground);
+
+    --sidebar-edge-outline: color-mix(
+      in oklab,
+      var(--foreground) 10%,
+      transparent
+    );
 
     --scrollbar: var(--scrollbar-thumb);
     --scrollbar-thumb: color-mix(in oklch, var(--foreground) 15%, transparent);

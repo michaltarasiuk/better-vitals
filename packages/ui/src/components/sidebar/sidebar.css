@@ -1,0 +1,109 @@
+.sidebar__provider {
+  @apply flex min-h-svh w-full overflow-x-clip;
+}
+
+.sidebar__offset {
+  --sidebar-width: 240px;
+
+  @apply relative w-(--sidebar-width) shrink-0 max-md:hidden;
+
+  transition: width 200ms var(--ease-out-quad);
+  @apply motion-reduce:transition-none;
+
+  @variant state-collapsed {
+    @apply w-0;
+  }
+}
+
+.sidebar {
+  --sidebar-width: 240px;
+  --sidebar-width-collapsed: 48px;
+
+  @apply sticky top-0 z-20 flex h-svh w-(--sidebar-width) min-w-(--sidebar-width-collapsed) shrink-0 flex-col bg-background max-md:hidden;
+  box-shadow: inset -1px 0 0 var(--sidebar-edge-outline);
+
+  transition:
+    translate 200ms var(--ease-out-quad),
+    visibility 200ms var(--ease-out-quad);
+  @apply motion-reduce:transition-none;
+
+  @variant state-collapsed {
+    width: var(--sidebar-width);
+    @apply invisible -translate-x-full;
+  }
+}
+
+.sidebar__header {
+  @apply flex flex-col gap-2 px-4 pt-4 pb-2;
+}
+
+.sidebar__content {
+  @apply flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto px-3;
+}
+
+.sidebar__footer {
+  @apply flex flex-col gap-1 px-3 pt-2 pb-4;
+}
+
+.sidebar__menu {
+  @apply flex flex-col gap-0.5 outline-none;
+
+  forced-color-adjust: none;
+}
+
+.sidebar__menu-item {
+  @apply relative flex w-full cursor-(--cursor-interactive) items-center justify-start text-foreground outline-none no-highlight;
+
+  transition: box-shadow 0.15s var(--ease-out);
+  @apply motion-reduce:transition-none;
+
+  @variant disabled {
+    @apply status-disabled;
+  }
+
+  @variant hover {
+    .sidebar__menu-item-content {
+      @apply bg-default;
+    }
+  }
+
+  @variant focus-visible {
+    .sidebar__menu-item-content {
+      @apply status-focused;
+    }
+  }
+
+  @variant current {
+    .sidebar__menu-item-content {
+      @apply bg-default;
+    }
+
+    .sidebar__menu-icon {
+      @apply text-foreground;
+    }
+
+    .sidebar__menu-label {
+      @apply font-medium;
+    }
+  }
+}
+
+.sidebar__menu-item-content {
+  @apply flex min-h-9 w-full items-center gap-3 overflow-hidden rounded-2xl px-2 py-1.5;
+}
+
+.sidebar__menu-icon {
+  @apply flex size-5 shrink-0 items-center justify-center text-muted;
+
+  & svg {
+    @apply size-4;
+  }
+}
+
+.sidebar__menu-label {
+  @apply pointer-events-none flex min-w-0 flex-1 items-center gap-2 text-sm text-foreground select-none;
+}
+
+.sidebar__menu-label-text {
+  @apply min-w-0 flex-1 truncate;
+}

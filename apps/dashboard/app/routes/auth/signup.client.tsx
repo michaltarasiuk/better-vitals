@@ -30,7 +30,7 @@ import { Form, type FormProps } from "~/components/form";
 import { getAuthErrorField, isKnownAuthError } from "~/lib/auth/error";
 import { signUp } from "~/lib/auth/index.client";
 import { comparePasswords } from "~/lib/auth/validation";
-import { parseFormData } from "~/lib/parse-form-data";
+import { parseFormData } from "~/lib/form";
 import { pickAvatar } from "~/lib/user/avatar";
 
 const FormDataSchema = z.object({

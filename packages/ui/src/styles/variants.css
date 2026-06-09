@@ -3,9 +3,12 @@
 
 @custom-variant visible (&[data-visible]);
 @custom-variant hide-separator (&[data-hide-separator="true"]);
+
 @custom-variant default-icon (&[data-default-icon="true"]);
 @custom-variant tree-column (&[data-tree-column]);
+
 @custom-variant collapsed (&:not([aria-expanded="true"]));
+@custom-variant state-collapsed (&[data-state="collapsed"]);
 
 @custom-variant within-invalid (:is([data-invalid], [aria-invalid="true"]) &);
 @custom-variant within-disabled ([data-disabled] &);

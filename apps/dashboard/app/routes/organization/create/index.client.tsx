@@ -26,12 +26,12 @@ import { z } from "zod";
 
 import { Form, type FormProps } from "~/components/form";
 import { organization } from "~/lib/auth/index.client";
+import { parseFormData } from "~/lib/form";
 import {
   getOrganizationErrorField,
   isKnownOrganizationError,
 } from "~/lib/organization/error";
 import { slugify } from "~/lib/organization/slug";
-import { parseFormData } from "~/lib/parse-form-data";
 
 const FormDataSchema = z.object({
   name: z.string(),

@@ -29,7 +29,7 @@ import { z } from "zod";
 import { Form, type FormProps } from "~/components/form";
 import { getAuthErrorField, isKnownAuthError } from "~/lib/auth/error";
 import { requestPasswordReset } from "~/lib/auth/index.client";
-import { parseFormData } from "~/lib/parse-form-data";
+import { parseFormData } from "~/lib/form";
 
 const FormDataSchema = z.object({
   email: z.string(),

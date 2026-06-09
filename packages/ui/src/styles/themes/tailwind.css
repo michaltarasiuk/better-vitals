@@ -5,6 +5,7 @@
   --radius-lg: calc(var(--radius) * 1); /* 0.5rem (8px) */
   --radius-xl: calc(var(--radius) * 1.5); /* 0.75rem (12px) */
   --radius-2xl: calc(var(--radius) * 2); /* 1rem (16px) */
+  --radius-2\.5xl: calc(var(--radius) * 2.5); /* 1.25rem (20px) */
   --radius-3xl: calc(var(--radius) * 3); /* 1.5rem (24px) */
   --radius-4xl: calc(var(--radius) * 4); /* 2rem (32px) */
   --radius-field: var(--field-radius, calc(var(--radius) * 1.5));
@@ -84,6 +85,15 @@
   --color-separator: var(--separator);
   --color-separator-secondary: var(--separator-secondary);
   --color-separator-tertiary: var(--separator-tertiary);
+  --color-separator-muted: var(--separator-muted);
+  --color-separator-tertiary-muted: var(--separator-tertiary-muted);
+
+  --color-fill-subtle: var(--fill-subtle);
+  --color-fill-surface-muted: var(--fill-surface-muted);
+  --color-fill-surface-faint: var(--fill-surface-faint);
+  --color-fill-default-muted: var(--fill-default-muted);
+  --color-surface-foreground-muted: var(--surface-foreground-muted);
+  --color-sidebar-edge-outline: var(--sidebar-edge-outline);
 
   --color-focus: var(--focus);
   --color-link: var(--link);
@@ -93,6 +103,7 @@
   --shadow-field: var(--field-shadow);
 
   --ease-smooth: ease;
+  --ease-out: var(--ease-out-quad);
 
   --ease-in-quad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
   --ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);

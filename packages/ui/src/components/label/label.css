@@ -2,11 +2,11 @@
   @apply text-sm font-medium text-foreground;
 
   @variant within-required {
-    @apply after:ml-0.5 after:text-danger after:content-['*'];
+    @apply label-required-marker;
   }
 
   @variant within-invalid {
-    @apply text-danger;
+    @apply label-invalid-text;
   }
 
   @variant within-disabled {
@@ -15,7 +15,7 @@
 }
 
 .label--required {
-  @apply after:ml-0.5 after:text-danger after:content-['*'];
+  @apply label-required-marker;
 }
 
 .label--disabled {
@@ -23,5 +23,5 @@
 }
 
 .label--invalid {
-  @apply text-danger;
+  @apply label-invalid-text;
 }
