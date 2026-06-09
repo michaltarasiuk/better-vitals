@@ -10,7 +10,7 @@
   transition: width 200ms var(--ease-out-quad);
   @apply motion-reduce:transition-none;
 
-  @variant state-collapsed {
+  @variant collapsed {
     @apply w-0;
   }
 }
@@ -27,7 +27,7 @@
     visibility 200ms var(--ease-out-quad);
   @apply motion-reduce:transition-none;
 
-  @variant state-collapsed {
+  @variant collapsed {
     width: var(--sidebar-width);
     @apply invisible -translate-x-full;
   }

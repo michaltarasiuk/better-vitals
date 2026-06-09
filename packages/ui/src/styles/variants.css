@@ -7,8 +7,13 @@
 @custom-variant default-icon (&[data-default-icon]);
 @custom-variant tree-column (&[data-tree-column]);
 
-@custom-variant collapsed (&:not([aria-expanded]));
-@custom-variant state-collapsed (&[data-state="collapsed"]);
+@custom-variant collapsed (
+  &:is(
+    [data-state="collapsed"],
+    [aria-expanded="false"],
+    [data-expanded="false"],
+  )
+);
 
 @custom-variant within-invalid (:is([aria-invalid], [data-invalid]) &);
 @custom-variant within-disabled (:is([aria-disabled], [data-disabled]) &);
