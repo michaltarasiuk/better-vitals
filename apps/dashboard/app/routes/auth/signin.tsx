@@ -19,7 +19,7 @@ import { Spinner } from "@lite-app/ui/components/spinner";
 import { TextField } from "@lite-app/ui/components/textfield";
 import {
   href,
-  redirect,
+  redirectDocument,
   useActionData,
   useNavigation,
   type ClientActionFunctionArgs,
@@ -68,7 +68,7 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
     isDefined(organizations.data) && organizations.data.length > 0
       ? href("/")
       : href("/organization/create");
-  throw redirect(redirectTo);
+  throw redirectDocument(redirectTo);
 }
 
 export default function Signin() {

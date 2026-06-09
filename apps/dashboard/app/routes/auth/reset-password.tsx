@@ -19,7 +19,7 @@ import { Spinner } from "@lite-app/ui/components/spinner";
 import { TextField } from "@lite-app/ui/components/textfield";
 import {
   href,
-  redirect,
+  redirectDocument,
   useActionData,
   useNavigation,
   type ClientActionFunctionArgs,
@@ -75,7 +75,7 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
       validationErrors,
     };
   }
-  throw redirect(href("/signin"));
+  throw redirectDocument(href("/signin"));
 
   function getToken() {
     return new URL(request.url).searchParams.get("token");
