@@ -2,16 +2,16 @@
 @custom-variant placement-center (&[data-placement="center"]);
 
 @custom-variant visible (&[data-visible]);
-@custom-variant hide-separator (&[data-hide-separator="true"]);
+@custom-variant hide-separator (&[data-hide-separator]);
 
-@custom-variant default-icon (&[data-default-icon="true"]);
+@custom-variant default-icon (&[data-default-icon]);
 @custom-variant tree-column (&[data-tree-column]);
 
-@custom-variant collapsed (&:not([aria-expanded="true"]));
+@custom-variant collapsed (&:not([aria-expanded]));
 @custom-variant state-collapsed (&[data-state="collapsed"]);
 
-@custom-variant within-invalid (:is([data-invalid], [aria-invalid="true"]) &);
-@custom-variant within-disabled ([data-disabled] &);
+@custom-variant within-invalid (:is([aria-invalid], [data-invalid]) &);
+@custom-variant within-disabled (:is([aria-disabled], [data-disabled]) &);
 @custom-variant within-required (
   :is(
     [data-required]:not([role="group"]):not([role="radiogroup"]):not(
