@@ -16,7 +16,7 @@
 }
 
 .accordion__indicator {
-  @apply ml-auto inline-flex size-4 shrink-0 items-center justify-center text-muted transition duration-250 motion-reduce:transition-none;
+  @apply ms-auto inline-flex size-4 shrink-0 items-center justify-center text-muted transition duration-250 motion-reduce:transition-none;
 
   @variant expanded {
     @apply -rotate-180;

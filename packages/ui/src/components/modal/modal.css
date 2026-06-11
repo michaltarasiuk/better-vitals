@@ -93,19 +93,19 @@
   @apply pointer-events-auto relative flex w-full flex-col radius-surface bg-overlay p-6 shadow-overlay outline-none;
 
   @variant placement-auto {
-    @apply mt-auto sm:my-auto;
+    @apply mbs-auto sm:mbs-auto sm:mbe-auto;
   }
 
   @variant placement-center {
-    @apply my-auto;
+    @apply mbs-auto mbe-auto;
   }
 
   @variant placement-bottom {
-    @apply mt-auto;
+    @apply mbs-auto;
   }
 
   @variant placement-top {
-    @apply mt-0;
+    @apply mbs-0;
   }
 }
 
@@ -142,10 +142,10 @@
 }
 
 .modal__header {
-  @apply mb-0 flex flex-col gap-3;
+  @apply mbe-0 flex flex-col gap-3;
 
   & > .modal__icon {
-    @apply mb-0;
+    @apply mbe-0;
   }
 }
 
@@ -158,7 +158,7 @@
 }
 
 .modal__body {
-  @apply m-[-3px] my-0 min-h-0 flex-1 overflow-visible p-[3px] text-sm leading-[1.43] text-muted;
+  @apply m-[-3px] mbs-0 mbe-0 min-h-0 flex-1 overflow-visible p-[3px] text-sm leading-[1.43] text-muted;
 }
 
 .modal__body--scroll-inside {
@@ -171,7 +171,7 @@
 }
 
 .modal__footer {
-  @apply mt-0 flex flex-row items-center justify-end gap-2;
+  @apply mbs-0 flex flex-row items-center justify-end gap-2;
 }
 
 .modal__close-trigger {
@@ -179,13 +179,13 @@
 }
 
 .modal__header + .modal__body {
-  @apply mt-2;
+  @apply mbs-2;
 }
 
 .modal__header + .modal__footer {
-  @apply mt-5;
+  @apply mbs-5;
 }
 
 .modal__body + .modal__footer {
-  @apply mt-5;
+  @apply mbs-5;
 }

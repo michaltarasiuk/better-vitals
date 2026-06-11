@@ -21,7 +21,7 @@
   }
 
   & svg {
-    @apply pointer-events-none -mx-0.5 my-0.5 size-4 shrink-0 self-center;
+    @apply pointer-events-none -ms-0.5 -me-0.5 mbs-0.5 mbe-0.5 size-4 shrink-0 self-center;
   }
 }
 

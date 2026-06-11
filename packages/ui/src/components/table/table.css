@@ -224,7 +224,7 @@
   & [role="rowheader"] {
     @apply py-3 text-center;
     & > * {
-      @apply mx-auto;
+      @apply ms-auto me-auto;
     }
   }
 }

@@ -16,7 +16,7 @@
     @apply motion-reduce:transition-none;
 
     @variant default-icon {
-      @apply ml-1 pb-1.5;
+      @apply ms-1 pb-1.5;
     }
 
     & svg {
