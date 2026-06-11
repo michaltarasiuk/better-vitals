@@ -1,0 +1,107 @@
+.popover {
+  @apply origin-(--trigger-anchor-point) radius-surface bg-overlay p-0 text-sm shadow-overlay;
+
+  @variant entering {
+    @apply animate-in duration-150 ease-smooth will-change-[opacity,transform] fade-in-0 zoom-in-90 motion-reduce:animate-none;
+
+    @variant placement-top {
+      @apply slide-in-from-bottom-1;
+    }
+
+    @variant placement-bottom {
+      @apply slide-in-from-top-1;
+    }
+
+    @variant placement-left {
+      @apply slide-in-from-right-1;
+    }
+
+    @variant placement-right {
+      @apply slide-in-from-left-1;
+    }
+  }
+
+  @variant exiting {
+    @apply animate-out duration-100 ease-smooth will-change-[opacity,transform] zoom-out-95 fade-out motion-reduce:animate-none;
+  }
+
+  &:has([data-slot="popover-overlay-arrow-group"]) {
+    &[data-placement^="top"] {
+      @apply mb-1;
+    }
+
+    &[data-placement^="bottom"] {
+      @apply mt-1;
+    }
+
+    &[data-placement^="left"] {
+      @apply mr-1;
+    }
+
+    &[data-placement^="right"] {
+      @apply ml-1;
+    }
+  }
+
+  & [data-slot="popover-overlay-arrow"] {
+    @apply block size-3 origin-center text-overlay;
+  }
+
+  & [data-slot="popover-overlay-arrow-group"] {
+    @apply leading-none;
+
+    &[data-placement^="top"] {
+      @apply -mt-1;
+
+      [data-slot="popover-overlay-arrow"] {
+        @apply rotate-180;
+      }
+    }
+
+    &[data-placement^="bottom"] {
+      @apply -mb-1;
+    }
+
+    &[data-placement^="left"] {
+      @apply -ml-1;
+
+      [data-slot="popover-overlay-arrow"] {
+        @apply rotate-90;
+      }
+    }
+
+    &[data-placement^="right"] {
+      @apply -mr-1;
+
+      [data-slot="popover-overlay-arrow"] {
+        @apply -rotate-90;
+      }
+    }
+  }
+}
+
+.popover__dialog {
+  @apply p-4 outline-none;
+}
+
+.popover__heading {
+  @apply font-medium;
+}
+
+.popover__trigger {
+  @apply inline-block cursor-(--cursor-interactive);
+
+  transition:
+    transform 250ms var(--ease-out-quart),
+    background-color 150ms var(--ease-smooth),
+    box-shadow 150ms var(--ease-out);
+  @apply motion-reduce:transition-none;
+
+  @variant focus-visible {
+    @apply status-focused;
+  }
+
+  @variant disabled {
+    @apply status-disabled;
+  }
+}
