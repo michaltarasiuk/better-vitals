@@ -25,10 +25,7 @@ import { selectVariants, type SelectVariants } from "./select.ts";
 
 const slots = selectVariants();
 
-interface SelectContextValue extends Pick<
-  SelectVariants,
-  "fullWidth" | "variant"
-> {}
+interface SelectContextValue extends SelectVariants {}
 
 const [SelectContext, useSelectContext] =
   createContext<SelectContextValue>("SelectContext");
