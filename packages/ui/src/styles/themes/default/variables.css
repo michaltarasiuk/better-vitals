@@ -205,6 +205,10 @@
     --cursor-disabled: not-allowed;
     --disabled-opacity: 0.5;
 
+    --scale-pressed: 0.97;
+    --scale-pressed-sm: 0.98;
+    --scale-pressed-lg: 0.96;
+
     --surface-shadow:
       0 2px 4px 0 rgba(0, 0, 0, 0.04), 0 1px 2px 0 rgba(0, 0, 0, 0.06),
       0 0 1px 0 rgba(0, 0, 0, 0.06);

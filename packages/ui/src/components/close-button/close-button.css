@@ -3,6 +3,7 @@
 
   transition:
     transform 250ms var(--ease-out-quart),
+    scale 250ms var(--ease-out-quart),
     color 150ms var(--ease-out),
     background-color 100ms var(--ease-out),
     box-shadow 150ms var(--ease-out);
@@ -33,6 +34,6 @@
   }
 
   @variant pressed {
-    @apply scale-[0.97];
+    @apply scale-(--scale-pressed);
   }
 }

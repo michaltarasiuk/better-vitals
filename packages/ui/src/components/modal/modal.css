@@ -3,6 +3,7 @@
 
   transition:
     transform 250ms var(--ease-out-quart),
+    scale 250ms var(--ease-out-quart),
     background-color 150ms var(--ease-smooth),
     box-shadow 150ms var(--ease-out);
   @apply motion-reduce:transition-none;
@@ -12,7 +13,7 @@
   }
 
   @variant pressed {
-    @apply scale-[0.97];
+    @apply scale-(--scale-pressed);
   }
 
   @variant disabled {

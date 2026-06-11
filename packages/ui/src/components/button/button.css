@@ -8,6 +8,7 @@
 
   transition:
     transform 250ms var(--ease-smooth),
+    scale 250ms var(--ease-smooth),
     background-color 100ms var(--ease-out),
     box-shadow 100ms var(--ease-out);
   @apply transform-gpu motion-reduce:transition-none;
@@ -17,7 +18,7 @@
   }
 
   @variant pressed {
-    @apply scale-[0.97] bg-(--button-bg-pressed);
+    @apply scale-(--scale-pressed) bg-(--button-bg-pressed);
   }
 
   @variant focus-visible {
@@ -41,7 +42,7 @@
   @apply h-9 px-3 md:h-8;
 
   @variant pressed {
-    @apply scale-[0.98];
+    @apply scale-(--scale-pressed-sm);
   }
 
   & svg:not([data-slot="spinner"] svg, [data-slot="link-icon"] svg) {
@@ -53,7 +54,7 @@
   @apply h-11 text-base md:h-10;
 
   @variant pressed {
-    @apply scale-[0.96];
+    @apply scale-(--scale-pressed-lg);
   }
 }
 

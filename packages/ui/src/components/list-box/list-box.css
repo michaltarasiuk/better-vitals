@@ -1,0 +1,71 @@
+.list-box {
+  @apply relative flex w-full flex-col gap-1 overflow-clip p-1;
+
+  [data-slot="separator"][data-orientation="horizontal"] {
+    @apply ml-[3%] w-[94%];
+  }
+}
+
+.list-box-item {
+  @apply relative flex min-h-9 w-full origin-center cursor-(--cursor-interactive) items-center justify-start gap-3 rounded-2xl px-2 py-1.5 outline-none no-highlight;
+
+  transition:
+    transform 250ms var(--ease-out-quart),
+    scale 250ms var(--ease-out-quart),
+    box-shadow 150ms var(--ease-out);
+  @apply transform-gpu motion-reduce:transition-none;
+
+  [data-slot="label"] {
+    @apply pointer-events-none w-fit select-none;
+  }
+
+  [data-slot="description"] {
+    @apply pointer-events-none text-wrap select-none;
+  }
+
+  &:has(.list-box-item__indicator) {
+    @apply pe-7;
+  }
+
+  @variant focus-visible {
+    @apply status-focused;
+  }
+
+  @variant pressed {
+    @apply scale-(--scale-pressed);
+  }
+
+  @variant hover {
+    @apply bg-default;
+  }
+
+  @variant disabled {
+    @apply status-disabled;
+  }
+
+  @variant selected {
+    .list-box-item__indicator [data-slot="list-box-item-indicator--checkmark"] {
+      transition: stroke-dashoffset 250ms linear;
+      @apply motion-reduce:transition-none;
+    }
+  }
+}
+
+.list-box-item__indicator {
+  @apply absolute inset-e-2 top-1/2 flex size-4 shrink-0 -translate-y-1/2 items-center justify-center text-default-foreground;
+  @apply transition duration-250 motion-reduce:transition-none;
+
+  [data-slot="list-box-item-indicator--checkmark"] {
+    @apply size-2.5 transition-all duration-300 motion-reduce:transition-none;
+  }
+}
+
+.list-box-item--danger {
+  .list-box-item__indicator {
+    @apply text-danger;
+  }
+
+  [data-slot="label"] {
+    @apply text-danger;
+  }
+}
