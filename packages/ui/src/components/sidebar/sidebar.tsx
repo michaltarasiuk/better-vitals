@@ -27,7 +27,7 @@ function SidebarProvider({
 }: SidebarProviderProps) {
   const [open, setOpen] = useState(true);
   function toggle() {
-    setOpen(!open);
+    setOpen((prevOpen) => !prevOpen);
   }
   return (
     <SidebarContext

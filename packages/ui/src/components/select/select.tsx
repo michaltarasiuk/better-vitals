@@ -2,7 +2,7 @@
 
 import { createContext } from "@lite-app/shared/create-context";
 import { ChevronDownIcon } from "lucide-react";
-import { useContext } from "react";
+import { use } from "react";
 import {
   Button as RACButton,
   type ButtonProps as RACButtonProps,
@@ -121,7 +121,7 @@ function SelectIndicator({
   className,
   ...rest
 }: SelectIndicatorProps) {
-  const state = useContext(SelectStateContext);
+  const state = use(SelectStateContext);
   const isOpen = state?.isOpen ?? false;
 
   return (

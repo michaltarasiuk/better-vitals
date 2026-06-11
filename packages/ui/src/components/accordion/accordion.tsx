@@ -2,7 +2,7 @@
 
 import { createContext } from "@lite-app/shared/create-context";
 import { ChevronDownIcon } from "lucide-react";
-import { useContext } from "react";
+import { use } from "react";
 import {
   Button as RACButton,
   type ButtonProps as RACButtonProps,
@@ -116,7 +116,7 @@ function AccordionIndicator({
   ...rest
 }: AccordionIndicatorProps) {
   const { variant } = useAccordionContext();
-  const { isExpanded = false } = useContext(DisclosureStateContext) ?? {};
+  const { isExpanded = false } = use(DisclosureStateContext) ?? {};
   return (
     <span
       data-slot="accordion-indicator"
@@ -219,7 +219,7 @@ interface AccordionPanelProps extends RACDisclosurePanelProps {}
 
 function AccordionPanel({ children, className, ...rest }: AccordionPanelProps) {
   const { variant } = useAccordionContext();
-  const { isExpanded = false } = useContext(DisclosureStateContext) ?? {};
+  const { isExpanded = false } = use(DisclosureStateContext) ?? {};
   return (
     <RACDisclosurePanel
       data-slot="accordion-panel"
