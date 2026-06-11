@@ -1,20 +1,20 @@
+import { isDefined } from "@lite-app/shared/is-defined";
 import { href, redirect, type MiddlewareFunction } from "react-router";
 
-import { getUnauthenticatedRedirectHref } from "~/lib/auth/index.server";
-import { isAdmin, isLoggedIn } from "~/lib/auth/session.server";
+import { sessionContext } from "~/lib/auth/context.server";
+import { ADMIN_ROLE } from "~/lib/auth/session.client";
 
 import { getUserOrganizations } from "./session.server";
 
 export const requireAdminWithoutOrganization: MiddlewareFunction<
   Response
-> = async ({ request }) => {
-  if (!(await isLoggedIn(request))) {
-    throw redirect(await getUnauthenticatedRedirectHref());
+> = async ({ request, context }) => {
+  const session = context.get(sessionContext);
+  if (!isDefined(session)) {
+    throw new Error("Session missing after requireAuthenticated middleware");
   }
-  const [admin, organizations] = await Promise.all([
-    isAdmin(request),
-    getUserOrganizations(request),
-  ]);
+  const organizations = await getUserOrganizations(request);
+  const admin = session.user.role === ADMIN_ROLE;
   if (!admin || organizations.length > 0) {
     throw redirect(href("/"));
   }

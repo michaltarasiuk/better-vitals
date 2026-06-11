@@ -1,7 +1,9 @@
+import { isDefined } from "@lite-app/shared/is-defined";
 import { href, redirect, type MiddlewareFunction } from "react-router";
 
+import { sessionContext } from "~/lib/auth/context.server";
 import { getUnauthenticatedRedirectHref } from "~/lib/auth/index.server";
-import { isLoggedIn } from "~/lib/auth/session.server";
+import { getServerSession, isLoggedIn } from "~/lib/auth/session.server";
 
 export const requireUnauthenticated: MiddlewareFunction<Response> = async ({
   request,
@@ -13,8 +15,11 @@ export const requireUnauthenticated: MiddlewareFunction<Response> = async ({
 
 export const requireAuthenticated: MiddlewareFunction<Response> = async ({
   request,
+  context,
 }) => {
-  if (!(await isLoggedIn(request))) {
+  const session = await getServerSession(request);
+  if (!isDefined(session)) {
     throw redirect(await getUnauthenticatedRedirectHref());
   }
+  context.set(sessionContext, session);
 };
