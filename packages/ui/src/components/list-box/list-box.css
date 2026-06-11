@@ -1,9 +1,5 @@
 .list-box {
   @apply relative flex w-full flex-col gap-1 overflow-clip p-1;
-
-  [data-slot="separator"][data-orientation="horizontal"] {
-    @apply ml-[3%] w-[94%];
-  }
 }
 
 .list-box-item {
