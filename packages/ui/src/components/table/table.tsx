@@ -29,8 +29,10 @@ import { tableVariants, type TableVariants } from "./table.ts";
 
 const slots = tableVariants();
 
+interface TableContextValue extends Pick<TableVariants, "variant"> {}
+
 const [TableContext, useTableContext] =
-  createContext<Pick<TableVariants, "variant">>("TableContext");
+  createContext<TableContextValue>("TableContext");
 
 interface TableProps extends React.ComponentProps<"div">, TableVariants {}
 

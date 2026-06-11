@@ -7,8 +7,10 @@ import { cardVariants, type CardVariants } from "./card.ts";
 
 const slots = cardVariants();
 
+interface CardContextValue extends Pick<CardVariants, "variant"> {}
+
 const [CardContext, useCardContext] =
-  createContext<Pick<CardVariants, "variant">>("CardContext");
+  createContext<CardContextValue>("CardContext");
 
 interface CardProps extends React.ComponentProps<"div">, CardVariants {}
 

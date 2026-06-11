@@ -11,8 +11,10 @@ type FallbackProps = React.ComponentPropsWithRef<typeof RadixAvatar.Fallback>;
 
 const slots = avatarVariants();
 
+interface AvatarContextValue extends AvatarVariants {}
+
 export const [AvatarContext, useAvatarContext] =
-  createContext<AvatarVariants>("AvatarContext");
+  createContext<AvatarContextValue>("AvatarContext");
 
 interface AvatarProps
   extends Omit<RootProps, keyof AvatarVariants>, AvatarVariants {}

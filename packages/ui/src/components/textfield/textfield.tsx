@@ -9,15 +9,15 @@ import {
 import { cnRenderProps } from "../../utils/cn-render-props";
 import { textFieldVariants, type TextFieldVariants } from "./textfield.ts";
 
-interface TextFieldContext {
+interface TextFieldContextValue {
   variant?: "primary" | "secondary";
 }
 
 const [TextFieldContext, useTextFieldContext] =
-  createContext<TextFieldContext>("TextFieldContext");
+  createContext<TextFieldContextValue>("TextFieldContext");
 
 interface TextFieldProps
-  extends RACTextFieldProps, TextFieldVariants, TextFieldContext {}
+  extends RACTextFieldProps, TextFieldVariants, TextFieldContextValue {}
 
 function TextField({
   variant,

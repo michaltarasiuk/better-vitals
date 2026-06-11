@@ -10,13 +10,13 @@ import { sidebarVariants } from "./sidebar";
 
 const slots = sidebarVariants();
 
-interface SidebarContext {
+interface SidebarContextValue {
   open: boolean;
   toggle: () => void;
 }
 
 const [SidebarContext, useSidebar] =
-  createContext<SidebarContext>("SidebarContext");
+  createContext<SidebarContextValue>("SidebarContext");
 
 interface SidebarProviderProps extends React.ComponentProps<"div"> {}
 
