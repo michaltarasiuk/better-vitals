@@ -1,13 +1,7 @@
 import { Outlet } from "react-router";
 import { cn } from "tailwind-variants";
 
-import { requireUnauthenticated } from "~/lib/auth/middleware.server";
-
-import type { Route } from "./+types/layout";
-
-export const middleware: Route.MiddlewareFunction[] = [requireUnauthenticated];
-
-export default function AuthLayout() {
+export function CenteredLayout() {
   return (
     <div
       className={cn(

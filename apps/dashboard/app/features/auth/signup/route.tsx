@@ -2,9 +2,9 @@ import { href, redirect } from "react-router";
 
 import { hasExistingUser } from "~/lib/auth/index.server";
 
-import { Signup } from "./signup.client";
+import { Signup } from "./route.client";
 
-export { clientAction } from "./signup.client";
+export { clientAction } from "./route.client";
 
 export async function ServerComponent() {
   if (await hasExistingUser()) {

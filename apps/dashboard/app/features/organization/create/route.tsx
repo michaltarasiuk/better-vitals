@@ -1,8 +1,8 @@
 import { requireAdminWithoutOrganization } from "~/lib/organization/middleware.server";
 
-import type { Route } from "./+types/index";
+import type { Route } from "./+types/route";
 
-export { clientAction, OrganizationCreate as default } from "./index.client";
+export { clientAction, OrganizationCreate as default } from "./route.client";
 
 export const middleware: Route.MiddlewareFunction[] = [
   requireAdminWithoutOrganization,
