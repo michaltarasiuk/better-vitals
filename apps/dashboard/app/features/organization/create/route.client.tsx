@@ -26,7 +26,7 @@ import { z } from "zod";
 
 import { Form, type FormProps } from "~/components/form";
 import { organization } from "~/lib/auth/index.client";
-import { parseFormData } from "~/lib/form";
+import { parseFormData } from "~/lib/form/parse";
 import {
   getOrganizationErrorField,
   isKnownOrganizationError,
