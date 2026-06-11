@@ -1,14 +1,14 @@
 .select {
   @apply flex flex-col gap-1;
 
+  [data-slot="label"] {
+    @apply w-fit;
+  }
+
   @variant invalid {
     [data-slot="description"] {
       @apply hidden;
     }
-  }
-
-  [data-slot="label"] {
-    @apply w-fit;
   }
 }
 
@@ -77,7 +77,7 @@
 }
 
 .select__indicator {
-  @apply absolute inset-y-0 end-2 my-auto flex size-4 shrink-0 items-center justify-center text-field-placeholder transition duration-150 motion-reduce:transition-none;
+  @apply absolute inset-y-0 inset-e-2 my-auto flex size-4 shrink-0 items-center justify-center text-field-placeholder transition duration-150 motion-reduce:transition-none;
 
   @variant expanded {
     @apply rotate-180;

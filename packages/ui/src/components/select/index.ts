@@ -1,2 +1,2 @@
-export * from "./select.tsx";
 export * from "./select.ts";
+export * from "./select.tsx";
