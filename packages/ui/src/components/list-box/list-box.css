@@ -52,8 +52,7 @@
 }
 
 .list-box-item__indicator {
-  @apply absolute inset-e-2 top-1/2 flex size-4 shrink-0 -translate-y-1/2 items-center justify-center text-default-foreground;
-  @apply transition duration-250 motion-reduce:transition-none;
+  @apply absolute inset-e-2 top-1/2 flex size-4 shrink-0 -translate-y-1/2 items-center justify-center text-default-foreground transition duration-250 motion-reduce:transition-none;
 
   [data-slot="list-box-item-indicator--checkmark"] {
     @apply size-2.5 transition-all duration-300 motion-reduce:transition-none;
