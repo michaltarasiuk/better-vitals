@@ -1,3 +1,1 @@
-import { CenteredLayout } from "../../shared/centered-layout";
-
-export { CenteredLayout as default };
+export { CenteredLayout as default } from "../../shared/centered-layout";
