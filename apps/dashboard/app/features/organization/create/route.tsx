@@ -3,7 +3,7 @@ import { requireAdminWithoutOrganization } from "~/lib/organization/guards.serve
 
 import type { Route } from "./+types/route";
 
-export { clientAction, OrganizationCreate as default } from "./route.client";
+export { clientAction, OrganizationCreate as default } from "./create";
 
 export const middleware: Route.MiddlewareFunction[] = [
   requireAuthenticated,

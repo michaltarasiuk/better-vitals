@@ -5,7 +5,7 @@ import { sessionContext } from "~/lib/auth/session.server";
 
 import type { Route } from "./+types/layout";
 
-export { OrganizationLayout as default } from "./layout.client";
+export { OrganizationLayout as default } from "./organization-layout";
 
 export const middleware: Route.MiddlewareFunction[] = [requireAuthenticated];
 

@@ -5,5 +5,5 @@ export default defineConfig({
     url: "./sqlite.db",
   },
   dialect: "sqlite",
-  schema: "./app/lib/db/schema.ts",
+  schema: "./app/lib/db/schema.server.ts",
 });

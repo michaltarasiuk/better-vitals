@@ -18,7 +18,7 @@ import { Spinner } from "@lite-app/ui/components/spinner";
 import { TextField } from "@lite-app/ui/components/textfield";
 import {
   href,
-  redirectDocument,
+  redirect,
   useActionData,
   useNavigation,
   type ClientActionFunctionArgs,
@@ -27,48 +27,61 @@ import { cn } from "tailwind-variants";
 import { z } from "zod";
 
 import { Form, type FormProps } from "~/components/form";
-import { organization } from "~/lib/auth/index.client";
+import { signUp } from "~/lib/auth";
+import { getAuthErrorField, isKnownAuthError } from "~/lib/auth/error";
+import { comparePasswords } from "~/lib/auth/validation";
 import { parseFormData } from "~/lib/form/parse";
-import {
-  getOrganizationErrorField,
-  isKnownOrganizationError,
-} from "~/lib/organization/error";
-import { slugify } from "~/lib/organization/href";
+import { pickAvatar } from "~/lib/user/avatar";
 
 const FormDataSchema = z.object({
+  confirmPassword: z.string(),
+  email: z.string(),
   name: z.string(),
+  password: z.string(),
 });
 
 export async function clientAction({ request }: ClientActionFunctionArgs) {
-  const { name } = await parseFormData(request, FormDataSchema);
+  const { name, email, password, confirmPassword } = await parseFormData(
+    request,
+    FormDataSchema
+  );
+
+  const passwordValidation = comparePasswords(password, confirmPassword);
+  if (!passwordValidation.success) {
+    return {
+      success: false,
+      validationErrors: passwordValidation.errors,
+    };
+  }
 
   const result = await withMinimumDelay(
-    organization.create({
+    signUp.email({
+      email,
+      image: pickAvatar(),
       name,
-      slug: slugify(name),
+      password,
     })
   );
-  const createdOrganization = result.data;
-  const success = isDefined(createdOrganization);
+  const success = isDefined(result.data);
 
   if (!success) {
-    if (!isKnownOrganizationError(result.error)) {
+    if (!isKnownAuthError(result.error)) {
       return {
         success: false,
       };
     }
     const validationErrors = {
-      [getOrganizationErrorField(result.error.code)]: result.error.message,
+      [getAuthErrorField(result.error.code)]: result.error.message,
     } satisfies FormProps["validationErrors"];
     return {
       success: false,
       validationErrors,
     };
   }
-  throw redirectDocument(href("/:slug", { slug: createdOrganization.slug }));
+  throw redirect(href("/organization/create"));
 }
 
-export function OrganizationCreate() {
+export function Signup() {
   const actionData = useActionData<typeof clientAction>();
   const navigation = useNavigation();
 
@@ -83,19 +96,36 @@ export function OrganizationCreate() {
             className: "text-xl font-medium",
           })}
         >
-          Create an organization
+          Create an account
         </h1>
         <CardDescription className={cn("text-center")}>
-          Enter a name to get started
+          Enter your details to get started
         </CardDescription>
       </CardHeader>
       <Form validationErrors={validationErrors}>
         <CardContent>
-          <TextField name="name" type="text" isRequired>
-            <Label>Name</Label>
-            <Input variant="secondary" />
-            <FieldError />
-          </TextField>
+          <div className={cn("flex flex-col gap-4")}>
+            <TextField name="name" type="text" isRequired>
+              <Label>Name</Label>
+              <Input variant="secondary" />
+              <FieldError />
+            </TextField>
+            <TextField name="email" type="email" isRequired>
+              <Label>Email</Label>
+              <Input variant="secondary" />
+              <FieldError />
+            </TextField>
+            <TextField name="password" type="password" isRequired>
+              <Label>Password</Label>
+              <Input variant="secondary" />
+              <FieldError />
+            </TextField>
+            <TextField name="confirmPassword" type="password" isRequired>
+              <Label>Confirm password</Label>
+              <Input variant="secondary" />
+              <FieldError />
+            </TextField>
+          </div>
         </CardContent>
         <CardFooter className={cn("mt-4")}>
           <Button
@@ -106,7 +136,7 @@ export function OrganizationCreate() {
             {(props) => (
               <>
                 {props.isPending ? <Spinner color="current" size="sm" /> : null}
-                {props.isPending ? "Creating" : "Create organization"}
+                {props.isPending ? "Signing Up" : "Sign Up"}
               </>
             )}
           </Button>

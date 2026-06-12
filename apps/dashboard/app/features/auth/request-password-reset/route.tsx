@@ -27,8 +27,8 @@ import { cn } from "tailwind-variants";
 import { z } from "zod";
 
 import { Form, type FormProps } from "~/components/form";
+import { requestPasswordReset } from "~/lib/auth";
 import { getAuthErrorField, isKnownAuthError } from "~/lib/auth/error";
-import { requestPasswordReset } from "~/lib/auth/index.client";
 import { parseFormData } from "~/lib/form/parse";
 
 const FormDataSchema = z.object({

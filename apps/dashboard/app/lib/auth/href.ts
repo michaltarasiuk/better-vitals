@@ -1,7 +1,20 @@
+import { isDefined } from "@lite-app/shared/is-defined";
 import { href } from "react-router";
 
-import { userExists } from "~/lib/db/user";
+import { authClient } from "~/lib/auth";
+import { getActiveOrganization } from "~/lib/organization/index";
 
-export async function getUnauthenticatedRedirectHref() {
-  return (await userExists()) ? href("/signin") : href("/signup");
+export async function getAuthenticatedRedirectHref() {
+  const activeOrganization = await getActiveOrganization();
+
+  let slug = activeOrganization.data?.slug;
+  if (!isDefined(slug)) {
+    const list = await authClient.organization.list();
+    const [first] = list.data ?? [];
+    ({ slug } = first);
+  }
+
+  return isDefined(slug)
+    ? href(`/:slug`, { slug })
+    : href("/organization/create");
 }

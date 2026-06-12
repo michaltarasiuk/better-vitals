@@ -1,10 +1,10 @@
 import { href, redirect } from "react-router";
 
-import { userExists } from "~/lib/db/user";
+import { userExists } from "~/lib/db/user.server";
 
-import { Signup } from "./route.client";
+import { Signup } from "./signup";
 
-export { clientAction } from "./route.client";
+export { clientAction } from "./signup";
 
 export async function ServerComponent() {
   if (await userExists()) {

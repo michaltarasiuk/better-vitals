@@ -18,8 +18,6 @@ import { Link } from "@lite-app/ui/components/link";
 import { Spinner } from "@lite-app/ui/components/spinner";
 import { TextField } from "@lite-app/ui/components/textfield";
 import {
-  href,
-  redirect,
   redirectDocument,
   useActionData,
   useNavigation,
@@ -29,10 +27,10 @@ import { cn } from "tailwind-variants";
 import { z } from "zod";
 
 import { Form, type FormProps } from "~/components/form";
+import { signIn } from "~/lib/auth";
 import { getAuthErrorField, isKnownAuthError } from "~/lib/auth/error";
-import { organization, signIn } from "~/lib/auth/index.client";
+import { getAuthenticatedRedirectHref } from "~/lib/auth/href";
 import { parseFormData } from "~/lib/form/parse";
-import { getActiveOrganization } from "~/lib/organization/index.client";
 
 const FormDataSchema = z.object({
   email: z.string(),
@@ -64,19 +62,9 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
       validationErrors,
     };
   }
-  const activeOrganization = await getActiveOrganization();
 
-  let slug = activeOrganization.data?.slug;
-  if (!isDefined(slug)) {
-    const list = await organization.list();
-    const [first] = list.data ?? [];
-    ({ slug } = first);
-  }
-
-  if (!isDefined(slug)) {
-    throw redirect(href("/organization/create"));
-  }
-  throw redirectDocument(href("/:slug", { slug }));
+  const redirectHref = await getAuthenticatedRedirectHref();
+  throw redirectDocument(redirectHref);
 }
 
 export default function Signin() {

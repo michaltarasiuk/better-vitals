@@ -28,8 +28,8 @@ import { cn } from "tailwind-variants";
 import { z } from "zod";
 
 import { Form, type FormProps } from "~/components/form";
+import { resetPassword } from "~/lib/auth";
 import { getAuthErrorField, isKnownAuthError } from "~/lib/auth/error";
-import { resetPassword } from "~/lib/auth/index.client";
 import { comparePasswords } from "~/lib/auth/validation";
 import { parseFormData } from "~/lib/form/parse";
 
