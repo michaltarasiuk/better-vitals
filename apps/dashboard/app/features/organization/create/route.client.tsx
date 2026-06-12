@@ -33,7 +33,7 @@ import {
   getOrganizationErrorField,
   isKnownOrganizationError,
 } from "~/lib/organization/error";
-import { slugify } from "~/lib/organization/utils";
+import { slugify } from "~/lib/organization/href";
 
 const FormDataSchema = z.object({
   name: z.string(),

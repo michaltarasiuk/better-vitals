@@ -4,9 +4,7 @@ import { createContext } from "react-router";
 import { ADMIN_ROLE } from "./consts";
 import { auth } from "./index.server";
 
-export type ServerSession = NonNullable<
-  Awaited<ReturnType<typeof getServerSession>>
->;
+export type ServerSession = typeof auth.$Infer.Session;
 
 export const sessionContext = createContext<ServerSession>();
 

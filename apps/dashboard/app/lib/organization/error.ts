@@ -4,10 +4,12 @@ import { z } from "zod";
 export type OrganizationError = z.infer<typeof OrganizationErrorSchema>;
 export type OrganizationErrorCode = z.infer<typeof OrganizationErrorCodeSchema>;
 
-export const OrganizationErrorCodeSchema = z.enum([
+const ORGANIZATION_ERROR_CODES = [
   "ORGANIZATION_ALREADY_EXISTS",
   "ORGANIZATION_SLUG_ALREADY_TAKEN",
-]);
+] as const;
+
+export const OrganizationErrorCodeSchema = z.enum(ORGANIZATION_ERROR_CODES);
 export const OrganizationErrorSchema = z.object({
   code: OrganizationErrorCodeSchema,
   message: z.string(),
