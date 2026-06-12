@@ -26,19 +26,19 @@
   }
 
   &:has([data-slot="popover-overlay-arrow-group"]) {
-    &[data-placement^="top"] {
+    @variant placement-top {
       @apply mbe-1;
     }
 
-    &[data-placement^="bottom"] {
+    @variant placement-bottom {
       @apply mbs-1;
     }
 
-    &[data-placement^="left"] {
+    @variant placement-left {
       @apply me-1;
     }
 
-    &[data-placement^="right"] {
+    @variant placement-right {
       @apply ms-1;
     }
   }
@@ -50,7 +50,7 @@
   & [data-slot="popover-overlay-arrow-group"] {
     @apply leading-none;
 
-    &[data-placement^="top"] {
+    @variant placement-top {
       @apply -mbs-1;
 
       [data-slot="popover-overlay-arrow"] {
@@ -58,11 +58,11 @@
       }
     }
 
-    &[data-placement^="bottom"] {
+    @variant placement-bottom {
       @apply -mbe-1;
     }
 
-    &[data-placement^="left"] {
+    @variant placement-left {
       @apply -ms-1;
 
       [data-slot="popover-overlay-arrow"] {
@@ -70,7 +70,7 @@
       }
     }
 
-    &[data-placement^="right"] {
+    @variant placement-right {
       @apply -me-1;
 
       [data-slot="popover-overlay-arrow"] {
