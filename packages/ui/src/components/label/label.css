@@ -6,7 +6,7 @@
   }
 
   @variant within-invalid {
-    @apply label-invalid-text;
+    @apply text-danger;
   }
 
   @variant within-disabled {
@@ -23,5 +23,5 @@
 }
 
 .label--invalid {
-  @apply label-invalid-text;
+  @apply text-danger;
 }
