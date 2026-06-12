@@ -19,6 +19,7 @@ import { Spinner } from "@lite-app/ui/components/spinner";
 import { TextField } from "@lite-app/ui/components/textfield";
 import {
   href,
+  redirect,
   redirectDocument,
   useActionData,
   useNavigation,
@@ -31,6 +32,7 @@ import { Form, type FormProps } from "~/components/form";
 import { getAuthErrorField, isKnownAuthError } from "~/lib/auth/error";
 import { organization, signIn } from "~/lib/auth/index.client";
 import { parseFormData } from "~/lib/form/parse";
+import { getActiveOrganization } from "~/lib/organization/index.client";
 
 const FormDataSchema = z.object({
   email: z.string(),
@@ -62,13 +64,19 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
       validationErrors,
     };
   }
+  const activeOrganization = await getActiveOrganization();
 
-  const organizations = await organization.list();
-  const redirectTo =
-    isDefined(organizations.data) && organizations.data.length > 0
-      ? href("/")
-      : href("/organization/create");
-  throw redirectDocument(redirectTo);
+  let slug = activeOrganization.data?.slug;
+  if (!isDefined(slug)) {
+    const list = await organization.list();
+    const [first] = list.data ?? [];
+    ({ slug } = first);
+  }
+
+  if (!isDefined(slug)) {
+    throw redirect(href("/organization/create"));
+  }
+  throw redirectDocument(href("/:slug", { slug }));
 }
 
 export default function Signin() {

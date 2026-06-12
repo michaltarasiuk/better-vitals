@@ -1,7 +1,14 @@
 import { isDefined } from "@lite-app/shared/is-defined";
+import { createContext } from "react-router";
 
+import { ADMIN_ROLE } from "./consts";
 import { auth } from "./index.server";
-import { ADMIN_ROLE } from "./session.client";
+
+export type ServerSession = NonNullable<
+  Awaited<ReturnType<typeof getServerSession>>
+>;
+
+export const sessionContext = createContext<ServerSession>();
 
 export function getServerSession(request: Request) {
   return auth.api.getSession({

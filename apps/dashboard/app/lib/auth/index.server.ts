@@ -3,7 +3,7 @@ import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { admin, organization } from "better-auth/plugins";
 import { href } from "react-router";
 
-import { ADMIN_ROLE } from "~/lib/auth/session.client";
+import { ADMIN_ROLE } from "~/lib/auth/consts";
 
 import { db } from "../db";
 import * as schema from "../db/schema";

@@ -17,6 +17,8 @@ import { Label } from "@lite-app/ui/components/label";
 import { Spinner } from "@lite-app/ui/components/spinner";
 import { TextField } from "@lite-app/ui/components/textfield";
 import {
+  href,
+  redirectDocument,
   useActionData,
   useNavigation,
   type ClientActionFunctionArgs,
@@ -31,7 +33,7 @@ import {
   getOrganizationErrorField,
   isKnownOrganizationError,
 } from "~/lib/organization/error";
-import { slugify } from "~/lib/organization/slug";
+import { slugify } from "~/lib/organization/utils";
 
 const FormDataSchema = z.object({
   name: z.string(),
@@ -46,7 +48,8 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
       slug: slugify(name),
     })
   );
-  const success = isDefined(result.data);
+  const createdOrganization = result.data;
+  const success = isDefined(createdOrganization);
 
   if (!success) {
     if (!isKnownOrganizationError(result.error)) {
@@ -62,9 +65,7 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
       validationErrors,
     };
   }
-  return {
-    success: true,
-  };
+  throw redirectDocument(href("/:slug", { slug: createdOrganization.slug }));
 }
 
 export function OrganizationCreate() {

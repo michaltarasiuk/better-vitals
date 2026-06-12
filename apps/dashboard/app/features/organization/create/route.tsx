@@ -1,5 +1,5 @@
-import { requireAuthenticated } from "~/lib/auth/middleware.server";
-import { requireAdminWithoutOrganization } from "~/lib/organization/middleware.server";
+import { requireAuthenticated } from "~/lib/auth/guards.server";
+import { requireAdminWithoutOrganization } from "~/lib/organization/guards.server";
 
 import type { Route } from "./+types/route";
 

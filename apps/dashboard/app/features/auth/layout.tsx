@@ -1,4 +1,4 @@
-import { requireUnauthenticated } from "~/lib/auth/middleware.server";
+import { requireUnauthenticated } from "~/lib/auth/guards.server";
 
 import type { Route } from "./+types/layout";
 

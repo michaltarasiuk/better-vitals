@@ -1,7 +1,7 @@
 import { isDefined } from "@lite-app/shared/is-defined";
 
-import { sessionContext } from "~/lib/auth/context.server";
-import { requireAuthenticated } from "~/lib/auth/middleware.server";
+import { requireAuthenticated } from "~/lib/auth/guards.server";
+import { sessionContext } from "~/lib/auth/session.server";
 
 import type { Route } from "./+types/layout";
 
