@@ -1,6 +1,6 @@
 import { tv, type VariantProps } from "tailwind-variants";
 
-const accordionVariants = tv({
+export const accordionVariants = tv({
   defaultVariants: {
     variant: "default",
   },
@@ -24,5 +24,4 @@ const accordionVariants = tv({
   },
 });
 
-export { accordionVariants };
 export type AccordionVariants = VariantProps<typeof accordionVariants>;

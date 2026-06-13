@@ -51,9 +51,7 @@
 }
 
 @utility status-disabled {
-  opacity: var(--disabled-opacity);
-  cursor: var(--cursor-disabled);
-  pointer-events: none;
+  @apply pointer-events-none cursor-(--cursor-disabled) opacity-[var(--disabled-opacity)];
 }
 
 @utility status-pending {

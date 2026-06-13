@@ -5,17 +5,18 @@
 .sidebar__offset {
   --sidebar-width: 240px;
 
-  @apply relative w-(--sidebar-width) shrink-0;
+  @apply relative w-(--sidebar-width) shrink-0 transition-[width_200ms_var(--ease-out-quad)];
 
   @variant max-md {
     @apply hidden;
   }
 
-  transition: width 200ms var(--ease-out-quad);
-  @apply motion-reduce:transition-none;
-
   @variant collapsed {
     @apply w-0;
+  }
+
+  @variant motion-reduce {
+    @apply transition-none;
   }
 }
 
@@ -23,21 +24,18 @@
   --sidebar-width: 240px;
   --sidebar-width-collapsed: 48px;
 
-  @apply sticky top-0 z-20 flex h-svh w-(--sidebar-width) min-w-(--sidebar-width-collapsed) shrink-0 flex-col bg-background;
-  box-shadow: inset -1px 0 0 var(--sidebar-edge-outline);
+  @apply sticky top-0 z-20 flex h-svh w-(--sidebar-width) min-w-(--sidebar-width-collapsed) shrink-0 flex-col bg-background shadow-[inset_-1px_0_0_var(--sidebar-edge-outline)] transition-[translate_200ms_var(--ease-out-quad),visibility_200ms_var(--ease-out-quad)];
 
   @variant max-md {
     @apply hidden;
   }
 
-  transition:
-    translate 200ms var(--ease-out-quad),
-    visibility 200ms var(--ease-out-quad);
-  @apply motion-reduce:transition-none;
-
   @variant collapsed {
-    width: var(--sidebar-width);
-    @apply invisible -translate-x-full;
+    @apply invisible w-(--sidebar-width) -translate-x-full;
+  }
+
+  @variant motion-reduce {
+    @apply transition-none;
   }
 }
 
@@ -54,16 +52,15 @@
 }
 
 .sidebar__menu {
-  @apply flex flex-col gap-0.5 outline-none;
-
-  forced-color-adjust: none;
+  @apply flex flex-col gap-0.5 forced-color-adjust-none outline-none;
 }
 
 .sidebar__menu-item {
-  @apply relative flex w-full cursor-(--cursor-interactive) items-center justify-start text-foreground outline-none no-highlight;
+  @apply relative flex w-full cursor-(--cursor-interactive) items-center justify-start text-foreground transition-[box-shadow_150ms_var(--ease-out)] outline-none no-highlight;
 
-  transition: box-shadow 0.15s var(--ease-out);
-  @apply motion-reduce:transition-none;
+  @variant motion-reduce {
+    @apply transition-none;
+  }
 
   @variant hover {
     .sidebar__menu-item-content {

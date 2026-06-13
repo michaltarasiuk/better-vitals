@@ -1,6 +1,5 @@
 .table {
-  @apply relative grid w-full overflow-clip;
-  grid-template-columns: minmax(0, 1fr);
+  @apply relative grid w-full grid-cols-[minmax(0,1fr)] overflow-clip;
 }
 
 .table__scroll-container {
@@ -8,8 +7,7 @@
 }
 
 .table--primary {
-  @apply bg-surface-secondary px-1 pb-1;
-  border-radius: min(32px, var(--radius-2\.5xl));
+  @apply rounded-[min(32px,var(--radius-2\.5xl))] bg-surface-secondary px-1 pb-1;
 }
 
 .table--secondary .table__header {
@@ -21,13 +19,11 @@
 }
 
 .table--secondary .table__column:first-child {
-  border-start-start-radius: min(32px, var(--radius-2xl));
-  border-end-start-radius: min(32px, var(--radius-2xl));
+  @apply rounded-ss-[min(32px,var(--radius-2xl))] rounded-es-[min(32px,var(--radius-2xl))];
 }
 
 .table--secondary .table__column:last-child {
-  border-start-end-radius: min(32px, var(--radius-2xl));
-  border-end-end-radius: min(32px, var(--radius-2xl));
+  @apply rounded-se-[min(32px,var(--radius-2xl))] rounded-ee-[min(32px,var(--radius-2xl))];
 }
 
 .table--secondary .table__body {
@@ -73,12 +69,11 @@
   @apply relative px-4 py-2.5 text-left text-xs font-medium text-muted;
 
   &::after {
-    content: "";
-    @apply pointer-events-none absolute top-1/2 right-0 h-4 w-px -translate-y-1/2 rounded-sm bg-separator;
+    @apply pointer-events-none absolute top-1/2 right-0 h-4 w-px -translate-y-1/2 rounded-sm bg-separator content-[''];
   }
 
   &:last-child:not(:only-child)::after {
-    content: none;
+    @apply content-none;
   }
 
   @variant allows-sorting {
@@ -96,21 +91,20 @@
 
 .table__body {
   & tr:first-child td:first-child {
-    border-start-start-radius: min(32px, var(--radius-2xl));
+    @apply rounded-ss-[min(32px,var(--radius-2xl))];
   }
   & tr:first-child td:last-child {
-    border-start-end-radius: min(32px, var(--radius-2xl));
+    @apply rounded-se-[min(32px,var(--radius-2xl))];
   }
   & tr:last-child td:first-child {
-    border-end-start-radius: min(32px, var(--radius-2xl));
+    @apply rounded-es-[min(32px,var(--radius-2xl))];
   }
   & tr:last-child td:last-child {
-    border-end-end-radius: min(32px, var(--radius-2xl));
+    @apply rounded-ee-[min(32px,var(--radius-2xl))];
   }
 
   &:not(tbody) {
-    @apply relative h-full overflow-clip;
-    border-radius: min(32px, var(--radius-2xl));
+    @apply relative h-full overflow-clip rounded-[min(32px,var(--radius-2xl))];
   }
 }
 
@@ -183,7 +177,7 @@
   @apply h-full border-b border-separator-tertiary-muted bg-surface px-4 py-3 align-middle text-sm text-foreground;
 
   @variant tree-column {
-    padding-inline-start: calc(1rem * var(--table-row-level, 1));
+    @apply ps-[calc(1rem*var(--table-row-level,1))];
   }
 
   @variant focus-visible {
@@ -216,7 +210,7 @@
 }
 
 .table__column:has(.table__column-resizer)::after {
-  content: none;
+  @apply content-none;
 }
 
 .table__load-more {

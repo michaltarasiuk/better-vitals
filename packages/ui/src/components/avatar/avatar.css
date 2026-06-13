@@ -7,7 +7,11 @@
 }
 
 .avatar__image {
-  @apply absolute inset-0 aspect-square size-full transition-opacity duration-250 motion-reduce:transition-none;
+  @apply absolute inset-0 aspect-square size-full transition-opacity duration-250;
+
+  @variant motion-reduce {
+    @apply transition-none;
+  }
 }
 
 .avatar--sm {

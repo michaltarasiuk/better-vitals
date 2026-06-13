@@ -2,7 +2,7 @@
   @apply origin-(--trigger-anchor-point) radius-surface bg-overlay p-0 text-sm shadow-overlay;
 
   @variant entering {
-    @apply animate-in duration-150 ease-smooth will-change-[opacity,transform] fade-in-0 zoom-in-90 motion-reduce:animate-none;
+    @apply animate-in duration-150 ease-smooth will-change-[opacity,transform] fade-in-0 zoom-in-90;
 
     @variant placement-top {
       @apply slide-in-from-bottom-1;
@@ -19,10 +19,18 @@
     @variant placement-right {
       @apply slide-in-from-start-1;
     }
+
+    @variant motion-reduce {
+      @apply animate-none;
+    }
   }
 
   @variant exiting {
-    @apply animate-out duration-100 ease-smooth will-change-[opacity,transform] zoom-out-95 fade-out motion-reduce:animate-none;
+    @apply animate-out duration-100 ease-smooth will-change-[opacity,transform] zoom-out-95 fade-out;
+
+    @variant motion-reduce {
+      @apply animate-none;
+    }
   }
 
   &:has([data-slot="popover-overlay-arrow-group"]) {
@@ -89,13 +97,11 @@
 }
 
 .popover__trigger {
-  @apply inline-block cursor-(--cursor-interactive);
+  @apply inline-block cursor-(--cursor-interactive) transition-[transform_250ms_var(--ease-out-quart),background-color_150ms_var(--ease-smooth),box-shadow_150ms_var(--ease-out)];
 
-  transition:
-    transform 250ms var(--ease-out-quart),
-    background-color 150ms var(--ease-smooth),
-    box-shadow 150ms var(--ease-out);
-  @apply motion-reduce:transition-none;
+  @variant motion-reduce {
+    @apply transition-none;
+  }
 
   @variant focus-visible {
     @apply status-focused;

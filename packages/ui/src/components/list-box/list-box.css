@@ -3,13 +3,7 @@
 }
 
 .list-box-item {
-  @apply relative flex min-h-9 w-full origin-center cursor-(--cursor-interactive) items-center justify-start gap-3 rounded-2xl px-2 py-1.5 outline-none no-highlight;
-
-  transition:
-    transform 250ms var(--ease-out-quart),
-    scale 250ms var(--ease-out-quart),
-    box-shadow 150ms var(--ease-out);
-  @apply transform-gpu motion-reduce:transition-none;
+  @apply relative flex min-h-9 w-full origin-center transform-gpu cursor-(--cursor-interactive) items-center justify-start gap-3 rounded-2xl px-2 py-1.5 transition-[transform_250ms_var(--ease-out-quart),scale_250ms_var(--ease-out-quart),box-shadow_150ms_var(--ease-out)] outline-none no-highlight;
 
   [data-slot="label"] {
     @apply pointer-events-none w-fit select-none;
@@ -21,6 +15,10 @@
 
   &:has(.list-box-item__indicator) {
     @apply pe-7;
+  }
+
+  @variant motion-reduce {
+    @apply transition-none;
   }
 
   @variant hover {
@@ -37,8 +35,11 @@
 
   @variant selected {
     .list-box-item__indicator [data-slot="list-box-item-indicator--checkmark"] {
-      transition: stroke-dashoffset 250ms linear;
-      @apply motion-reduce:transition-none;
+      @apply transition-[stroke-dashoffset_250ms_linear];
+
+      @variant motion-reduce {
+        @apply transition-none;
+      }
     }
   }
 
@@ -48,10 +49,18 @@
 }
 
 .list-box-item__indicator {
-  @apply absolute inset-e-2 top-1/2 flex size-4 shrink-0 -translate-y-1/2 items-center justify-center text-default-foreground transition duration-250 motion-reduce:transition-none;
+  @apply absolute inset-e-2 top-1/2 flex size-4 shrink-0 -translate-y-1/2 items-center justify-center text-default-foreground transition duration-250;
+
+  @variant motion-reduce {
+    @apply transition-none;
+  }
 
   [data-slot="list-box-item-indicator--checkmark"] {
-    @apply size-2.5 transition-all duration-300 motion-reduce:transition-none;
+    @apply size-2.5 transition-all duration-300;
+
+    @variant motion-reduce {
+      @apply transition-none;
+    }
   }
 }
 

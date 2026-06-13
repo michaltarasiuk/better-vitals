@@ -1,12 +1,9 @@
 .alert-dialog__trigger {
-  @apply inline-block cursor-(--cursor-interactive);
+  @apply inline-block cursor-(--cursor-interactive) transition-[transform_250ms_var(--ease-out-quart),scale_250ms_var(--ease-out-quart),background-color_150ms_var(--ease-smooth),box-shadow_150ms_var(--ease-out)];
 
-  transition:
-    transform 250ms var(--ease-out-quart),
-    scale 250ms var(--ease-out-quart),
-    background-color 150ms var(--ease-smooth),
-    box-shadow 150ms var(--ease-out);
-  @apply motion-reduce:transition-none;
+  @variant motion-reduce {
+    @apply transition-none;
+  }
 
   @variant pressed {
     @apply scale-(--scale-pressed);
@@ -25,11 +22,19 @@
   @apply fixed inset-0 z-50 flex h-(--visual-viewport-height) w-full flex-row items-center justify-center;
 
   @variant entering {
-    @apply animate-in duration-150 ease-out will-change-[opacity] fade-in-0 motion-reduce:animate-none;
+    @apply animate-in duration-150 ease-out will-change-[opacity] fade-in-0;
+
+    @variant motion-reduce {
+      @apply animate-none;
+    }
   }
 
   @variant exiting {
-    @apply animate-out duration-100 ease-out will-change-[opacity] fade-out-0 motion-reduce:animate-none;
+    @apply animate-out duration-100 ease-out will-change-[opacity] fade-out-0;
+
+    @variant motion-reduce {
+      @apply animate-none;
+    }
   }
 }
 
@@ -53,7 +58,7 @@
   }
 
   @variant entering {
-    @apply animate-in duration-250 ease-out-quad will-change-[opacity,transform] fade-in-0 zoom-in-105 motion-reduce:animate-none;
+    @apply animate-in duration-250 ease-out-quad will-change-[opacity,transform] fade-in-0 zoom-in-105;
 
     @variant placement-auto {
       @apply slide-in-from-bottom-1;
@@ -74,10 +79,18 @@
     @variant placement-bottom {
       @apply slide-in-from-bottom-1;
     }
+
+    @variant motion-reduce {
+      @apply animate-none;
+    }
   }
 
   @variant exiting {
-    @apply animate-out duration-100 ease-out-quad will-change-[opacity,transform] fade-out-0 zoom-out-95 motion-reduce:animate-none;
+    @apply animate-out duration-100 ease-out-quad will-change-[opacity,transform] fade-out-0 zoom-out-95;
+
+    @variant motion-reduce {
+      @apply animate-none;
+    }
   }
 }
 
@@ -166,8 +179,7 @@
 }
 
 .alert-dialog__body {
-  @apply m-[-3px] mbs-0 mbe-0 min-h-0 flex-1 scrollbar overflow-y-auto overscroll-contain p-[3px] text-sm leading-[1.43] text-muted;
-  -webkit-overflow-scrolling: touch;
+  @apply m-[-3px] mbs-0 mbe-0 min-h-0 flex-1 scrollbar overflow-y-auto overscroll-contain p-[3px] text-sm leading-[1.43] text-muted [-webkit-overflow-scrolling:touch];
 }
 
 .alert-dialog__footer {

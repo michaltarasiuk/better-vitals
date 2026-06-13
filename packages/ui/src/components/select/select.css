@@ -13,15 +13,7 @@
 }
 
 .select__trigger {
-  @apply relative isolate inline-flex min-h-9 cursor-(--cursor-interactive) rounded-field border border-(--field-border) bg-field px-3 py-2 text-sm text-field-foreground shadow-field outline-none select-none no-highlight;
-
-  border-width: var(--border-width-field);
-
-  transition:
-    background-color 150ms var(--ease-smooth),
-    border-color 150ms var(--ease-smooth),
-    box-shadow 150ms var(--ease-out);
-  @apply motion-reduce:transition-none;
+  @apply relative isolate inline-flex min-h-9 cursor-(--cursor-interactive) rounded-field border border-(length:--border-width-field) border-(--field-border) bg-field px-3 py-2 text-sm text-field-foreground shadow-field transition-[background-color_150ms_var(--ease-smooth),border-color_150ms_var(--ease-smooth),box-shadow_150ms_var(--ease-out)] outline-none select-none no-highlight;
 
   &:has(.select__indicator) {
     @apply pe-7;
@@ -29,6 +21,10 @@
 
   @variant within-invalid {
     @apply bg-field-focus status-invalid-field;
+  }
+
+  @variant motion-reduce {
+    @apply transition-none;
   }
 
   @variant hover {
@@ -81,10 +77,14 @@
 }
 
 .select__indicator {
-  @apply absolute inset-y-0 inset-e-2 my-auto flex size-4 shrink-0 items-center justify-center text-field-placeholder transition duration-150 motion-reduce:transition-none;
+  @apply absolute inset-y-0 inset-e-2 my-auto flex size-4 shrink-0 items-center justify-center text-field-placeholder transition duration-150;
 
   @variant expanded {
     @apply rotate-180;
+  }
+
+  @variant motion-reduce {
+    @apply transition-none;
   }
 
   & svg {
@@ -96,7 +96,7 @@
   @apply min-w-(--trigger-width) origin-(--trigger-anchor-point) scroll-py-1 scrollbar overflow-y-auto overscroll-contain radius-surface bg-overlay p-0 text-sm shadow-overlay;
 
   @variant entering {
-    @apply animate-in duration-150 ease-smooth will-change-[opacity,transform] fade-in-0 zoom-in-95 motion-reduce:animate-none;
+    @apply animate-in duration-150 ease-smooth will-change-[opacity,transform] fade-in-0 zoom-in-95;
 
     @variant placement-top {
       @apply slide-in-from-bottom-1;
@@ -113,10 +113,18 @@
     @variant placement-right {
       @apply slide-in-from-start-1;
     }
+
+    @variant motion-reduce {
+      @apply animate-none;
+    }
   }
 
   @variant exiting {
-    @apply animate-out duration-100 ease-smooth will-change-[opacity,transform] zoom-out-95 fade-out motion-reduce:animate-none;
+    @apply animate-out duration-100 ease-smooth will-change-[opacity,transform] zoom-out-95 fade-out;
+
+    @variant motion-reduce {
+      @apply animate-none;
+    }
   }
 
   @variant placement-bottom {
