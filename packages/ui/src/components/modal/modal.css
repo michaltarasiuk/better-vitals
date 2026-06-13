@@ -8,12 +8,12 @@
     box-shadow 150ms var(--ease-out);
   @apply motion-reduce:transition-none;
 
-  @variant focus-visible {
-    @apply status-focused;
-  }
-
   @variant pressed {
     @apply scale-(--scale-pressed);
+  }
+
+  @variant focus-visible {
+    @apply status-focused;
   }
 
   @variant disabled {
@@ -46,13 +46,21 @@
 }
 
 .modal__container {
-  @apply pointer-events-none flex h-(--visual-viewport-height) w-full min-w-0 flex-1 flex-col items-center p-4 sm:w-fit sm:p-10;
+  @apply pointer-events-none flex h-(--visual-viewport-height) w-full min-w-0 flex-1 flex-col items-center p-4;
+
+  @variant sm {
+    @apply w-fit p-10;
+  }
 
   @variant entering {
     @apply animate-in duration-250 ease-out-quad will-change-[opacity,transform] fade-in-0 zoom-in-105 motion-reduce:animate-none;
 
     @variant placement-auto {
-      @apply slide-in-from-bottom-1 sm:slide-in-from-bottom-0;
+      @apply slide-in-from-bottom-1;
+
+      @variant sm {
+        @apply slide-in-from-bottom-0;
+      }
     }
 
     @variant placement-top {
@@ -79,10 +87,10 @@
 }
 
 .modal__container--full {
-  @apply p-0 sm:p-0;
+  @apply p-0;
 
   @variant entering {
-    @apply slide-in-from-bottom-0 zoom-in-100 sm:slide-in-from-bottom-0;
+    @apply slide-in-from-bottom-0 zoom-in-100;
   }
 
   @variant exiting {
@@ -94,7 +102,15 @@
   @apply pointer-events-auto relative flex w-full flex-col radius-surface bg-overlay p-6 shadow-overlay outline-none;
 
   @variant placement-auto {
-    @apply mbs-auto sm:mbs-auto sm:mbe-auto;
+    @apply mbs-auto;
+
+    @variant sm {
+      @apply mbs-auto mbe-auto;
+    }
+  }
+
+  @variant placement-top {
+    @apply mbs-0;
   }
 
   @variant placement-center {
@@ -103,10 +119,6 @@
 
   @variant placement-bottom {
     @apply mbs-auto;
-  }
-
-  @variant placement-top {
-    @apply mbs-0;
   }
 }
 

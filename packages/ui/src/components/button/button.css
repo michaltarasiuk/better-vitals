@@ -4,7 +4,11 @@
   --button-bg-pressed: var(--button-bg-hover);
   --button-fg: currentColor;
 
-  @apply relative isolate inline-flex h-10 w-fit origin-center cursor-(--cursor-interactive) items-center justify-center gap-2 rounded-3xl bg-(--button-bg) px-4 text-sm font-medium whitespace-nowrap text-(--button-fg) outline-none select-none no-highlight md:h-9;
+  @apply relative isolate inline-flex h-10 w-fit origin-center cursor-(--cursor-interactive) items-center justify-center gap-2 rounded-3xl bg-(--button-bg) px-4 text-sm font-medium whitespace-nowrap text-(--button-fg) outline-none select-none no-highlight;
+
+  @variant md {
+    @apply h-9;
+  }
 
   transition:
     transform 250ms var(--ease-smooth),
@@ -34,12 +38,20 @@
   }
 
   & svg:not([data-slot="spinner"] svg, [data-slot="link-icon"] svg) {
-    @apply pointer-events-none -ms-0.5 -me-0.5 mbs-0.5 mbe-0.5 size-5 shrink-0 self-center sm:mbs-1 sm:mbe-1 sm:size-4;
+    @apply pointer-events-none -ms-0.5 -me-0.5 mbs-0.5 mbe-0.5 size-5 shrink-0 self-center;
+
+    @variant sm {
+      @apply mbs-1 mbe-1 size-4;
+    }
   }
 }
 
 .button--sm {
-  @apply h-9 px-3 md:h-8;
+  @apply h-9 px-3;
+
+  @variant md {
+    @apply h-8;
+  }
 
   @variant pressed {
     @apply scale-(--scale-pressed-sm);
@@ -51,7 +63,11 @@
 }
 
 .button--lg {
-  @apply h-11 text-base md:h-10;
+  @apply h-11 text-base;
+
+  @variant md {
+    @apply h-10;
+  }
 
   @variant pressed {
     @apply scale-(--scale-pressed-lg);
@@ -107,15 +123,27 @@
 }
 
 .button--icon-only {
-  @apply w-10 p-0 md:w-9;
+  @apply w-10 p-0;
+
+  @variant md {
+    @apply w-9;
+  }
 }
 
 .button--icon-only.button--sm {
-  @apply w-9 md:w-8;
+  @apply w-9;
+
+  @variant md {
+    @apply w-8;
+  }
 }
 
 .button--icon-only.button--lg {
-  @apply w-11 md:w-10;
+  @apply w-11;
+
+  @variant md {
+    @apply w-10;
+  }
 }
 
 .button--full-width {

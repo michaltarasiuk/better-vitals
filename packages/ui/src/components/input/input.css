@@ -1,5 +1,9 @@
 .input {
-  @apply rounded-field border border-(--field-border) bg-field px-3 py-2 text-base text-field-foreground shadow-field outline-none placeholder:text-field-placeholder sm:text-sm;
+  @apply rounded-field border border-(--field-border) bg-field px-3 py-2 text-base text-field-foreground shadow-field outline-none placeholder:text-field-placeholder;
+
+  @variant sm {
+    @apply text-sm;
+  }
 
   border-width: var(--border-width-field);
 
@@ -9,16 +13,16 @@
     box-shadow 150ms var(--ease-out);
   @apply motion-reduce:transition-none;
 
-  @variant focus {
-    @apply border-field-border-focus bg-field-focus status-focused-field;
+  @variant invalid {
+    @apply bg-field-focus status-invalid-field;
   }
 
   @variant hover {
     @apply border-field-border-hover bg-field-hover;
   }
 
-  @variant invalid {
-    @apply bg-field-focus status-invalid-field;
+  @variant focus {
+    @apply border-field-border-focus bg-field-focus status-focused-field;
   }
 
   @variant disabled {
@@ -33,16 +37,16 @@
 
   @apply bg-(--input-bg) shadow-none;
 
-  @variant focus {
-    @apply bg-(--input-bg-focus);
+  @variant invalid {
+    @apply bg-(--input-bg-focus) status-invalid-field;
   }
 
   @variant hover {
     @apply bg-(--input-bg-hover);
   }
 
-  @variant invalid {
-    @apply bg-(--input-bg-focus) status-invalid-field;
+  @variant focus {
+    @apply bg-(--input-bg-focus);
   }
 }
 

@@ -23,20 +23,16 @@
     @apply pe-7;
   }
 
-  @variant focus-visible {
-    @apply status-focused;
+  @variant hover {
+    @apply bg-default;
   }
 
   @variant pressed {
     @apply scale-(--scale-pressed);
   }
 
-  @variant hover {
-    @apply bg-default;
-  }
-
-  @variant disabled {
-    @apply status-disabled;
+  @variant focus-visible {
+    @apply status-focused;
   }
 
   @variant selected {
@@ -44,6 +40,10 @@
       transition: stroke-dashoffset 250ms linear;
       @apply motion-reduce:transition-none;
     }
+  }
+
+  @variant disabled {
+    @apply status-disabled;
   }
 }
 

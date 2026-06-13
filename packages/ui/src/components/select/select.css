@@ -27,16 +27,16 @@
     @apply pe-7;
   }
 
+  @variant within-invalid {
+    @apply bg-field-focus status-invalid-field;
+  }
+
   @variant hover {
     @apply border-field-border-hover bg-field-hover;
   }
 
   @variant focus-visible {
     @apply border-field-border-focus bg-field-focus status-focused;
-  }
-
-  @variant within-invalid {
-    @apply bg-field-focus status-invalid-field;
   }
 
   @variant disabled {
@@ -51,6 +51,10 @@
 
   @apply bg-(--select-trigger-bg) shadow-none;
 
+  @variant within-invalid {
+    @apply bg-(--select-trigger-bg-focus) status-invalid-field;
+  }
+
   @variant hover {
     @apply bg-(--select-trigger-bg-hover);
   }
@@ -58,14 +62,14 @@
   @variant focus-visible {
     @apply bg-(--select-trigger-bg-focus);
   }
-
-  @variant within-invalid {
-    @apply bg-(--select-trigger-bg-focus) status-invalid-field;
-  }
 }
 
 .select__value {
-  @apply flex-1 text-start text-base wrap-break-word text-current sm:text-sm;
+  @apply flex-1 text-start text-base wrap-break-word text-current;
+
+  @variant sm {
+    @apply text-sm;
+  }
 
   &[data-placeholder="true"] {
     @apply text-field-placeholder;
@@ -90,10 +94,6 @@
 
 .select__popover {
   @apply min-w-(--trigger-width) origin-(--trigger-anchor-point) scroll-py-1 scrollbar overflow-y-auto overscroll-contain radius-surface bg-overlay p-0 text-sm shadow-overlay;
-
-  @variant focus-visible {
-    @apply outline-none;
-  }
 
   @variant entering {
     @apply animate-in duration-150 ease-smooth will-change-[opacity,transform] fade-in-0 zoom-in-95 motion-reduce:animate-none;
@@ -135,6 +135,10 @@
     & [data-slot="popover-overlay-arrow"] {
       @apply -rotate-90;
     }
+  }
+
+  @variant focus-visible {
+    @apply outline-none;
   }
 
   & [data-slot="popover-overlay-arrow"] {

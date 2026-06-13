@@ -9,18 +9,6 @@
     box-shadow 150ms var(--ease-out);
   @apply transform-gpu motion-reduce:transition-none;
 
-  @variant focus-visible {
-    @apply status-focused;
-  }
-
-  @variant pending {
-    @apply status-pending;
-  }
-
-  @variant disabled {
-    @apply status-disabled;
-  }
-
   & svg {
     @apply pointer-events-none -ms-0.5 -me-0.5 mbs-0.5 mbe-0.5 size-4 shrink-0 self-center;
   }
@@ -35,5 +23,17 @@
 
   @variant pressed {
     @apply scale-(--scale-pressed);
+  }
+
+  @variant focus-visible {
+    @apply status-focused;
+  }
+
+  @variant pending {
+    @apply status-pending;
+  }
+
+  @variant disabled {
+    @apply status-disabled;
   }
 }
