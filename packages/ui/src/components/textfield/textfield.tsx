@@ -13,13 +13,13 @@ interface TextFieldContextValue {
   variant?: "primary" | "secondary";
 }
 
-const [TextFieldContext, useTextFieldContext] =
+export const [TextFieldContext, useTextFieldContext] =
   createContext<TextFieldContextValue>("TextFieldContext");
 
-interface TextFieldProps
+export interface TextFieldProps
   extends RACTextFieldProps, TextFieldVariants, TextFieldContextValue {}
 
-function TextField({
+export function TextField({
   variant,
   fullWidth,
   className,
@@ -47,6 +47,3 @@ function TextField({
     </TextFieldContext>
   );
 }
-
-export { TextField, TextFieldContext, useTextFieldContext };
-export type { TextFieldProps };

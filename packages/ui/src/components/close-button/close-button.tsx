@@ -13,9 +13,9 @@ import {
   type CloseButtonVariants,
 } from "./close-button.ts";
 
-interface CloseButtonProps extends RACButtonProps, CloseButtonVariants {}
+export interface CloseButtonProps extends RACButtonProps, CloseButtonVariants {}
 
-function CloseButton({
+export function CloseButton({
   children,
   className,
   variant,
@@ -42,6 +42,3 @@ function CloseButton({
     </RACButton>
   );
 }
-
-export { CloseButton };
-export type { CloseButtonProps };

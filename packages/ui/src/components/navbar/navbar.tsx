@@ -4,9 +4,9 @@ import { navbarVariants } from "./navbar";
 
 const slots = navbarVariants();
 
-interface NavbarProps extends React.ComponentProps<"div"> {}
+export interface NavbarProps extends React.ComponentProps<"div"> {}
 
-function Navbar({ children, className, ...rest }: NavbarProps) {
+export function Navbar({ children, className, ...rest }: NavbarProps) {
   return (
     <nav
       data-slot="navbar"
@@ -20,12 +20,13 @@ function Navbar({ children, className, ...rest }: NavbarProps) {
   );
 }
 
-export { Navbar };
-export type { NavbarProps };
+export interface NavbarSpacerProps extends React.ComponentProps<"div"> {}
 
-interface NavbarSpacerProps extends React.ComponentProps<"div"> {}
-
-function NavbarSpacer({ children, className, ...rest }: NavbarSpacerProps) {
+export function NavbarSpacer({
+  children,
+  className,
+  ...rest
+}: NavbarSpacerProps) {
   return (
     <div
       aria-hidden
@@ -39,6 +40,3 @@ function NavbarSpacer({ children, className, ...rest }: NavbarSpacerProps) {
     </div>
   );
 }
-
-export { NavbarSpacer };
-export type { NavbarSpacerProps };

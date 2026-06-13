@@ -20,9 +20,9 @@ interface ListBoxItemContextValue extends ListBoxVariants {
 const [ListBoxItemContext, useListBoxItemContext] =
   createContext<ListBoxItemContextValue>("ListBoxItemContext");
 
-interface ListBoxProps<T extends object> extends RACListBoxProps<T> {}
+export interface ListBoxProps<T extends object> extends RACListBoxProps<T> {}
 
-function ListBox<T extends object>({
+export function ListBox<T extends object>({
   children,
   className,
   ...rest
@@ -38,12 +38,10 @@ function ListBox<T extends object>({
   );
 }
 
-export { ListBox };
-export type { ListBoxProps };
+export interface ListBoxItemProps
+  extends RACListBoxItemProps, ListBoxVariants {}
 
-interface ListBoxItemProps extends RACListBoxItemProps, ListBoxVariants {}
-
-function ListBoxItem({
+export function ListBoxItem({
   children,
   variant,
   className,
@@ -74,12 +72,9 @@ function ListBoxItem({
   );
 }
 
-export { ListBoxItem };
-export type { ListBoxItemProps };
+export interface ListBoxItemIndicatorProps extends React.ComponentProps<"span"> {}
 
-interface ListBoxItemIndicatorProps extends React.ComponentProps<"span"> {}
-
-function ListBoxItemIndicator({
+export function ListBoxItemIndicator({
   children,
   className,
   ...rest
@@ -116,6 +111,3 @@ function ListBoxItemIndicator({
     </span>
   );
 }
-
-export { ListBoxItemIndicator };
-export type { ListBoxItemIndicatorProps };

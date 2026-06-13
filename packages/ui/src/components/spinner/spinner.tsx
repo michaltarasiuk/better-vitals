@@ -4,12 +4,12 @@ import { useId } from "react";
 
 import { spinnerVariants, type SpinnerVariants } from "./spinner.ts";
 
-interface SpinnerProps
+export interface SpinnerProps
   extends
     Omit<React.ComponentProps<"span">, keyof SpinnerVariants>,
     SpinnerVariants {}
 
-function Spinner({ color, size, className, ...rest }: SpinnerProps) {
+export function Spinner({ color, size, className, ...rest }: SpinnerProps) {
   return (
     <span
       data-slot="spinner"
@@ -24,9 +24,6 @@ function Spinner({ color, size, className, ...rest }: SpinnerProps) {
     </span>
   );
 }
-
-export { Spinner };
-export type { SpinnerProps };
 
 interface SpinnerIconProps extends React.ComponentProps<"svg"> {}
 

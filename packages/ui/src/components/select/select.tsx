@@ -30,13 +30,13 @@ interface SelectContextValue extends SelectVariants {}
 const [SelectContext, useSelectContext] =
   createContext<SelectContextValue>("SelectContext");
 
-interface SelectProps<
+export interface SelectProps<
   T extends object,
   M extends "single" | "multiple" = "single",
 >
   extends RACSelectProps<T, M>, SelectVariants {}
 
-function Select<
+export function Select<
   T extends object = object,
   M extends "single" | "multiple" = "single",
 >({ children, variant, fullWidth, className, ...rest }: SelectProps<T, M>) {
@@ -64,12 +64,13 @@ function Select<
   );
 }
 
-export { Select };
-export type { SelectProps };
+export interface SelectTriggerProps extends RACButtonProps {}
 
-interface SelectTriggerProps extends RACButtonProps {}
-
-function SelectTrigger({ children, className, ...rest }: SelectTriggerProps) {
+export function SelectTrigger({
+  children,
+  className,
+  ...rest
+}: SelectTriggerProps) {
   const { fullWidth, variant } = useSelectContext();
   return (
     <RACButton
@@ -88,14 +89,11 @@ function SelectTrigger({ children, className, ...rest }: SelectTriggerProps) {
   );
 }
 
-export { SelectTrigger };
-export type { SelectTriggerProps };
-
-interface SelectValueProps<
+export interface SelectValueProps<
   T extends object = object,
 > extends RACSelectValueProps<T> {}
 
-function SelectValue<T extends object = object>({
+export function SelectValue<T extends object = object>({
   children,
   className,
   ...rest
@@ -111,12 +109,9 @@ function SelectValue<T extends object = object>({
   );
 }
 
-export { SelectValue };
-export type { SelectValueProps };
+export interface SelectIndicatorProps extends React.ComponentProps<"span"> {}
 
-interface SelectIndicatorProps extends React.ComponentProps<"span"> {}
-
-function SelectIndicator({
+export function SelectIndicator({
   children,
   className,
   ...rest
@@ -138,12 +133,9 @@ function SelectIndicator({
   );
 }
 
-export { SelectIndicator };
-export type { SelectIndicatorProps };
+export interface SelectPopoverProps extends RACPopoverProps {}
 
-interface SelectPopoverProps extends RACPopoverProps {}
-
-function SelectPopover({
+export function SelectPopover({
   children,
   placement = "bottom",
   className,
@@ -166,6 +158,3 @@ function SelectPopover({
     </SurfaceContext>
   );
 }
-
-export { SelectPopover };
-export type { SelectPopoverProps };

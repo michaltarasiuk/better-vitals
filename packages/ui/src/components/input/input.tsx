@@ -9,9 +9,9 @@ import { cnRenderProps } from "../../utils/cn-render-props";
 import { useTextFieldContext } from "../textfield";
 import { inputVariants, type InputVariants } from "./input.ts";
 
-interface InputProps extends RACInputProps, InputVariants {}
+export interface InputProps extends RACInputProps, InputVariants {}
 
-function Input({ variant, fullWidth, className, ...rest }: InputProps) {
+export function Input({ variant, fullWidth, className, ...rest }: InputProps) {
   const textFieldContext = useTextFieldContext();
   return (
     <RACInput
@@ -27,6 +27,3 @@ function Input({ variant, fullWidth, className, ...rest }: InputProps) {
     />
   );
 }
-
-export { Input };
-export type { InputProps };

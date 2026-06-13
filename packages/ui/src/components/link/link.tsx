@@ -12,9 +12,9 @@ import { linkVariants, type LinkVariants } from "./link.ts";
 
 const slots = linkVariants();
 
-interface LinkProps extends RACLinkProps, LinkVariants {}
+export interface LinkProps extends RACLinkProps, LinkVariants {}
 
-function Link({ className, children, ...rest }: LinkProps) {
+export function Link({ className, children, ...rest }: LinkProps) {
   return (
     <RACLink
       data-slot="link"
@@ -26,12 +26,9 @@ function Link({ className, children, ...rest }: LinkProps) {
   );
 }
 
-export { Link };
-export type { LinkProps };
+export interface LinkIconProps extends React.ComponentProps<"span"> {}
 
-interface LinkIconProps extends React.ComponentProps<"span"> {}
-
-function LinkIcon({ className, children, ...rest }: LinkIconProps) {
+export function LinkIcon({ className, children, ...rest }: LinkIconProps) {
   return (
     <span
       data-slot="link-icon"
@@ -47,6 +44,3 @@ function LinkIcon({ className, children, ...rest }: LinkIconProps) {
     </span>
   );
 }
-
-export { LinkIcon };
-export type { LinkIconProps };

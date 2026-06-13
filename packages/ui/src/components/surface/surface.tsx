@@ -6,12 +6,18 @@ import { surfaceVariants, type SurfaceVariants } from "./surface.ts";
 
 interface SurfaceContextValue extends Pick<SurfaceVariants, "variant"> {}
 
-const [SurfaceContext, useSurfaceContext] =
+export const [SurfaceContext, useSurfaceContext] =
   createContext<SurfaceContextValue>("SurfaceContext");
 
-interface SurfaceProps extends React.ComponentProps<"div">, SurfaceVariants {}
+export interface SurfaceProps
+  extends React.ComponentProps<"div">, SurfaceVariants {}
 
-function Surface({ variant, className, children, ...rest }: SurfaceProps) {
+export function Surface({
+  variant,
+  className,
+  children,
+  ...rest
+}: SurfaceProps) {
   return (
     <SurfaceContext
       value={{
@@ -31,6 +37,3 @@ function Surface({ variant, className, children, ...rest }: SurfaceProps) {
     </SurfaceContext>
   );
 }
-
-export { Surface, SurfaceContext, useSurfaceContext };
-export type { SurfaceProps };

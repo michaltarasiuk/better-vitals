@@ -7,9 +7,9 @@ import {
 
 import { labelVariants, type LabelVariants } from "./label.ts";
 
-interface LabelProps extends RACLabelProps, LabelVariants {}
+export interface LabelProps extends RACLabelProps, LabelVariants {}
 
-function Label({
+export function Label({
   isRequired,
   isInvalid,
   isDisabled,
@@ -32,6 +32,3 @@ function Label({
     </RACLabel>
   );
 }
-
-export { Label };
-export type { LabelProps };

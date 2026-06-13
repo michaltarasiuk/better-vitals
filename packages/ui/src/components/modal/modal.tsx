@@ -29,9 +29,9 @@ interface ModalContextValue extends ModalVariants {
 const [ModalContext, useModalContext] =
   createContext<ModalContextValue>("ModalContext");
 
-interface ModalProps extends RACDialogTriggerProps, ModalContextValue {}
+export interface ModalProps extends RACDialogTriggerProps, ModalContextValue {}
 
-function Modal({
+export function Modal({
   variant,
   size,
   scroll,
@@ -55,12 +55,13 @@ function Modal({
   );
 }
 
-export { Modal };
-export type { ModalProps };
+export interface ModalTriggerProps extends React.ComponentProps<"div"> {}
 
-interface ModalTriggerProps extends React.ComponentProps<"div"> {}
-
-function ModalTrigger({ children, className, ...rest }: ModalTriggerProps) {
+export function ModalTrigger({
+  children,
+  className,
+  ...rest
+}: ModalTriggerProps) {
   return (
     <RACPressable>
       <div
@@ -76,15 +77,12 @@ function ModalTrigger({ children, className, ...rest }: ModalTriggerProps) {
   );
 }
 
-export { ModalTrigger };
-export type { ModalTriggerProps };
-
-interface ModalBackdropProps extends RACModalOverlayProps {
+export interface ModalBackdropProps extends RACModalOverlayProps {
   isDismissable?: boolean;
   isKeyboardDismissDisabled?: boolean;
 }
 
-function ModalBackdrop({
+export function ModalBackdrop({
   children,
   className,
   onClick,
@@ -111,12 +109,13 @@ function ModalBackdrop({
   );
 }
 
-export { ModalBackdrop };
-export type { ModalBackdropProps };
+export interface ModalContainerProps extends RACModalOverlayProps {}
 
-interface ModalContainerProps extends RACModalOverlayProps {}
-
-function ModalContainer({ children, className, ...rest }: ModalContainerProps) {
+export function ModalContainer({
+  children,
+  className,
+  ...rest
+}: ModalContainerProps) {
   const { placement, scroll, size } = useModalContext();
   return (
     <RACModal
@@ -136,12 +135,13 @@ function ModalContainer({ children, className, ...rest }: ModalContainerProps) {
   );
 }
 
-export { ModalContainer };
-export type { ModalContainerProps };
+export interface ModalDialogProps extends RACDialogProps {}
 
-interface ModalDialogProps extends RACDialogProps {}
-
-function ModalDialog({ children, className, ...rest }: ModalDialogProps) {
+export function ModalDialog({
+  children,
+  className,
+  ...rest
+}: ModalDialogProps) {
   const { size, scroll, placement } = useModalContext();
   return (
     <RACDialog
@@ -159,12 +159,13 @@ function ModalDialog({ children, className, ...rest }: ModalDialogProps) {
   );
 }
 
-export { ModalDialog };
-export type { ModalDialogProps };
+export interface ModalHeaderProps extends React.ComponentProps<"div"> {}
 
-interface ModalHeaderProps extends React.ComponentProps<"div"> {}
-
-function ModalHeader({ children, className, ...rest }: ModalHeaderProps) {
+export function ModalHeader({
+  children,
+  className,
+  ...rest
+}: ModalHeaderProps) {
   return (
     <div
       data-slot="modal-header"
@@ -178,12 +179,13 @@ function ModalHeader({ children, className, ...rest }: ModalHeaderProps) {
   );
 }
 
-export { ModalHeader };
-export type { ModalHeaderProps };
+export interface ModalHeadingProps extends RACHeadingProps {}
 
-interface ModalHeadingProps extends RACHeadingProps {}
-
-function ModalHeading({ children, className, ...rest }: ModalHeadingProps) {
+export function ModalHeading({
+  children,
+  className,
+  ...rest
+}: ModalHeadingProps) {
   return (
     <RACHeading
       slot="title"
@@ -198,12 +200,9 @@ function ModalHeading({ children, className, ...rest }: ModalHeadingProps) {
   );
 }
 
-export { ModalHeading };
-export type { ModalHeadingProps };
+export interface ModalBodyProps extends React.ComponentProps<"div"> {}
 
-interface ModalBodyProps extends React.ComponentProps<"div"> {}
-
-function ModalBody({ children, className, ...rest }: ModalBodyProps) {
+export function ModalBody({ children, className, ...rest }: ModalBodyProps) {
   const { scroll } = useModalContext();
   return (
     <div
@@ -219,12 +218,13 @@ function ModalBody({ children, className, ...rest }: ModalBodyProps) {
   );
 }
 
-export { ModalBody };
-export type { ModalBodyProps };
+export interface ModalFooterProps extends React.ComponentProps<"div"> {}
 
-interface ModalFooterProps extends React.ComponentProps<"div"> {}
-
-function ModalFooter({ children, className, ...rest }: ModalFooterProps) {
+export function ModalFooter({
+  children,
+  className,
+  ...rest
+}: ModalFooterProps) {
   return (
     <div
       data-slot="modal-footer"
@@ -238,12 +238,9 @@ function ModalFooter({ children, className, ...rest }: ModalFooterProps) {
   );
 }
 
-export { ModalFooter };
-export type { ModalFooterProps };
+export interface ModalIconProps extends React.ComponentProps<"div"> {}
 
-interface ModalIconProps extends React.ComponentProps<"div"> {}
-
-function ModalIcon({ children, className, ...rest }: ModalIconProps) {
+export function ModalIcon({ children, className, ...rest }: ModalIconProps) {
   return (
     <div
       data-slot="modal-icon"
@@ -257,12 +254,9 @@ function ModalIcon({ children, className, ...rest }: ModalIconProps) {
   );
 }
 
-export { ModalIcon };
-export type { ModalIconProps };
+export interface ModalCloseTriggerProps extends CloseButtonProps {}
 
-interface ModalCloseTriggerProps extends CloseButtonProps {}
-
-function ModalCloseTrigger({
+export function ModalCloseTrigger({
   children,
   className,
   ...rest
@@ -275,6 +269,3 @@ function ModalCloseTrigger({
     </div>
   );
 }
-
-export { ModalCloseTrigger };
-export type { ModalCloseTriggerProps };

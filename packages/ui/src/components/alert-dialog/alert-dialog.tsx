@@ -47,10 +47,10 @@ interface AlertDialogContextValue extends AlertDialogVariants {
 const [AlertDialogContext, useAlertDialogContext] =
   createContext<AlertDialogContextValue>("AlertDialogContext");
 
-interface AlertDialogProps
+export interface AlertDialogProps
   extends RACDialogTriggerProps, AlertDialogContextValue {}
 
-function AlertDialog({
+export function AlertDialog({
   variant,
   size,
   status,
@@ -74,12 +74,9 @@ function AlertDialog({
   );
 }
 
-export { AlertDialog };
-export type { AlertDialogProps };
+export interface AlertDialogTriggerProps extends React.ComponentProps<"div"> {}
 
-interface AlertDialogTriggerProps extends React.ComponentProps<"div"> {}
-
-function AlertDialogTrigger({
+export function AlertDialogTrigger({
   children,
   className,
   ...rest
@@ -99,15 +96,12 @@ function AlertDialogTrigger({
   );
 }
 
-export { AlertDialogTrigger };
-export type { AlertDialogTriggerProps };
-
-interface AlertDialogBackdropProps extends RACModalOverlayProps {
+export interface AlertDialogBackdropProps extends RACModalOverlayProps {
   isDismissable?: boolean;
   isKeyboardDismissDisabled?: boolean;
 }
 
-function AlertDialogBackdrop({
+export function AlertDialogBackdrop({
   children,
   className,
   onClick,
@@ -134,12 +128,9 @@ function AlertDialogBackdrop({
   );
 }
 
-export { AlertDialogBackdrop };
-export type { AlertDialogBackdropProps };
+export interface AlertDialogContainerProps extends RACModalOverlayProps {}
 
-interface AlertDialogContainerProps extends RACModalOverlayProps {}
-
-function AlertDialogContainer({
+export function AlertDialogContainer({
   children,
   className,
   ...rest
@@ -157,12 +148,9 @@ function AlertDialogContainer({
   );
 }
 
-export { AlertDialogContainer };
-export type { AlertDialogContainerProps };
+export interface AlertDialogDialogProps extends RACDialogProps {}
 
-interface AlertDialogDialogProps extends RACDialogProps {}
-
-function AlertDialogDialog({
+export function AlertDialogDialog({
   children,
   className,
   ...rest
@@ -184,12 +172,9 @@ function AlertDialogDialog({
   );
 }
 
-export { AlertDialogDialog };
-export type { AlertDialogDialogProps };
+export interface AlertDialogHeaderProps extends React.ComponentProps<"div"> {}
 
-interface AlertDialogHeaderProps extends React.ComponentProps<"div"> {}
-
-function AlertDialogHeader({
+export function AlertDialogHeader({
   children,
   className,
   ...rest
@@ -207,12 +192,9 @@ function AlertDialogHeader({
   );
 }
 
-export { AlertDialogHeader };
-export type { AlertDialogHeaderProps };
+export interface AlertDialogHeadingProps extends RACHeadingProps {}
 
-interface AlertDialogHeadingProps extends RACHeadingProps {}
-
-function AlertDialogHeading({
+export function AlertDialogHeading({
   children,
   className,
   ...rest
@@ -231,12 +213,9 @@ function AlertDialogHeading({
   );
 }
 
-export { AlertDialogHeading };
-export type { AlertDialogHeadingProps };
+export interface AlertDialogBodyProps extends React.ComponentProps<"div"> {}
 
-interface AlertDialogBodyProps extends React.ComponentProps<"div"> {}
-
-function AlertDialogBody({
+export function AlertDialogBody({
   children,
   className,
   ...rest
@@ -254,12 +233,9 @@ function AlertDialogBody({
   );
 }
 
-export { AlertDialogBody };
-export type { AlertDialogBodyProps };
+export interface AlertDialogFooterProps extends React.ComponentProps<"div"> {}
 
-interface AlertDialogFooterProps extends React.ComponentProps<"div"> {}
-
-function AlertDialogFooter({
+export function AlertDialogFooter({
   children,
   className,
   ...rest
@@ -277,12 +253,9 @@ function AlertDialogFooter({
   );
 }
 
-export { AlertDialogFooter };
-export type { AlertDialogFooterProps };
+export interface AlertDialogIconProps extends React.ComponentProps<"div"> {}
 
-interface AlertDialogIconProps extends React.ComponentProps<"div"> {}
-
-function AlertDialogIcon({
+export function AlertDialogIcon({
   children,
   className,
   ...rest
@@ -305,12 +278,9 @@ function AlertDialogIcon({
   );
 }
 
-export { AlertDialogIcon };
-export type { AlertDialogIconProps };
+export interface AlertDialogCloseTriggerProps extends CloseButtonProps {}
 
-interface AlertDialogCloseTriggerProps extends CloseButtonProps {}
-
-function AlertDialogCloseTrigger({
+export function AlertDialogCloseTrigger({
   children,
   className,
   ...rest
@@ -326,6 +296,3 @@ function AlertDialogCloseTrigger({
     </div>
   );
 }
-
-export { AlertDialogCloseTrigger };
-export type { AlertDialogCloseTriggerProps };

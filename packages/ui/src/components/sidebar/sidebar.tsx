@@ -18,9 +18,9 @@ interface SidebarContextValue {
 const [SidebarContext, useSidebar] =
   createContext<SidebarContextValue>("SidebarContext");
 
-interface SidebarProviderProps extends React.ComponentProps<"div"> {}
+export interface SidebarProviderProps extends React.ComponentProps<"div"> {}
 
-function SidebarProvider({
+export function SidebarProvider({
   children,
   className,
   ...rest
@@ -49,12 +49,13 @@ function SidebarProvider({
   );
 }
 
-export { SidebarProvider };
-export type { SidebarProviderProps };
+export interface SidebarTriggerProps extends ButtonProps {}
 
-interface SidebarTriggerProps extends ButtonProps {}
-
-function SidebarTrigger({ children, onPress, ...rest }: SidebarTriggerProps) {
+export function SidebarTrigger({
+  children,
+  onPress,
+  ...rest
+}: SidebarTriggerProps) {
   const sidebar = useSidebar();
   return (
     <Button
@@ -76,12 +77,9 @@ function SidebarTrigger({ children, onPress, ...rest }: SidebarTriggerProps) {
   );
 }
 
-export { SidebarTrigger };
-export type { SidebarTriggerProps };
+export interface SidebarProps extends React.ComponentProps<"div"> {}
 
-interface SidebarProps extends React.ComponentProps<"div"> {}
-
-function Sidebar({ children, className, ...rest }: SidebarProps) {
+export function Sidebar({ children, className, ...rest }: SidebarProps) {
   const sidebar = useSidebar();
   const state = sidebar.open ? "expanded" : "collapsed";
   return (
@@ -99,12 +97,13 @@ function Sidebar({ children, className, ...rest }: SidebarProps) {
   );
 }
 
-export { Sidebar };
-export type { SidebarProps };
+export interface SidebarHeaderProps extends React.ComponentProps<"div"> {}
 
-interface SidebarHeaderProps extends React.ComponentProps<"div"> {}
-
-function SidebarHeader({ children, className, ...rest }: SidebarHeaderProps) {
+export function SidebarHeader({
+  children,
+  className,
+  ...rest
+}: SidebarHeaderProps) {
   return (
     <div
       data-slot="sidebar-header"
@@ -118,12 +117,13 @@ function SidebarHeader({ children, className, ...rest }: SidebarHeaderProps) {
   );
 }
 
-export { SidebarHeader };
-export type { SidebarHeaderProps };
+export interface SidebarContentProps extends React.ComponentProps<"div"> {}
 
-interface SidebarContentProps extends React.ComponentProps<"div"> {}
-
-function SidebarContent({ children, className, ...rest }: SidebarContentProps) {
+export function SidebarContent({
+  children,
+  className,
+  ...rest
+}: SidebarContentProps) {
   return (
     <div
       data-slot="sidebar-content"
@@ -137,12 +137,13 @@ function SidebarContent({ children, className, ...rest }: SidebarContentProps) {
   );
 }
 
-export { SidebarContent };
-export type { SidebarContentProps };
+export interface SidebarMenuProps extends React.ComponentProps<"div"> {}
 
-interface SidebarMenuProps extends React.ComponentProps<"div"> {}
-
-function SidebarMenu({ children, className, ...rest }: SidebarMenuProps) {
+export function SidebarMenu({
+  children,
+  className,
+  ...rest
+}: SidebarMenuProps) {
   return (
     <div
       data-slot="sidebar-menu"
@@ -156,12 +157,9 @@ function SidebarMenu({ children, className, ...rest }: SidebarMenuProps) {
   );
 }
 
-export { SidebarMenu };
-export type { SidebarMenuProps };
+export interface SidebarMenuItemProps extends React.ComponentProps<"div"> {}
 
-interface SidebarMenuItemProps extends React.ComponentProps<"div"> {}
-
-function SidebarMenuItem({
+export function SidebarMenuItem({
   children,
   className,
   ...rest
@@ -179,12 +177,9 @@ function SidebarMenuItem({
   );
 }
 
-export { SidebarMenuItem };
-export type { SidebarMenuItemProps };
+export interface SidebarMenuIconProps extends React.ComponentProps<"div"> {}
 
-interface SidebarMenuIconProps extends React.ComponentProps<"div"> {}
-
-function SidebarMenuIcon({
+export function SidebarMenuIcon({
   children,
   className,
   ...rest
@@ -202,12 +197,9 @@ function SidebarMenuIcon({
   );
 }
 
-export { SidebarMenuIcon };
-export type { SidebarMenuIconProps };
+export interface SidebarMenuItemContentProps extends React.ComponentProps<"div"> {}
 
-interface SidebarMenuItemContentProps extends React.ComponentProps<"div"> {}
-
-function SidebarMenuItemContent({
+export function SidebarMenuItemContent({
   children,
   className,
   ...rest
@@ -225,12 +217,9 @@ function SidebarMenuItemContent({
   );
 }
 
-export { SidebarMenuItemContent };
-export type { SidebarMenuItemContentProps };
+export interface SidebarMenuLabelProps extends React.ComponentProps<"div"> {}
 
-interface SidebarMenuLabelProps extends React.ComponentProps<"div"> {}
-
-function SidebarMenuLabel({
+export function SidebarMenuLabel({
   children,
   className,
   ...rest
@@ -253,12 +242,13 @@ function SidebarMenuLabel({
   );
 }
 
-export { SidebarMenuLabel };
-export type { SidebarMenuLabelProps };
+export interface SidebarFooterProps extends React.ComponentProps<"div"> {}
 
-interface SidebarFooterProps extends React.ComponentProps<"div"> {}
-
-function SidebarFooter({ children, className, ...rest }: SidebarFooterProps) {
+export function SidebarFooter({
+  children,
+  className,
+  ...rest
+}: SidebarFooterProps) {
   return (
     <div
       data-slot="sidebar-footer"
@@ -271,6 +261,3 @@ function SidebarFooter({ children, className, ...rest }: SidebarFooterProps) {
     </div>
   );
 }
-
-export { SidebarFooter };
-export type { SidebarFooterProps };

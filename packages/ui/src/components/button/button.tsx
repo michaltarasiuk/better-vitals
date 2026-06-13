@@ -8,9 +8,9 @@ import {
 import { cnRenderProps } from "../../utils/cn-render-props";
 import { buttonVariants, type ButtonVariants } from "./button.ts";
 
-interface ButtonProps extends RACButtonProps, ButtonVariants {}
+export interface ButtonProps extends RACButtonProps, ButtonVariants {}
 
-function Button({
+export function Button({
   variant,
   size,
   fullWidth,
@@ -37,6 +37,3 @@ function Button({
     </RACButton>
   );
 }
-
-export { Button };
-export type { ButtonProps };

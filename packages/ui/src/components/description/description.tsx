@@ -7,9 +7,13 @@ import {
   type DescriptionVariants,
 } from "./description.ts";
 
-interface DescriptionProps extends TextProps, DescriptionVariants {}
+export interface DescriptionProps extends TextProps, DescriptionVariants {}
 
-function Description({ className, children, ...rest }: DescriptionProps) {
+export function Description({
+  className,
+  children,
+  ...rest
+}: DescriptionProps) {
   return (
     <Text
       slot="description"
@@ -23,6 +27,3 @@ function Description({ className, children, ...rest }: DescriptionProps) {
     </Text>
   );
 }
-
-export { Description };
-export type { DescriptionProps };

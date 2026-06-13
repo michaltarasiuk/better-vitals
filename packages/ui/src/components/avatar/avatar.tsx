@@ -16,10 +16,10 @@ interface AvatarContextValue extends AvatarVariants {}
 export const [AvatarContext, useAvatarContext] =
   createContext<AvatarContextValue>("AvatarContext");
 
-interface AvatarProps
+export interface AvatarProps
   extends Omit<RootProps, keyof AvatarVariants>, AvatarVariants {}
 
-function Avatar({
+export function Avatar({
   children,
   color,
   size,
@@ -49,12 +49,9 @@ function Avatar({
   );
 }
 
-export { Avatar };
-export type { AvatarProps };
+export interface AvatarImageProps extends ImageProps {}
 
-interface AvatarImageProps extends ImageProps {}
-
-function AvatarImage({ className, ...rest }: AvatarImageProps) {
+export function AvatarImage({ className, ...rest }: AvatarImageProps) {
   const { color, size, variant } = useAvatarContext();
   return (
     <RadixAvatar.Image
@@ -69,12 +66,13 @@ function AvatarImage({ className, ...rest }: AvatarImageProps) {
   );
 }
 
-export { AvatarImage };
-export type { AvatarImageProps };
+export interface AvatarFallbackProps extends FallbackProps {}
 
-interface AvatarFallbackProps extends FallbackProps {}
-
-function AvatarFallback({ children, className, ...rest }: AvatarFallbackProps) {
+export function AvatarFallback({
+  children,
+  className,
+  ...rest
+}: AvatarFallbackProps) {
   const { color, size, variant } = useAvatarContext();
   return (
     <RadixAvatar.Fallback
@@ -91,6 +89,3 @@ function AvatarFallback({ children, className, ...rest }: AvatarFallbackProps) {
     </RadixAvatar.Fallback>
   );
 }
-
-export { AvatarFallback };
-export type { AvatarFallbackProps };

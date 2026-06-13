@@ -34,11 +34,12 @@ interface AccordionContextValue extends Pick<AccordionVariants, "variant"> {
 const [AccordionContext, useAccordionContext] =
   createContext<AccordionContextValue>("AccordionContext");
 
-interface AccordionProps extends RACDisclosureGroupProps, AccordionVariants {
+export interface AccordionProps
+  extends RACDisclosureGroupProps, AccordionVariants {
   hideSeparator?: boolean;
 }
 
-function Accordion({
+export function Accordion({
   children,
   variant,
   className,
@@ -81,12 +82,13 @@ function Accordion({
   );
 }
 
-export { Accordion };
-export type { AccordionProps };
+export interface AccordionItemProps extends RACDisclosureProps {}
 
-interface AccordionItemProps extends RACDisclosureProps {}
-
-function AccordionItem({ children, className, ...rest }: AccordionItemProps) {
+export function AccordionItem({
+  children,
+  className,
+  ...rest
+}: AccordionItemProps) {
   const { variant, hideSeparator } = useAccordionContext();
   return (
     <RACDisclosure
@@ -105,12 +107,9 @@ function AccordionItem({ children, className, ...rest }: AccordionItemProps) {
   );
 }
 
-export { AccordionItem };
-export type { AccordionItemProps };
+export interface AccordionIndicatorProps extends React.ComponentProps<"span"> {}
 
-interface AccordionIndicatorProps extends React.ComponentProps<"span"> {}
-
-function AccordionIndicator({
+export function AccordionIndicator({
   children,
   className,
   ...rest
@@ -132,12 +131,9 @@ function AccordionIndicator({
   );
 }
 
-export { AccordionIndicator };
-export type { AccordionIndicatorProps };
+export interface AccordionHeadingProps extends RACDisclosureHeadingProps {}
 
-interface AccordionHeadingProps extends RACDisclosureHeadingProps {}
-
-function AccordionHeading({
+export function AccordionHeading({
   children,
   className,
   ...rest
@@ -157,12 +153,9 @@ function AccordionHeading({
   );
 }
 
-export { AccordionHeading };
-export type { AccordionHeadingProps };
+export interface AccordionTriggerProps extends RACButtonProps {}
 
-interface AccordionTriggerProps extends RACButtonProps {}
-
-function AccordionTrigger({
+export function AccordionTrigger({
   children,
   className,
   ...rest
@@ -185,12 +178,13 @@ function AccordionTrigger({
   );
 }
 
-export { AccordionTrigger };
-export type { AccordionTriggerProps };
+export interface AccordionBodyProps extends React.ComponentProps<"div"> {}
 
-interface AccordionBodyProps extends React.ComponentProps<"div"> {}
-
-function AccordionBody({ children, className, ...rest }: AccordionBodyProps) {
+export function AccordionBody({
+  children,
+  className,
+  ...rest
+}: AccordionBodyProps) {
   const { variant } = useAccordionContext();
   return (
     <div
@@ -212,12 +206,13 @@ function AccordionBody({ children, className, ...rest }: AccordionBodyProps) {
   );
 }
 
-export { AccordionBody };
-export type { AccordionBodyProps };
+export interface AccordionPanelProps extends RACDisclosurePanelProps {}
 
-interface AccordionPanelProps extends RACDisclosurePanelProps {}
-
-function AccordionPanel({ children, className, ...rest }: AccordionPanelProps) {
+export function AccordionPanel({
+  children,
+  className,
+  ...rest
+}: AccordionPanelProps) {
   const { variant } = useAccordionContext();
   const { isExpanded = false } = use(DisclosureStateContext) ?? {};
   return (
@@ -236,6 +231,3 @@ function AccordionPanel({ children, className, ...rest }: AccordionPanelProps) {
     </RACDisclosurePanel>
   );
 }
-
-export { AccordionPanel };
-export type { AccordionPanelProps };

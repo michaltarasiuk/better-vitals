@@ -23,9 +23,9 @@ import { popoverVariants } from "./popover.ts";
 
 const slots = popoverVariants();
 
-interface PopoverProps extends RACDialogTriggerProps {}
+export interface PopoverProps extends RACDialogTriggerProps {}
 
-function Popover({ children, ...rest }: PopoverProps) {
+export function Popover({ children, ...rest }: PopoverProps) {
   return (
     <RACDialogTrigger data-slot="popover" {...rest}>
       {children}
@@ -33,12 +33,13 @@ function Popover({ children, ...rest }: PopoverProps) {
   );
 }
 
-export { Popover };
-export type { PopoverProps };
+export interface PopoverTriggerProps extends React.ComponentProps<"div"> {}
 
-interface PopoverTriggerProps extends React.ComponentProps<"div"> {}
-
-function PopoverTrigger({ children, className, ...rest }: PopoverTriggerProps) {
+export function PopoverTrigger({
+  children,
+  className,
+  ...rest
+}: PopoverTriggerProps) {
   return (
     <RACPressable>
       <div
@@ -54,12 +55,13 @@ function PopoverTrigger({ children, className, ...rest }: PopoverTriggerProps) {
   );
 }
 
-export { PopoverTrigger };
-export type { PopoverTriggerProps };
+export interface PopoverContentProps extends RACPopoverProps {}
 
-interface PopoverContentProps extends RACPopoverProps {}
-
-function PopoverContent({ children, className, ...rest }: PopoverContentProps) {
+export function PopoverContent({
+  children,
+  className,
+  ...rest
+}: PopoverContentProps) {
   return (
     <SurfaceContext
       value={{
@@ -77,12 +79,9 @@ function PopoverContent({ children, className, ...rest }: PopoverContentProps) {
   );
 }
 
-export { PopoverContent };
-export type { PopoverContentProps };
+export interface PopoverArrowProps extends RACOverlayArrowProps {}
 
-interface PopoverArrowProps extends RACOverlayArrowProps {}
-
-function PopoverArrow({ children, ...rest }: PopoverArrowProps) {
+export function PopoverArrow({ children, ...rest }: PopoverArrowProps) {
   return (
     <RACOverlayArrow data-slot="popover-overlay-arrow-group" {...rest}>
       {children ?? (
@@ -98,12 +97,13 @@ function PopoverArrow({ children, ...rest }: PopoverArrowProps) {
   );
 }
 
-export { PopoverArrow };
-export type { PopoverArrowProps };
+export interface PopoverDialogProps extends RACDialogProps {}
 
-interface PopoverDialogProps extends RACDialogProps {}
-
-function PopoverDialog({ children, className, ...rest }: PopoverDialogProps) {
+export function PopoverDialog({
+  children,
+  className,
+  ...rest
+}: PopoverDialogProps) {
   return (
     <RACDialog
       data-slot="popover-dialog"
@@ -117,12 +117,13 @@ function PopoverDialog({ children, className, ...rest }: PopoverDialogProps) {
   );
 }
 
-export { PopoverDialog };
-export type { PopoverDialogProps };
+export interface PopoverHeadingProps extends RACHeadingProps {}
 
-interface PopoverHeadingProps extends RACHeadingProps {}
-
-function PopoverHeading({ children, className, ...rest }: PopoverHeadingProps) {
+export function PopoverHeading({
+  children,
+  className,
+  ...rest
+}: PopoverHeadingProps) {
   return (
     <RACHeading
       slot="title"
@@ -136,6 +137,3 @@ function PopoverHeading({ children, className, ...rest }: PopoverHeadingProps) {
     </RACHeading>
   );
 }
-
-export { PopoverHeading };
-export type { PopoverHeadingProps };

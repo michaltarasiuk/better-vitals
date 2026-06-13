@@ -9,9 +9,9 @@ import { useSlottedContext } from "react-aria-components/slots";
 
 import { separatorVariants, type SeparatorVariants } from "./separator.ts";
 
-interface SeparatorProps extends RACSeparatorProps, SeparatorVariants {}
+export interface SeparatorProps extends RACSeparatorProps, SeparatorVariants {}
 
-function Separator({ variant, className, ...rest }: SeparatorProps) {
+export function Separator({ variant, className, ...rest }: SeparatorProps) {
   const context = useSlottedContext(SeparatorContext);
   const orientation = rest.orientation ?? context?.orientation ?? "horizontal";
 
@@ -29,6 +29,3 @@ function Separator({ variant, className, ...rest }: SeparatorProps) {
     />
   );
 }
-
-export { Separator };
-export type { SeparatorProps };
