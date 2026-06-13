@@ -1,11 +1,11 @@
 @custom-variant placement-auto (&[data-placement="auto"]);
 @custom-variant placement-center (&[data-placement="center"]);
 
-@custom-variant visible (&[data-visible]);
-@custom-variant hide-separator (&[data-hide-separator]);
+@custom-variant visible (&[data-visible="true"]);
+@custom-variant hide-separator (&[data-hide-separator="true"]);
 
-@custom-variant default-icon (&[data-default-icon]);
-@custom-variant tree-column (&[data-tree-column]);
+@custom-variant default-icon (&[data-default-icon="true"]);
+@custom-variant tree-column (&[data-tree-column="true"]);
 
 @custom-variant collapsed (
   &:is(
@@ -15,15 +15,20 @@
   )
 );
 
-@custom-variant within-invalid (:is([aria-invalid], [data-invalid]) &);
-@custom-variant within-disabled (:is([aria-disabled], [data-disabled]) &);
+@custom-variant within-invalid (
+  :is([aria-invalid="true"], [data-invalid="true"]) &
+);
+@custom-variant within-disabled (
+  :is([aria-disabled="true"], [data-disabled="true"]) &
+);
 @custom-variant within-required (
   :is(
-    [data-required]:not([role="group"]):not([role="radiogroup"]):not(
+    [data-required="true"]:not([role="group"]):not([role="radiogroup"]):not(
         [role="checkboxgroup"]
       )
       > &,
-    [data-required]:not([data-slot="radio"]):not([data-slot="checkbox"]) > &
+    [data-required="true"]:not([data-slot="radio"]):not([data-slot="checkbox"])
+      > &
   )
 );
 

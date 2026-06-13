@@ -390,7 +390,7 @@
     --field-shadow: 0 0 0 0 transparent inset;
   }
 
-  [data-vibrant-palette]:not(.dark):not([data-theme="dark"]) {
+  [data-vibrant-palette="true"]:not(.dark):not([data-theme="dark"]) {
     --accent-soft-foreground: color-mix(
       in oklab,
       var(--accent) 92%,
@@ -413,8 +413,8 @@
     );
   }
 
-  [data-vibrant-palette].dark,
-  [data-vibrant-palette][data-theme="dark"] {
+  [data-vibrant-palette="true"].dark,
+  [data-vibrant-palette="true"][data-theme="dark"] {
     --accent-soft-foreground: color-mix(
       in oklab,
       var(--accent) 92%,
