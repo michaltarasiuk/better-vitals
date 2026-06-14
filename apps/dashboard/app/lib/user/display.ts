@@ -20,7 +20,7 @@ export function getTimeOfDayGreeting(date = new Date()) {
     case "in the afternoon": {
       return "Good afternoon";
     }
-    case "in tshe evening":
+    case "in the evening":
     case "at night": {
       return "Good evening";
     }

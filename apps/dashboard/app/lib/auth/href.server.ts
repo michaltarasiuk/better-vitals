@@ -10,10 +10,10 @@ export async function getAuthenticatedRedirectHref(request: Request) {
 
   let slug = activeOrganization?.slug;
   if (!isDefined(slug)) {
-    const [first] = await auth.api.listOrganizations({
+    const list = await auth.api.listOrganizations({
       headers: request.headers,
     });
-    slug = first?.slug;
+    slug = list?.at(0)?.slug;
   }
 
   return isDefined(slug)
