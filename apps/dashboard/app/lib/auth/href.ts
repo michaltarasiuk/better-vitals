@@ -1,19 +1,19 @@
 import { isDefined } from "@lite-app/shared/is-defined";
 import { href } from "react-router";
 
-import { authClient } from "~/lib/auth";
+import { isAdmin } from "~/lib/auth/session";
 import { getActiveOrganization } from "~/lib/organization/index";
 
 export async function getAuthenticatedRedirectHref() {
-  const activeOrganization = await getActiveOrganization();
-
-  let slug = activeOrganization.data?.slug;
-  if (!isDefined(slug)) {
-    const list = await authClient.organization.list();
-    slug = list.data?.at(0)?.slug;
+  const [admin, organization] = await Promise.all([
+    isAdmin(),
+    getActiveOrganization(),
+  ]);
+  if (!isDefined(organization.data)) {
+    if (!admin) {
+      return "/no-organization";
+    }
+    return href("/organization/create");
   }
-
-  return isDefined(slug)
-    ? href(`/:slug`, { slug })
-    : href("/organization/create");
+  return href(`/:slug`, { slug: organization.data.slug });
 }

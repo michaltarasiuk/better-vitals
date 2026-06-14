@@ -3,7 +3,7 @@ import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { admin, organization } from "better-auth/plugins";
 
 import { ADMIN_ROLE } from "~/lib/auth/consts";
-import { userExists } from "~/lib/db/user.server";
+import { hasUsers } from "~/lib/db/user.server";
 
 import { db } from "../db/index.server";
 import * as schema from "../db/schema.server";
@@ -17,7 +17,7 @@ export const auth = betterAuth({
     user: {
       create: {
         async before(data) {
-          if (!(await userExists())) {
+          if (!(await hasUsers())) {
             data.role = ADMIN_ROLE;
           }
           return {
