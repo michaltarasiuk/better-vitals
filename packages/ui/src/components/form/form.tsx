@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Form as RACForm,
   type FormProps as RACFormProps,

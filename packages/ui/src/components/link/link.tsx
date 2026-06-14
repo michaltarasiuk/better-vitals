@@ -1,5 +1,3 @@
-"use client";
-
 import { isDefined } from "@lite-app/shared/is-defined";
 import { ArrowUpRightIcon } from "lucide-react";
 import {

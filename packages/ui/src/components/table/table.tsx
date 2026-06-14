@@ -1,5 +1,3 @@
-"use client";
-
 import { createContext } from "@lite-app/shared/create-context";
 import {
   Cell as RACCell,

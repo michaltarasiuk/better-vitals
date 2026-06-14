@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Form as UIForm,
   type FormProps as UIFormProps,

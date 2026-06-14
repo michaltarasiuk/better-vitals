@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Button as RACButton,
   type ButtonProps as RACButtonProps,

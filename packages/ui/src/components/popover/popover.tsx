@@ -1,5 +1,3 @@
-"use client";
-
 import { TriangleIcon } from "lucide-react";
 import {
   Dialog as RACDialog,

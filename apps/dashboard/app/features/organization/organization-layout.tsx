@@ -1,5 +1,3 @@
-"use client";
-
 import { isDefined } from "@lite-app/shared/is-defined";
 import { AppLayout } from "@lite-app/ui/components/app-layout";
 import {

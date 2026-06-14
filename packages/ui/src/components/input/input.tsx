@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Input as RACInput,
   type InputProps as RACInputProps,

@@ -1,5 +1,3 @@
-"use client";
-
 import {
   FieldError as RACFieldError,
   type FieldErrorProps as RACFieldErrorProps,

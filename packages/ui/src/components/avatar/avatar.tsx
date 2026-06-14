@@ -1,5 +1,3 @@
-"use client";
-
 import { createContext } from "@lite-app/shared/create-context";
 import * as RadixAvatar from "@radix-ui/react-avatar";
 

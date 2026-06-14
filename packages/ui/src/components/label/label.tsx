@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Label as RACLabel,
   type LabelProps as RACLabelProps,

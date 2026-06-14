@@ -1,5 +1,3 @@
-"use client";
-
 import { Text, type TextProps } from "react-aria-components/Text";
 
 import {

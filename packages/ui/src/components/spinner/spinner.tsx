@@ -1,5 +1,3 @@
-"use client";
-
 import { useId } from "react";
 
 import { spinnerVariants, type SpinnerVariants } from "./spinner.ts";

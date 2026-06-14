@@ -1,5 +1,3 @@
-"use client";
-
 import { createContext } from "@lite-app/shared/create-context";
 import { ChevronDownIcon } from "lucide-react";
 import { use } from "react";
