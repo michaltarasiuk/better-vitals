@@ -10,8 +10,7 @@ export async function getAuthenticatedRedirectHref() {
   let slug = activeOrganization.data?.slug;
   if (!isDefined(slug)) {
     const list = await authClient.organization.list();
-    const [first] = list.data ?? [];
-    ({ slug } = first);
+    slug = list.data?.at(0)?.slug;
   }
 
   return isDefined(slug)

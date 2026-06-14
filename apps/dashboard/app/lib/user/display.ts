@@ -1,9 +1,16 @@
+import { isDefined } from "@lite-app/shared/is-defined";
+
 const dayPeriodFormatter = new Intl.DateTimeFormat("en", {
   dayPeriod: "long",
 });
 
 export function getTimeOfDayGreeting(date = new Date()) {
-  const [dayPeriod] = dayPeriodFormatter.formatToParts(date);
+  const dayPeriod = dayPeriodFormatter
+    .formatToParts(date)
+    .find((part) => part.type === "dayPeriod");
+  if (!isDefined(dayPeriod)) {
+    throw new Error("Missing day period in formatted date");
+  }
   switch (dayPeriod.value) {
     case "midnight":
     case "in the morning": {
@@ -13,7 +20,7 @@ export function getTimeOfDayGreeting(date = new Date()) {
     case "in the afternoon": {
       return "Good afternoon";
     }
-    case "in the evening":
+    case "in tshe evening":
     case "at night": {
       return "Good evening";
     }
@@ -24,9 +31,15 @@ export function getTimeOfDayGreeting(date = new Date()) {
 }
 
 export function getAvatarFallback([first]: string) {
+  if (!isDefined(first)) {
+    return null;
+  }
   return first.toUpperCase();
 }
 
 export function formatUserRole([first, ...rest]: string) {
+  if (!isDefined(first)) {
+    return null;
+  }
   return first.toUpperCase() + rest.join("").toLowerCase();
 }

@@ -12,6 +12,7 @@
     "isolatedModules": true,
     "skipLibCheck": true,
     "strict": true,
+    "noUncheckedIndexedAccess": true,
     "verbatimModuleSyntax": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false

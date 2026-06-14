@@ -13,7 +13,7 @@ export async function getAuthenticatedRedirectHref(request: Request) {
     const [first] = await auth.api.listOrganizations({
       headers: request.headers,
     });
-    ({ slug } = first);
+    slug = first?.slug;
   }
 
   return isDefined(slug)
