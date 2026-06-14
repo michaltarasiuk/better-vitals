@@ -5,15 +5,17 @@ import { isAdmin } from "~/lib/auth/session";
 import { getActiveOrganization } from "~/lib/organization/index";
 
 export async function getAuthenticatedRedirectHref() {
-  const [admin, organization] = await Promise.all([
+  const [admin, activeOrganization] = await Promise.all([
     isAdmin(),
     getActiveOrganization(),
   ]);
-  if (!isDefined(organization.data)) {
+  if (!isDefined(activeOrganization.data)) {
     if (!admin) {
-      return "/organization";
+      return href("/organization/select");
     }
     return href("/organization/create");
   }
-  return href(`/:slug`, { slug: organization.data.slug });
+  return href(`/:slug`, {
+    slug: activeOrganization.data.slug,
+  });
 }
