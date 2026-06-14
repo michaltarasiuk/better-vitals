@@ -1,17 +1,22 @@
 import { isDefined } from "@lite-app/shared/is-defined";
 import { href } from "react-router";
 
+import { auth } from "~/lib/auth/index.server";
 import { isAdmin } from "~/lib/auth/session.server";
 import { hasUsers } from "~/lib/db/user.server";
-import { getActiveOrganization } from "~/lib/organization/index.server";
 
 export async function getAuthenticatedRedirectHref(request: Request) {
-  const [admin, activeOrganization] = await Promise.all([
+  const [admin, activeOrganization, organizations] = await Promise.all([
     isAdmin(request),
-    getActiveOrganization(request),
+    auth.api.getFullOrganization({
+      headers: request.headers,
+    }),
+    auth.api.listOrganizations({
+      headers: request.headers,
+    }),
   ]);
   if (!isDefined(activeOrganization)) {
-    if (!admin) {
+    if (!admin || organizations.length > 0) {
       return href("/organization/select");
     }
     return href("/organization/create");
@@ -22,8 +27,5 @@ export async function getAuthenticatedRedirectHref(request: Request) {
 }
 
 export async function getUnauthenticatedRedirectHref() {
-  if (await hasUsers()) {
-    return href("/signin");
-  }
-  return href("/signup");
+  return (await hasUsers()) ? href("/signin") : href("/signup");
 }
