@@ -1,5 +1,5 @@
 export function slugify(name: string) {
-  const slug = name
+  return name
     .trim()
     .toLowerCase()
     .normalize("NFD")
@@ -7,5 +7,4 @@ export function slugify(name: string) {
     .replaceAll(/[^a-z0-9]+/gu, "-")
     .replaceAll(/^-+|-+$/gu, "")
     .replaceAll(/-+/gu, "-");
-  return slug;
 }

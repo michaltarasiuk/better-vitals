@@ -11,7 +11,7 @@ export const requireAdminWithoutOrganization: MiddlewareFunction<
 > = async ({ request, context }) => {
   const session = context.get(sessionContext);
   if (!isDefined(session)) {
-    throw new Error("Session missing after requireAuthenticated middleware");
+    throw new Error("Missing session");
   }
   const organizations = await auth.api.listOrganizations({
     headers: request.headers,

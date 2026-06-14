@@ -12,7 +12,7 @@ export const middleware: Route.MiddlewareFunction[] = [requireAuthenticated];
 export function loader({ context }: Route.LoaderArgs) {
   const session = context.get(sessionContext);
   if (!isDefined(session)) {
-    throw new Error("Session missing after requireAuthenticated middleware");
+    throw new Error("Missing session");
   }
   return {
     user: session.user,
