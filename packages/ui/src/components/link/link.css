@@ -5,26 +5,6 @@
     @apply transition-none;
   }
 
-  .link__icon {
-    @apply pointer-events-none inline-flex size-2 shrink-0 items-center justify-center text-current opacity-60 transition-[opacity_150ms_var(--ease-out)];
-
-    @variant default-icon {
-      @apply ms-1 pb-1.5;
-    }
-
-    @variant motion-reduce {
-      @apply transition-none;
-    }
-
-    svg {
-      @apply transform-gpu;
-    }
-  }
-
-  &.button {
-    @apply gap-0 no-underline;
-  }
-
   @variant hover {
     @apply decoration-muted;
 
@@ -43,5 +23,25 @@
 
   @variant disabled {
     @apply status-disabled;
+  }
+
+  .link__icon {
+    @apply pointer-events-none inline-flex size-2 shrink-0 items-center justify-center text-current opacity-60 transition-[opacity_150ms_var(--ease-out)];
+
+    @variant default-icon {
+      @apply ms-1 pb-1.5;
+    }
+
+    @variant motion-reduce {
+      @apply transition-none;
+    }
+
+    svg {
+      @apply transform-gpu;
+    }
+  }
+
+  &.button {
+    @apply gap-0 no-underline;
   }
 }

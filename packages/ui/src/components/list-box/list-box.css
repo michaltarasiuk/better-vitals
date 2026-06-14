@@ -5,18 +5,6 @@
 .list-box-item {
   @apply relative flex min-h-9 w-full origin-center transform-gpu cursor-(--cursor-interactive) items-center justify-start gap-3 rounded-2xl px-2 py-1.5 transition-[transform_250ms_var(--ease-out-quart),scale_250ms_var(--ease-out-quart),box-shadow_150ms_var(--ease-out)] outline-none no-highlight;
 
-  [data-slot="label"] {
-    @apply pointer-events-none w-fit select-none;
-  }
-
-  [data-slot="description"] {
-    @apply pointer-events-none text-wrap select-none;
-  }
-
-  &:has(.list-box-item__indicator) {
-    @apply pe-7;
-  }
-
   @variant motion-reduce {
     @apply transition-none;
   }
@@ -45,6 +33,18 @@
 
   @variant disabled {
     @apply status-disabled;
+  }
+
+  [data-slot="label"] {
+    @apply pointer-events-none w-fit select-none;
+  }
+
+  [data-slot="description"] {
+    @apply pointer-events-none text-wrap select-none;
+  }
+
+  &:has(.list-box-item__indicator) {
+    @apply pe-7;
   }
 }
 
