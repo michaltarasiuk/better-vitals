@@ -85,7 +85,7 @@
   }
 
   @variant focus-visible {
-    @apply rounded-lg focus-inset-ring outline-none;
+    @apply rounded-lg shadow-[inset_0_0_0_2px_var(--focus)] outline-none;
   }
 }
 
@@ -130,17 +130,17 @@
 
     > :is(.table__cell, .table__column):only-child,
     > *:only-child :is(.table__cell, .table__column) {
-      @apply rounded-lg focus-inset-ring outline-none;
+      @apply rounded-lg shadow-[inset_0_0_0_2px_var(--focus)] outline-none;
     }
 
     > :is(.table__cell, .table__column):first-child:not(:only-child),
     > *:first-child:not(:only-child) :is(.table__cell, .table__column) {
-      @apply rounded-l-lg focus-inset-ring-start outline-none;
+      @apply rounded-l-lg shadow-[inset_2px_0_0_0_var(--focus),inset_0_2px_0_0_var(--focus),inset_0_-2px_0_0_var(--focus)] outline-none;
     }
 
     > :is(.table__cell, .table__column):last-child:not(:only-child),
     > *:last-child:not(:only-child) :is(.table__cell, .table__column) {
-      @apply rounded-r-lg focus-inset-ring-end outline-none;
+      @apply rounded-r-lg shadow-[inset_-2px_0_0_0_var(--focus),inset_0_2px_0_0_var(--focus),inset_0_-2px_0_0_var(--focus)] outline-none;
     }
 
     > :is(.table__cell, .table__column):not(:first-child):not(:last-child):not(
@@ -148,7 +148,7 @@
       ),
     > *:not(:first-child):not(:last-child):not(:only-child)
       :is(.table__cell, .table__column) {
-      @apply focus-inset-ring-middle outline-none;
+      @apply shadow-[inset_0_2px_0_0_var(--focus),inset_0_-2px_0_0_var(--focus)] outline-none;
     }
   }
 
@@ -181,7 +181,7 @@
   }
 
   @variant focus-visible {
-    @apply rounded-lg focus-inset-ring outline-none;
+    @apply rounded-lg shadow-[inset_0_0_0_2px_var(--focus)] outline-none;
   }
 }
 

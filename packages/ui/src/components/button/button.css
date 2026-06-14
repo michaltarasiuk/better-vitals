@@ -102,7 +102,7 @@
 .button--outline {
   --button-bg-hover: var(--default-soft-hover);
 
-  @apply border border-border;
+  @apply border-(length:--border-width) border-solid border-border;
 }
 
 .button--danger {
