@@ -11,7 +11,7 @@ export async function getAuthenticatedRedirectHref() {
   ]);
   if (!isDefined(organization.data)) {
     if (!admin) {
-      return "/no-organization";
+      return "/organization";
     }
     return href("/organization/create");
   }
