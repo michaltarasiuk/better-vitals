@@ -83,7 +83,7 @@
 }
 
 .accordion--surface {
-  @apply radius-surface bg-surface;
+  @apply rounded-[min(32px,var(--radius-3xl))] bg-surface;
 
   .accordion__trigger {
     @variant hover {

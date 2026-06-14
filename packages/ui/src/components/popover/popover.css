@@ -1,5 +1,5 @@
 .popover {
-  @apply origin-(--trigger-anchor-point) radius-surface bg-overlay p-0 text-sm shadow-overlay;
+  @apply origin-(--trigger-anchor-point) rounded-[min(32px,var(--radius-3xl))] bg-overlay p-0 text-sm shadow-overlay;
 
   @variant entering {
     @apply animate-in duration-150 ease-smooth will-change-[opacity,transform] fade-in-0 zoom-in-90;

@@ -83,10 +83,6 @@
   -ms-overflow-style: none;
 }
 
-@utility radius-surface {
-  border-radius: min(32px, var(--radius-3xl));
-}
-
 @utility label-required-marker {
   @apply after:ms-0.5 after:text-danger after:content-['*'];
 }

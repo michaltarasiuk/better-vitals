@@ -119,7 +119,7 @@
 }
 
 .modal__dialog {
-  @apply pointer-events-auto relative flex w-full flex-col radius-surface bg-overlay p-6 shadow-overlay outline-none;
+  @apply pointer-events-auto relative flex w-full flex-col rounded-[min(32px,var(--radius-3xl))] bg-overlay p-6 shadow-overlay outline-none;
 
   @variant placement-auto {
     @apply mbs-auto;
