@@ -1,7 +1,7 @@
 .close-button {
   @apply relative isolate inline-flex h-6 w-6 shrink-0 origin-center transform-gpu cursor-(--cursor-interactive) items-center justify-center rounded-xl p-1 transition-[transform_250ms_var(--ease-out-quart),scale_250ms_var(--ease-out-quart),color_150ms_var(--ease-out),background-color_100ms_var(--ease-out),box-shadow_150ms_var(--ease-out)] select-none no-highlight;
 
-  & svg {
+  svg {
     @apply pointer-events-none -ms-0.5 -me-0.5 mbs-0.5 mbe-0.5 size-4 shrink-0 self-center;
   }
 }

@@ -16,7 +16,7 @@
       @apply transition-none;
     }
 
-    & svg {
+    svg {
       @apply transform-gpu;
     }
   }

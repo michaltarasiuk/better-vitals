@@ -177,7 +177,7 @@
 .modal__header {
   @apply mbe-0 flex flex-col gap-3;
 
-  & > .modal__icon {
+  > .modal__icon {
     @apply mbe-0;
   }
 }

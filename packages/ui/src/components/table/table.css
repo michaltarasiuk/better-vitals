@@ -29,10 +29,10 @@
 .table--secondary .table__body {
   @apply shadow-none;
 
-  & tr:first-child td:first-child,
-  & tr:first-child td:last-child,
-  & tr:last-child td:first-child,
-  & tr:last-child td:last-child {
+  tr:first-child td:first-child,
+  tr:first-child td:last-child,
+  tr:last-child td:first-child,
+  tr:last-child td:last-child {
     @apply rounded-none;
   }
 
@@ -90,16 +90,16 @@
 }
 
 .table__body {
-  & tr:first-child td:first-child {
+  tr:first-child td:first-child {
     @apply rounded-ss-[min(32px,var(--radius-2xl))];
   }
-  & tr:first-child td:last-child {
+  tr:first-child td:last-child {
     @apply rounded-se-[min(32px,var(--radius-2xl))];
   }
-  & tr:last-child td:first-child {
+  tr:last-child td:first-child {
     @apply rounded-es-[min(32px,var(--radius-2xl))];
   }
-  & tr:last-child td:last-child {
+  tr:last-child td:last-child {
     @apply rounded-ee-[min(32px,var(--radius-2xl))];
   }
 
@@ -214,10 +214,10 @@
 }
 
 .table__load-more {
-  & td,
-  & [role="rowheader"] {
+  td,
+  [role="rowheader"] {
     @apply py-3 text-center;
-    & > * {
+    > * {
       @apply ms-auto me-auto;
     }
   }

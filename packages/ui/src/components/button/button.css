@@ -34,7 +34,7 @@
     @apply status-disabled;
   }
 
-  & svg:not([data-slot="spinner"] svg, [data-slot="link-icon"] svg) {
+  svg:not([data-slot="spinner"] svg, [data-slot="link-icon"] svg) {
     @apply pointer-events-none -ms-0.5 -me-0.5 mbs-0.5 mbe-0.5 size-5 shrink-0 self-center;
 
     @variant sm {
@@ -54,7 +54,7 @@
     @apply scale-(--scale-pressed-sm);
   }
 
-  & svg:not([data-slot="spinner"] svg, [data-slot="link-icon"] svg) {
+  svg:not([data-slot="spinner"] svg, [data-slot="link-icon"] svg) {
     @apply size-4;
   }
 }

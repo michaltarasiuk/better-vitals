@@ -141,7 +141,7 @@
 .alert-dialog__header {
   @apply mbe-0 flex flex-col gap-3;
 
-  & > .alert-dialog__icon {
+  > .alert-dialog__icon {
     @apply mbe-0;
   }
 }

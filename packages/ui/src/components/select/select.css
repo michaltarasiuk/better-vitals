@@ -87,7 +87,7 @@
     @apply transition-none;
   }
 
-  & svg {
+  svg {
     @apply size-full;
   }
 }
@@ -128,19 +128,19 @@
   }
 
   @variant placement-bottom {
-    & [data-slot="popover-overlay-arrow"] {
+    [data-slot="popover-overlay-arrow"] {
       @apply rotate-180;
     }
   }
 
   @variant placement-left {
-    & [data-slot="popover-overlay-arrow"] {
+    [data-slot="popover-overlay-arrow"] {
       @apply rotate-90;
     }
   }
 
   @variant placement-right {
-    & [data-slot="popover-overlay-arrow"] {
+    [data-slot="popover-overlay-arrow"] {
       @apply -rotate-90;
     }
   }
@@ -149,7 +149,7 @@
     @apply outline-none;
   }
 
-  & [data-slot="popover-overlay-arrow"] {
+  [data-slot="popover-overlay-arrow"] {
     @apply text-overlay;
   }
 

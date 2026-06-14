@@ -51,11 +51,11 @@
     }
   }
 
-  & [data-slot="popover-overlay-arrow"] {
+  [data-slot="popover-overlay-arrow"] {
     @apply block size-3 origin-center text-overlay;
   }
 
-  & [data-slot="popover-overlay-arrow-group"] {
+  [data-slot="popover-overlay-arrow-group"] {
     @apply leading-none;
 
     @variant placement-top {
