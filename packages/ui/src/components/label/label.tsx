@@ -8,11 +8,11 @@ import { labelVariants, type LabelVariants } from "./label.ts";
 export interface LabelProps extends RACLabelProps, LabelVariants {}
 
 export function Label({
+  children,
   isRequired,
   isInvalid,
   isDisabled,
   className,
-  children,
   ...rest
 }: LabelProps) {
   return (

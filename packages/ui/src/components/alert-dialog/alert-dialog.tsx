@@ -49,11 +49,11 @@ export interface AlertDialogProps
   extends RACDialogTriggerProps, AlertDialogContextValue {}
 
 export function AlertDialog({
+  children,
   variant,
   size,
   status,
   placement,
-  children,
   ...rest
 }: AlertDialogProps) {
   return (

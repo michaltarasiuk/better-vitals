@@ -25,7 +25,7 @@ import { accordionVariants, type AccordionVariants } from "./accordion.ts";
 
 const slots = accordionVariants();
 
-interface AccordionContextValue extends Pick<AccordionVariants, "variant"> {
+interface AccordionContextValue extends AccordionVariants {
   hideSeparator: boolean;
 }
 

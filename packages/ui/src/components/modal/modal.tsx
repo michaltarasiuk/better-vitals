@@ -30,11 +30,11 @@ const [ModalContext, useModalContext] =
 export interface ModalProps extends RACDialogTriggerProps, ModalContextValue {}
 
 export function Modal({
+  children,
   variant,
   size,
   scroll,
   placement = "auto",
-  children,
   ...rest
 }: ModalProps) {
   return (

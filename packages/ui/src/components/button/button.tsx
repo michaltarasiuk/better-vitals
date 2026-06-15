@@ -9,12 +9,12 @@ import { buttonVariants, type ButtonVariants } from "./button.ts";
 export interface ButtonProps extends RACButtonProps, ButtonVariants {}
 
 export function Button({
+  children,
   variant,
   size,
   fullWidth,
   isIconOnly,
   className,
-  children,
   ...rest
 }: ButtonProps) {
   return (

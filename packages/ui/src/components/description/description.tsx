@@ -8,8 +8,8 @@ import {
 export interface DescriptionProps extends TextProps, DescriptionVariants {}
 
 export function Description({
-  className,
   children,
+  className,
   ...rest
 }: DescriptionProps) {
   return (

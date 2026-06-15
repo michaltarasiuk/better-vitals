@@ -27,7 +27,7 @@ import { tableVariants, type TableVariants } from "./table.ts";
 
 const slots = tableVariants();
 
-interface TableContextValue extends Pick<TableVariants, "variant"> {}
+interface TableContextValue extends TableVariants {}
 
 const [TableContext, useTableContext] =
   createContext<TableContextValue>("TableContext");
@@ -223,8 +223,8 @@ export function TableCell({ children, className, ...rest }: TableCellProps) {
 export interface TableFooterProps extends React.ComponentProps<"div"> {}
 
 export function TableFooter({
-  className,
   children,
+  className,
   ...rest
 }: TableFooterProps) {
   const { variant } = useTableContext();

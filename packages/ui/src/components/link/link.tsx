@@ -12,7 +12,7 @@ const slots = linkVariants();
 
 export interface LinkProps extends RACLinkProps, LinkVariants {}
 
-export function Link({ className, children, ...rest }: LinkProps) {
+export function Link({ children, className, ...rest }: LinkProps) {
   return (
     <RACLink
       data-slot="link"
@@ -26,7 +26,7 @@ export function Link({ className, children, ...rest }: LinkProps) {
 
 export interface LinkIconProps extends React.ComponentProps<"span"> {}
 
-export function LinkIcon({ className, children, ...rest }: LinkIconProps) {
+export function LinkIcon({ children, className, ...rest }: LinkIconProps) {
   return (
     <span
       data-slot="link-icon"

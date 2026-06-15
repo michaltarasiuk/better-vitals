@@ -18,10 +18,10 @@ export interface TextFieldProps
   extends RACTextFieldProps, TextFieldVariants, TextFieldContextValue {}
 
 export function TextField({
+  children,
   variant,
   fullWidth,
   className,
-  children,
   ...rest
 }: TextFieldProps) {
   return (

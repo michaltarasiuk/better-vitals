@@ -2,7 +2,7 @@ import { createContext } from "@lite-app/shared/create-context";
 
 import { surfaceVariants, type SurfaceVariants } from "./surface.ts";
 
-interface SurfaceContextValue extends Pick<SurfaceVariants, "variant"> {}
+interface SurfaceContextValue extends SurfaceVariants {}
 
 export const [SurfaceContext, useSurfaceContext] =
   createContext<SurfaceContextValue>("SurfaceContext");
@@ -11,9 +11,9 @@ export interface SurfaceProps
   extends React.ComponentProps<"div">, SurfaceVariants {}
 
 export function Surface({
+  children,
   variant,
   className,
-  children,
   ...rest
 }: SurfaceProps) {
   return (

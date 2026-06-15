@@ -5,14 +5,14 @@ import { cardVariants, type CardVariants } from "./card.ts";
 
 const slots = cardVariants();
 
-interface CardContextValue extends Pick<CardVariants, "variant"> {}
+interface CardContextValue extends CardVariants {}
 
 const [CardContext, useCardContext] =
   createContext<CardContextValue>("CardContext");
 
 export interface CardProps extends React.ComponentProps<"div">, CardVariants {}
 
-export function Card({ variant, className, children, ...rest }: CardProps) {
+export function Card({ children, variant, className, ...rest }: CardProps) {
   const root = (
     <div
       data-slot="card"
@@ -48,7 +48,7 @@ export function Card({ variant, className, children, ...rest }: CardProps) {
 
 export interface CardHeaderProps extends React.ComponentProps<"div"> {}
 
-export function CardHeader({ className, children, ...rest }: CardHeaderProps) {
+export function CardHeader({ children, className, ...rest }: CardHeaderProps) {
   const { variant } = useCardContext();
   return (
     <div
@@ -66,7 +66,7 @@ export function CardHeader({ className, children, ...rest }: CardHeaderProps) {
 
 export interface CardTitleProps extends React.ComponentProps<"h3"> {}
 
-export function CardTitle({ className, children, ...rest }: CardTitleProps) {
+export function CardTitle({ children, className, ...rest }: CardTitleProps) {
   const { variant } = useCardContext();
   return (
     <h3
@@ -85,8 +85,8 @@ export function CardTitle({ className, children, ...rest }: CardTitleProps) {
 export interface CardDescriptionProps extends React.ComponentProps<"p"> {}
 
 export function CardDescription({
-  className,
   children,
+  className,
   ...rest
 }: CardDescriptionProps) {
   const { variant } = useCardContext();
@@ -107,8 +107,8 @@ export function CardDescription({
 export interface CardContentProps extends React.ComponentProps<"div"> {}
 
 export function CardContent({
-  className,
   children,
+  className,
   ...rest
 }: CardContentProps) {
   const { variant } = useCardContext();
@@ -128,7 +128,7 @@ export function CardContent({
 
 export interface CardFooterProps extends React.ComponentProps<"div"> {}
 
-export function CardFooter({ className, children, ...rest }: CardFooterProps) {
+export function CardFooter({ children, className, ...rest }: CardFooterProps) {
   const { variant } = useCardContext();
   return (
     <div

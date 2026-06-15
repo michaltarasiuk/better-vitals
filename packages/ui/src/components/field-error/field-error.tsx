@@ -9,7 +9,7 @@ import { fieldErrorVariants, type FieldErrorVariants } from "./field-error.ts";
 export interface FieldErrorProps
   extends RACFieldErrorProps, FieldErrorVariants {}
 
-export function FieldError({ className, children, ...rest }: FieldErrorProps) {
+export function FieldError({ children, className, ...rest }: FieldErrorProps) {
   return (
     <RACFieldError
       data-slot="field-error"
