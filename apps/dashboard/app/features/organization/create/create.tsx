@@ -14,6 +14,7 @@ import { Input } from "@lite-app/ui/components/input";
 import { Label } from "@lite-app/ui/components/label";
 import { Spinner } from "@lite-app/ui/components/spinner";
 import { TextField } from "@lite-app/ui/components/textfield";
+import slugify from "@sindresorhus/slugify";
 import {
   href,
   redirectDocument,
@@ -31,7 +32,6 @@ import {
   getOrganizationErrorField,
   isKnownOrganizationError,
 } from "~/lib/organization/error";
-import { slugify } from "~/lib/organization/href";
 
 const FormDataSchema = z.object({
   name: z.string(),

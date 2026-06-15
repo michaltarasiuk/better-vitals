@@ -17,6 +17,7 @@
     "@react-router/node": "7.15.1",
     "@react-router/serve": "7.15.1",
     "@remix-run/node-fetch-server": "^0.13.2",
+    "@sindresorhus/slugify": "^3.0.0",
     "better-auth": "^1.6.11",
     "better-sqlite3": "^12.10.0",
     "drizzle-orm": "^0.45.2",
