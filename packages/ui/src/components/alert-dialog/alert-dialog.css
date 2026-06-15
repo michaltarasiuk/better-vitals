@@ -179,7 +179,7 @@
 }
 
 .alert-dialog__body {
-  @apply m-[-3px] mbs-0 mbe-0 min-h-0 flex-1 scrollbar overflow-y-auto overscroll-contain p-[3px] text-sm leading-[1.43] text-muted [-webkit-overflow-scrolling:touch];
+  @apply -m-1 mbs-0 mbe-0 min-h-0 flex-1 scrollbar overflow-y-auto overscroll-contain p-1 text-sm leading-snug text-muted [-webkit-overflow-scrolling:touch];
 }
 
 .alert-dialog__footer {

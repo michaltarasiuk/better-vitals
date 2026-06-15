@@ -1,5 +1,5 @@
 .link {
-  @apply relative inline-flex h-fit w-fit cursor-(--cursor-interactive) items-center rounded-xl text-sm font-medium text-link underline decoration-separator-tertiary decoration-[1.5px] underline-offset-4 [transition:color_100ms_var(--ease-smooth),text-decoration-color_100ms_var(--ease-out),background-color_150ms_var(--ease-smooth),box-shadow_150ms_var(--ease-out),opacity_100ms_var(--ease-out)] no-highlight;
+  @apply relative inline-flex h-fit w-fit cursor-(--cursor-interactive) items-center rounded-xl text-sm font-medium text-link underline decoration-separator-tertiary decoration-2 underline-offset-4 [transition:color_100ms_var(--ease-smooth),text-decoration-color_100ms_var(--ease-out),background-color_150ms_var(--ease-smooth),box-shadow_150ms_var(--ease-out),opacity_100ms_var(--ease-out)] no-highlight;
 
   @variant motion-reduce {
     @apply transition-none;

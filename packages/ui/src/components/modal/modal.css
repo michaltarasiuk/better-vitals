@@ -191,7 +191,7 @@
 }
 
 .modal__body {
-  @apply m-[-3px] mbs-0 mbe-0 min-h-0 flex-1 overflow-visible p-[3px] text-sm leading-[1.43] text-muted;
+  @apply -m-1 mbs-0 mbe-0 min-h-0 flex-1 overflow-visible p-1 text-sm leading-snug text-muted;
 }
 
 .modal__body--scroll-inside {
