@@ -15,8 +15,8 @@ export interface CloseButtonProps extends RACButtonProps, CloseButtonVariants {}
 
 export function CloseButton({
   children,
-  className,
   variant,
+  className,
   ...rest
 }: CloseButtonProps) {
   return (
