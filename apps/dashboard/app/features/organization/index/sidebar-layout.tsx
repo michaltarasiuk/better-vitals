@@ -37,7 +37,7 @@ export function SidebarLayout() {
     <AppLayout
       navbar={
         <Navbar>
-          <SidebarTrigger />
+          <SidebarTrigger className={cn("-ms-2 hidden", "md:inline-flex")} />
           <UserGreeting user={user} />
           <NavbarSpacer />
           <InviteButton />
