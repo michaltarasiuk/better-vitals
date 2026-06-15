@@ -5,10 +5,10 @@
 .sidebar__offset {
   --sidebar-width: 240px;
 
-  @apply relative w-(--sidebar-width) shrink-0 transition-[width] duration-200 ease-out-quad;
+  @apply hidden;
 
-  @variant max-md {
-    @apply hidden;
+  @variant md {
+    @apply relative block w-(--sidebar-width) shrink-0 transition-[width] duration-200 ease-out-quad;
   }
 
   @variant collapsed {
@@ -24,10 +24,10 @@
   --sidebar-width: 240px;
   --sidebar-width-collapsed: 48px;
 
-  @apply sticky top-0 z-20 flex h-svh w-(--sidebar-width) min-w-(--sidebar-width-collapsed) shrink-0 flex-col bg-background shadow-[inset_-1px_0_0_var(--sidebar-edge-outline)] transition-[translate,visibility] duration-200 ease-out-quad;
+  @apply hidden;
 
-  @variant max-md {
-    @apply hidden;
+  @variant md {
+    @apply sticky top-0 z-20 flex h-svh w-(--sidebar-width) min-w-(--sidebar-width-collapsed) shrink-0 flex-col bg-background shadow-[inset_-1px_0_0_var(--sidebar-edge-outline)] transition-[translate,visibility] duration-200 ease-out-quad;
   }
 
   @variant collapsed {
