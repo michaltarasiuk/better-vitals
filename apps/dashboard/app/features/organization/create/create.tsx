@@ -63,7 +63,9 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
       validationErrors,
     };
   }
-  throw redirectDocument(href("/:slug", { slug: createdOrganization.slug }));
+  throw redirectDocument(
+    href("/organization/:slug", { slug: createdOrganization.slug })
+  );
 }
 
 export function OrganizationCreate() {

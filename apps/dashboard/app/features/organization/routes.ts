@@ -7,5 +7,7 @@ export default [
     route("organization/create", "./create/route.tsx"),
   ]),
   route("organization/select", "./select/route.tsx"),
-  layout("./index/layout.tsx", [route("/:slug", "./index/route.tsx")]),
+  layout("./index/layout.tsx", [
+    route("/organization/:slug", "./index/route.tsx"),
+  ]),
 ] satisfies RouteConfig;
