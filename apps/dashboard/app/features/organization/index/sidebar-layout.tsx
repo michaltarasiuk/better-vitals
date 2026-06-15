@@ -31,7 +31,7 @@ import {
 
 import type { loader } from "./layout";
 
-export function OrganizationLayout() {
+export function SidebarLayout() {
   const { user } = useLoaderData<typeof loader>();
   return (
     <AppLayout
