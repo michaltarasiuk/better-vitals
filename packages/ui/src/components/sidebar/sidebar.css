@@ -5,7 +5,7 @@
 .sidebar__offset {
   --sidebar-width: 240px;
 
-  @apply relative w-(--sidebar-width) shrink-0 transition-[width_200ms_var(--ease-out-quad)];
+  @apply relative w-(--sidebar-width) shrink-0 transition-[width] duration-200 ease-out-quad;
 
   @variant max-md {
     @apply hidden;
@@ -24,7 +24,7 @@
   --sidebar-width: 240px;
   --sidebar-width-collapsed: 48px;
 
-  @apply sticky top-0 z-20 flex h-svh w-(--sidebar-width) min-w-(--sidebar-width-collapsed) shrink-0 flex-col bg-background shadow-[inset_-1px_0_0_var(--sidebar-edge-outline)] transition-[translate_200ms_var(--ease-out-quad),visibility_200ms_var(--ease-out-quad)];
+  @apply sticky top-0 z-20 flex h-svh w-(--sidebar-width) min-w-(--sidebar-width-collapsed) shrink-0 flex-col bg-background shadow-[inset_-1px_0_0_var(--sidebar-edge-outline)] transition-[translate,visibility] duration-200 ease-out-quad;
 
   @variant max-md {
     @apply hidden;
@@ -56,7 +56,7 @@
 }
 
 .sidebar__menu-item {
-  @apply relative flex w-full cursor-(--cursor-interactive) items-center justify-start text-foreground transition-[box-shadow_150ms_var(--ease-out)] outline-none no-highlight;
+  @apply relative flex w-full cursor-(--cursor-interactive) items-center justify-start text-foreground transition-[box-shadow] duration-150 ease-out outline-none no-highlight;
 
   @variant motion-reduce {
     @apply transition-none;

@@ -1,5 +1,5 @@
 .alert-dialog__trigger {
-  @apply inline-block cursor-(--cursor-interactive) transition-[transform_250ms_var(--ease-out-quart),scale_250ms_var(--ease-out-quart),background-color_150ms_var(--ease-smooth),box-shadow_150ms_var(--ease-out)];
+  @apply inline-block cursor-(--cursor-interactive) [transition:transform_250ms_var(--ease-out-quart),scale_250ms_var(--ease-out-quart),background-color_150ms_var(--ease-smooth),box-shadow_150ms_var(--ease-out)];
 
   @variant motion-reduce {
     @apply transition-none;
