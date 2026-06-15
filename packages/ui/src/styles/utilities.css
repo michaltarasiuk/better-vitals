@@ -84,5 +84,5 @@
 }
 
 @utility label-required-marker {
-  @apply after:ms-0.5 after:text-danger after:content-['*'];
+  @apply after:ms-1 after:text-danger after:content-['*'];
 }

@@ -35,7 +35,7 @@
   }
 
   svg:not([data-slot="spinner"] svg, [data-slot="link-icon"] svg) {
-    @apply pointer-events-none -ms-0.5 -me-0.5 mbs-0.5 mbe-0.5 size-5 shrink-0 self-center;
+    @apply pointer-events-none -ms-1 -me-1 mbs-1 mbe-1 size-5 shrink-0 self-center;
 
     @variant sm {
       @apply mbs-1 mbe-1 size-4;

@@ -52,7 +52,7 @@
 }
 
 .sidebar__menu {
-  @apply flex flex-col gap-0.5 forced-color-adjust-none outline-none;
+  @apply flex flex-col gap-1 forced-color-adjust-none outline-none;
 }
 
 .sidebar__menu-item {
@@ -94,7 +94,7 @@
 }
 
 .sidebar__menu-item-content {
-  @apply flex min-h-9 w-full items-center gap-3 overflow-hidden rounded-2xl px-2 py-1.5;
+  @apply flex min-h-9 w-full items-center gap-3 overflow-hidden rounded-2xl px-2 py-2;
 }
 
 .sidebar__menu-icon {
