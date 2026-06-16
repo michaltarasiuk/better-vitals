@@ -7,7 +7,7 @@
 }
 
 .table--primary {
-  @apply rounded-[min(32px,var(--radius-2\.5xl))] bg-surface-secondary px-1 pb-1;
+  @apply rounded-[min(32px,var(--radius-3xl))] bg-surface-secondary px-1 pb-1;
 }
 
 .table--secondary .table__header {

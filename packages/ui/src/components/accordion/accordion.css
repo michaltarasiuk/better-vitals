@@ -104,11 +104,11 @@
   }
 
   &:first-child [data-slot="accordion-trigger"] {
-    @apply rounded-tl-[min(32px,var(--radius-3xl))] rounded-tr-[min(32px,var(--radius-3xl))];
+    @apply rounded-ss-[min(32px,var(--radius-3xl))] rounded-se-[min(32px,var(--radius-3xl))];
   }
 
   &:last-child:not(:has([data-slot="accordion-trigger"][aria-expanded="true"]))
     [data-slot="accordion-trigger"] {
-    @apply rounded-br-[min(32px,var(--radius-3xl))] rounded-bl-[min(32px,var(--radius-3xl))];
+    @apply rounded-ee-[min(32px,var(--radius-3xl))] rounded-es-[min(32px,var(--radius-3xl))];
   }
 }
