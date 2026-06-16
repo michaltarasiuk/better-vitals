@@ -114,9 +114,7 @@ export function SelectIndicator({
   className,
   ...rest
 }: SelectIndicatorProps) {
-  const state = use(SelectStateContext);
-  const isOpen = state?.isOpen ?? false;
-
+  const { isOpen = false } = use(SelectStateContext) ?? {};
   return (
     <span
       data-slot="select-indicator"

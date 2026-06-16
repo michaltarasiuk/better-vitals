@@ -30,16 +30,10 @@ export function getTimeOfDayGreeting(date = new Date()) {
   }
 }
 
-export function getAvatarFallback([first]: string) {
-  if (!isDefined(first)) {
-    return null;
-  }
+export function getAvatarFallback([first = ""]: string) {
   return first.toUpperCase();
 }
 
-export function formatUserRole([first, ...rest]: string) {
-  if (!isDefined(first)) {
-    return null;
-  }
+export function formatUserRole([first = "", ...rest]: string) {
   return first.toUpperCase() + rest.join("").toLowerCase();
 }
