@@ -13,7 +13,6 @@ export function FieldError({ children, className, ...rest }: FieldErrorProps) {
   return (
     <RACFieldError
       data-slot="field-error"
-      data-visible
       className={cnRenderProps(className, fieldErrorVariants())}
       {...rest}
     >

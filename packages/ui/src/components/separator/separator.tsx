@@ -16,7 +16,6 @@ export function Separator({ variant, className, ...rest }: SeparatorProps) {
   return (
     <RACSeparator
       data-slot="separator"
-      data-orientation={orientation}
       orientation={orientation}
       className={separatorVariants({
         className,

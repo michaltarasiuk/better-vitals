@@ -82,7 +82,6 @@ export function ListBoxItemIndicator({
     <span
       aria-hidden
       data-slot="list-box-item-indicator"
-      data-visible={isSelected}
       className={slots.indicator({
         className,
         variant,

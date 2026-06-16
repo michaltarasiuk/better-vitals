@@ -54,7 +54,7 @@ export function SidebarTrigger({
   onPress,
   ...rest
 }: SidebarTriggerProps) {
-  const sidebar = useSidebar();
+  const { toggle } = useSidebar();
   return (
     <Button
       data-slot="sidebar-trigger"
@@ -63,7 +63,7 @@ export function SidebarTrigger({
       isIconOnly
       onPress={(e) => {
         onPress?.(e);
-        sidebar.toggle();
+        toggle();
       }}
       {...rest}
     >
@@ -78,8 +78,8 @@ export function SidebarTrigger({
 export interface SidebarProps extends React.ComponentProps<"div"> {}
 
 export function Sidebar({ children, className, ...rest }: SidebarProps) {
-  const sidebar = useSidebar();
-  const state = sidebar.open ? "expanded" : "collapsed";
+  const { open } = useSidebar();
+  const state = open ? "expanded" : "collapsed";
   return (
     <div
       data-state={state}

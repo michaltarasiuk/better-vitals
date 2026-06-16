@@ -104,7 +104,7 @@ function UserProfile({ user }: UserProfileProps) {
         {isDefined(user.image) && <AvatarImage src={user.image} alt="" />}
         <AvatarFallback>{getAvatarFallback(user.name)}</AvatarFallback>
       </Avatar>
-      <div data-sidebar="label" className={cn("flex min-w-0 flex-1 flex-col")}>
+      <div className={cn("flex min-w-0 flex-1 flex-col")}>
         <span className={cn("text-sm leading-tight font-medium")}>
           {user.name}
         </span>

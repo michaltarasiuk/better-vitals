@@ -176,7 +176,7 @@
 .table__cell {
   @apply h-full border-b border-separator-tertiary-muted bg-surface px-4 py-3 align-middle text-sm text-foreground;
 
-  @variant tree-column {
+  &[data-tree-column="true"] {
     @apply ps-[calc(1rem*var(--table-row-level,1))];
   }
 

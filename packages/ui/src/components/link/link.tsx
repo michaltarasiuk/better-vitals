@@ -36,9 +36,7 @@ export function LinkIcon({ children, className, ...rest }: LinkIconProps) {
       })}
       {...rest}
     >
-      {children ?? (
-        <ArrowUpRightIcon aria-hidden data-slot="link-default-icon" size={9} />
-      )}
+      {children ?? <ArrowUpRightIcon aria-hidden size={9} />}
     </span>
   );
 }

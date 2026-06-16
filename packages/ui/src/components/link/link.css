@@ -28,7 +28,7 @@
   .link__icon {
     @apply pointer-events-none inline-flex size-2 shrink-0 items-center justify-center text-current opacity-60 transition-[opacity] duration-150 ease-out;
 
-    @variant default-icon {
+    &[data-default-icon="true"] {
       @apply ms-1 pb-2;
     }
 

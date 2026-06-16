@@ -1,20 +1,6 @@
 @custom-variant placement-auto (&[data-placement="auto"]);
 @custom-variant placement-center (&[data-placement="center"]);
 
-@custom-variant visible (&[data-visible="true"]);
-@custom-variant hide-separator (&[data-hide-separator="true"]);
-
-@custom-variant default-icon (&[data-default-icon="true"]);
-@custom-variant tree-column (&[data-tree-column="true"]);
-
-@custom-variant collapsed (
-  &:is(
-    [data-state="collapsed"],
-    [aria-expanded="false"],
-    [data-expanded="false"],
-  )
-);
-
 @custom-variant within-invalid (
   :is([aria-invalid="true"], [data-invalid="true"]) &
 );

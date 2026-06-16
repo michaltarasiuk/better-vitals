@@ -17,7 +17,7 @@
 .accordion__indicator {
   @apply ms-auto inline-flex size-4 shrink-0 items-center justify-center text-muted transition duration-250;
 
-  @variant expanded {
+  &[data-expanded="true"] {
     @apply -rotate-180;
   }
 
@@ -33,7 +33,7 @@
 .accordion__item {
   @apply relative border-none;
 
-  @variant hide-separator {
+  &[data-hide-separator="true"] {
     &::after {
       @apply hidden;
     }
@@ -56,7 +56,7 @@
   }
 
   @variant hover {
-    @variant collapsed {
+    &[aria-expanded="false"] {
       @apply bg-fill-subtle;
     }
   }
@@ -73,7 +73,7 @@
 .accordion__panel {
   @apply h-(--disclosure-panel-height) overflow-clip opacity-0 transition-[height,opacity] duration-200 ease-out-quad;
 
-  @variant expanded {
+  &[data-expanded="true"] {
     @apply opacity-100 will-change-[opacity,height];
   }
 
@@ -87,7 +87,7 @@
 
   .accordion__trigger {
     @variant hover {
-      @variant collapsed {
+      &[aria-expanded="false"] {
         @apply bg-default;
       }
     }
