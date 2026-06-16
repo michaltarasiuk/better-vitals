@@ -207,7 +207,7 @@
 }
 
 .modal__close-trigger {
-  @apply absolute end-4 top-4;
+  @apply absolute inset-e-4 top-4;
 }
 
 .modal__header + .modal__body {
