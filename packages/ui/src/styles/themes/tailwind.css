@@ -134,7 +134,7 @@
 
   @keyframes skeleton {
     100% {
-      transform: translateX(200%);
+      translate: 200% 0;
     }
   }
 

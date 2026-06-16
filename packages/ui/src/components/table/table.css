@@ -66,7 +66,7 @@
 }
 
 .table__column {
-  @apply relative px-4 py-2 text-left text-xs font-medium text-muted;
+  @apply relative px-4 py-2 text-start text-xs font-medium text-muted;
 
   @variant allows-sorting {
     @apply cursor-(--cursor-interactive);
@@ -81,7 +81,7 @@
   }
 
   &::after {
-    @apply pointer-events-none absolute top-1/2 right-0 h-4 w-px -translate-y-1/2 rounded-sm bg-separator content-[''];
+    @apply pointer-events-none absolute inset-e-0 top-1/2 h-4 w-px -translate-y-1/2 rounded-sm bg-separator content-[''];
   }
 
   &:last-child:not(:only-child)::after {
@@ -131,12 +131,12 @@
 
     > :is(.table__cell, .table__column):first-child:not(:only-child),
     > *:first-child:not(:only-child) :is(.table__cell, .table__column) {
-      @apply rounded-l-lg shadow-[inset_2px_0_0_0_var(--focus),inset_0_2px_0_0_var(--focus),inset_0_-2px_0_0_var(--focus)] outline-none;
+      @apply rounded-s-lg border-s-2 border-focus shadow-[inset_0_2px_0_0_var(--focus),inset_0_-2px_0_0_var(--focus)] outline-none;
     }
 
     > :is(.table__cell, .table__column):last-child:not(:only-child),
     > *:last-child:not(:only-child) :is(.table__cell, .table__column) {
-      @apply rounded-r-lg shadow-[inset_-2px_0_0_0_var(--focus),inset_0_2px_0_0_var(--focus),inset_0_-2px_0_0_var(--focus)] outline-none;
+      @apply rounded-e-lg border-e-2 border-focus shadow-[inset_0_2px_0_0_var(--focus),inset_0_-2px_0_0_var(--focus)] outline-none;
     }
 
     > :is(.table__cell, .table__column):not(:first-child):not(:last-child):not(
@@ -194,7 +194,7 @@
 }
 
 .table__column-resizer {
-  @apply absolute top-1/2 right-0 box-content h-4 w-px translate-x-1/2 -translate-y-1/2 cursor-col-resize touch-none rounded-sm border-none bg-separator bg-clip-content px-2 outline-none;
+  @apply absolute inset-e-0 top-1/2 box-content h-4 w-px translate-x-1/2 -translate-y-1/2 cursor-col-resize touch-none rounded-sm border-none bg-separator bg-clip-content px-2 outline-none rtl:-translate-x-1/2;
 
   @variant hover {
     @apply h-full w-1 bg-accent;
