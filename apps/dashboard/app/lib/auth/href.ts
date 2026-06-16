@@ -16,7 +16,7 @@ export async function getAuthenticatedRedirectHref() {
     }
     return href("/organization/create");
   }
-  return href(`/:slug`, {
+  return href(`/organization/:slug`, {
     slug: activeOrganization.data.slug,
   });
 }
