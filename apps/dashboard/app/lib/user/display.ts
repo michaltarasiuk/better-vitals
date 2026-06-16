@@ -1,33 +1,15 @@
-import { isDefined } from "@lite-app/shared/is-defined";
-
-const dayPeriodFormatter = new Intl.DateTimeFormat("en", {
-  dayPeriod: "long",
-});
-
 export function getTimeOfDayGreeting(date = new Date()) {
-  const dayPeriod = dayPeriodFormatter
-    .formatToParts(date)
-    .find((part) => part.type === "dayPeriod");
-  if (!isDefined(dayPeriod)) {
-    throw new Error("Missing day period in formatted date");
+  const hour = date.getHours();
+
+  let greeting: string;
+  if (hour >= 5 && hour < 12) {
+    greeting = "Good morning";
+  } else if (hour >= 12 && hour < 17) {
+    greeting = "Good afternoon";
+  } else {
+    greeting = "Good evening";
   }
-  switch (dayPeriod.value) {
-    case "midnight":
-    case "in the morning": {
-      return "Good morning";
-    }
-    case "noon":
-    case "in the afternoon": {
-      return "Good afternoon";
-    }
-    case "in the evening":
-    case "at night": {
-      return "Good evening";
-    }
-    default: {
-      throw new Error(`Unknown day period: ${dayPeriod.value}`);
-    }
-  }
+  return greeting;
 }
 
 export function getAvatarFallback([first = ""]: string) {
