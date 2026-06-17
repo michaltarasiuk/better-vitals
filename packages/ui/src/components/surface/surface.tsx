@@ -1,6 +1,6 @@
 import { createContext } from "@lite-app/shared/create-context";
 
-import { surfaceVariants, type SurfaceVariants } from "./surface.ts";
+import { surfaceVariants, type SurfaceVariants } from "./surface";
 
 interface SurfaceContextValue extends SurfaceVariants {}
 

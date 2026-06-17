@@ -3,7 +3,7 @@ import {
   type LabelProps as RACLabelProps,
 } from "react-aria-components/Label";
 
-import { labelVariants, type LabelVariants } from "./label.ts";
+import { labelVariants, type LabelVariants } from "./label";
 
 export interface LabelProps extends RACLabelProps, LabelVariants {}
 

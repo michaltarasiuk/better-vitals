@@ -1,7 +1,7 @@
 import { createContext } from "@lite-app/shared/create-context";
 
 import { SurfaceContext } from "../surface";
-import { cardVariants, type CardVariants } from "./card.ts";
+import { cardVariants, type CardVariants } from "./card";
 
 const slots = cardVariants();
 

@@ -5,7 +5,7 @@ import {
 } from "react-aria-components";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
-import { textFieldVariants, type TextFieldVariants } from "./textfield.ts";
+import { textFieldVariants, type TextFieldVariants } from "./textfield";
 
 interface TextFieldContextValue {
   variant?: "primary" | "secondary";

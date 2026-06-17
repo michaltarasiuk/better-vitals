@@ -7,7 +7,7 @@ import {
 } from "react-aria-components/ListBox";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
-import { listboxVariants, type ListBoxVariants } from "./list-box.ts";
+import { listboxVariants, type ListBoxVariants } from "./list-box";
 
 const slots = listboxVariants();
 

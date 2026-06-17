@@ -1,7 +1,7 @@
 import { createContext } from "@lite-app/shared/create-context";
 import * as RadixAvatar from "@radix-ui/react-avatar";
 
-import { avatarVariants, type AvatarVariants } from "./avatar.ts";
+import { avatarVariants, type AvatarVariants } from "./avatar";
 
 type RootProps = React.ComponentPropsWithRef<typeof RadixAvatar.Root>;
 type ImageProps = React.ComponentPropsWithRef<typeof RadixAvatar.Image>;

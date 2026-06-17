@@ -17,7 +17,7 @@ import {
 
 import { cnRenderProps } from "../../utils/cn-render-props";
 import { SurfaceContext } from "../surface";
-import { popoverVariants } from "./popover.ts";
+import { popoverVariants } from "./popover";
 
 const slots = popoverVariants();
 

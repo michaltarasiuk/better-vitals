@@ -6,7 +6,7 @@ import {
 } from "react-aria-components/Link";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
-import { linkVariants, type LinkVariants } from "./link.ts";
+import { linkVariants, type LinkVariants } from "./link";
 
 const slots = linkVariants();
 

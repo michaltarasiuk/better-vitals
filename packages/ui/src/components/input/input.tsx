@@ -5,7 +5,7 @@ import {
 
 import { cnRenderProps } from "../../utils/cn-render-props";
 import { useTextFieldContext } from "../textfield";
-import { inputVariants, type InputVariants } from "./input.ts";
+import { inputVariants, type InputVariants } from "./input";
 
 export interface InputProps extends RACInputProps, InputVariants {}
 

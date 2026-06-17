@@ -23,10 +23,7 @@ import {
 
 import { cnRenderProps } from "../../utils/cn-render-props";
 import { CloseButton, type CloseButtonProps } from "../close-button";
-import {
-  alertDialogVariants,
-  type AlertDialogVariants,
-} from "./alert-dialog.ts";
+import { alertDialogVariants, type AlertDialogVariants } from "./alert-dialog";
 
 const ALERT_DIALOG_STATUS_ICONS = {
   accent: InfoIcon,

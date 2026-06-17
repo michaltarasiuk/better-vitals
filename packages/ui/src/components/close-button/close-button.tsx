@@ -6,10 +6,7 @@ import {
 } from "react-aria-components/Button";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
-import {
-  closeButtonVariants,
-  type CloseButtonVariants,
-} from "./close-button.ts";
+import { closeButtonVariants, type CloseButtonVariants } from "./close-button";
 
 export interface CloseButtonProps extends RACButtonProps, CloseButtonVariants {}
 

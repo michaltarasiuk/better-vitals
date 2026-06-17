@@ -21,7 +21,7 @@ import {
 
 import { cnRenderProps } from "../../utils/cn-render-props";
 import { SurfaceContext } from "../surface";
-import { accordionVariants, type AccordionVariants } from "./accordion.ts";
+import { accordionVariants, type AccordionVariants } from "./accordion";
 
 const slots = accordionVariants();
 

@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 
 import { SurfaceContext } from "../surface";
-import { alertVariants, type AlertVariants } from "./alert.ts";
+import { alertVariants, type AlertVariants } from "./alert";
 
 const ALERT_STATUS_ICONS = {
   accent: InfoIcon,

@@ -19,7 +19,7 @@ import {
 
 import { cnRenderProps } from "../../utils/cn-render-props";
 import { SurfaceContext } from "../surface";
-import { selectVariants, type SelectVariants } from "./select.ts";
+import { selectVariants, type SelectVariants } from "./select";
 
 const slots = selectVariants();
 

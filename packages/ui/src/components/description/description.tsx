@@ -1,9 +1,6 @@
 import { Text, type TextProps } from "react-aria-components/Text";
 
-import {
-  descriptionVariants,
-  type DescriptionVariants,
-} from "./description.ts";
+import { descriptionVariants, type DescriptionVariants } from "./description";
 
 export interface DescriptionProps extends TextProps, DescriptionVariants {}
 

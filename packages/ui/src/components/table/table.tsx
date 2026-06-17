@@ -23,7 +23,7 @@ import {
 import { cn } from "tailwind-variants";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
-import { tableVariants, type TableVariants } from "./table.ts";
+import { tableVariants, type TableVariants } from "./table";
 
 const slots = tableVariants();
 
