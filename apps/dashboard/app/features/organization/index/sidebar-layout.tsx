@@ -5,7 +5,7 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@lite-app/ui/components/avatar";
-import { Button, type ButtonProps } from "@lite-app/ui/components/button";
+import { Button } from "@lite-app/ui/components/button";
 import { Navbar, NavbarSpacer } from "@lite-app/ui/components/navbar";
 import {
   Sidebar,
@@ -27,7 +27,7 @@ import {
   formatUserRole,
   getAvatarFallback,
   getTimeOfDayGreeting,
-} from "~/lib/user/display";
+} from "~/lib/user/format";
 
 import type { loader } from "./layout";
 
@@ -118,7 +118,7 @@ function UserProfile({ user }: UserProfileProps) {
   );
 }
 
-function InviteButton(props: ButtonProps) {
+function InviteButton(props: React.ComponentProps<typeof Button>) {
   return (
     <Button variant="primary" size="sm" {...props}>
       <UserPlusIcon aria-hidden />

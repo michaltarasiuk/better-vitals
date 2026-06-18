@@ -1,27 +1,25 @@
 import { assertNever } from "@lite-app/shared/assert-never";
 import { z } from "zod";
 
-export type OrganizationError = z.infer<typeof OrganizationErrorSchema>;
-export type OrganizationErrorCode = z.infer<typeof OrganizationErrorCodeSchema>;
+type OrganizationError = z.infer<typeof OrganizationErrorSchema>;
+type OrganizationErrorCode = z.infer<typeof OrganizationErrorCodeSchema>;
 
-const ORGANIZATION_ERROR_CODES = [
+const OrganizationErrorCodeSchema = z.enum([
   "ORGANIZATION_ALREADY_EXISTS",
   "ORGANIZATION_SLUG_ALREADY_TAKEN",
-] as const;
-
-export const OrganizationErrorCodeSchema = z.enum(ORGANIZATION_ERROR_CODES);
-export const OrganizationErrorSchema = z.object({
+]);
+const OrganizationErrorSchema = z.object({
   code: OrganizationErrorCodeSchema,
   message: z.string(),
 });
 
-export function isKnownOrganizationError(
-  error: unknown
-): error is OrganizationError {
-  return OrganizationErrorSchema.safeParse(error).success;
+export function isOrganizationError(
+  value: unknown
+): value is OrganizationError {
+  return OrganizationErrorSchema.safeParse(value).success;
 }
 
-export function getOrganizationErrorField(code: OrganizationErrorCode) {
+export function mapOrganizationErrorCodeToField(code: OrganizationErrorCode) {
   let field: "name";
   switch (code) {
     case "ORGANIZATION_ALREADY_EXISTS":

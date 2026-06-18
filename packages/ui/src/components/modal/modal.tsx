@@ -1,21 +1,8 @@
 import { createContext } from "@lite-app/shared/create-context";
-import {
-  Dialog as RACDialog,
-  DialogTrigger as RACDialogTrigger,
-  Heading as RACHeading,
-  type DialogProps as RACDialogProps,
-  type DialogTriggerProps as RACDialogTriggerProps,
-  type HeadingProps as RACHeadingProps,
-} from "react-aria-components/Dialog";
-import {
-  Modal as RACModal,
-  ModalOverlay as RACModalOverlay,
-  Pressable as RACPressable,
-  type ModalOverlayProps as RACModalOverlayProps,
-} from "react-aria-components/Modal";
+import * as Aria from "react-aria-components/Modal";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
-import { CloseButton, type CloseButtonProps } from "../close-button";
+import { CloseButton } from "../close-button";
 import { modalVariants, type ModalVariants } from "./modal";
 
 const slots = modalVariants();
@@ -27,7 +14,7 @@ interface ModalContextValue extends ModalVariants {
 const [ModalContext, useModalContext] =
   createContext<ModalContextValue>("ModalContext");
 
-export interface ModalProps extends RACDialogTriggerProps, ModalContextValue {}
+interface ModalProps extends Aria.DialogTriggerProps, ModalContextValue {}
 
 export function Modal({
   children,
@@ -46,14 +33,14 @@ export function Modal({
         variant,
       }}
     >
-      <RACDialogTrigger data-slot="modal" {...rest}>
+      <Aria.DialogTrigger data-slot="modal" {...rest}>
         {children}
-      </RACDialogTrigger>
+      </Aria.DialogTrigger>
     </ModalContext>
   );
 }
 
-export interface ModalTriggerProps extends React.ComponentProps<"div"> {}
+interface ModalTriggerProps extends React.ComponentProps<"div"> {}
 
 export function ModalTrigger({
   children,
@@ -61,7 +48,7 @@ export function ModalTrigger({
   ...rest
 }: ModalTriggerProps) {
   return (
-    <RACPressable>
+    <Aria.Pressable>
       <div
         data-slot="modal-trigger"
         className={slots.trigger({
@@ -71,11 +58,11 @@ export function ModalTrigger({
       >
         {children}
       </div>
-    </RACPressable>
+    </Aria.Pressable>
   );
 }
 
-export interface ModalBackdropProps extends RACModalOverlayProps {
+interface ModalBackdropProps extends Aria.ModalOverlayProps {
   isDismissable?: boolean;
   isKeyboardDismissDisabled?: boolean;
 }
@@ -88,7 +75,7 @@ export function ModalBackdrop({
 }: ModalBackdropProps) {
   const { variant } = useModalContext();
   return (
-    <RACModalOverlay
+    <Aria.ModalOverlay
       data-slot="modal-backdrop"
       className={cnRenderProps(
         className,
@@ -103,11 +90,11 @@ export function ModalBackdrop({
       {...rest}
     >
       {children}
-    </RACModalOverlay>
+    </Aria.ModalOverlay>
   );
 }
 
-export interface ModalContainerProps extends RACModalOverlayProps {}
+interface ModalContainerProps extends Aria.ModalOverlayProps {}
 
 export function ModalContainer({
   children,
@@ -116,7 +103,7 @@ export function ModalContainer({
 }: ModalContainerProps) {
   const { placement, scroll, size } = useModalContext();
   return (
-    <RACModal
+    <Aria.Modal
       data-slot="modal-container"
       data-placement={placement}
       className={cnRenderProps(
@@ -129,11 +116,11 @@ export function ModalContainer({
       {...rest}
     >
       {children}
-    </RACModal>
+    </Aria.Modal>
   );
 }
 
-export interface ModalDialogProps extends RACDialogProps {}
+interface ModalDialogProps extends Aria.DialogProps {}
 
 export function ModalDialog({
   children,
@@ -142,7 +129,7 @@ export function ModalDialog({
 }: ModalDialogProps) {
   const { size, scroll, placement } = useModalContext();
   return (
-    <RACDialog
+    <Aria.Dialog
       data-slot="modal-dialog"
       data-placement={placement}
       className={slots.dialog({
@@ -153,11 +140,11 @@ export function ModalDialog({
       {...rest}
     >
       {children}
-    </RACDialog>
+    </Aria.Dialog>
   );
 }
 
-export interface ModalHeaderProps extends React.ComponentProps<"div"> {}
+interface ModalHeaderProps extends React.ComponentProps<"div"> {}
 
 export function ModalHeader({
   children,
@@ -177,7 +164,7 @@ export function ModalHeader({
   );
 }
 
-export interface ModalHeadingProps extends RACHeadingProps {}
+interface ModalHeadingProps extends Aria.HeadingProps {}
 
 export function ModalHeading({
   children,
@@ -185,7 +172,7 @@ export function ModalHeading({
   ...rest
 }: ModalHeadingProps) {
   return (
-    <RACHeading
+    <Aria.Heading
       slot="title"
       data-slot="modal-heading"
       className={slots.heading({
@@ -194,11 +181,11 @@ export function ModalHeading({
       {...rest}
     >
       {children}
-    </RACHeading>
+    </Aria.Heading>
   );
 }
 
-export interface ModalBodyProps extends React.ComponentProps<"div"> {}
+interface ModalBodyProps extends React.ComponentProps<"div"> {}
 
 export function ModalBody({ children, className, ...rest }: ModalBodyProps) {
   const { scroll } = useModalContext();
@@ -216,7 +203,7 @@ export function ModalBody({ children, className, ...rest }: ModalBodyProps) {
   );
 }
 
-export interface ModalFooterProps extends React.ComponentProps<"div"> {}
+interface ModalFooterProps extends React.ComponentProps<"div"> {}
 
 export function ModalFooter({
   children,
@@ -236,7 +223,7 @@ export function ModalFooter({
   );
 }
 
-export interface ModalIconProps extends React.ComponentProps<"div"> {}
+interface ModalIconProps extends React.ComponentProps<"div"> {}
 
 export function ModalIcon({ children, className, ...rest }: ModalIconProps) {
   return (
@@ -252,7 +239,9 @@ export function ModalIcon({ children, className, ...rest }: ModalIconProps) {
   );
 }
 
-export interface ModalCloseTriggerProps extends CloseButtonProps {}
+interface ModalCloseTriggerProps extends React.ComponentProps<
+  typeof CloseButton
+> {}
 
 export function ModalCloseTrigger({
   children,

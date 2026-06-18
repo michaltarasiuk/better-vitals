@@ -2,7 +2,7 @@ import { useId } from "react";
 
 import { spinnerVariants, type SpinnerVariants } from "./spinner";
 
-export interface SpinnerProps
+interface SpinnerProps
   extends
     Omit<React.ComponentProps<"span">, keyof SpinnerVariants>,
     SpinnerVariants {}

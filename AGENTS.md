@@ -1,5 +1,8 @@
 # Ultracite Code Standards
 
+This codebase uses the errore.org convention.
+ALWAYS read the errore skill before editing any code.
+
 This project uses **Ultracite**, a zero-config preset that enforces strict code quality standards through automated formatting and linting.
 
 ## Quick Reference

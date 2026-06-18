@@ -10,7 +10,6 @@ export async function loader() {
   if (await hasUsers()) {
     throw redirect(href("/signin"));
   }
-  return null;
 }
 
 export default function SignupRoute() {

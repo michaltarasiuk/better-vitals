@@ -1,6 +1,5 @@
 import { withMinimumDelay } from "@lite-app/shared/delay";
 import { isDefined } from "@lite-app/shared/is-defined";
-import { Button } from "@lite-app/ui/components/button";
 import {
   Card,
   CardContent,
@@ -12,24 +11,17 @@ import {
 import { FieldError } from "@lite-app/ui/components/field-error";
 import { Input } from "@lite-app/ui/components/input";
 import { Label } from "@lite-app/ui/components/label";
-import { Spinner } from "@lite-app/ui/components/spinner";
 import { TextField } from "@lite-app/ui/components/textfield";
-import {
-  href,
-  redirect,
-  useActionData,
-  useNavigation,
-  type ClientActionFunctionArgs,
-} from "react-router";
+import { href, redirect, type ClientActionFunctionArgs } from "react-router";
 import { cn } from "tailwind-variants";
 import { z } from "zod";
 
-import { Form, type FormProps } from "~/components/form";
+import { Form } from "~/components/form";
+import { SubmitButton } from "~/components/submit-button";
 import { signUp } from "~/lib/auth";
-import { getAuthErrorField, isKnownAuthError } from "~/lib/auth/error";
-import { comparePasswords } from "~/lib/auth/validation";
-import { parseFormData } from "~/lib/form/parse";
-import { getRandomAvatar } from "~/lib/user/avatar";
+import { comparePasswords } from "~/lib/auth/error";
+import { parseFormData } from "~/lib/form/form-data";
+import { pickAvatar } from "~/lib/user/avatar";
 
 const FormDataSchema = z.object({
   confirmPassword: z.string(),
@@ -44,48 +36,32 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
     FormDataSchema
   );
 
-  const passwordValidation = comparePasswords(password, confirmPassword);
-  if (!passwordValidation.success) {
+  const passwordError = comparePasswords({ confirmPassword, password });
+  if (passwordError instanceof Error) {
     return {
-      success: false,
-      validationErrors: passwordValidation.errors,
+      validationErrors: {
+        confirmPassword: passwordError.message,
+      },
     };
   }
 
   const result = await withMinimumDelay(
     signUp.email({
       email,
-      image: getRandomAvatar(),
+      image: pickAvatar(),
       name,
       password,
     })
   );
-  const success = isDefined(result.data);
-
-  if (!success) {
-    if (!isKnownAuthError(result.error)) {
-      return {
-        success: false,
-      };
-    }
-    const validationErrors = {
-      [getAuthErrorField(result.error.code)]: result.error.message,
-    } satisfies FormProps["validationErrors"];
+  if (!isDefined(result.data)) {
     return {
       success: false,
-      validationErrors,
     };
   }
   throw redirect(href("/organization/create"));
 }
 
 export function Signup() {
-  const actionData = useActionData<typeof clientAction>();
-  const navigation = useNavigation();
-
-  const validationErrors = actionData?.validationErrors ?? {};
-  const isSubmitting = navigation.state === "submitting";
-
   return (
     <Card>
       <CardHeader className={cn("items-center gap-1")}>
@@ -100,7 +76,7 @@ export function Signup() {
           Enter your details to get started
         </CardDescription>
       </CardHeader>
-      <Form validationErrors={validationErrors}>
+      <Form>
         <CardContent>
           <div className={cn("flex flex-col gap-4")}>
             <TextField name="name" type="text" isRequired>
@@ -126,18 +102,9 @@ export function Signup() {
           </div>
         </CardContent>
         <CardFooter className={cn("mt-4")}>
-          <Button
-            type="submit"
-            isPending={isSubmitting}
-            className={cn("w-full")}
-          >
-            {(props) => (
-              <>
-                {props.isPending ? <Spinner color="current" size="sm" /> : null}
-                {props.isPending ? "Signing Up" : "Sign Up"}
-              </>
-            )}
-          </Button>
+          <SubmitButton>
+            {({ isPending }) => (isPending ? "Signing Up" : "Sign Up")}
+          </SubmitButton>
         </CardFooter>
       </Form>
     </Card>

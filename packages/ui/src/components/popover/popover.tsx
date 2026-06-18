@@ -1,19 +1,5 @@
 import { TriangleIcon } from "lucide-react";
-import {
-  Dialog as RACDialog,
-  DialogTrigger as RACDialogTrigger,
-  Heading as RACHeading,
-  type DialogProps as RACDialogProps,
-  type DialogTriggerProps as RACDialogTriggerProps,
-  type HeadingProps as RACHeadingProps,
-} from "react-aria-components/Dialog";
-import {
-  OverlayArrow as RACOverlayArrow,
-  Popover as RACPopover,
-  Pressable as RACPressable,
-  type OverlayArrowProps as RACOverlayArrowProps,
-  type PopoverProps as RACPopoverProps,
-} from "react-aria-components/Popover";
+import * as Aria from "react-aria-components";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
 import { SurfaceContext } from "../surface";
@@ -21,17 +7,17 @@ import { popoverVariants } from "./popover";
 
 const slots = popoverVariants();
 
-export interface PopoverProps extends RACDialogTriggerProps {}
+interface PopoverProps extends Aria.DialogTriggerProps {}
 
 export function Popover({ children, ...rest }: PopoverProps) {
   return (
-    <RACDialogTrigger data-slot="popover" {...rest}>
+    <Aria.DialogTrigger data-slot="popover" {...rest}>
       {children}
-    </RACDialogTrigger>
+    </Aria.DialogTrigger>
   );
 }
 
-export interface PopoverTriggerProps extends React.ComponentProps<"div"> {}
+interface PopoverTriggerProps extends React.ComponentProps<"div"> {}
 
 export function PopoverTrigger({
   children,
@@ -39,7 +25,7 @@ export function PopoverTrigger({
   ...rest
 }: PopoverTriggerProps) {
   return (
-    <RACPressable>
+    <Aria.Pressable>
       <div
         data-slot="popover-trigger"
         className={slots.trigger({
@@ -49,11 +35,11 @@ export function PopoverTrigger({
       >
         {children}
       </div>
-    </RACPressable>
+    </Aria.Pressable>
   );
 }
 
-export interface PopoverContentProps extends RACPopoverProps {}
+interface PopoverContentProps extends Aria.PopoverProps {}
 
 export function PopoverContent({
   children,
@@ -66,22 +52,22 @@ export function PopoverContent({
         variant: "default",
       }}
     >
-      <RACPopover
+      <Aria.Popover
         data-slot="popover-content"
         className={cnRenderProps(className, slots.base())}
         {...rest}
       >
         {children}
-      </RACPopover>
+      </Aria.Popover>
     </SurfaceContext>
   );
 }
 
-export interface PopoverArrowProps extends RACOverlayArrowProps {}
+interface PopoverArrowProps extends Aria.OverlayArrowProps {}
 
 export function PopoverArrow({ children, ...rest }: PopoverArrowProps) {
   return (
-    <RACOverlayArrow data-slot="popover-overlay-arrow-group" {...rest}>
+    <Aria.OverlayArrow data-slot="popover-overlay-arrow-group" {...rest}>
       {children ?? (
         <TriangleIcon
           aria-hidden
@@ -91,11 +77,11 @@ export function PopoverArrow({ children, ...rest }: PopoverArrowProps) {
           stroke="none"
         />
       )}
-    </RACOverlayArrow>
+    </Aria.OverlayArrow>
   );
 }
 
-export interface PopoverDialogProps extends RACDialogProps {}
+interface PopoverDialogProps extends Aria.DialogProps {}
 
 export function PopoverDialog({
   children,
@@ -103,7 +89,7 @@ export function PopoverDialog({
   ...rest
 }: PopoverDialogProps) {
   return (
-    <RACDialog
+    <Aria.Dialog
       data-slot="popover-dialog"
       className={slots.dialog({
         className,
@@ -111,11 +97,11 @@ export function PopoverDialog({
       {...rest}
     >
       {children}
-    </RACDialog>
+    </Aria.Dialog>
   );
 }
 
-export interface PopoverHeadingProps extends RACHeadingProps {}
+interface PopoverHeadingProps extends Aria.HeadingProps {}
 
 export function PopoverHeading({
   children,
@@ -123,7 +109,7 @@ export function PopoverHeading({
   ...rest
 }: PopoverHeadingProps) {
   return (
-    <RACHeading
+    <Aria.Heading
       slot="title"
       data-slot="popover-heading"
       className={slots.heading({
@@ -132,6 +118,6 @@ export function PopoverHeading({
       {...rest}
     >
       {children}
-    </RACHeading>
+    </Aria.Heading>
   );
 }

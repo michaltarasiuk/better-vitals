@@ -1,18 +1,15 @@
-import {
-  Input as RACInput,
-  type InputProps as RACInputProps,
-} from "react-aria-components/Input";
+import * as Aria from "react-aria-components/Input";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
 import { useTextFieldContext } from "../textfield";
 import { inputVariants, type InputVariants } from "./input";
 
-export interface InputProps extends RACInputProps, InputVariants {}
+interface InputProps extends Aria.InputProps, InputVariants {}
 
 export function Input({ variant, fullWidth, className, ...rest }: InputProps) {
   const textFieldContext = useTextFieldContext();
   return (
-    <RACInput
+    <Aria.Input
       data-slot="input"
       className={cnRenderProps(
         className,

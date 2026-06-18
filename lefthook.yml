@@ -10,3 +10,7 @@ pre-commit:
         - "**/*.jsonc"
         - "**/*.css"
       stage_fixed: true
+    - run: mise exec -- bun x lintcn lint
+      glob:
+        - "**/*.ts"
+        - "**/*.tsx"

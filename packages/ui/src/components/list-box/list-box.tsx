@@ -1,10 +1,5 @@
 import { createContext } from "@lite-app/shared/create-context";
-import {
-  ListBox as RACListBox,
-  ListBoxItem as RACListBoxItem,
-  type ListBoxItemProps as RACListBoxItemProps,
-  type ListBoxProps as RACListBoxProps,
-} from "react-aria-components/ListBox";
+import * as Aria from "react-aria-components/ListBox";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
 import { listboxVariants, type ListBoxVariants } from "./list-box";
@@ -18,7 +13,7 @@ interface ListBoxItemContextValue extends ListBoxVariants {
 const [ListBoxItemContext, useListBoxItemContext] =
   createContext<ListBoxItemContextValue>("ListBoxItemContext");
 
-export interface ListBoxProps<T extends object> extends RACListBoxProps<T> {}
+interface ListBoxProps<T extends object> extends Aria.ListBoxProps<T> {}
 
 export function ListBox<T extends object>({
   children,
@@ -26,18 +21,17 @@ export function ListBox<T extends object>({
   ...rest
 }: ListBoxProps<T>) {
   return (
-    <RACListBox
+    <Aria.ListBox
       data-slot="list-box"
       className={cnRenderProps(className, slots.base())}
       {...rest}
     >
       {children}
-    </RACListBox>
+    </Aria.ListBox>
   );
 }
 
-export interface ListBoxItemProps
-  extends RACListBoxItemProps, ListBoxVariants {}
+interface ListBoxItemProps extends Aria.ListBoxItemProps, ListBoxVariants {}
 
 export function ListBoxItem({
   children,
@@ -46,7 +40,7 @@ export function ListBoxItem({
   ...rest
 }: ListBoxItemProps) {
   return (
-    <RACListBoxItem
+    <Aria.ListBoxItem
       data-slot="list-box-item"
       className={cnRenderProps(
         className,
@@ -66,11 +60,11 @@ export function ListBoxItem({
           {typeof children === "function" ? children(renderProps) : children}
         </ListBoxItemContext>
       )}
-    </RACListBoxItem>
+    </Aria.ListBoxItem>
   );
 }
 
-export interface ListBoxItemIndicatorProps extends React.ComponentProps<"span"> {}
+interface ListBoxItemIndicatorProps extends React.ComponentProps<"span"> {}
 
 export function ListBoxItemIndicator({
   children,

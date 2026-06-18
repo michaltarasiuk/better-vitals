@@ -1,10 +1,9 @@
-import {
-  Form as UIForm,
-  type FormProps as UIFormProps,
-} from "@lite-app/ui/components/form";
+import { Form as UIForm } from "@lite-app/ui/components/form";
 import { useSubmit } from "react-router";
 
-export interface FormProps extends UIFormProps {}
+interface FormProps extends React.ComponentProps<typeof UIForm> {}
+
+export type FormValidationErrors = NonNullable<FormProps["validationErrors"]>;
 
 export function Form({
   method = "post",

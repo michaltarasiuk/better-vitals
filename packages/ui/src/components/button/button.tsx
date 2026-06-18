@@ -1,12 +1,9 @@
-import {
-  Button as RACButton,
-  type ButtonProps as RACButtonProps,
-} from "react-aria-components/Button";
+import * as Aria from "react-aria-components/Button";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
 import { buttonVariants, type ButtonVariants } from "./button";
 
-export interface ButtonProps extends RACButtonProps, ButtonVariants {}
+interface ButtonProps extends Aria.ButtonProps, ButtonVariants {}
 
 export function Button({
   children,
@@ -18,7 +15,7 @@ export function Button({
   ...rest
 }: ButtonProps) {
   return (
-    <RACButton
+    <Aria.Button
       data-slot="button"
       className={cnRenderProps(
         className,
@@ -32,6 +29,6 @@ export function Button({
       {...rest}
     >
       {children}
-    </RACButton>
+    </Aria.Button>
   );
 }

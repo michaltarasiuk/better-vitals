@@ -1,21 +1,7 @@
 import { createContext } from "@lite-app/shared/create-context";
 import { ChevronDownIcon } from "lucide-react";
 import { use } from "react";
-import {
-  Button as RACButton,
-  type ButtonProps as RACButtonProps,
-} from "react-aria-components/Button";
-import {
-  Popover as RACPopover,
-  type PopoverProps as RACPopoverProps,
-} from "react-aria-components/Popover";
-import {
-  Select as RACSelect,
-  SelectValue as RACSelectValue,
-  SelectStateContext,
-  type SelectProps as RACSelectProps,
-  type SelectValueProps as RACSelectValueProps,
-} from "react-aria-components/Select";
+import * as Aria from "react-aria-components/Select";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
 import { SurfaceContext } from "../surface";
@@ -28,11 +14,11 @@ interface SelectContextValue extends SelectVariants {}
 const [SelectContext, useSelectContext] =
   createContext<SelectContextValue>("SelectContext");
 
-export interface SelectProps<
+interface SelectProps<
   T extends object,
   M extends "single" | "multiple" = "single",
 >
-  extends RACSelectProps<T, M>, SelectVariants {}
+  extends Aria.SelectProps<T, M>, SelectVariants {}
 
 export function Select<
   T extends object = object,
@@ -45,7 +31,7 @@ export function Select<
         variant,
       }}
     >
-      <RACSelect
+      <Aria.Select
         data-slot="select"
         className={cnRenderProps(
           className,
@@ -57,12 +43,12 @@ export function Select<
         {...rest}
       >
         {children}
-      </RACSelect>
+      </Aria.Select>
     </SelectContext>
   );
 }
 
-export interface SelectTriggerProps extends RACButtonProps {}
+interface SelectTriggerProps extends Aria.ButtonProps {}
 
 export function SelectTrigger({
   children,
@@ -71,7 +57,7 @@ export function SelectTrigger({
 }: SelectTriggerProps) {
   const { fullWidth, variant } = useSelectContext();
   return (
-    <RACButton
+    <Aria.Button
       data-slot="select-trigger"
       className={cnRenderProps(
         className,
@@ -83,13 +69,13 @@ export function SelectTrigger({
       {...rest}
     >
       {children}
-    </RACButton>
+    </Aria.Button>
   );
 }
 
-export interface SelectValueProps<
+interface SelectValueProps<
   T extends object = object,
-> extends RACSelectValueProps<T> {}
+> extends Aria.SelectValueProps<T> {}
 
 export function SelectValue<T extends object = object>({
   children,
@@ -97,24 +83,24 @@ export function SelectValue<T extends object = object>({
   ...rest
 }: SelectValueProps<T>) {
   return (
-    <RACSelectValue
+    <Aria.SelectValue
       data-slot="select-value"
       className={cnRenderProps(className, slots.value())}
       {...rest}
     >
       {children}
-    </RACSelectValue>
+    </Aria.SelectValue>
   );
 }
 
-export interface SelectIndicatorProps extends React.ComponentProps<"span"> {}
+interface SelectIndicatorProps extends React.ComponentProps<"span"> {}
 
 export function SelectIndicator({
   children,
   className,
   ...rest
 }: SelectIndicatorProps) {
-  const { isOpen = false } = use(SelectStateContext) ?? {};
+  const { isOpen = false } = use(Aria.SelectStateContext) ?? {};
   return (
     <span
       data-slot="select-indicator"
@@ -129,7 +115,7 @@ export function SelectIndicator({
   );
 }
 
-export interface SelectPopoverProps extends RACPopoverProps {}
+interface SelectPopoverProps extends Aria.PopoverProps {}
 
 export function SelectPopover({
   children,
@@ -143,14 +129,14 @@ export function SelectPopover({
         variant: "default",
       }}
     >
-      <RACPopover
+      <Aria.Popover
         data-slot="select-popover"
         className={cnRenderProps(className, slots.popover())}
         placement={placement}
         {...rest}
       >
         {children}
-      </RACPopover>
+      </Aria.Popover>
     </SurfaceContext>
   );
 }

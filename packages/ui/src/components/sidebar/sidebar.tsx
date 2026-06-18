@@ -1,9 +1,9 @@
 import { createContext } from "@lite-app/shared/create-context";
 import { PanelLeftIcon } from "lucide-react";
 import { useState } from "react";
-import { composeRenderProps } from "react-aria-components";
+import { composeRenderProps } from "react-aria-components/composeRenderProps";
 
-import { Button, type ButtonProps } from "../button";
+import { Button } from "../button";
 import { sidebarVariants } from "./sidebar";
 
 const slots = sidebarVariants();
@@ -16,7 +16,7 @@ interface SidebarContextValue {
 const [SidebarContext, useSidebar] =
   createContext<SidebarContextValue>("SidebarContext");
 
-export interface SidebarProviderProps extends React.ComponentProps<"div"> {}
+interface SidebarProviderProps extends React.ComponentProps<"div"> {}
 
 export function SidebarProvider({
   children,
@@ -47,7 +47,7 @@ export function SidebarProvider({
   );
 }
 
-export interface SidebarTriggerProps extends ButtonProps {}
+interface SidebarTriggerProps extends React.ComponentProps<typeof Button> {}
 
 export function SidebarTrigger({
   children,
@@ -75,7 +75,7 @@ export function SidebarTrigger({
   );
 }
 
-export interface SidebarProps extends React.ComponentProps<"div"> {}
+interface SidebarProps extends React.ComponentProps<"div"> {}
 
 export function Sidebar({ children, className, ...rest }: SidebarProps) {
   const { open } = useSidebar();
@@ -95,7 +95,7 @@ export function Sidebar({ children, className, ...rest }: SidebarProps) {
   );
 }
 
-export interface SidebarHeaderProps extends React.ComponentProps<"div"> {}
+interface SidebarHeaderProps extends React.ComponentProps<"div"> {}
 
 export function SidebarHeader({
   children,
@@ -115,7 +115,7 @@ export function SidebarHeader({
   );
 }
 
-export interface SidebarContentProps extends React.ComponentProps<"div"> {}
+interface SidebarContentProps extends React.ComponentProps<"div"> {}
 
 export function SidebarContent({
   children,
@@ -135,7 +135,7 @@ export function SidebarContent({
   );
 }
 
-export interface SidebarMenuProps extends React.ComponentProps<"div"> {}
+interface SidebarMenuProps extends React.ComponentProps<"div"> {}
 
 export function SidebarMenu({
   children,
@@ -155,7 +155,7 @@ export function SidebarMenu({
   );
 }
 
-export interface SidebarMenuItemProps extends React.ComponentProps<"div"> {}
+interface SidebarMenuItemProps extends React.ComponentProps<"div"> {}
 
 export function SidebarMenuItem({
   children,
@@ -175,7 +175,7 @@ export function SidebarMenuItem({
   );
 }
 
-export interface SidebarMenuIconProps extends React.ComponentProps<"div"> {}
+interface SidebarMenuIconProps extends React.ComponentProps<"div"> {}
 
 export function SidebarMenuIcon({
   children,
@@ -195,7 +195,7 @@ export function SidebarMenuIcon({
   );
 }
 
-export interface SidebarMenuItemContentProps extends React.ComponentProps<"div"> {}
+interface SidebarMenuItemContentProps extends React.ComponentProps<"div"> {}
 
 export function SidebarMenuItemContent({
   children,
@@ -215,7 +215,7 @@ export function SidebarMenuItemContent({
   );
 }
 
-export interface SidebarMenuLabelProps extends React.ComponentProps<"div"> {}
+interface SidebarMenuLabelProps extends React.ComponentProps<"div"> {}
 
 export function SidebarMenuLabel({
   children,
@@ -240,7 +240,7 @@ export function SidebarMenuLabel({
   );
 }
 
-export interface SidebarFooterProps extends React.ComponentProps<"div"> {}
+interface SidebarFooterProps extends React.ComponentProps<"div"> {}
 
 export function SidebarFooter({
   children,

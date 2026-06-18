@@ -1,23 +1,7 @@
 import { createContext } from "@lite-app/shared/create-context";
 import { ChevronDownIcon } from "lucide-react";
 import { use } from "react";
-import {
-  Button as RACButton,
-  type ButtonProps as RACButtonProps,
-} from "react-aria-components/Button";
-import {
-  DisclosureStateContext,
-  Disclosure as RACDisclosure,
-  Heading as RACDisclosureHeading,
-  DisclosurePanel as RACDisclosurePanel,
-  type HeadingProps as RACDisclosureHeadingProps,
-  type DisclosurePanelProps as RACDisclosurePanelProps,
-  type DisclosureProps as RACDisclosureProps,
-} from "react-aria-components/Disclosure";
-import {
-  DisclosureGroup as RACDisclosureGroup,
-  type DisclosureGroupProps as RACDisclosureGroupProps,
-} from "react-aria-components/DisclosureGroup";
+import * as Aria from "react-aria-components/DisclosureGroup";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
 import { SurfaceContext } from "../surface";
@@ -32,8 +16,7 @@ interface AccordionContextValue extends AccordionVariants {
 const [AccordionContext, useAccordionContext] =
   createContext<AccordionContextValue>("AccordionContext");
 
-export interface AccordionProps
-  extends RACDisclosureGroupProps, AccordionVariants {
+interface AccordionProps extends Aria.DisclosureGroupProps, AccordionVariants {
   hideSeparator?: boolean;
 }
 
@@ -45,7 +28,7 @@ export function Accordion({
   ...rest
 }: AccordionProps) {
   const content = (
-    <RACDisclosureGroup
+    <Aria.DisclosureGroup
       data-slot="accordion"
       className={cnRenderProps(
         className,
@@ -56,7 +39,7 @@ export function Accordion({
       {...rest}
     >
       {children}
-    </RACDisclosureGroup>
+    </Aria.DisclosureGroup>
   );
   return (
     <AccordionContext
@@ -80,7 +63,7 @@ export function Accordion({
   );
 }
 
-export interface AccordionItemProps extends RACDisclosureProps {}
+interface AccordionItemProps extends Aria.DisclosureProps {}
 
 export function AccordionItem({
   children,
@@ -89,7 +72,7 @@ export function AccordionItem({
 }: AccordionItemProps) {
   const { variant, hideSeparator } = useAccordionContext();
   return (
-    <RACDisclosure
+    <Aria.Disclosure
       data-slot="accordion-item"
       data-hide-separator={hideSeparator}
       className={cnRenderProps(
@@ -101,11 +84,11 @@ export function AccordionItem({
       {...rest}
     >
       {children}
-    </RACDisclosure>
+    </Aria.Disclosure>
   );
 }
 
-export interface AccordionIndicatorProps extends React.ComponentProps<"span"> {}
+interface AccordionIndicatorProps extends React.ComponentProps<"span"> {}
 
 export function AccordionIndicator({
   children,
@@ -113,7 +96,7 @@ export function AccordionIndicator({
   ...rest
 }: AccordionIndicatorProps) {
   const { variant } = useAccordionContext();
-  const { isExpanded = false } = use(DisclosureStateContext) ?? {};
+  const { isExpanded = false } = use(Aria.DisclosureStateContext) ?? {};
   return (
     <span
       data-slot="accordion-indicator"
@@ -129,7 +112,7 @@ export function AccordionIndicator({
   );
 }
 
-export interface AccordionHeadingProps extends RACDisclosureHeadingProps {}
+interface AccordionHeadingProps extends Aria.HeadingProps {}
 
 export function AccordionHeading({
   children,
@@ -138,7 +121,7 @@ export function AccordionHeading({
 }: AccordionHeadingProps) {
   const { variant } = useAccordionContext();
   return (
-    <RACDisclosureHeading
+    <Aria.Heading
       data-slot="accordion-heading"
       className={slots.heading({
         className,
@@ -147,11 +130,11 @@ export function AccordionHeading({
       {...rest}
     >
       {children}
-    </RACDisclosureHeading>
+    </Aria.Heading>
   );
 }
 
-export interface AccordionTriggerProps extends RACButtonProps {}
+interface AccordionTriggerProps extends Aria.ButtonProps {}
 
 export function AccordionTrigger({
   children,
@@ -160,7 +143,7 @@ export function AccordionTrigger({
 }: AccordionTriggerProps) {
   const { variant } = useAccordionContext();
   return (
-    <RACButton
+    <Aria.Button
       slot="trigger"
       data-slot="accordion-trigger"
       className={cnRenderProps(
@@ -172,11 +155,11 @@ export function AccordionTrigger({
       {...rest}
     >
       {children}
-    </RACButton>
+    </Aria.Button>
   );
 }
 
-export interface AccordionBodyProps extends React.ComponentProps<"div"> {}
+interface AccordionBodyProps extends React.ComponentProps<"div"> {}
 
 export function AccordionBody({
   children,
@@ -204,7 +187,7 @@ export function AccordionBody({
   );
 }
 
-export interface AccordionPanelProps extends RACDisclosurePanelProps {}
+interface AccordionPanelProps extends Aria.DisclosurePanelProps {}
 
 export function AccordionPanel({
   children,
@@ -212,9 +195,9 @@ export function AccordionPanel({
   ...rest
 }: AccordionPanelProps) {
   const { variant } = useAccordionContext();
-  const { isExpanded = false } = use(DisclosureStateContext) ?? {};
+  const { isExpanded = false } = use(Aria.DisclosureStateContext) ?? {};
   return (
-    <RACDisclosurePanel
+    <Aria.DisclosurePanel
       data-slot="accordion-panel"
       data-expanded={isExpanded}
       className={cnRenderProps(
@@ -226,6 +209,6 @@ export function AccordionPanel({
       {...rest}
     >
       {children}
-    </RACDisclosurePanel>
+    </Aria.DisclosurePanel>
   );
 }

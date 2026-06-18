@@ -26,13 +26,16 @@
     "dev": "turbo run dev",
     "build": "turbo run build",
     "check": "ultracite check",
-    "fix": "ultracite fix"
+    "fix": "ultracite fix",
+    "lintcn": "mise exec -- lintcn lint",
+    "lintcn:build": "mise exec -- lintcn build"
   },
   "dependencies": {
     "lucide-react": "^1.18.0"
   },
   "devDependencies": {
     "lefthook": "^2.1.9",
+    "lintcn": "0.10.1",
     "oxfmt": "^0.54.0",
     "oxlint": "^1.69.0",
     "turbo": "^2.9.14",

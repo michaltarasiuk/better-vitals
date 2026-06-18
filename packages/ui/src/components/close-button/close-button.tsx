@@ -1,14 +1,11 @@
 import { XIcon } from "lucide-react";
-import { composeRenderProps } from "react-aria-components";
-import {
-  Button as RACButton,
-  type ButtonProps as RACButtonProps,
-} from "react-aria-components/Button";
+import * as Aria from "react-aria-components/Button";
+import { composeRenderProps } from "react-aria-components/composeRenderProps";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
 import { closeButtonVariants, type CloseButtonVariants } from "./close-button";
 
-export interface CloseButtonProps extends RACButtonProps, CloseButtonVariants {}
+interface CloseButtonProps extends Aria.ButtonProps, CloseButtonVariants {}
 
 export function CloseButton({
   children,
@@ -17,7 +14,7 @@ export function CloseButton({
   ...rest
 }: CloseButtonProps) {
   return (
-    <RACButton
+    <Aria.Button
       data-slot="close-button"
       className={cnRenderProps(
         className,
@@ -31,6 +28,6 @@ export function CloseButton({
         children,
         (userChildren) => userChildren ?? <XIcon aria-hidden size={16} />
       )}
-    </RACButton>
+    </Aria.Button>
   );
 }

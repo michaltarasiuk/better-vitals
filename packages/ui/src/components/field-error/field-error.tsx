@@ -1,22 +1,18 @@
-import {
-  FieldError as RACFieldError,
-  type FieldErrorProps as RACFieldErrorProps,
-} from "react-aria-components/FieldError";
+import * as Aria from "react-aria-components/FieldError";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
 import { fieldErrorVariants, type FieldErrorVariants } from "./field-error";
 
-export interface FieldErrorProps
-  extends RACFieldErrorProps, FieldErrorVariants {}
+interface FieldErrorProps extends Aria.FieldErrorProps, FieldErrorVariants {}
 
 export function FieldError({ children, className, ...rest }: FieldErrorProps) {
   return (
-    <RACFieldError
+    <Aria.FieldError
       data-slot="field-error"
       className={cnRenderProps(className, fieldErrorVariants())}
       {...rest}
     >
       {children}
-    </RACFieldError>
+    </Aria.FieldError>
   );
 }

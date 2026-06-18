@@ -1,14 +1,11 @@
-import {
-  Form as RACForm,
-  type FormProps as RACFormProps,
-} from "react-aria-components/Form";
+import * as Aria from "react-aria-components/Form";
 
-export interface FormProps extends RACFormProps {}
+interface FormProps extends Aria.FormProps {}
 
 export function Form({ children, onSubmit, ...rest }: FormProps) {
   return (
-    <RACForm onSubmit={onSubmit} {...rest}>
+    <Aria.Form onSubmit={onSubmit} {...rest}>
       {children}
-    </RACForm>
+    </Aria.Form>
   );
 }

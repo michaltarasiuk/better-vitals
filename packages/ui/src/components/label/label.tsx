@@ -1,11 +1,8 @@
-import {
-  Label as RACLabel,
-  type LabelProps as RACLabelProps,
-} from "react-aria-components/Label";
+import * as Aria from "react-aria-components/Label";
 
 import { labelVariants, type LabelVariants } from "./label";
 
-export interface LabelProps extends RACLabelProps, LabelVariants {}
+interface LabelProps extends Aria.LabelProps, LabelVariants {}
 
 export function Label({
   children,
@@ -16,7 +13,7 @@ export function Label({
   ...rest
 }: LabelProps) {
   return (
-    <RACLabel
+    <Aria.Label
       data-slot="label"
       className={labelVariants({
         className,
@@ -27,6 +24,6 @@ export function Label({
       {...rest}
     >
       {children}
-    </RACLabel>
+    </Aria.Label>
   );
 }

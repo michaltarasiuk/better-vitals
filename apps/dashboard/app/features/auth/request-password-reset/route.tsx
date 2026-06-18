@@ -1,6 +1,5 @@
 import { withMinimumDelay } from "@lite-app/shared/delay";
 import { isDefined } from "@lite-app/shared/is-defined";
-import { Button } from "@lite-app/ui/components/button";
 import {
   Card,
   CardContent,
@@ -13,21 +12,15 @@ import { FieldError } from "@lite-app/ui/components/field-error";
 import { Input } from "@lite-app/ui/components/input";
 import { Label } from "@lite-app/ui/components/label";
 import { Link } from "@lite-app/ui/components/link";
-import { Spinner } from "@lite-app/ui/components/spinner";
 import { TextField } from "@lite-app/ui/components/textfield";
-import {
-  href,
-  useActionData,
-  useNavigation,
-  type ClientActionFunctionArgs,
-} from "react-router";
+import { href, type ClientActionFunctionArgs } from "react-router";
 import { cn } from "tailwind-variants";
 import { z } from "zod";
 
-import { Form, type FormProps } from "~/components/form";
+import { Form } from "~/components/form";
+import { SubmitButton } from "~/components/submit-button";
 import { requestPasswordReset } from "~/lib/auth";
-import { getAuthErrorField, isKnownAuthError } from "~/lib/auth/error";
-import { parseFormData } from "~/lib/form/parse";
+import { parseFormData } from "~/lib/form/form-data";
 
 const FormDataSchema = z.object({
   email: z.string(),
@@ -42,20 +35,9 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
       redirectTo: href("/reset-password"),
     })
   );
-  const success = isDefined(result.data);
-
-  if (!success) {
-    if (!isKnownAuthError(result.error)) {
-      return {
-        success: false,
-      };
-    }
-    const validationErrors = {
-      [getAuthErrorField(result.error.code)]: result.error.message,
-    } satisfies FormProps["validationErrors"];
+  if (isDefined(result.error)) {
     return {
       success: false,
-      validationErrors,
     };
   }
   return {
@@ -64,12 +46,6 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
 }
 
 export default function RequestPasswordReset() {
-  const actionData = useActionData<typeof clientAction>();
-  const navigation = useNavigation();
-
-  const validationErrors = actionData?.validationErrors ?? {};
-  const isSubmitting = navigation.state === "submitting";
-
   return (
     <Card>
       <CardHeader className={cn("items-center gap-1")}>
@@ -84,27 +60,20 @@ export default function RequestPasswordReset() {
           We will email you a link to reset your password
         </CardDescription>
       </CardHeader>
-      <Form validationErrors={validationErrors}>
+      <Form>
         <CardContent>
-          <TextField name="email" type="email" isRequired>
-            <Label>Email</Label>
-            <Input variant="secondary" />
-            <FieldError />
-          </TextField>
+          <div className={cn("flex flex-col gap-4")}>
+            <TextField name="email" type="email" isRequired>
+              <Label>Email</Label>
+              <Input variant="secondary" />
+              <FieldError />
+            </TextField>
+          </div>
         </CardContent>
         <CardFooter className={cn("mt-4 flex flex-col gap-2")}>
-          <Button
-            type="submit"
-            isPending={isSubmitting}
-            className={cn("w-full")}
-          >
-            {(props) => (
-              <>
-                {props.isPending ? <Spinner color="current" size="sm" /> : null}
-                {props.isPending ? "Sending" : "Send reset link"}
-              </>
-            )}
-          </Button>
+          <SubmitButton>
+            {({ isPending }) => (isPending ? "Sending" : "Send reset link")}
+          </SubmitButton>
           <Link href="/signin" className={cn("text-center text-sm")}>
             Back to sign in
           </Link>

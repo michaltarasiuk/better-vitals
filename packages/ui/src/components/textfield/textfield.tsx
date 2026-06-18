@@ -1,8 +1,5 @@
 import { createContext } from "@lite-app/shared/create-context";
-import {
-  TextField as RACTextField,
-  type TextFieldProps as RACTextFieldProps,
-} from "react-aria-components";
+import * as Aria from "react-aria-components/TextField";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
 import { textFieldVariants, type TextFieldVariants } from "./textfield";
@@ -14,8 +11,8 @@ interface TextFieldContextValue {
 export const [TextFieldContext, useTextFieldContext] =
   createContext<TextFieldContextValue>("TextFieldContext");
 
-export interface TextFieldProps
-  extends RACTextFieldProps, TextFieldVariants, TextFieldContextValue {}
+interface TextFieldProps
+  extends Aria.TextFieldProps, TextFieldVariants, TextFieldContextValue {}
 
 export function TextField({
   children,
@@ -30,7 +27,7 @@ export function TextField({
         variant,
       }}
     >
-      <RACTextField
+      <Aria.TextField
         data-slot="textfield"
         className={cnRenderProps(
           className,
@@ -41,7 +38,7 @@ export function TextField({
         {...rest}
       >
         {children}
-      </RACTextField>
+      </Aria.TextField>
     </TextFieldContext>
   );
 }

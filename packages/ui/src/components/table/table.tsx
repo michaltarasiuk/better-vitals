@@ -1,25 +1,5 @@
 import { createContext } from "@lite-app/shared/create-context";
-import {
-  Cell as RACCell,
-  type CellProps as RACCellProps,
-  Collection as RACCollection,
-  Column as RACColumn,
-  type ColumnProps as RACColumnProps,
-  ColumnResizer as RACColumnResizer,
-  type ColumnResizerProps as RACColumnResizerProps,
-  ResizableTableContainer as RACResizableTableContainer,
-  type ResizableTableContainerProps as RACResizableTableContainerProps,
-  Row as RACRow,
-  type RowProps as RACRowProps,
-  Table as RACTable,
-  TableBody as RACTableBody,
-  type TableBodyProps as RACTableBodyProps,
-  TableHeader as RACTableHeader,
-  type TableHeaderProps as RACTableHeaderProps,
-  TableLoadMoreItem as RACTableLoadMoreItem,
-  type TableLoadMoreItemProps as RACTableLoadMoreItemProps,
-  type TableProps as RACTableProps,
-} from "react-aria-components/Table";
+import * as Aria from "react-aria-components/Table";
 import { cn } from "tailwind-variants";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
@@ -32,8 +12,7 @@ interface TableContextValue extends TableVariants {}
 const [TableContext, useTableContext] =
   createContext<TableContextValue>("TableContext");
 
-export interface TableProps
-  extends React.ComponentProps<"div">, TableVariants {}
+interface TableProps extends React.ComponentProps<"div">, TableVariants {}
 
 export function Table({ children, variant, className, ...rest }: TableProps) {
   return (
@@ -56,7 +35,7 @@ export function Table({ children, variant, className, ...rest }: TableProps) {
   );
 }
 
-export interface TableScrollContainerProps extends React.ComponentProps<"div"> {}
+interface TableScrollContainerProps extends React.ComponentProps<"div"> {}
 
 export function TableScrollContainer({
   children,
@@ -78,7 +57,7 @@ export function TableScrollContainer({
   );
 }
 
-export interface TableContentProps extends RACTableProps {}
+interface TableContentProps extends Aria.TableProps {}
 
 export function TableContent({
   children,
@@ -87,7 +66,7 @@ export function TableContent({
 }: TableContentProps) {
   const { variant } = useTableContext();
   return (
-    <RACTable
+    <Aria.Table
       data-slot="table-content"
       className={cnRenderProps(
         className,
@@ -98,11 +77,11 @@ export function TableContent({
       {...rest}
     >
       {children}
-    </RACTable>
+    </Aria.Table>
   );
 }
 
-export interface TableHeaderProps<T> extends RACTableHeaderProps<T> {}
+interface TableHeaderProps<T extends object> extends Aria.TableHeaderProps<T> {}
 
 export function TableHeader<T extends object>({
   children,
@@ -111,7 +90,7 @@ export function TableHeader<T extends object>({
 }: TableHeaderProps<T>) {
   const { variant } = useTableContext();
   return (
-    <RACTableHeader
+    <Aria.TableHeader
       data-slot="table-header"
       className={cnRenderProps(
         className,
@@ -122,11 +101,11 @@ export function TableHeader<T extends object>({
       {...rest}
     >
       {children}
-    </RACTableHeader>
+    </Aria.TableHeader>
   );
 }
 
-export interface TableColumnProps extends RACColumnProps {}
+interface TableColumnProps extends Aria.ColumnProps {}
 
 export function TableColumn({
   children,
@@ -135,7 +114,7 @@ export function TableColumn({
 }: TableColumnProps) {
   const { variant } = useTableContext();
   return (
-    <RACColumn
+    <Aria.Column
       data-slot="table-column"
       className={cnRenderProps(
         className,
@@ -146,13 +125,11 @@ export function TableColumn({
       {...rest}
     >
       {children}
-    </RACColumn>
+    </Aria.Column>
   );
 }
 
-export interface TableBodyProps<
-  T extends object,
-> extends RACTableBodyProps<T> {}
+interface TableBodyProps<T extends object> extends Aria.TableBodyProps<T> {}
 
 export function TableBody<T extends object>({
   children,
@@ -161,7 +138,7 @@ export function TableBody<T extends object>({
 }: TableBodyProps<T>) {
   const { variant } = useTableContext();
   return (
-    <RACTableBody
+    <Aria.TableBody
       data-slot="table-body"
       className={cnRenderProps(
         className,
@@ -172,11 +149,11 @@ export function TableBody<T extends object>({
       {...rest}
     >
       {children}
-    </RACTableBody>
+    </Aria.TableBody>
   );
 }
 
-export interface TableRowProps<T extends object> extends RACRowProps<T> {}
+interface TableRowProps<T extends object> extends Aria.RowProps<T> {}
 
 export function TableRow<T extends object>({
   children,
@@ -185,7 +162,7 @@ export function TableRow<T extends object>({
 }: TableRowProps<T>) {
   const { variant } = useTableContext();
   return (
-    <RACRow
+    <Aria.Row
       data-slot="table-row"
       className={cnRenderProps(
         className,
@@ -196,16 +173,16 @@ export function TableRow<T extends object>({
       {...rest}
     >
       {children}
-    </RACRow>
+    </Aria.Row>
   );
 }
 
-export interface TableCellProps extends RACCellProps {}
+interface TableCellProps extends Aria.CellProps {}
 
 export function TableCell({ children, className, ...rest }: TableCellProps) {
   const { variant } = useTableContext();
   return (
-    <RACCell
+    <Aria.Cell
       data-slot="table-cell"
       className={cnRenderProps(
         className,
@@ -216,11 +193,11 @@ export function TableCell({ children, className, ...rest }: TableCellProps) {
       {...rest}
     >
       {children}
-    </RACCell>
+    </Aria.Cell>
   );
 }
 
-export interface TableFooterProps extends React.ComponentProps<"div"> {}
+interface TableFooterProps extends React.ComponentProps<"div"> {}
 
 export function TableFooter({
   children,
@@ -242,7 +219,8 @@ export function TableFooter({
   );
 }
 
-export interface TableResizableContainerProps extends RACResizableTableContainerProps {}
+interface TableResizableContainerProps
+  extends Aria.ResizableTableContainerProps {}
 
 export function TableResizableContainer({
   children,
@@ -250,17 +228,17 @@ export function TableResizableContainer({
   ...rest
 }: TableResizableContainerProps) {
   return (
-    <RACResizableTableContainer
+    <Aria.ResizableTableContainer
       data-slot="table-resizable-container"
       className={cn("table__resizable-container", className)}
       {...rest}
     >
       {children}
-    </RACResizableTableContainer>
+    </Aria.ResizableTableContainer>
   );
 }
 
-export interface TableColumnResizerProps extends RACColumnResizerProps {}
+interface TableColumnResizerProps extends Aria.ColumnResizerProps {}
 
 export function TableColumnResizer({
   children,
@@ -269,7 +247,7 @@ export function TableColumnResizer({
 }: TableColumnResizerProps) {
   const { variant } = useTableContext();
   return (
-    <RACColumnResizer
+    <Aria.ColumnResizer
       data-slot="table-column-resizer"
       className={cnRenderProps(
         className,
@@ -280,11 +258,11 @@ export function TableColumnResizer({
       {...rest}
     >
       {children}
-    </RACColumnResizer>
+    </Aria.ColumnResizer>
   );
 }
 
-export interface TableLoadMoreItemProps extends RACTableLoadMoreItemProps {}
+interface TableLoadMoreItemProps extends Aria.TableLoadMoreItemProps {}
 
 export function TableLoadMoreItem({
   children,
@@ -293,7 +271,7 @@ export function TableLoadMoreItem({
 }: TableLoadMoreItemProps) {
   const { variant } = useTableContext();
   return (
-    <RACTableLoadMoreItem
+    <Aria.TableLoadMoreItem
       data-slot="table-load-more"
       className={slots.loadMore({
         className,
@@ -302,11 +280,11 @@ export function TableLoadMoreItem({
       {...rest}
     >
       {children}
-    </RACTableLoadMoreItem>
+    </Aria.TableLoadMoreItem>
   );
 }
 
-export interface TableLoadMoreContentProps extends React.ComponentProps<"div"> {}
+interface TableLoadMoreContentProps extends React.ComponentProps<"div"> {}
 
 export function TableLoadMoreContent({
   children,
@@ -328,4 +306,4 @@ export function TableLoadMoreContent({
   );
 }
 
-export { RACCollection as TableCollection };
+export const TableCollection = Aria.Collection;

@@ -1,20 +1,16 @@
-import {
-  Separator as RACSeparator,
-  SeparatorContext,
-  type SeparatorProps as RACSeparatorProps,
-} from "react-aria-components/Separator";
+import * as Aria from "react-aria-components/Separator";
 import { useSlottedContext } from "react-aria-components/slots";
 
 import { separatorVariants, type SeparatorVariants } from "./separator";
 
-export interface SeparatorProps extends RACSeparatorProps, SeparatorVariants {}
+interface SeparatorProps extends Aria.SeparatorProps, SeparatorVariants {}
 
 export function Separator({ variant, className, ...rest }: SeparatorProps) {
-  const context = useSlottedContext(SeparatorContext);
+  const context = useSlottedContext(Aria.SeparatorContext);
   const orientation = rest.orientation ?? context?.orientation ?? "horizontal";
 
   return (
-    <RACSeparator
+    <Aria.Separator
       data-slot="separator"
       orientation={orientation}
       className={separatorVariants({

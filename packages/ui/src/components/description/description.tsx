@@ -1,8 +1,8 @@
-import { Text, type TextProps } from "react-aria-components/Text";
+import * as Aria from "react-aria-components/Text";
 
 import { descriptionVariants, type DescriptionVariants } from "./description";
 
-export interface DescriptionProps extends TextProps, DescriptionVariants {}
+interface DescriptionProps extends Aria.TextProps, DescriptionVariants {}
 
 export function Description({
   children,
@@ -10,7 +10,7 @@ export function Description({
   ...rest
 }: DescriptionProps) {
   return (
-    <Text
+    <Aria.Text
       slot="description"
       data-slot="description"
       className={descriptionVariants({
@@ -19,6 +19,6 @@ export function Description({
       {...rest}
     >
       {children}
-    </Text>
+    </Aria.Text>
   );
 }

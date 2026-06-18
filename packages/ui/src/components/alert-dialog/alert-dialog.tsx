@@ -6,23 +6,10 @@ import {
   TriangleAlertIcon,
   type LucideIcon,
 } from "lucide-react";
-import {
-  Dialog as RACDialog,
-  DialogTrigger as RACDialogTrigger,
-  Heading as RACHeading,
-  type DialogProps as RACDialogProps,
-  type DialogTriggerProps as RACDialogTriggerProps,
-  type HeadingProps as RACHeadingProps,
-} from "react-aria-components/Dialog";
-import {
-  Modal as RACModal,
-  ModalOverlay as RACModalOverlay,
-  Pressable as RACPressable,
-  type ModalOverlayProps as RACModalOverlayProps,
-} from "react-aria-components/Modal";
+import * as Aria from "react-aria-components/Modal";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
-import { CloseButton, type CloseButtonProps } from "../close-button";
+import { CloseButton } from "../close-button";
 import { alertDialogVariants, type AlertDialogVariants } from "./alert-dialog";
 
 const ALERT_DIALOG_STATUS_ICONS = {
@@ -42,8 +29,8 @@ interface AlertDialogContextValue extends AlertDialogVariants {
 const [AlertDialogContext, useAlertDialogContext] =
   createContext<AlertDialogContextValue>("AlertDialogContext");
 
-export interface AlertDialogProps
-  extends RACDialogTriggerProps, AlertDialogContextValue {}
+interface AlertDialogProps
+  extends Aria.DialogTriggerProps, AlertDialogContextValue {}
 
 export function AlertDialog({
   children,
@@ -62,14 +49,14 @@ export function AlertDialog({
         variant,
       }}
     >
-      <RACDialogTrigger data-slot="alert-dialog" {...rest}>
+      <Aria.DialogTrigger data-slot="alert-dialog" {...rest}>
         {children}
-      </RACDialogTrigger>
+      </Aria.DialogTrigger>
     </AlertDialogContext>
   );
 }
 
-export interface AlertDialogTriggerProps extends React.ComponentProps<"div"> {}
+interface AlertDialogTriggerProps extends React.ComponentProps<"div"> {}
 
 export function AlertDialogTrigger({
   children,
@@ -77,7 +64,7 @@ export function AlertDialogTrigger({
   ...rest
 }: AlertDialogTriggerProps) {
   return (
-    <RACPressable>
+    <Aria.Pressable>
       <div
         data-slot="alert-dialog-trigger"
         className={slots.trigger({
@@ -87,11 +74,11 @@ export function AlertDialogTrigger({
       >
         {children}
       </div>
-    </RACPressable>
+    </Aria.Pressable>
   );
 }
 
-export interface AlertDialogBackdropProps extends RACModalOverlayProps {
+interface AlertDialogBackdropProps extends Aria.ModalOverlayProps {
   isDismissable?: boolean;
   isKeyboardDismissDisabled?: boolean;
 }
@@ -104,7 +91,7 @@ export function AlertDialogBackdrop({
 }: AlertDialogBackdropProps) {
   const { variant } = useAlertDialogContext();
   return (
-    <RACModalOverlay
+    <Aria.ModalOverlay
       data-slot="alert-dialog-backdrop"
       className={cnRenderProps(
         className,
@@ -119,11 +106,11 @@ export function AlertDialogBackdrop({
       {...rest}
     >
       {children}
-    </RACModalOverlay>
+    </Aria.ModalOverlay>
   );
 }
 
-export interface AlertDialogContainerProps extends RACModalOverlayProps {}
+interface AlertDialogContainerProps extends Aria.ModalOverlayProps {}
 
 export function AlertDialogContainer({
   children,
@@ -132,18 +119,18 @@ export function AlertDialogContainer({
 }: AlertDialogContainerProps) {
   const { placement } = useAlertDialogContext();
   return (
-    <RACModal
+    <Aria.Modal
       data-slot="alert-dialog-container"
       data-placement={placement}
       className={cnRenderProps(className, slots.container())}
       {...rest}
     >
       {children}
-    </RACModal>
+    </Aria.Modal>
   );
 }
 
-export interface AlertDialogDialogProps extends RACDialogProps {}
+interface AlertDialogDialogProps extends Aria.DialogProps {}
 
 export function AlertDialogDialog({
   children,
@@ -152,7 +139,7 @@ export function AlertDialogDialog({
 }: AlertDialogDialogProps) {
   const { size, placement } = useAlertDialogContext();
   return (
-    <RACDialog
+    <Aria.Dialog
       role="alertdialog"
       data-slot="alert-dialog-dialog"
       data-placement={placement}
@@ -163,11 +150,11 @@ export function AlertDialogDialog({
       {...rest}
     >
       {children}
-    </RACDialog>
+    </Aria.Dialog>
   );
 }
 
-export interface AlertDialogHeaderProps extends React.ComponentProps<"div"> {}
+interface AlertDialogHeaderProps extends React.ComponentProps<"div"> {}
 
 export function AlertDialogHeader({
   children,
@@ -187,7 +174,7 @@ export function AlertDialogHeader({
   );
 }
 
-export interface AlertDialogHeadingProps extends RACHeadingProps {}
+interface AlertDialogHeadingProps extends Aria.HeadingProps {}
 
 export function AlertDialogHeading({
   children,
@@ -195,7 +182,7 @@ export function AlertDialogHeading({
   ...rest
 }: AlertDialogHeadingProps) {
   return (
-    <RACHeading
+    <Aria.Heading
       slot="title"
       data-slot="alert-dialog-heading"
       className={slots.heading({
@@ -204,11 +191,11 @@ export function AlertDialogHeading({
       {...rest}
     >
       {children}
-    </RACHeading>
+    </Aria.Heading>
   );
 }
 
-export interface AlertDialogBodyProps extends React.ComponentProps<"div"> {}
+interface AlertDialogBodyProps extends React.ComponentProps<"div"> {}
 
 export function AlertDialogBody({
   children,
@@ -228,7 +215,7 @@ export function AlertDialogBody({
   );
 }
 
-export interface AlertDialogFooterProps extends React.ComponentProps<"div"> {}
+interface AlertDialogFooterProps extends React.ComponentProps<"div"> {}
 
 export function AlertDialogFooter({
   children,
@@ -248,7 +235,7 @@ export function AlertDialogFooter({
   );
 }
 
-export interface AlertDialogIconProps extends React.ComponentProps<"div"> {}
+interface AlertDialogIconProps extends React.ComponentProps<"div"> {}
 
 export function AlertDialogIcon({
   children,
@@ -273,7 +260,9 @@ export function AlertDialogIcon({
   );
 }
 
-export interface AlertDialogCloseTriggerProps extends CloseButtonProps {}
+interface AlertDialogCloseTriggerProps extends React.ComponentProps<
+  typeof CloseButton
+> {}
 
 export function AlertDialogCloseTrigger({
   children,

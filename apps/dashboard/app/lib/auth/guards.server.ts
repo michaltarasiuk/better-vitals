@@ -6,15 +6,14 @@ import {
 } from "react-router";
 
 import {
+  getAuthenticatedRedirectHref,
+  getUnauthenticatedRedirectHref,
+} from "~/lib/auth/href.server";
+import {
   getServerSession,
   isLoggedIn,
   sessionContext,
 } from "~/lib/auth/session.server";
-
-import {
-  getAuthenticatedRedirectHref,
-  getUnauthenticatedRedirectHref,
-} from "./href.server";
 
 export const requireUnauthenticated: MiddlewareFunction<Response> = async ({
   request,

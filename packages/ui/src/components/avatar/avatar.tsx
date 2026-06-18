@@ -3,10 +3,6 @@ import * as RadixAvatar from "@radix-ui/react-avatar";
 
 import { avatarVariants, type AvatarVariants } from "./avatar";
 
-type RootProps = React.ComponentPropsWithRef<typeof RadixAvatar.Root>;
-type ImageProps = React.ComponentPropsWithRef<typeof RadixAvatar.Image>;
-type FallbackProps = React.ComponentPropsWithRef<typeof RadixAvatar.Fallback>;
-
 const slots = avatarVariants();
 
 interface AvatarContextValue extends AvatarVariants {}
@@ -14,8 +10,10 @@ interface AvatarContextValue extends AvatarVariants {}
 export const [AvatarContext, useAvatarContext] =
   createContext<AvatarContextValue>("AvatarContext");
 
-export interface AvatarProps
-  extends Omit<RootProps, keyof AvatarVariants>, AvatarVariants {}
+interface AvatarProps
+  extends
+    Omit<React.ComponentProps<typeof RadixAvatar.Root>, keyof AvatarVariants>,
+    AvatarVariants {}
 
 export function Avatar({
   children,
@@ -47,7 +45,9 @@ export function Avatar({
   );
 }
 
-export interface AvatarImageProps extends ImageProps {}
+interface AvatarImageProps extends React.ComponentProps<
+  typeof RadixAvatar.Image
+> {}
 
 export function AvatarImage({ className, ...rest }: AvatarImageProps) {
   const { color, size, variant } = useAvatarContext();
@@ -64,7 +64,9 @@ export function AvatarImage({ className, ...rest }: AvatarImageProps) {
   );
 }
 
-export interface AvatarFallbackProps extends FallbackProps {}
+interface AvatarFallbackProps extends React.ComponentProps<
+  typeof RadixAvatar.Fallback
+> {}
 
 export function AvatarFallback({
   children,

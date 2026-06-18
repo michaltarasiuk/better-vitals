@@ -1,29 +1,69 @@
 import { assertNever } from "@lite-app/shared/assert-never";
+import * as errore from "errore";
 import { z } from "zod";
 
-export type AuthError = z.infer<typeof AuthErrorSchema>;
-export type AuthErrorCode = z.infer<typeof AuthErrorCodeSchema>;
+export class PasswordMismatchError extends errore.createTaggedError({
+  message: "Password mismatch",
+  name: "PasswordMismatchError",
+}) {}
 
-const AUTH_ERROR_CODES = [
-  "USER_ALREADY_EXISTS",
-  "USER_ALREADY_EXISTS_USE_ANOTHER_EMAIL",
-  "INVALID_EMAIL",
-  "INVALID_PASSWORD",
-  "PASSWORD_TOO_SHORT",
-  "PASSWORD_TOO_LONG",
-] as const;
+export function comparePasswords({
+  password,
+  confirmPassword,
+}: {
+  password: string;
+  confirmPassword: string;
+}) {
+  if (password !== confirmPassword) {
+    return new PasswordMismatchError();
+  }
+  return null;
+}
 
-export const AuthErrorCodeSchema = z.enum(AUTH_ERROR_CODES);
-export const AuthErrorSchema = z.object({
-  code: AuthErrorCodeSchema,
+type AuthAlertErrorPayload = z.infer<typeof AuthAlertErrorSchema>;
+type AuthFormErrorPayload = z.infer<typeof AuthFormErrorSchema>;
+
+const AuthAlertErrorSchema = z.object({
+  code: z.enum([
+    "EMAIL_PASSWORD_DISABLED",
+    "EMAIL_PASSWORD_SIGN_UP_DISABLED",
+    "EMAIL_ALREADY_VERIFIED",
+    "EMAIL_MISMATCH",
+    "EMAIL_NOT_VERIFIED",
+    "INVALID_EMAIL_OR_PASSWORD",
+    "INVALID_TOKEN",
+    "RESET_PASSWORD_DISABLED",
+    "TOKEN_EXPIRED",
+    "VERIFICATION_EMAIL_NOT_ENABLED",
+  ]),
   message: z.string(),
 });
 
-export function isKnownAuthError(error: unknown): error is AuthError {
-  return AuthErrorSchema.safeParse(error).success;
+const AuthFormErrorSchema = z.object({
+  code: z.enum([
+    "USER_ALREADY_EXISTS",
+    "USER_ALREADY_EXISTS_USE_ANOTHER_EMAIL",
+    "INVALID_EMAIL",
+    "INVALID_PASSWORD",
+    "PASSWORD_TOO_SHORT",
+    "PASSWORD_TOO_LONG",
+  ]),
+  message: z.string(),
+});
+
+export function isAuthAlertError(
+  value: unknown
+): value is AuthAlertErrorPayload {
+  return AuthAlertErrorSchema.safeParse(value).success;
 }
 
-export function getAuthErrorField(code: AuthErrorCode) {
+export function isAuthFormError(value: unknown): value is AuthFormErrorPayload {
+  return AuthFormErrorSchema.safeParse(value).success;
+}
+
+export function mapAuthFormErrorCodeToField(
+  code: AuthFormErrorPayload["code"]
+) {
   let field: "email" | "password";
   switch (code) {
     case "USER_ALREADY_EXISTS":

@@ -1,6 +1,5 @@
 import { withMinimumDelay } from "@lite-app/shared/delay";
 import { isDefined } from "@lite-app/shared/is-defined";
-import { Button } from "@lite-app/ui/components/button";
 import {
   Card,
   CardContent,
@@ -13,23 +12,16 @@ import { FieldError } from "@lite-app/ui/components/field-error";
 import { Input } from "@lite-app/ui/components/input";
 import { Label } from "@lite-app/ui/components/label";
 import { Link } from "@lite-app/ui/components/link";
-import { Spinner } from "@lite-app/ui/components/spinner";
 import { TextField } from "@lite-app/ui/components/textfield";
-import {
-  href,
-  redirect,
-  useActionData,
-  useNavigation,
-  type ClientActionFunctionArgs,
-} from "react-router";
+import { href, redirect, type ClientActionFunctionArgs } from "react-router";
 import { cn } from "tailwind-variants";
 import { z } from "zod";
 
-import { Form, type FormProps } from "~/components/form";
+import { Form } from "~/components/form";
+import { SubmitButton } from "~/components/submit-button";
 import { resetPassword } from "~/lib/auth";
-import { getAuthErrorField, isKnownAuthError } from "~/lib/auth/error";
-import { comparePasswords } from "~/lib/auth/validation";
-import { parseFormData } from "~/lib/form/parse";
+import { comparePasswords } from "~/lib/auth/error";
+import { parseFormData } from "~/lib/form/form-data";
 
 const FormDataSchema = z.object({
   confirmPassword: z.string(),
@@ -41,13 +33,14 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
     request,
     FormDataSchema
   );
-  const token = getToken();
+  const token = new URL(request.url).searchParams.get("token");
 
-  const passwordValidation = comparePasswords(password, confirmPassword);
-  if (!passwordValidation.success) {
+  const passwordError = comparePasswords({ confirmPassword, password });
+  if (passwordError instanceof Error) {
     return {
-      success: false,
-      validationErrors: passwordValidation.errors,
+      validationErrors: {
+        confirmPassword: passwordError.message,
+      },
     };
   }
 
@@ -57,36 +50,16 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
       ...(isDefined(token) && { token }),
     })
   );
-  const success = isDefined(result.data);
-
-  if (!success) {
-    if (!isKnownAuthError(result.error)) {
-      return {
-        success: false,
-      };
-    }
-    const validationErrors = {
-      [getAuthErrorField(result.error.code)]: result.error.message,
-    } satisfies FormProps["validationErrors"];
+  if (!isDefined(result.data)) {
     return {
       success: false,
-      validationErrors,
     };
   }
-  throw redirect(href("/signin"));
 
-  function getToken() {
-    return new URL(request.url).searchParams.get("token");
-  }
+  throw redirect(href("/signin"));
 }
 
 export default function ResetPassword() {
-  const actionData = useActionData<typeof clientAction>();
-  const navigation = useNavigation();
-
-  const validationErrors = actionData?.validationErrors ?? {};
-  const isSubmitting = navigation.state === "submitting";
-
   return (
     <Card>
       <CardHeader className={cn("items-center gap-1")}>
@@ -101,7 +74,7 @@ export default function ResetPassword() {
           Enter and confirm your new password
         </CardDescription>
       </CardHeader>
-      <Form validationErrors={validationErrors}>
+      <Form>
         <CardContent>
           <div className={cn("flex flex-col gap-4")}>
             <TextField name="password" type="password" isRequired>
@@ -117,18 +90,9 @@ export default function ResetPassword() {
           </div>
         </CardContent>
         <CardFooter className={cn("mt-4 flex flex-col gap-2")}>
-          <Button
-            type="submit"
-            isPending={isSubmitting}
-            className={cn("w-full")}
-          >
-            {(props) => (
-              <>
-                {props.isPending ? <Spinner color="current" size="sm" /> : null}
-                {props.isPending ? "Updating" : "Update password"}
-              </>
-            )}
-          </Button>
+          <SubmitButton>
+            {({ isPending }) => (isPending ? "Updating" : "Update password")}
+          </SubmitButton>
           <Link href="/signin" className={cn("text-center text-sm")}>
             Back to sign in
           </Link>

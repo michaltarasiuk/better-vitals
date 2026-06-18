@@ -1,6 +1,5 @@
 import { withMinimumDelay } from "@lite-app/shared/delay";
 import { isDefined } from "@lite-app/shared/is-defined";
-import { Button } from "@lite-app/ui/components/button";
 import {
   Card,
   CardContent,
@@ -12,26 +11,20 @@ import {
 import { FieldError } from "@lite-app/ui/components/field-error";
 import { Input } from "@lite-app/ui/components/input";
 import { Label } from "@lite-app/ui/components/label";
-import { Spinner } from "@lite-app/ui/components/spinner";
 import { TextField } from "@lite-app/ui/components/textfield";
 import slugify from "@sindresorhus/slugify";
 import {
   href,
   redirectDocument,
-  useActionData,
-  useNavigation,
   type ClientActionFunctionArgs,
 } from "react-router";
 import { cn } from "tailwind-variants";
 import { z } from "zod";
 
-import { Form, type FormProps } from "~/components/form";
+import { Form } from "~/components/form";
+import { SubmitButton } from "~/components/submit-button";
 import { organization } from "~/lib/auth";
-import { parseFormData } from "~/lib/form/parse";
-import {
-  getOrganizationErrorField,
-  isKnownOrganizationError,
-} from "~/lib/organization/error";
+import { parseFormData } from "~/lib/form/form-data";
 
 const FormDataSchema = z.object({
   name: z.string(),
@@ -47,34 +40,18 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
     })
   );
   const createdOrganization = result.data;
-  const success = isDefined(createdOrganization);
-
-  if (!success) {
-    if (!isKnownOrganizationError(result.error)) {
-      return {
-        success: false,
-      };
-    }
-    const validationErrors = {
-      [getOrganizationErrorField(result.error.code)]: result.error.message,
-    } satisfies FormProps["validationErrors"];
+  if (!isDefined(createdOrganization)) {
     return {
       success: false,
-      validationErrors,
     };
   }
+
   throw redirectDocument(
     href("/organization/:slug", { slug: createdOrganization.slug })
   );
 }
 
 export function OrganizationCreate() {
-  const actionData = useActionData<typeof clientAction>();
-  const navigation = useNavigation();
-
-  const validationErrors = actionData?.validationErrors ?? {};
-  const isSubmitting = navigation.state === "submitting";
-
   return (
     <Card>
       <CardHeader className={cn("items-center gap-1")}>
@@ -89,7 +66,7 @@ export function OrganizationCreate() {
           Enter a name to get started
         </CardDescription>
       </CardHeader>
-      <Form validationErrors={validationErrors}>
+      <Form>
         <CardContent>
           <TextField name="name" type="text" isRequired>
             <Label>Name</Label>
@@ -98,18 +75,11 @@ export function OrganizationCreate() {
           </TextField>
         </CardContent>
         <CardFooter className={cn("mt-4")}>
-          <Button
-            type="submit"
-            isPending={isSubmitting}
-            className={cn("w-full")}
-          >
-            {(props) => (
-              <>
-                {props.isPending ? <Spinner color="current" size="sm" /> : null}
-                {props.isPending ? "Creating" : "Create organization"}
-              </>
-            )}
-          </Button>
+          <SubmitButton>
+            {({ isPending }) =>
+              isPending ? "Creating" : "Create organization"
+            }
+          </SubmitButton>
         </CardFooter>
       </Form>
     </Card>

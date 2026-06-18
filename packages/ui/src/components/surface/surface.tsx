@@ -7,8 +7,7 @@ interface SurfaceContextValue extends SurfaceVariants {}
 export const [SurfaceContext, useSurfaceContext] =
   createContext<SurfaceContextValue>("SurfaceContext");
 
-export interface SurfaceProps
-  extends React.ComponentProps<"div">, SurfaceVariants {}
+interface SurfaceProps extends React.ComponentProps<"div">, SurfaceVariants {}
 
 export function Surface({
   children,

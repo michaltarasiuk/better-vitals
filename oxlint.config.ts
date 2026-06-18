@@ -24,6 +24,8 @@ export default defineConfig({
     // Ultracite prefers top-level `import type`, but that conflicts with merged
     // imports once duplicate type/value imports are disallowed below.
     "import/consistent-type-specifier-style": "off",
+    // `import * as Aria` + `Aria.XProps` is intentional in UI wrappers; types are not runtime exports.
+    "import/namespace": "off",
     // Require one import per module, e.g. `import { foo, type Bar } from "mod"`.
     "no-duplicate-imports": ["error", { allowSeparateTypeImports: false }],
     // Functions are hoisted
@@ -33,7 +35,7 @@ export default defineConfig({
       "error",
       { fixStyle: "inline-type-imports" },
     ],
-    // Allow marker interfaces like `interface FormProps extends RACFormProps {}`.
+    // Allow marker interfaces like `interface FormProps extends Aria.FormProps {}`.
     "typescript/no-empty-interface": "off",
     "typescript/no-empty-object-type": "off",
   },

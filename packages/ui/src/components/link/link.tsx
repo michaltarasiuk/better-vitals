@@ -1,30 +1,27 @@
 import { isDefined } from "@lite-app/shared/is-defined";
 import { ArrowUpRightIcon } from "lucide-react";
-import {
-  Link as RACLink,
-  type LinkProps as RACLinkProps,
-} from "react-aria-components/Link";
+import * as Aria from "react-aria-components/Link";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
 import { linkVariants, type LinkVariants } from "./link";
 
 const slots = linkVariants();
 
-export interface LinkProps extends RACLinkProps, LinkVariants {}
+interface LinkProps extends Aria.LinkProps, LinkVariants {}
 
 export function Link({ children, className, ...rest }: LinkProps) {
   return (
-    <RACLink
+    <Aria.Link
       data-slot="link"
       className={cnRenderProps(className, slots.base())}
       {...rest}
     >
       {children}
-    </RACLink>
+    </Aria.Link>
   );
 }
 
-export interface LinkIconProps extends React.ComponentProps<"span"> {}
+interface LinkIconProps extends React.ComponentProps<"span"> {}
 
 export function LinkIcon({ children, className, ...rest }: LinkIconProps) {
   return (
