@@ -14,10 +14,11 @@ export function SubmitButton({
   ...rest
 }: SubmitButtonProps) {
   const navigation = useNavigation();
+  const isPending = navigation.state === "submitting";
   return (
     <Button
       type="submit"
-      isPending={navigation.state === "submitting"}
+      isPending={isPending}
       className={cn("w-full", className)}
       {...rest}
     >
