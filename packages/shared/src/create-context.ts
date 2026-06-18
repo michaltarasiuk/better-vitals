@@ -1,18 +1,18 @@
-import { createContext as createReactContext, use } from "react";
-
-import { isDefined } from "./is-defined";
+import { createContext as createReactContext, use, type Context } from "react";
 
 export function createContext<T>(displayName: string) {
-  const Context = createReactContext<T | null>(null);
+  const initialValue = Symbol(displayName);
+
+  const Context = createReactContext<T | typeof initialValue>(initialValue);
   Context.displayName = displayName;
 
   function useContext() {
     const value = use(Context);
-    if (!isDefined(value)) {
+    if (value === initialValue) {
       throw new Error(`${displayName} must be used within its provider`);
     }
     return value;
   }
 
-  return [Context, useContext] as const;
+  return [Context as Context<T>, useContext] as const;
 }
