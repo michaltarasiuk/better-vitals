@@ -1,13 +1,6 @@
 import { withMinimumDelay } from "@lite-app/shared/delay";
 import { isDefined } from "@lite-app/shared/is-defined";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  cardVariants,
-} from "@lite-app/ui/components/card";
+import { Card, CardContent, CardFooter } from "@lite-app/ui/components/card";
 import { FieldError } from "@lite-app/ui/components/field-error";
 import { Input } from "@lite-app/ui/components/input";
 import { Label } from "@lite-app/ui/components/label";
@@ -22,6 +15,11 @@ import { cn } from "tailwind-variants";
 import { z } from "zod";
 
 import { Form } from "~/components/form";
+import {
+  FormCardDescription,
+  FormCardHeader,
+  FormCardTitle,
+} from "~/components/form-card";
 import { SubmitButton } from "~/components/submit-button";
 import { organization } from "~/lib/auth";
 import { parseFormData } from "~/lib/form/form-data";
@@ -54,18 +52,10 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
 export function OrganizationCreate() {
   return (
     <Card>
-      <CardHeader className={cn("items-center gap-1")}>
-        <h1
-          className={cardVariants().title({
-            className: "text-xl font-medium",
-          })}
-        >
-          Create an organization
-        </h1>
-        <CardDescription className={cn("text-center")}>
-          Enter a name to get started
-        </CardDescription>
-      </CardHeader>
+      <FormCardHeader>
+        <FormCardTitle>Create an organization</FormCardTitle>
+        <FormCardDescription>Enter a name to get started</FormCardDescription>
+      </FormCardHeader>
       <Form>
         <CardContent>
           <TextField name="name" type="text" isRequired>

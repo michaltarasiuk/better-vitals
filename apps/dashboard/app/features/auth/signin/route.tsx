@@ -1,13 +1,6 @@
 import { withMinimumDelay } from "@lite-app/shared/delay";
 import { isDefined } from "@lite-app/shared/is-defined";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  cardVariants,
-} from "@lite-app/ui/components/card";
+import { Card, CardContent, CardFooter } from "@lite-app/ui/components/card";
 import { FieldError } from "@lite-app/ui/components/field-error";
 import { Input } from "@lite-app/ui/components/input";
 import { Label } from "@lite-app/ui/components/label";
@@ -18,6 +11,11 @@ import { cn } from "tailwind-variants";
 import { z } from "zod";
 
 import { Form } from "~/components/form";
+import {
+  FormCardDescription,
+  FormCardHeader,
+  FormCardTitle,
+} from "~/components/form-card";
 import { SubmitButton } from "~/components/submit-button";
 import { signIn } from "~/lib/auth";
 import { getAuthenticatedRedirectHref } from "~/lib/auth/href";
@@ -50,18 +48,10 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
 export default function Signin() {
   return (
     <Card>
-      <CardHeader className={cn("items-center gap-1")}>
-        <h1
-          className={cardVariants().title({
-            className: "text-xl font-medium",
-          })}
-        >
-          Welcome back
-        </h1>
-        <CardDescription className={cn("text-center")}>
-          Sign in to your account
-        </CardDescription>
-      </CardHeader>
+      <FormCardHeader>
+        <FormCardTitle>Welcome back</FormCardTitle>
+        <FormCardDescription>Sign in to your account</FormCardDescription>
+      </FormCardHeader>
       <Form>
         <CardContent>
           <div className={cn("flex flex-col gap-4")}>

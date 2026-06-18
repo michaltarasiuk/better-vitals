@@ -1,13 +1,6 @@
 import { withMinimumDelay } from "@lite-app/shared/delay";
 import { isDefined } from "@lite-app/shared/is-defined";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  cardVariants,
-} from "@lite-app/ui/components/card";
+import { Card, CardContent, CardFooter } from "@lite-app/ui/components/card";
 import { FieldError } from "@lite-app/ui/components/field-error";
 import { Input } from "@lite-app/ui/components/input";
 import { Label } from "@lite-app/ui/components/label";
@@ -18,6 +11,11 @@ import { cn } from "tailwind-variants";
 import { z } from "zod";
 
 import { Form } from "~/components/form";
+import {
+  FormCardDescription,
+  FormCardHeader,
+  FormCardTitle,
+} from "~/components/form-card";
 import { SubmitButton } from "~/components/submit-button";
 import { requestPasswordReset } from "~/lib/auth";
 import { parseFormData } from "~/lib/form/form-data";
@@ -48,18 +46,12 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
 export default function RequestPasswordReset() {
   return (
     <Card>
-      <CardHeader className={cn("items-center gap-1")}>
-        <h1
-          className={cardVariants().title({
-            className: "text-xl font-medium",
-          })}
-        >
-          Forgot your password?
-        </h1>
-        <CardDescription className={cn("text-center")}>
+      <FormCardHeader>
+        <FormCardTitle>Forgot your password?</FormCardTitle>
+        <FormCardDescription>
           We will email you a link to reset your password
-        </CardDescription>
-      </CardHeader>
+        </FormCardDescription>
+      </FormCardHeader>
       <Form>
         <CardContent>
           <div className={cn("flex flex-col gap-4")}>
