@@ -12,6 +12,6 @@ export const AVATARS = [
   "/avatars/sky.jpg",
 ];
 
-export function pickAvatar() {
+export function getRandomAvatar() {
   return AVATARS[Math.floor(Math.random() * AVATARS.length)];
 }

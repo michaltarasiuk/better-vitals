@@ -29,7 +29,7 @@ import { signUp } from "~/lib/auth";
 import { getAuthErrorField, isKnownAuthError } from "~/lib/auth/error";
 import { comparePasswords } from "~/lib/auth/validation";
 import { parseFormData } from "~/lib/form/parse";
-import { pickAvatar } from "~/lib/user/avatar";
+import { getRandomAvatar } from "~/lib/user/avatar";
 
 const FormDataSchema = z.object({
   confirmPassword: z.string(),
@@ -55,7 +55,7 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
   const result = await withMinimumDelay(
     signUp.email({
       email,
-      image: pickAvatar(),
+      image: getRandomAvatar(),
       name,
       password,
     })
