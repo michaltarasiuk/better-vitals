@@ -26,7 +26,9 @@ const formAlertVariants = tv({
 });
 
 export function FormAlert({ title }: { title: string }) {
-  const slots = formAlertVariants({ status: FORM_ALERT_STATUS });
+  const slots = formAlertVariants({
+    status: FORM_ALERT_STATUS,
+  });
 
   return (
     <Alert status={FORM_ALERT_STATUS} className={slots.root()}>
