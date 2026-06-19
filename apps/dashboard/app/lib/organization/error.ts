@@ -4,9 +4,18 @@ import { z } from "zod";
 import type { FormActionError } from "~/components/action-form";
 import type { FormValidationErrors } from "~/components/form";
 
-type OrganizationError = z.infer<typeof OrganizationErrorSchema>;
+type OrganizationAlertError = z.infer<typeof OrganizationAlertErrorSchema>;
+type OrganizationFormError = z.infer<typeof OrganizationFormErrorSchema>;
 
-const OrganizationErrorSchema = z.object({
+const OrganizationAlertErrorSchema = z.object({
+  code: z.enum([
+    "YOU_ARE_NOT_ALLOWED_TO_CREATE_A_NEW_ORGANIZATION",
+    "YOU_HAVE_REACHED_THE_MAXIMUM_NUMBER_OF_ORGANIZATIONS",
+  ]),
+  message: z.string(),
+});
+
+const OrganizationFormErrorSchema = z.object({
   code: z.enum([
     "ORGANIZATION_ALREADY_EXISTS",
     "ORGANIZATION_SLUG_ALREADY_TAKEN",
@@ -19,7 +28,12 @@ export function mapOrganizationErrorToFormActionError(error: unknown) {
     type: "alert",
     title: "An unexpected error occurred",
   };
-  if (isOrganizationError(error)) {
+  if (isOrganizationAlertError(error)) {
+    actionError = {
+      type: "alert",
+      title: error.message,
+    };
+  } else if (isOrganizationFormError(error)) {
     actionError = {
       type: "form",
       validationErrors: mapOrganizationErrorToFields(error),
@@ -28,11 +42,19 @@ export function mapOrganizationErrorToFormActionError(error: unknown) {
   return actionError;
 }
 
-function isOrganizationError(value: unknown): value is OrganizationError {
-  return OrganizationErrorSchema.safeParse(value).success;
+function isOrganizationAlertError(
+  value: unknown
+): value is OrganizationAlertError {
+  return OrganizationAlertErrorSchema.safeParse(value).success;
 }
 
-function mapOrganizationErrorToFields(error: OrganizationError) {
+function isOrganizationFormError(
+  value: unknown
+): value is OrganizationFormError {
+  return OrganizationFormErrorSchema.safeParse(value).success;
+}
+
+function mapOrganizationErrorToFields(error: OrganizationFormError) {
   let field: "name";
   switch (error.code) {
     case "ORGANIZATION_ALREADY_EXISTS":
