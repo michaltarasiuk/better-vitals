@@ -84,6 +84,12 @@
       "sourceType": "well-known",
       "computedHash": "1a62e5b866622b7ec49678be485ff18fdb26896cc8c3aa294490a7286d759903"
     },
+    "react-router": {
+      "source": "remix-run/react-router",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/react-router/SKILL.md",
+      "computedHash": "ff4d9bc724f0e56a51c453eef5b93caef1c16d3623ac49345d74fc1a5efbc05a"
+    },
     "request-refactor-plan": {
       "source": "mattpocock/skills",
       "sourceType": "github",
