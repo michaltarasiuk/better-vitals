@@ -5,11 +5,20 @@ import { FieldError } from "@lite-app/ui/components/field-error";
 import { Input } from "@lite-app/ui/components/input";
 import { Label } from "@lite-app/ui/components/label";
 import { TextField } from "@lite-app/ui/components/textfield";
-import { href, redirect, type ClientActionFunctionArgs } from "react-router";
+import {
+  href,
+  redirect,
+  useActionData,
+  type ClientActionFunctionArgs,
+} from "react-router";
 import { cn } from "tailwind-variants";
 import { z } from "zod";
 
-import { Form } from "~/components/form";
+import {
+  ActionForm,
+  ActionFormAlert,
+  type FormActionData,
+} from "~/components/action-form";
 import {
   FormCardDescription,
   FormCardHeader,
@@ -17,7 +26,10 @@ import {
 } from "~/components/form-card";
 import { SubmitButton } from "~/components/submit-button";
 import { signUp } from "~/lib/auth";
-import { comparePasswords } from "~/lib/auth/error";
+import {
+  comparePasswords,
+  mapAuthErrorToFormActionError,
+} from "~/lib/auth/error";
 import { parseFormData } from "~/lib/form/form-data";
 import { pickAvatar } from "~/lib/user/avatar";
 
@@ -28,7 +40,9 @@ const FormDataSchema = z.object({
   confirmPassword: z.string(),
 });
 
-export async function clientAction({ request }: ClientActionFunctionArgs) {
+export async function clientAction({
+  request,
+}: ClientActionFunctionArgs): Promise<FormActionData> {
   const { name, email, password, confirmPassword } = await parseFormData(
     request,
     FormDataSchema
@@ -37,8 +51,12 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
   const passwordError = comparePasswords({ password, confirmPassword });
   if (passwordError instanceof Error) {
     return {
-      validationErrors: {
-        confirmPassword: passwordError.message,
+      status: "error",
+      error: {
+        type: "form",
+        validationErrors: {
+          confirmPassword: passwordError.message,
+        },
       },
     };
   }
@@ -51,15 +69,20 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
       image: pickAvatar(),
     })
   );
-  if (!isDefined(result.data)) {
+  const success = !isDefined(result.error);
+
+  if (!success) {
     return {
-      success: false,
+      status: "error",
+      error: mapAuthErrorToFormActionError(result.error),
     };
   }
   throw redirect(href("/organization/create"));
 }
 
 export function Signup() {
+  const actionData = useActionData<typeof clientAction>();
+
   return (
     <Card>
       <FormCardHeader>
@@ -68,9 +91,10 @@ export function Signup() {
           Enter your details to get started
         </FormCardDescription>
       </FormCardHeader>
-      <Form>
+      <ActionForm actionData={actionData}>
         <CardContent>
           <div className={cn("flex flex-col gap-4")}>
+            <ActionFormAlert />
             <TextField name="name" type="text" isRequired>
               <Label>Name</Label>
               <Input variant="secondary" />
@@ -98,7 +122,7 @@ export function Signup() {
             {({ isPending }) => (isPending ? "Signing Up" : "Sign Up")}
           </SubmitButton>
         </CardFooter>
-      </Form>
+      </ActionForm>
     </Card>
   );
 }

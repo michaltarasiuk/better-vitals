@@ -9,12 +9,17 @@ import slugify from "@sindresorhus/slugify";
 import {
   href,
   redirectDocument,
+  useActionData,
   type ClientActionFunctionArgs,
 } from "react-router";
 import { cn } from "tailwind-variants";
 import { z } from "zod";
 
-import { Form } from "~/components/form";
+import {
+  ActionForm,
+  ActionFormAlert,
+  type FormActionData,
+} from "~/components/action-form";
 import {
   FormCardDescription,
   FormCardHeader,
@@ -23,12 +28,15 @@ import {
 import { SubmitButton } from "~/components/submit-button";
 import { organization } from "~/lib/auth";
 import { parseFormData } from "~/lib/form/form-data";
+import { mapOrganizationErrorToFormActionError } from "~/lib/organization/error";
 
 const FormDataSchema = z.object({
   name: z.string(),
 });
 
-export async function clientAction({ request }: ClientActionFunctionArgs) {
+export async function clientAction({
+  request,
+}: ClientActionFunctionArgs): Promise<FormActionData> {
   const { name } = await parseFormData(request, FormDataSchema);
 
   const result = await withMinimumDelay(
@@ -38,31 +46,38 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
     })
   );
   const createdOrganization = result.data;
-  if (!isDefined(createdOrganization)) {
+  const success = isDefined(createdOrganization);
+
+  if (!success) {
     return {
-      success: false,
+      status: "error",
+      error: mapOrganizationErrorToFormActionError(result.error),
     };
   }
-
   throw redirectDocument(
     href("/organization/:slug", { slug: createdOrganization.slug })
   );
 }
 
 export function OrganizationCreate() {
+  const actionData = useActionData<typeof clientAction>();
+
   return (
     <Card>
       <FormCardHeader>
         <FormCardTitle>Create an organization</FormCardTitle>
         <FormCardDescription>Enter a name to get started</FormCardDescription>
       </FormCardHeader>
-      <Form>
+      <ActionForm actionData={actionData}>
         <CardContent>
-          <TextField name="name" type="text" isRequired>
-            <Label>Name</Label>
-            <Input variant="secondary" />
-            <FieldError />
-          </TextField>
+          <div className={cn("flex flex-col gap-4")}>
+            <ActionFormAlert />
+            <TextField name="name" type="text" isRequired>
+              <Label>Name</Label>
+              <Input variant="secondary" />
+              <FieldError />
+            </TextField>
+          </div>
         </CardContent>
         <CardFooter className={cn("mt-4")}>
           <SubmitButton>
@@ -71,7 +86,7 @@ export function OrganizationCreate() {
             }
           </SubmitButton>
         </CardFooter>
-      </Form>
+      </ActionForm>
     </Card>
   );
 }

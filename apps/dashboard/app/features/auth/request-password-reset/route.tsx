@@ -6,11 +6,19 @@ import { Input } from "@lite-app/ui/components/input";
 import { Label } from "@lite-app/ui/components/label";
 import { Link } from "@lite-app/ui/components/link";
 import { TextField } from "@lite-app/ui/components/textfield";
-import { href, type ClientActionFunctionArgs } from "react-router";
+import {
+  href,
+  useActionData,
+  type ClientActionFunctionArgs,
+} from "react-router";
 import { cn } from "tailwind-variants";
 import { z } from "zod";
 
-import { Form } from "~/components/form";
+import {
+  ActionForm,
+  ActionFormAlert,
+  type FormActionData,
+} from "~/components/action-form";
 import {
   FormCardDescription,
   FormCardHeader,
@@ -18,13 +26,16 @@ import {
 } from "~/components/form-card";
 import { SubmitButton } from "~/components/submit-button";
 import { requestPasswordReset } from "~/lib/auth";
+import { mapAuthErrorToFormActionError } from "~/lib/auth/error";
 import { parseFormData } from "~/lib/form/form-data";
 
 const FormDataSchema = z.object({
   email: z.string(),
 });
 
-export async function clientAction({ request }: ClientActionFunctionArgs) {
+export async function clientAction({
+  request,
+}: ClientActionFunctionArgs): Promise<FormActionData> {
   const { email } = await parseFormData(request, FormDataSchema);
 
   const result = await withMinimumDelay(
@@ -33,17 +44,22 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
       redirectTo: href("/reset-password"),
     })
   );
-  if (isDefined(result.error)) {
+  const success = !isDefined(result.error);
+
+  if (!success) {
     return {
-      success: false,
+      status: "error",
+      error: mapAuthErrorToFormActionError(result.error),
     };
   }
   return {
-    success: true,
+    status: "success",
   };
 }
 
 export default function RequestPasswordReset() {
+  const actionData = useActionData<typeof clientAction>();
+
   return (
     <Card>
       <FormCardHeader>
@@ -52,9 +68,10 @@ export default function RequestPasswordReset() {
           We will email you a link to reset your password
         </FormCardDescription>
       </FormCardHeader>
-      <Form>
+      <ActionForm actionData={actionData}>
         <CardContent>
           <div className={cn("flex flex-col gap-4")}>
+            <ActionFormAlert />
             <TextField name="email" type="email" isRequired>
               <Label>Email</Label>
               <Input variant="secondary" />
@@ -70,7 +87,7 @@ export default function RequestPasswordReset() {
             Back to sign in
           </Link>
         </CardFooter>
-      </Form>
+      </ActionForm>
     </Card>
   );
 }

@@ -6,11 +6,19 @@ import { Input } from "@lite-app/ui/components/input";
 import { Label } from "@lite-app/ui/components/label";
 import { Link } from "@lite-app/ui/components/link";
 import { TextField } from "@lite-app/ui/components/textfield";
-import { redirectDocument, type ClientActionFunctionArgs } from "react-router";
+import {
+  redirectDocument,
+  useActionData,
+  type ClientActionFunctionArgs,
+} from "react-router";
 import { cn } from "tailwind-variants";
 import { z } from "zod";
 
-import { Form } from "~/components/form";
+import {
+  ActionForm,
+  ActionFormAlert,
+  type FormActionData,
+} from "~/components/action-form";
 import {
   FormCardDescription,
   FormCardHeader,
@@ -18,6 +26,7 @@ import {
 } from "~/components/form-card";
 import { SubmitButton } from "~/components/submit-button";
 import { signIn } from "~/lib/auth";
+import { mapAuthErrorToFormActionError } from "~/lib/auth/error";
 import { getAuthenticatedRedirectHref } from "~/lib/auth/href";
 import { parseFormData } from "~/lib/form/form-data";
 
@@ -26,7 +35,9 @@ const FormDataSchema = z.object({
   password: z.string(),
 });
 
-export async function clientAction({ request }: ClientActionFunctionArgs) {
+export async function clientAction({
+  request,
+}: ClientActionFunctionArgs): Promise<FormActionData> {
   const { email, password } = await parseFormData(request, FormDataSchema);
 
   const result = await withMinimumDelay(
@@ -35,26 +46,30 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
       password,
     })
   );
-  if (!isDefined(result.data)) {
+  const success = !isDefined(result.error);
+
+  if (!success) {
     return {
-      success: false,
+      status: "error",
+      error: mapAuthErrorToFormActionError(result.error),
     };
   }
-
-  const redirectHref = await getAuthenticatedRedirectHref();
-  throw redirectDocument(redirectHref);
+  throw redirectDocument(await getAuthenticatedRedirectHref());
 }
 
 export default function Signin() {
+  const actionData = useActionData<typeof clientAction>();
+
   return (
     <Card>
       <FormCardHeader>
         <FormCardTitle>Welcome back</FormCardTitle>
         <FormCardDescription>Sign in to your account</FormCardDescription>
       </FormCardHeader>
-      <Form>
+      <ActionForm actionData={actionData}>
         <CardContent>
           <div className={cn("flex flex-col gap-4")}>
+            <ActionFormAlert />
             <TextField name="email" type="email" isRequired>
               <Label>Email</Label>
               <Input variant="secondary" />
@@ -78,7 +93,7 @@ export default function Signin() {
             Forgot password?
           </Link>
         </CardFooter>
-      </Form>
+      </ActionForm>
     </Card>
   );
 }

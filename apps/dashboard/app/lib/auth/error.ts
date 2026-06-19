@@ -2,6 +2,9 @@ import { assertNever } from "@lite-app/shared/assert-never";
 import * as errore from "errore";
 import { z } from "zod";
 
+import type { FormActionError } from "~/components/action-form";
+import type { FormValidationErrors } from "~/components/form";
+
 export class PasswordMismatchError extends errore.createTaggedError({
   name: "PasswordMismatchError",
   message: "Password mismatch",
@@ -20,8 +23,8 @@ export function comparePasswords({
   return null;
 }
 
-type AuthAlertErrorPayload = z.infer<typeof AuthAlertErrorSchema>;
-type AuthFormErrorPayload = z.infer<typeof AuthFormErrorSchema>;
+type AuthAlertError = z.infer<typeof AuthAlertErrorSchema>;
+type AuthFormError = z.infer<typeof AuthFormErrorSchema>;
 
 const AuthAlertErrorSchema = z.object({
   code: z.enum([
@@ -51,21 +54,36 @@ const AuthFormErrorSchema = z.object({
   message: z.string(),
 });
 
-export function isAuthAlertError(
-  value: unknown
-): value is AuthAlertErrorPayload {
+export function mapAuthErrorToFormActionError(error: unknown) {
+  let actionError: FormActionError = {
+    type: "alert",
+    title: "An unexpected error occurred",
+  };
+  if (isAuthAlertError(error)) {
+    actionError = {
+      type: "alert",
+      title: error.message,
+    };
+  } else if (isAuthFormError(error)) {
+    actionError = {
+      type: "form",
+      validationErrors: mapAuthErrorToFields(error),
+    };
+  }
+  return actionError;
+}
+
+function isAuthAlertError(value: unknown): value is AuthAlertError {
   return AuthAlertErrorSchema.safeParse(value).success;
 }
 
-export function isAuthFormError(value: unknown): value is AuthFormErrorPayload {
+function isAuthFormError(value: unknown): value is AuthFormError {
   return AuthFormErrorSchema.safeParse(value).success;
 }
 
-export function mapAuthFormErrorCodeToField(
-  code: AuthFormErrorPayload["code"]
-) {
+function mapAuthErrorToFields(error: AuthFormError) {
   let field: "email" | "password";
-  switch (code) {
+  switch (error.code) {
     case "USER_ALREADY_EXISTS":
     case "USER_ALREADY_EXISTS_USE_ANOTHER_EMAIL":
     case "INVALID_EMAIL": {
@@ -79,8 +97,10 @@ export function mapAuthFormErrorCodeToField(
       break;
     }
     default: {
-      assertNever(code);
+      assertNever(error.code);
     }
   }
-  return field;
+  return {
+    [field]: error.message,
+  } satisfies FormValidationErrors;
 }

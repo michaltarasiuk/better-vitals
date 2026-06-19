@@ -6,11 +6,20 @@ import { Input } from "@lite-app/ui/components/input";
 import { Label } from "@lite-app/ui/components/label";
 import { Link } from "@lite-app/ui/components/link";
 import { TextField } from "@lite-app/ui/components/textfield";
-import { href, redirect, type ClientActionFunctionArgs } from "react-router";
+import {
+  href,
+  redirect,
+  useActionData,
+  type ClientActionFunctionArgs,
+} from "react-router";
 import { cn } from "tailwind-variants";
 import { z } from "zod";
 
-import { Form } from "~/components/form";
+import {
+  ActionForm,
+  ActionFormAlert,
+  type FormActionData,
+} from "~/components/action-form";
 import {
   FormCardDescription,
   FormCardHeader,
@@ -18,7 +27,10 @@ import {
 } from "~/components/form-card";
 import { SubmitButton } from "~/components/submit-button";
 import { resetPassword } from "~/lib/auth";
-import { comparePasswords } from "~/lib/auth/error";
+import {
+  comparePasswords,
+  mapAuthErrorToFormActionError,
+} from "~/lib/auth/error";
 import { parseFormData } from "~/lib/form/form-data";
 
 const FormDataSchema = z.object({
@@ -26,7 +38,9 @@ const FormDataSchema = z.object({
   confirmPassword: z.string(),
 });
 
-export async function clientAction({ request }: ClientActionFunctionArgs) {
+export async function clientAction({
+  request,
+}: ClientActionFunctionArgs): Promise<FormActionData> {
   const { password, confirmPassword } = await parseFormData(
     request,
     FormDataSchema
@@ -36,8 +50,12 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
   const passwordError = comparePasswords({ password, confirmPassword });
   if (passwordError instanceof Error) {
     return {
-      validationErrors: {
-        confirmPassword: passwordError.message,
+      status: "error",
+      error: {
+        type: "form",
+        validationErrors: {
+          confirmPassword: passwordError.message,
+        },
       },
     };
   }
@@ -48,16 +66,20 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
       ...(isDefined(token) && { token }),
     })
   );
-  if (!isDefined(result.data)) {
+  const success = !isDefined(result.error);
+
+  if (!success) {
     return {
-      success: false,
+      status: "error",
+      error: mapAuthErrorToFormActionError(result.error),
     };
   }
-
   throw redirect(href("/signin"));
 }
 
 export default function ResetPassword() {
+  const actionData = useActionData<typeof clientAction>();
+
   return (
     <Card>
       <FormCardHeader>
@@ -66,9 +88,10 @@ export default function ResetPassword() {
           Enter and confirm your new password
         </FormCardDescription>
       </FormCardHeader>
-      <Form>
+      <ActionForm actionData={actionData}>
         <CardContent>
           <div className={cn("flex flex-col gap-4")}>
+            <ActionFormAlert />
             <TextField name="password" type="password" isRequired>
               <Label>Password</Label>
               <Input variant="secondary" />
@@ -89,7 +112,7 @@ export default function ResetPassword() {
             Back to sign in
           </Link>
         </CardFooter>
-      </Form>
+      </ActionForm>
     </Card>
   );
 }

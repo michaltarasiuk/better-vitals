@@ -1,35 +1,50 @@
 import { assertNever } from "@lite-app/shared/assert-never";
 import { z } from "zod";
 
-type OrganizationError = z.infer<typeof OrganizationErrorSchema>;
-type OrganizationErrorCode = z.infer<typeof OrganizationErrorCodeSchema>;
+import type { FormActionError } from "~/components/action-form";
+import type { FormValidationErrors } from "~/components/form";
 
-const OrganizationErrorCodeSchema = z.enum([
-  "ORGANIZATION_ALREADY_EXISTS",
-  "ORGANIZATION_SLUG_ALREADY_TAKEN",
-]);
+type OrganizationError = z.infer<typeof OrganizationErrorSchema>;
+
 const OrganizationErrorSchema = z.object({
-  code: OrganizationErrorCodeSchema,
+  code: z.enum([
+    "ORGANIZATION_ALREADY_EXISTS",
+    "ORGANIZATION_SLUG_ALREADY_TAKEN",
+  ]),
   message: z.string(),
 });
 
-export function isOrganizationError(
-  value: unknown
-): value is OrganizationError {
+export function mapOrganizationErrorToFormActionError(error: unknown) {
+  let actionError: FormActionError = {
+    type: "alert",
+    title: "An unexpected error occurred",
+  };
+  if (isOrganizationError(error)) {
+    actionError = {
+      type: "form",
+      validationErrors: mapOrganizationErrorToFields(error),
+    };
+  }
+  return actionError;
+}
+
+function isOrganizationError(value: unknown): value is OrganizationError {
   return OrganizationErrorSchema.safeParse(value).success;
 }
 
-export function mapOrganizationErrorCodeToField(code: OrganizationErrorCode) {
+function mapOrganizationErrorToFields(error: OrganizationError) {
   let field: "name";
-  switch (code) {
+  switch (error.code) {
     case "ORGANIZATION_ALREADY_EXISTS":
     case "ORGANIZATION_SLUG_ALREADY_TAKEN": {
       field = "name";
       break;
     }
     default: {
-      assertNever(code);
+      assertNever(error.code);
     }
   }
-  return field;
+  return {
+    [field]: error.message,
+  } satisfies FormValidationErrors;
 }
