@@ -61,7 +61,7 @@ export async function clientAction({
     };
   }
 
-  const result = await withMinimumDelay(
+  const { error } = await withMinimumDelay(
     signUp.email({
       name,
       email,
@@ -69,12 +69,12 @@ export async function clientAction({
       image: pickAvatar(),
     })
   );
-  const success = !isDefined(result.error);
+  const success = !isDefined(error);
 
   if (!success) {
     return {
       status: "error",
-      error: mapAuthErrorToFormActionError(result.error),
+      error: mapAuthErrorToFormActionError(error),
     };
   }
   throw redirect(href("/organization/create"));

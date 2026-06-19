@@ -38,18 +38,18 @@ export async function clientAction({
 }: ClientActionFunctionArgs): Promise<FormActionData> {
   const { email } = await parseFormData(request, FormDataSchema);
 
-  const result = await withMinimumDelay(
+  const { error } = await withMinimumDelay(
     requestPasswordReset({
       email,
       redirectTo: href("/reset-password"),
     })
   );
-  const success = !isDefined(result.error);
+  const success = !isDefined(error);
 
   if (!success) {
     return {
       status: "error",
-      error: mapAuthErrorToFormActionError(result.error),
+      error: mapAuthErrorToFormActionError(error),
     };
   }
   return {

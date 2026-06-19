@@ -40,18 +40,18 @@ export async function clientAction({
 }: ClientActionFunctionArgs): Promise<FormActionData> {
   const { email, password } = await parseFormData(request, FormDataSchema);
 
-  const result = await withMinimumDelay(
+  const { error } = await withMinimumDelay(
     signIn.email({
       email,
       password,
     })
   );
-  const success = !isDefined(result.error);
+  const success = !isDefined(error);
 
   if (!success) {
     return {
       status: "error",
-      error: mapAuthErrorToFormActionError(result.error),
+      error: mapAuthErrorToFormActionError(error),
     };
   }
   throw redirectDocument(await getAuthenticatedRedirectHref());

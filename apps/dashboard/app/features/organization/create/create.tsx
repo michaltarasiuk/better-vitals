@@ -39,23 +39,24 @@ export async function clientAction({
 }: ClientActionFunctionArgs): Promise<FormActionData> {
   const { name } = await parseFormData(request, FormDataSchema);
 
-  const result = await withMinimumDelay(
+  const { data, error } = await withMinimumDelay(
     organization.create({
       name,
       slug: slugify(name),
     })
   );
-  const createdOrganization = result.data;
-  const success = isDefined(createdOrganization);
+  const success = isDefined(data) && !isDefined(error);
 
   if (!success) {
     return {
       status: "error",
-      error: mapOrganizationErrorToFormActionError(result.error),
+      error: mapOrganizationErrorToFormActionError(error),
     };
   }
   throw redirectDocument(
-    href("/organization/:slug", { slug: createdOrganization.slug })
+    href("/organization/:slug", {
+      slug: data.slug,
+    })
   );
 }
 

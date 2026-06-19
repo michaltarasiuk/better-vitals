@@ -1,7 +1,8 @@
 import { isDefined } from "@lite-app/shared/is-defined";
 import { createContext } from "react-router";
 
-import { ADMIN_ROLE } from "./consts";
+import { ADMIN_ROLE } from "~/lib/organization/roles";
+
 import { auth } from "./index.server";
 
 export type ServerSession = typeof auth.$Infer.Session;

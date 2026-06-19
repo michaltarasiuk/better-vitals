@@ -60,18 +60,18 @@ export async function clientAction({
     };
   }
 
-  const result = await withMinimumDelay(
+  const { error } = await withMinimumDelay(
     resetPassword({
       newPassword: password,
       ...(isDefined(token) && { token }),
     })
   );
-  const success = !isDefined(result.error);
+  const success = !isDefined(error);
 
   if (!success) {
     return {
       status: "error",
-      error: mapAuthErrorToFormActionError(result.error),
+      error: mapAuthErrorToFormActionError(error),
     };
   }
   throw redirect(href("/signin"));
