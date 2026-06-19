@@ -5,7 +5,6 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@lite-app/ui/components/avatar";
-import { Button } from "@lite-app/ui/components/button";
 import { Navbar, NavbarSpacer } from "@lite-app/ui/components/navbar";
 import {
   Sidebar,
@@ -19,10 +18,11 @@ import {
   SidebarMenuLabel,
   SidebarTrigger,
 } from "@lite-app/ui/components/sidebar";
-import { HomeIcon, LogOutIcon, UserPlusIcon } from "lucide-react";
+import { HomeIcon, LogOutIcon } from "lucide-react";
 import { Outlet, useLoaderData } from "react-router";
 import { cn } from "tailwind-variants";
 
+import { InviteMemberModal } from "~/features/organization/invite/invite-member";
 import {
   formatUserRole,
   getAvatarFallback,
@@ -71,7 +71,7 @@ export function SidebarLayout() {
           <SidebarTrigger className={cn("-ms-2 hidden", "md:inline-flex")} />
           <UserGreeting user={user} />
           <NavbarSpacer />
-          <InviteButton />
+          <InviteMemberModal />
         </Navbar>
       }
     >
@@ -115,14 +115,5 @@ function UserProfile({ user }: UserProfileProps) {
         )}
       </div>
     </div>
-  );
-}
-
-function InviteButton(props: React.ComponentProps<typeof Button>) {
-  return (
-    <Button variant="primary" size="sm" {...props}>
-      <UserPlusIcon aria-hidden />
-      Invite
-    </Button>
   );
 }
