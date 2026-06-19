@@ -24,8 +24,8 @@ export function Table({ children, variant, className, ...rest }: TableProps) {
       <div
         data-slot="table"
         className={slots.base({
-          className,
           variant,
+          className,
         })}
         {...rest}
       >
@@ -47,8 +47,8 @@ export function TableScrollContainer({
     <div
       data-slot="table-scroll-container"
       className={slots.scrollContainer({
-        className,
         variant,
+        className,
       })}
       {...rest}
     >
@@ -209,8 +209,8 @@ export function TableFooter({
     <div
       data-slot="table-footer"
       className={slots.footer({
-        className,
         variant,
+        className,
       })}
       {...rest}
     >
@@ -274,8 +274,8 @@ export function TableLoadMoreItem({
     <Aria.TableLoadMoreItem
       data-slot="table-load-more"
       className={slots.loadMore({
-        className,
         variant,
+        className,
       })}
       {...rest}
     >
@@ -296,8 +296,8 @@ export function TableLoadMoreContent({
     <div
       data-slot="table-load-more-content"
       className={slots.loadMoreContent({
-        className,
         variant,
+        className,
       })}
       {...rest}
     >

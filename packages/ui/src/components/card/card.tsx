@@ -17,8 +17,8 @@ export function Card({ children, variant, className, ...rest }: CardProps) {
     <div
       data-slot="card"
       className={slots.base({
-        className,
         variant,
+        className,
       })}
       {...rest}
     >
@@ -54,8 +54,8 @@ export function CardHeader({ children, className, ...rest }: CardHeaderProps) {
     <div
       data-slot="card-header"
       className={slots.header({
-        className,
         variant,
+        className,
       })}
       {...rest}
     >
@@ -72,8 +72,8 @@ export function CardTitle({ children, className, ...rest }: CardTitleProps) {
     <h3
       data-slot="card-title"
       className={slots.title({
-        className,
         variant,
+        className,
       })}
       {...rest}
     >
@@ -94,8 +94,8 @@ export function CardDescription({
     <p
       data-slot="card-description"
       className={slots.description({
-        className,
         variant,
+        className,
       })}
       {...rest}
     >
@@ -116,8 +116,8 @@ export function CardContent({
     <div
       data-slot="card-content"
       className={slots.content({
-        className,
         variant,
+        className,
       })}
       {...rest}
     >
@@ -134,8 +134,8 @@ export function CardFooter({ children, className, ...rest }: CardFooterProps) {
     <div
       data-slot="card-footer"
       className={slots.footer({
-        className,
         variant,
+        className,
       })}
       {...rest}
     >

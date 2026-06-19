@@ -14,8 +14,8 @@ export function Input({ variant, fullWidth, className, ...rest }: InputProps) {
       className={cnRenderProps(
         className,
         inputVariants({
-          fullWidth,
           variant: variant ?? textFieldContext.variant,
+          fullWidth,
         })
       )}
       {...rest}

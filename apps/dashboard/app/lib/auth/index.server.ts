@@ -12,6 +12,10 @@ export const auth = betterAuth({
     provider: "sqlite",
     schema,
   }),
+  emailAndPassword: {
+    enabled: true,
+  },
+  plugins: [admin(), organization()],
   databaseHooks: {
     user: {
       create: {
@@ -26,8 +30,4 @@ export const auth = betterAuth({
       },
     },
   },
-  emailAndPassword: {
-    enabled: true,
-  },
-  plugins: [admin(), organization()],
 });

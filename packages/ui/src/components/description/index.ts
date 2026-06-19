@@ -1,2 +1,2 @@
-export * from "./description.tsx";
 export * from "./description.ts";
+export * from "./description.tsx";

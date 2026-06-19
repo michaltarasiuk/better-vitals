@@ -1,23 +1,20 @@
 import { tv, type VariantProps } from "tailwind-variants";
 
 const tableVariants = tv({
-  defaultVariants: {
-    variant: "primary",
-  },
   slots: {
     base: "table",
-    body: "table__body",
-    cell: "table__cell",
-    column: "table__column",
-    columnResizer: "table__column-resizer",
+    scrollContainer: "table__scroll-container",
+    resizableContainer: "table__resizable-container",
     content: "table__content",
-    footer: "table__footer",
     header: "table__header",
+    column: "table__column",
+    body: "table__body",
+    row: "table__row",
+    cell: "table__cell",
+    footer: "table__footer",
     loadMore: "table__load-more",
     loadMoreContent: "table__load-more-content",
-    resizableContainer: "table__resizable-container",
-    row: "table__row",
-    scrollContainer: "table__scroll-container",
+    columnResizer: "table__column-resizer",
   },
   variants: {
     variant: {
@@ -28,6 +25,9 @@ const tableVariants = tv({
         base: "table--secondary",
       },
     },
+  },
+  defaultVariants: {
+    variant: "primary",
   },
 });
 

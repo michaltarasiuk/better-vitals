@@ -4,13 +4,13 @@ import { appLayoutVariants } from "./app-layout";
 const slots = appLayoutVariants();
 
 interface AppLayoutProps extends React.ComponentProps<"div"> {
-  navbar: React.ReactNode;
   sidebar: React.ReactNode;
+  navbar: React.ReactNode;
 }
 
 export function AppLayout({
-  navbar,
   sidebar,
+  navbar,
   children,
   className,
   ...rest

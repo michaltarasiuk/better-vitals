@@ -72,8 +72,8 @@ export default function Signin() {
             {({ isPending }) => (isPending ? "Signing In" : "Sign In")}
           </SubmitButton>
           <Link
-            className={cn("text-center text-sm")}
             href="/request-password-reset"
+            className={cn("text-center text-sm")}
           >
             Forgot password?
           </Link>

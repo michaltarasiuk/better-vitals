@@ -16,10 +16,10 @@ export function Label({
     <Aria.Label
       data-slot="label"
       className={labelVariants({
-        className,
-        isDisabled,
-        isInvalid,
         isRequired,
+        isInvalid,
+        isDisabled,
+        className,
       })}
       {...rest}
     >

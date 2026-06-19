@@ -1,16 +1,13 @@
 import { tv, type VariantProps } from "tailwind-variants";
 
 const cardVariants = tv({
-  defaultVariants: {
-    variant: "default",
-  },
   slots: {
     base: "card",
-    content: "card__content",
-    description: "card__description",
-    footer: "card__footer",
     header: "card__header",
     title: "card__title",
+    description: "card__description",
+    content: "card__content",
+    footer: "card__footer",
   },
   variants: {
     variant: {
@@ -27,6 +24,9 @@ const cardVariants = tv({
         base: "card--transparent",
       },
     },
+  },
+  defaultVariants: {
+    variant: "default",
   },
 });
 

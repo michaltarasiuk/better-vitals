@@ -1,25 +1,38 @@
 import { tv, type VariantProps } from "tailwind-variants";
 
 export const avatarVariants = tv({
-  defaultVariants: {
-    color: "default",
-    size: "md",
-  },
   slots: {
     base: "avatar",
-    fallback: "avatar__fallback",
     image: "avatar__image",
+    fallback: "avatar__fallback",
   },
   variants: {
+    variant: {
+      default: {},
+      soft: {
+        base: "avatar--soft",
+      },
+    },
+    size: {
+      sm: {
+        base: "avatar--sm",
+      },
+      md: {
+        base: null,
+      },
+      lg: {
+        base: "avatar--lg",
+      },
+    },
     color: {
+      default: {
+        fallback: "avatar__fallback--default",
+      },
       accent: {
         fallback: "avatar__fallback--accent",
       },
       danger: {
         fallback: "avatar__fallback--danger",
-      },
-      default: {
-        fallback: "avatar__fallback--default",
       },
       success: {
         fallback: "avatar__fallback--success",
@@ -28,23 +41,11 @@ export const avatarVariants = tv({
         fallback: "avatar__fallback--warning",
       },
     },
-    size: {
-      lg: {
-        base: "avatar--lg",
-      },
-      md: {
-        base: null,
-      },
-      sm: {
-        base: "avatar--sm",
-      },
-    },
-    variant: {
-      default: {},
-      soft: {
-        base: "avatar--soft",
-      },
-    },
+  },
+  defaultVariants: {
+    variant: "default",
+    size: "md",
+    color: "default",
   },
 });
 

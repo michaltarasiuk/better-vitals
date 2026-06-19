@@ -3,8 +3,8 @@ import * as errore from "errore";
 import { z } from "zod";
 
 export class PasswordMismatchError extends errore.createTaggedError({
-  message: "Password mismatch",
   name: "PasswordMismatchError",
+  message: "Password mismatch",
 }) {}
 
 export function comparePasswords({

@@ -7,14 +7,14 @@ interface SpinnerProps
     Omit<React.ComponentProps<"span">, keyof SpinnerVariants>,
     SpinnerVariants {}
 
-export function Spinner({ color, size, className, ...rest }: SpinnerProps) {
+export function Spinner({ size, color, className, ...rest }: SpinnerProps) {
   return (
     <span
       data-slot="spinner"
       className={spinnerVariants({
-        className,
-        color,
         size,
+        color,
+        className,
       })}
       {...rest}
     >

@@ -20,13 +20,13 @@ export default defineConfig({
     noExternal: [
       "@lite-app/ui",
       "@lite-app/shared",
-      "@radix-ui/react-avatar",
+      "react-aria-components",
+      "react-aria",
+      "react-stately",
       "@react-aria",
       "@react-stately",
       "@react-types",
-      "react-aria",
-      "react-aria-components",
-      "react-stately",
+      "@radix-ui/react-avatar",
     ],
   },
 });

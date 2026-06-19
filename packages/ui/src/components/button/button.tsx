@@ -20,10 +20,10 @@ export function Button({
       className={cnRenderProps(
         className,
         buttonVariants({
+          variant,
+          size,
           fullWidth,
           isIconOnly,
-          size,
-          variant,
         })
       )}
       {...rest}

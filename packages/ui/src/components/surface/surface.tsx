@@ -24,8 +24,8 @@ export function Surface({
       <div
         data-slot="surface"
         className={surfaceVariants({
-          className,
           variant,
+          className,
         })}
         {...rest}
       >

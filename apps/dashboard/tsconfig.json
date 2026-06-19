@@ -2,10 +2,10 @@
   "extends": "@lite-app/tsconfig/vite.json",
   "include": ["**/*.ts", "**/*.tsx", "./.react-router/types/**/*"],
   "compilerOptions": {
-    "types": ["vite/client"],
-    "rootDirs": [".", "./.react-router/types"],
     "paths": {
       "~/*": ["./app/*"]
-    }
+    },
+    "rootDirs": [".", "./.react-router/types"],
+    "types": ["vite/client"]
   }
 }

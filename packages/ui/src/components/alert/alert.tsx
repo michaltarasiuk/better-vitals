@@ -11,9 +11,9 @@ import { SurfaceContext } from "../surface";
 import { alertVariants, type AlertVariants } from "./alert";
 
 const ALERT_STATUS_ICONS = {
+  default: InfoIcon,
   accent: InfoIcon,
   danger: CircleAlertIcon,
-  default: InfoIcon,
   success: CircleCheckIcon,
   warning: TriangleAlertIcon,
 } satisfies Record<string, LucideIcon>;
@@ -42,8 +42,8 @@ export function Alert({ children, status, className, ...rest }: AlertProps) {
         <div
           data-slot="alert"
           className={slots.base({
-            className,
             status,
+            className,
           })}
           {...rest}
         >

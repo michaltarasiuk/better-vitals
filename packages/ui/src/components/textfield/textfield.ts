@@ -2,13 +2,13 @@ import { tv, type VariantProps } from "tailwind-variants";
 
 export const textFieldVariants = tv({
   base: "textfield",
-  defaultVariants: {
-    fullWidth: false,
-  },
   variants: {
     fullWidth: {
       true: "textfield--full-width",
     },
+  },
+  defaultVariants: {
+    fullWidth: false,
   },
 });
 

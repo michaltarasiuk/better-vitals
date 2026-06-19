@@ -27,8 +27,8 @@ export function Select<
   return (
     <SelectContext
       value={{
-        fullWidth,
         variant,
+        fullWidth,
       }}
     >
       <Aria.Select
@@ -36,8 +36,8 @@ export function Select<
         className={cnRenderProps(
           className,
           slots.base({
-            fullWidth,
             variant,
+            fullWidth,
           })
         )}
         {...rest}
@@ -55,15 +55,15 @@ export function SelectTrigger({
   className,
   ...rest
 }: SelectTriggerProps) {
-  const { fullWidth, variant } = useSelectContext();
+  const { variant, fullWidth } = useSelectContext();
   return (
     <Aria.Button
       data-slot="select-trigger"
       className={cnRenderProps(
         className,
         slots.trigger({
-          fullWidth,
           variant,
+          fullWidth,
         })
       )}
       {...rest}

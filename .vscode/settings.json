@@ -1,32 +1,29 @@
 {
+  "js/ts.tsdk.path": "node_modules/typescript/lib",
+  "js/ts.tsdk.promptToUseWorkspaceVersion": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
+  "editor.formatOnPaste": true,
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.oxc": "explicit"
+  },
   "tailwindCSS.experimental.configFile": {
     "packages/ui/src/styles/index.css": "packages/ui/**",
     "apps/dashboard/app/app.css": "apps/dashboard/**"
   },
   "tailwindCSS.classFunctions": ["cn", "clsx", "cva", "tv"],
-  "editor.quickSuggestions": {
-    "strings": "on"
-  },
+  "emmet.showExpandedAbbreviation": "never",
   "files.associations": {
     "*.css": "tailwindcss"
   },
-  "editor.formatOnPaste": true,
-  "editor.formatOnSave": true,
-  "editor.formatOnSaveMode": "file",
-  "emmet.showExpandedAbbreviation": "never",
-  "[css]": {
+  "[typescript]": {
     "editor.defaultFormatter": "oxc.oxc-vscode"
   },
-  "[tailwindcss]": {
-    "editor.defaultFormatter": "oxc.oxc-vscode"
-  },
-  "[graphql]": {
-    "editor.defaultFormatter": "oxc.oxc-vscode"
-  },
-  "[handlebars]": {
-    "editor.defaultFormatter": "oxc.oxc-vscode"
-  },
-  "[html]": {
+  "[typescriptreact]": {
     "editor.defaultFormatter": "oxc.oxc-vscode"
   },
   "[javascript]": {
@@ -41,34 +38,37 @@
   "[jsonc]": {
     "editor.defaultFormatter": "oxc.oxc-vscode"
   },
-  "[less]": {
+  "[css]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[tailwindcss]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[html]": {
     "editor.defaultFormatter": "oxc.oxc-vscode"
   },
   "[markdown]": {
     "editor.defaultFormatter": "oxc.oxc-vscode"
   },
+  "[yaml]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[graphql]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[handlebars]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[less]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
   "[scss]": {
-    "editor.defaultFormatter": "oxc.oxc-vscode"
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "oxc.oxc-vscode"
-  },
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "oxc.oxc-vscode"
-  },
-  "[vue-html]": {
     "editor.defaultFormatter": "oxc.oxc-vscode"
   },
   "[vue]": {
     "editor.defaultFormatter": "oxc.oxc-vscode"
   },
-  "[yaml]": {
+  "[vue-html]": {
     "editor.defaultFormatter": "oxc.oxc-vscode"
-  },
-  "editor.codeActionsOnSave": {
-    "source.fixAll.oxc": "explicit"
-  },
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "js/ts.tsdk.path": "node_modules/typescript/lib",
-  "js/ts.tsdk.promptToUseWorkspaceVersion": true
+  }
 }

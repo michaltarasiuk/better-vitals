@@ -1,14 +1,14 @@
-import { type VariantProps, tv } from "tailwind-variants";
+import { tv, type VariantProps } from "tailwind-variants";
 
 export const closeButtonVariants = tv({
   base: "close-button",
-  defaultVariants: {
-    variant: "default",
-  },
   variants: {
     variant: {
       default: "close-button--default",
     },
+  },
+  defaultVariants: {
+    variant: "default",
   },
 });
 

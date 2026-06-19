@@ -1,2 +1,2 @@
-export * from "./alert.tsx";
 export * from "./alert.ts";
+export * from "./alert.tsx";

@@ -2,21 +2,21 @@ import { tv, type VariantProps } from "tailwind-variants";
 
 export const labelVariants = tv({
   base: "label",
-  defaultVariants: {
-    isDisabled: false,
-    isInvalid: false,
-    isRequired: false,
-  },
   variants: {
-    isDisabled: {
-      true: "label--disabled",
+    isRequired: {
+      true: "label--required",
     },
     isInvalid: {
       true: "label--invalid",
     },
-    isRequired: {
-      true: "label--required",
+    isDisabled: {
+      true: "label--disabled",
     },
+  },
+  defaultVariants: {
+    isRequired: false,
+    isInvalid: false,
+    isDisabled: false,
   },
 });
 

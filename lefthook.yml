@@ -1,7 +1,6 @@
 pre-commit:
   jobs:
-    - run: bun x ultracite fix
-      glob:
+    - glob:
         - "**/*.js"
         - "**/*.jsx"
         - "**/*.ts"
@@ -9,8 +8,9 @@ pre-commit:
         - "**/*.json"
         - "**/*.jsonc"
         - "**/*.css"
+      run: bun x ultracite fix
       stage_fixed: true
-    - run: mise exec -- bun x lintcn lint
-      glob:
+    - glob:
         - "**/*.ts"
         - "**/*.tsx"
+      run: mise exec -- bun x lintcn lint

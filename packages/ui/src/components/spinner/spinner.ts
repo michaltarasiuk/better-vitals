@@ -2,24 +2,24 @@ import { tv, type VariantProps } from "tailwind-variants";
 
 export const spinnerVariants = tv({
   base: "spinner",
-  defaultVariants: {
-    color: "accent",
-    size: "md",
-  },
   variants: {
+    size: {
+      sm: "spinner--sm",
+      md: null,
+      lg: "spinner--lg",
+      xl: "spinner--xl",
+    },
     color: {
-      accent: "spinner--accent",
       current: "spinner--current",
+      accent: "spinner--accent",
       danger: "spinner--danger",
       success: "spinner--success",
       warning: "spinner--warning",
     },
-    size: {
-      lg: "spinner--lg",
-      md: null,
-      sm: "spinner--sm",
-      xl: "spinner--xl",
-    },
+  },
+  defaultVariants: {
+    size: "md",
+    color: "accent",
   },
 });
 

@@ -10,10 +10,10 @@
   },
   "devDependencies": {
     "@lite-app/tsconfig": "workspace:*",
-    "@types/node": "catalog:",
-    "@types/react": "catalog:",
     "react": "catalog:",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:"
   },
   "peerDependencies": {
     "react": "catalog:"

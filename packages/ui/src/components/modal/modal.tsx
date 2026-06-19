@@ -27,10 +27,10 @@ export function Modal({
   return (
     <ModalContext
       value={{
-        placement,
-        scroll,
-        size,
         variant,
+        size,
+        scroll,
+        placement,
       }}
     >
       <Aria.DialogTrigger data-slot="modal" {...rest}>
@@ -109,8 +109,8 @@ export function ModalContainer({
       className={cnRenderProps(
         className,
         slots.container({
-          scroll,
           size,
+          scroll,
         })
       )}
       {...rest}
@@ -133,9 +133,9 @@ export function ModalDialog({
       data-slot="modal-dialog"
       data-placement={placement}
       className={slots.dialog({
-        className,
-        scroll,
         size,
+        scroll,
+        className,
       })}
       {...rest}
     >
@@ -193,8 +193,8 @@ export function ModalBody({ children, className, ...rest }: ModalBodyProps) {
     <div
       data-slot="modal-body"
       className={slots.body({
-        className,
         scroll,
+        className,
       })}
       {...rest}
     >

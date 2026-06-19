@@ -1,24 +1,14 @@
 import { tv, type VariantProps } from "tailwind-variants";
 
 export const selectVariants = tv({
-  defaultVariants: {
-    fullWidth: false,
-    variant: "primary",
-  },
   slots: {
     base: "select",
-    indicator: "select__indicator",
-    popover: "select__popover",
     trigger: "select__trigger",
     value: "select__value",
+    indicator: "select__indicator",
+    popover: "select__popover",
   },
   variants: {
-    fullWidth: {
-      true: {
-        base: "select--full-width",
-        trigger: "select__trigger--full-width",
-      },
-    },
     variant: {
       primary: {
         base: "select--primary",
@@ -27,6 +17,16 @@ export const selectVariants = tv({
         base: "select--secondary",
       },
     },
+    fullWidth: {
+      true: {
+        base: "select--full-width",
+        trigger: "select__trigger--full-width",
+      },
+    },
+  },
+  defaultVariants: {
+    variant: "primary",
+    fullWidth: false,
   },
 });
 

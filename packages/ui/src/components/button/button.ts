@@ -2,33 +2,33 @@ import { tv, type VariantProps } from "tailwind-variants";
 
 export const buttonVariants = tv({
   base: "button",
-  defaultVariants: {
-    fullWidth: false,
-    isIconOnly: false,
-    size: "md",
-    variant: "primary",
-  },
   variants: {
+    variant: {
+      primary: "button--primary",
+      secondary: "button--secondary",
+      tertiary: "button--tertiary",
+      outline: "button--outline",
+      ghost: "button--ghost",
+      danger: "button--danger",
+      "danger-soft": "button--danger-soft",
+    },
+    size: {
+      sm: "button--sm",
+      md: null,
+      lg: "button--lg",
+    },
     fullWidth: {
       true: "button--full-width",
     },
     isIconOnly: {
       true: "button--icon-only",
     },
-    size: {
-      lg: "button--lg",
-      md: null,
-      sm: "button--sm",
-    },
-    variant: {
-      danger: "button--danger",
-      "danger-soft": "button--danger-soft",
-      ghost: "button--ghost",
-      outline: "button--outline",
-      primary: "button--primary",
-      secondary: "button--secondary",
-      tertiary: "button--tertiary",
-    },
+  },
+  defaultVariants: {
+    variant: "primary",
+    size: "md",
+    fullWidth: false,
+    isIconOnly: false,
   },
 });
 

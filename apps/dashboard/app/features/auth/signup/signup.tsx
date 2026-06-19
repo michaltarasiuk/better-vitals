@@ -22,10 +22,10 @@ import { parseFormData } from "~/lib/form/form-data";
 import { pickAvatar } from "~/lib/user/avatar";
 
 const FormDataSchema = z.object({
-  confirmPassword: z.string(),
-  email: z.string(),
   name: z.string(),
+  email: z.string(),
   password: z.string(),
+  confirmPassword: z.string(),
 });
 
 export async function clientAction({ request }: ClientActionFunctionArgs) {
@@ -34,7 +34,7 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
     FormDataSchema
   );
 
-  const passwordError = comparePasswords({ confirmPassword, password });
+  const passwordError = comparePasswords({ password, confirmPassword });
   if (passwordError instanceof Error) {
     return {
       validationErrors: {
@@ -45,10 +45,10 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
 
   const result = await withMinimumDelay(
     signUp.email({
-      email,
-      image: pickAvatar(),
       name,
+      email,
       password,
+      image: pickAvatar(),
     })
   );
   if (!isDefined(result.data)) {

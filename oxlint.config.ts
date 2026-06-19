@@ -30,6 +30,9 @@ export default defineConfig({
     "no-duplicate-imports": ["error", { allowSeparateTypeImports: false }],
     // Functions are hoisted
     "no-use-before-define": "off",
+    // Prefer logical key order (discriminant first, form field order, etc.) over alphabetical.
+    "sort-keys": "off",
+    "sort-vars": "off",
     // Use inline `type` specifiers when types and values come from the same module.
     "typescript/consistent-type-imports": [
       "error",

@@ -1,2 +1,2 @@
-export * from "./spinner.tsx";
 export * from "./spinner.ts";
+export * from "./spinner.tsx";

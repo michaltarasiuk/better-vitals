@@ -5,18 +5,24 @@ import { separatorVariants, type SeparatorVariants } from "./separator";
 
 interface SeparatorProps extends Aria.SeparatorProps, SeparatorVariants {}
 
-export function Separator({ variant, className, ...rest }: SeparatorProps) {
+export function Separator({
+  variant,
+  orientation,
+  className,
+  ...rest
+}: SeparatorProps) {
   const context = useSlottedContext(Aria.SeparatorContext);
-  const orientation = rest.orientation ?? context?.orientation ?? "horizontal";
+  const resolvedOrientation =
+    orientation ?? context?.orientation ?? "horizontal";
 
   return (
     <Aria.Separator
       data-slot="separator"
-      orientation={orientation}
+      orientation={resolvedOrientation}
       className={separatorVariants({
-        className,
-        orientation,
         variant,
+        orientation: resolvedOrientation,
+        className,
       })}
       {...rest}
     />

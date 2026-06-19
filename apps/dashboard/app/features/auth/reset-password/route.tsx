@@ -22,8 +22,8 @@ import { comparePasswords } from "~/lib/auth/error";
 import { parseFormData } from "~/lib/form/form-data";
 
 const FormDataSchema = z.object({
-  confirmPassword: z.string(),
   password: z.string(),
+  confirmPassword: z.string(),
 });
 
 export async function clientAction({ request }: ClientActionFunctionArgs) {
@@ -33,7 +33,7 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
   );
   const token = new URL(request.url).searchParams.get("token");
 
-  const passwordError = comparePasswords({ confirmPassword, password });
+  const passwordError = comparePasswords({ password, confirmPassword });
   if (passwordError instanceof Error) {
     return {
       validationErrors: {

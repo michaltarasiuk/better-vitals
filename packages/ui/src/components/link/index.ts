@@ -1,2 +1,2 @@
-export * from "./link.tsx";
 export * from "./link.ts";
+export * from "./link.tsx";

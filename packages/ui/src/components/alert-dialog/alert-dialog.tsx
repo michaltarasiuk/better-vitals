@@ -13,9 +13,9 @@ import { CloseButton } from "../close-button";
 import { alertDialogVariants, type AlertDialogVariants } from "./alert-dialog";
 
 const ALERT_DIALOG_STATUS_ICONS = {
+  default: InfoIcon,
   accent: InfoIcon,
   danger: CircleAlertIcon,
-  default: InfoIcon,
   success: CircleCheckIcon,
   warning: TriangleAlertIcon,
 } satisfies Record<string, LucideIcon>;
@@ -43,10 +43,10 @@ export function AlertDialog({
   return (
     <AlertDialogContext
       value={{
-        placement,
+        variant,
         size,
         status,
-        variant,
+        placement,
       }}
     >
       <Aria.DialogTrigger data-slot="alert-dialog" {...rest}>
@@ -144,8 +144,8 @@ export function AlertDialogDialog({
       data-slot="alert-dialog-dialog"
       data-placement={placement}
       className={slots.dialog({
-        className,
         size,
+        className,
       })}
       {...rest}
     >
@@ -248,8 +248,8 @@ export function AlertDialogIcon({
     <div
       data-slot="alert-dialog-icon"
       className={slots.icon({
-        className,
         status,
+        className,
       })}
       {...rest}
     >

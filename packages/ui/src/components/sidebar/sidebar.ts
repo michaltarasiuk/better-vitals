@@ -2,18 +2,18 @@ import { tv, type VariantProps } from "tailwind-variants";
 
 export const sidebarVariants = tv({
   slots: {
+    provider: "sidebar__provider",
+    offset: "sidebar__offset",
     base: "sidebar",
-    content: "sidebar__content",
-    footer: "sidebar__footer",
     header: "sidebar__header",
+    content: "sidebar__content",
     menu: "sidebar__menu",
-    menuIcon: "sidebar__menu-icon",
     menuItem: "sidebar__menu-item",
+    menuIcon: "sidebar__menu-icon",
     menuItemContent: "sidebar__menu-item-content",
     menuLabel: "sidebar__menu-label",
     menuLabelText: "sidebar__menu-label-text",
-    offset: "sidebar__offset",
-    provider: "sidebar__provider",
+    footer: "sidebar__footer",
   },
 });
 

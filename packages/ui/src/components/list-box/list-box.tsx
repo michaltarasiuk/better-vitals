@@ -53,8 +53,8 @@ export function ListBoxItem({
       {(renderProps) => (
         <ListBoxItemContext
           value={{
-            isSelected: renderProps.isSelected,
             variant,
+            isSelected: renderProps.isSelected,
           }}
         >
           {typeof children === "function" ? children(renderProps) : children}
@@ -77,8 +77,8 @@ export function ListBoxItemIndicator({
       aria-hidden
       data-slot="list-box-item-indicator"
       className={slots.indicator({
-        className,
         variant,
+        className,
       })}
       {...rest}
     >

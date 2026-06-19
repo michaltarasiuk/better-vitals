@@ -17,25 +17,25 @@ interface AvatarProps
 
 export function Avatar({
   children,
-  color,
-  size,
   variant,
+  size,
+  color,
   className,
   ...rest
 }: AvatarProps) {
   return (
     <AvatarContext
       value={{
-        color,
-        size,
         variant,
+        size,
+        color,
       }}
     >
       <RadixAvatar.Root
         className={slots.base({
-          className,
-          size,
           variant,
+          size,
+          className,
         })}
         {...rest}
       >
@@ -50,14 +50,14 @@ interface AvatarImageProps extends React.ComponentProps<
 > {}
 
 export function AvatarImage({ className, ...rest }: AvatarImageProps) {
-  const { color, size, variant } = useAvatarContext();
+  const { variant, size, color } = useAvatarContext();
   return (
     <RadixAvatar.Image
       className={slots.image({
-        className,
-        color,
-        size,
         variant,
+        size,
+        color,
+        className,
       })}
       {...rest}
     />
@@ -73,15 +73,15 @@ export function AvatarFallback({
   className,
   ...rest
 }: AvatarFallbackProps) {
-  const { color, size, variant } = useAvatarContext();
+  const { variant, size, color } = useAvatarContext();
   return (
     <RadixAvatar.Fallback
       data-slot="avatar-fallback"
       className={slots.fallback({
-        className,
-        color,
-        size,
         variant,
+        size,
+        color,
+        className,
       })}
       {...rest}
     >

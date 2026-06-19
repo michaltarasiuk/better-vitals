@@ -35,14 +35,6 @@ export function SidebarLayout() {
   const { user } = useLoaderData<typeof loader>();
   return (
     <AppLayout
-      navbar={
-        <Navbar>
-          <SidebarTrigger className={cn("-ms-2 hidden", "md:inline-flex")} />
-          <UserGreeting user={user} />
-          <NavbarSpacer />
-          <InviteButton />
-        </Navbar>
-      }
       sidebar={
         <Sidebar>
           <SidebarHeader>
@@ -73,6 +65,14 @@ export function SidebarLayout() {
             </SidebarMenu>
           </SidebarFooter>
         </Sidebar>
+      }
+      navbar={
+        <Navbar>
+          <SidebarTrigger className={cn("-ms-2 hidden", "md:inline-flex")} />
+          <UserGreeting user={user} />
+          <NavbarSpacer />
+          <InviteButton />
+        </Navbar>
       }
     >
       <Outlet />

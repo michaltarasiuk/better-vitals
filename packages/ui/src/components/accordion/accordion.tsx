@@ -44,8 +44,8 @@ export function Accordion({
   return (
     <AccordionContext
       value={{
-        hideSeparator,
         variant,
+        hideSeparator,
       }}
     >
       {variant === "surface" ? (
@@ -102,8 +102,8 @@ export function AccordionIndicator({
       data-slot="accordion-indicator"
       data-expanded={isExpanded}
       className={slots.indicator({
-        className,
         variant,
+        className,
       })}
       {...rest}
     >
@@ -124,8 +124,8 @@ export function AccordionHeading({
     <Aria.Heading
       data-slot="accordion-heading"
       className={slots.heading({
-        className,
         variant,
+        className,
       })}
       {...rest}
     >
@@ -177,8 +177,8 @@ export function AccordionBody({
     >
       <div
         className={slots.bodyInner({
-          className,
           variant,
+          className,
         })}
       >
         {children}
