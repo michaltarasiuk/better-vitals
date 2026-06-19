@@ -4,16 +4,35 @@ import {
   AlertIndicator,
   AlertTitle,
 } from "@lite-app/ui/components/alert";
-import { cn } from "tailwind-variants";
+import { tv } from "tailwind-variants";
+
+const FORM_ALERT_STATUS = "danger";
+
+const formAlertVariants = tv({
+  slots: {
+    root: null,
+    indicator: null,
+    title: null,
+  },
+  variants: {
+    status: {
+      danger: {
+        root: "bg-danger-soft shadow-none",
+        indicator: "text-danger-soft-foreground",
+        title: "text-danger-soft-foreground",
+      },
+    },
+  },
+});
 
 export function FormAlert({ title }: { title: string }) {
+  const slots = formAlertVariants({ status: FORM_ALERT_STATUS });
+
   return (
-    <Alert className={cn("bg-danger-soft shadow-none")}>
-      <AlertIndicator className={cn("text-danger-soft-foreground")} />
+    <Alert status={FORM_ALERT_STATUS} className={slots.root()}>
+      <AlertIndicator className={slots.indicator()} />
       <AlertContent>
-        <AlertTitle className={cn("text-danger-soft-foreground")}>
-          {title}
-        </AlertTitle>
+        <AlertTitle className={slots.title()}>{title}</AlertTitle>
       </AlertContent>
     </Alert>
   );
