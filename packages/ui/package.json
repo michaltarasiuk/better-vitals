@@ -16,6 +16,9 @@
       "default": "./src/utils/*.ts"
     }
   },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
   "dependencies": {
     "@lite-app/shared": "workspace:*",
     "react-aria-components": "^1.17.0",

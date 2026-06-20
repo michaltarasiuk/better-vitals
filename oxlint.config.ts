@@ -6,7 +6,7 @@ import vitest from "ultracite/oxlint/vitest";
 
 export default defineConfig({
   extends: [core, react, remix, vitest],
-  ignorePatterns: core.ignorePatterns,
+  ignorePatterns: [...(core.ignorePatterns ?? []), "**/.agents/skills/**"],
   overrides: [
     {
       files: ["packages/ui/src/components/**/index.ts"],

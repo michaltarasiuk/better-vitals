@@ -8,6 +8,9 @@
       "default": "./src/*.ts"
     }
   },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
   "devDependencies": {
     "@lite-app/tsconfig": "workspace:*",
     "react": "catalog:",

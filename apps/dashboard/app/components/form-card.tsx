@@ -65,7 +65,7 @@ export function FormCardContent({
   ...rest
 }: FormCardContentProps) {
   return (
-    <CardContent className={cn("gap-3", className)} {...rest}>
+    <CardContent className={cn("gap-2", className)} {...rest}>
       {children}
     </CardContent>
   );
