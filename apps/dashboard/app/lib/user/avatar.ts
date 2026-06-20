@@ -14,4 +14,5 @@ const AVATARS = [
   "/avatars/red.jpg",
   "/avatars/rose.jpg",
   "/avatars/sky.jpg",
+  "/avatars/white.jpg",
 ];
