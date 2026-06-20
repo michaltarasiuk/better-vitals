@@ -1,6 +1,6 @@
 import { withMinimumDelay } from "@lite-app/shared/delay";
 import { isDefined } from "@lite-app/shared/is-defined";
-import { Card, CardContent, CardFooter } from "@lite-app/ui/components/card";
+import { Card, CardFooter } from "@lite-app/ui/components/card";
 import { FieldError } from "@lite-app/ui/components/field-error";
 import { Input } from "@lite-app/ui/components/input";
 import { Label } from "@lite-app/ui/components/label";
@@ -21,6 +21,7 @@ import {
   type FormActionData,
 } from "~/components/action-form";
 import {
+  FormCardContent,
   FormCardDescription,
   FormCardHeader,
   FormCardTitle,
@@ -70,16 +71,16 @@ export function OrganizationCreate() {
         <FormCardDescription>Enter a name to get started</FormCardDescription>
       </FormCardHeader>
       <ActionForm actionData={actionData}>
-        <CardContent>
+        <FormCardContent>
+          <ActionFormAlert />
           <div className={cn("flex flex-col gap-4")}>
-            <ActionFormAlert />
             <TextField name="name" type="text" isRequired>
               <Label>Name</Label>
               <Input variant="secondary" />
               <FieldError />
             </TextField>
           </div>
-        </CardContent>
+        </FormCardContent>
         <CardFooter className={cn("mt-4")}>
           <SubmitButton>
             {({ isPending }) =>

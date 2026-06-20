@@ -1,4 +1,5 @@
 import {
+  CardContent,
   CardDescription,
   CardHeader,
   cardVariants,
@@ -51,5 +52,21 @@ export function FormCardDescription({
     <CardDescription className={cn("text-center", className)} {...rest}>
       {children}
     </CardDescription>
+  );
+}
+
+interface FormCardContentProps extends React.ComponentProps<
+  typeof CardContent
+> {}
+
+export function FormCardContent({
+  children,
+  className,
+  ...rest
+}: FormCardContentProps) {
+  return (
+    <CardContent className={cn("gap-3", className)} {...rest}>
+      {children}
+    </CardContent>
   );
 }

@@ -1,6 +1,6 @@
 import { withMinimumDelay } from "@lite-app/shared/delay";
 import { isDefined } from "@lite-app/shared/is-defined";
-import { Card, CardContent, CardFooter } from "@lite-app/ui/components/card";
+import { Card, CardFooter } from "@lite-app/ui/components/card";
 import { FieldError } from "@lite-app/ui/components/field-error";
 import { Input } from "@lite-app/ui/components/input";
 import { Label } from "@lite-app/ui/components/label";
@@ -20,6 +20,7 @@ import {
   type FormActionData,
 } from "~/components/action-form";
 import {
+  FormCardContent,
   FormCardDescription,
   FormCardHeader,
   FormCardTitle,
@@ -67,9 +68,9 @@ export default function Signin() {
         <FormCardDescription>Sign in to your account</FormCardDescription>
       </FormCardHeader>
       <ActionForm actionData={actionData}>
-        <CardContent>
+        <FormCardContent>
+          <ActionFormAlert />
           <div className={cn("flex flex-col gap-4")}>
-            <ActionFormAlert />
             <TextField name="email" type="email" isRequired>
               <Label>Email</Label>
               <Input variant="secondary" />
@@ -81,7 +82,7 @@ export default function Signin() {
               <FieldError />
             </TextField>
           </div>
-        </CardContent>
+        </FormCardContent>
         <CardFooter className={cn("mt-4 flex flex-col gap-2")}>
           <SubmitButton>
             {({ isPending }) => (isPending ? "Signing In" : "Sign In")}
