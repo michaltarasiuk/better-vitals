@@ -21,10 +21,10 @@
   },
   "dependencies": {
     "@lite-app/shared": "workspace:*",
-    "react-aria-components": "^1.17.0",
-    "@react-aria/utils": "^3.34.0",
     "@radix-ui/react-avatar": "^1.1.11",
+    "@react-aria/utils": "^3.34.0",
     "lucide-react": "catalog:",
+    "react-aria-components": "^1.17.0",
     "tailwind-merge": "catalog:",
     "tailwind-variants": "catalog:",
     "tailwindcss-react-aria-components": "catalog:",
@@ -32,13 +32,13 @@
   },
   "devDependencies": {
     "@lite-app/tsconfig": "workspace:*",
-    "react": "catalog:",
-    "react-dom": "catalog:",
-    "typescript": "catalog:",
-    "tailwindcss": "catalog:",
     "@types/node": "catalog:",
     "@types/react": "catalog:",
-    "@types/react-dom": "catalog:"
+    "@types/react-dom": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "tailwindcss": "catalog:",
+    "typescript": "catalog:"
   },
   "peerDependencies": {
     "react": "catalog:",

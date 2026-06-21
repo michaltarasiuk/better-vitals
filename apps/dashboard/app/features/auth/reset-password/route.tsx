@@ -84,7 +84,7 @@ export default function ResetPassword() {
   return (
     <Card>
       <FormCardHeader>
-        <FormCardTitle>Set a new password</FormCardTitle>
+        <FormCardTitle>Reset password</FormCardTitle>
         <FormCardDescription>
           Enter and confirm your new password
         </FormCardDescription>

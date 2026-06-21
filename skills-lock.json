@@ -14,10 +14,10 @@
       "computedHash": "747d7f73bd9e2ec5317b8ef88dc70f97df716d00e3d02de4051feebaa48b062d"
     },
     "email-best-practices": {
-      "source": "resend/email-best-practices",
+      "source": "resend/resend-skills",
       "sourceType": "github",
-      "skillPath": "SKILL.md",
-      "computedHash": "b236488b93e04b475def12bedbf8b1cfce348b88acf67d03341724032c87af8d"
+      "skillPath": "skills/email-best-practices/SKILL.md",
+      "computedHash": "c7218333381fa335b8a912bd55b3bb58b5b567a174f9e1d8b41940ff82f1a6b6"
     },
     "errore": {
       "source": "remorses/errore",
