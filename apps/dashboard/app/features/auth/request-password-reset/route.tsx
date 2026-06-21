@@ -39,13 +39,13 @@ export async function clientAction({
 }: ClientActionFunctionArgs): Promise<FormActionData> {
   const { email } = await parseFormData(request, FormDataSchema);
 
-  const { error } = await withMinimumDelay(
+  const { data, error } = await withMinimumDelay(
     requestPasswordReset({
       email,
       redirectTo: href("/reset-password"),
     })
   );
-  const success = !isDefined(error);
+  const success = isDefined(data) && !isDefined(error);
 
   if (!success) {
     return {
@@ -55,6 +55,7 @@ export async function clientAction({
   }
   return {
     status: "success",
+    title: data.message,
   };
 }
 

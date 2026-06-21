@@ -9,7 +9,7 @@ export type FormActionError =
 
 export type FormActionData =
   | { status: "idle" }
-  | { status: "success" }
+  | { status: "success"; title: string }
   | { status: "error"; error: FormActionError };
 
 const INITIAL_ACTION_DATA: FormActionData = { status: "idle" };
@@ -41,8 +41,11 @@ export function ActionForm({
 
 export function ActionFormAlert() {
   const actionData = useActionDataContext();
+  if (actionData.status === "success") {
+    return <FormAlert status="success" title={actionData.title} />;
+  }
   if (actionData.status === "error" && actionData.error.type === "alert") {
-    return <FormAlert title={actionData.error.title} />;
+    return <FormAlert status="danger" title={actionData.error.title} />;
   }
   return null;
 }
