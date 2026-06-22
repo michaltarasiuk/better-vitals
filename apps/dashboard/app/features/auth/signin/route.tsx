@@ -21,7 +21,6 @@ import {
 } from "~/components/action-form";
 import {
   FormCardContent,
-  FormCardDescription,
   FormCardHeader,
   FormCardTitle,
 } from "~/components/form-card";
@@ -64,8 +63,7 @@ export default function Signin() {
   return (
     <Card>
       <FormCardHeader>
-        <FormCardTitle>Welcome back</FormCardTitle>
-        <FormCardDescription>Sign in to your account</FormCardDescription>
+        <FormCardTitle>How are your vitals?</FormCardTitle>
       </FormCardHeader>
       <ActionForm actionData={actionData}>
         <FormCardContent>
@@ -85,7 +83,7 @@ export default function Signin() {
         </FormCardContent>
         <CardFooter className={cn("mt-4 flex flex-col gap-2")}>
           <SubmitButton>
-            {({ isPending }) => (isPending ? "Signing In" : "Sign In")}
+            {({ isPending }) => (isPending ? "Signing in" : "Sign in")}
           </SubmitButton>
           <Link
             href="/request-password-reset"

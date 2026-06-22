@@ -22,7 +22,6 @@ import {
 } from "~/components/action-form";
 import {
   FormCardContent,
-  FormCardDescription,
   FormCardHeader,
   FormCardTitle,
 } from "~/components/form-card";
@@ -84,10 +83,7 @@ export default function ResetPassword() {
   return (
     <Card>
       <FormCardHeader>
-        <FormCardTitle>Reset password</FormCardTitle>
-        <FormCardDescription>
-          Enter and confirm your new password
-        </FormCardDescription>
+        <FormCardTitle>Set a new password</FormCardTitle>
       </FormCardHeader>
       <ActionForm actionData={actionData}>
         <FormCardContent>

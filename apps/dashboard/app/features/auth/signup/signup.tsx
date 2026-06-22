@@ -21,7 +21,6 @@ import {
 } from "~/components/action-form";
 import {
   FormCardContent,
-  FormCardDescription,
   FormCardHeader,
   FormCardTitle,
 } from "~/components/form-card";
@@ -87,10 +86,7 @@ export function Signup() {
   return (
     <Card>
       <FormCardHeader>
-        <FormCardTitle>Create an account</FormCardTitle>
-        <FormCardDescription>
-          Enter your details to get started
-        </FormCardDescription>
+        <FormCardTitle>Start monitoring vitals</FormCardTitle>
       </FormCardHeader>
       <ActionForm actionData={actionData}>
         <FormCardContent>
@@ -120,7 +116,9 @@ export function Signup() {
         </FormCardContent>
         <CardFooter className={cn("mt-4")}>
           <SubmitButton>
-            {({ isPending }) => (isPending ? "Signing Up" : "Sign Up")}
+            {({ isPending }) =>
+              isPending ? "Creating account" : "Create account"
+            }
           </SubmitButton>
         </CardFooter>
       </ActionForm>

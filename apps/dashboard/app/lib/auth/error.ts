@@ -7,7 +7,7 @@ import type { FormValidationErrors } from "~/components/form";
 
 export class PasswordMismatchError extends errore.createTaggedError({
   name: "PasswordMismatchError",
-  message: "Password mismatch",
+  message: "Passwords don't match — enter the same password twice",
 }) {}
 
 export function comparePasswords({
@@ -57,7 +57,7 @@ const AuthFormErrorSchema = z.object({
 export function mapAuthErrorToFormActionError(error: unknown) {
   let actionError: FormActionError = {
     type: "alert",
-    title: "An unexpected error occurred",
+    title: "Couldn't complete that — try again",
   };
   if (isAuthAlertError(error)) {
     actionError = {

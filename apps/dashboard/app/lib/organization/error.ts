@@ -32,7 +32,7 @@ const OrganizationFormErrorSchema = z.object({
 export function mapOrganizationErrorToFormActionError(error: unknown) {
   let actionError: FormActionError = {
     type: "alert",
-    title: "An unexpected error occurred",
+    title: "Couldn't complete that — try again",
   };
   if (isOrganizationAlertError(error)) {
     actionError = {

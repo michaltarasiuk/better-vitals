@@ -65,9 +65,9 @@ export default function RequestPasswordReset() {
   return (
     <Card>
       <FormCardHeader>
-        <FormCardTitle>Request password reset</FormCardTitle>
+        <FormCardTitle>Reset your password</FormCardTitle>
         <FormCardDescription>
-          We will email you a link to reset password
+          Enter your email — we'll send a reset link
         </FormCardDescription>
       </FormCardHeader>
       <ActionForm actionData={actionData}>

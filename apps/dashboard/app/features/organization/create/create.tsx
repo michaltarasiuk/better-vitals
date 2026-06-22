@@ -22,7 +22,6 @@ import {
 } from "~/components/action-form";
 import {
   FormCardContent,
-  FormCardDescription,
   FormCardHeader,
   FormCardTitle,
 } from "~/components/form-card";
@@ -67,8 +66,7 @@ export function OrganizationCreate() {
   return (
     <Card>
       <FormCardHeader>
-        <FormCardTitle>Create an organization</FormCardTitle>
-        <FormCardDescription>Enter a name to get started</FormCardDescription>
+        <FormCardTitle>Name your organization</FormCardTitle>
       </FormCardHeader>
       <ActionForm actionData={actionData}>
         <FormCardContent>
