@@ -1,6 +1,7 @@
 import {
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   cardVariants,
 } from "@lite-app/ui/components/card";
@@ -68,5 +69,19 @@ export function FormCardContent({
     <CardContent className={cn("gap-2", className)} {...rest}>
       {children}
     </CardContent>
+  );
+}
+
+interface FormCardFooterProps extends React.ComponentProps<typeof CardFooter> {}
+
+export function FormCardFooter({
+  children,
+  className,
+  ...rest
+}: FormCardFooterProps) {
+  return (
+    <CardFooter className={cn("mt-4 flex-col gap-2", className)} {...rest}>
+      {children}
+    </CardFooter>
   );
 }

@@ -1,6 +1,6 @@
 import { withMinimumDelay } from "@lite-app/shared/delay";
 import { isDefined } from "@lite-app/shared/is-defined";
-import { Card, CardFooter } from "@lite-app/ui/components/card";
+import { Card } from "@lite-app/ui/components/card";
 import { FieldError } from "@lite-app/ui/components/field-error";
 import { Input } from "@lite-app/ui/components/input";
 import { Label } from "@lite-app/ui/components/label";
@@ -23,6 +23,7 @@ import {
 } from "~/components/action-form";
 import {
   FormCardContent,
+  FormCardFooter,
   FormCardHeader,
   FormCardTitle,
 } from "~/components/form-card";
@@ -83,13 +84,13 @@ export function OrganizationCreate() {
             </TextField>
           </div>
         </FormCardContent>
-        <CardFooter className={cn("mt-4")}>
+        <FormCardFooter>
           <SubmitButton isPending={isSubmitting}>
             {({ isPending }) =>
               isPending ? "Creating" : "Create organization"
             }
           </SubmitButton>
-        </CardFooter>
+        </FormCardFooter>
       </ActionForm>
     </Card>
   );
