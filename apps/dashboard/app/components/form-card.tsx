@@ -5,7 +5,19 @@ import {
   CardHeader,
   cardVariants,
 } from "@lite-app/ui/components/card";
-import { cn } from "tailwind-variants";
+import { tv } from "tailwind-variants";
+
+const formCardVariants = tv({
+  slots: {
+    header: "items-center gap-1",
+    title: "text-xl font-medium",
+    description: "text-center",
+    content: "gap-2",
+    footer: "mt-4 flex-col gap-2",
+  },
+});
+
+const slots = formCardVariants();
 
 interface FormCardHeaderProps extends React.ComponentProps<typeof CardHeader> {}
 
@@ -15,7 +27,7 @@ export function FormCardHeader({
   ...rest
 }: FormCardHeaderProps) {
   return (
-    <CardHeader className={cn("items-center gap-1", className)} {...rest}>
+    <CardHeader className={slots.header({ className })} {...rest}>
       {children}
     </CardHeader>
   );
@@ -31,7 +43,7 @@ export function FormCardTitle({
   return (
     <h1
       className={cardVariants().title({
-        className: cn("text-xl font-medium", className),
+        className: slots.title({ className }),
       })}
       {...rest}
     >
@@ -50,7 +62,7 @@ export function FormCardDescription({
   ...rest
 }: FormCardDescriptionProps) {
   return (
-    <CardDescription className={cn("text-center", className)} {...rest}>
+    <CardDescription className={slots.description({ className })} {...rest}>
       {children}
     </CardDescription>
   );
@@ -66,7 +78,7 @@ export function FormCardContent({
   ...rest
 }: FormCardContentProps) {
   return (
-    <CardContent className={cn("gap-2", className)} {...rest}>
+    <CardContent className={slots.content({ className })} {...rest}>
       {children}
     </CardContent>
   );
@@ -80,7 +92,7 @@ export function FormCardFooter({
   ...rest
 }: FormCardFooterProps) {
   return (
-    <CardFooter className={cn("mt-4 flex-col gap-2", className)} {...rest}>
+    <CardFooter className={slots.footer({ className })} {...rest}>
       {children}
     </CardFooter>
   );
