@@ -9,19 +9,7 @@ import {
   type CardFooterProps,
   type CardHeaderProps,
 } from "@lite-app/ui/components/card";
-import { tv } from "tailwind-variants";
-
-const formCardVariants = tv({
-  slots: {
-    header: "items-center gap-1",
-    title: "text-xl font-medium",
-    description: "text-center",
-    content: "gap-2",
-    footer: "mt-4 flex-col gap-2",
-  },
-});
-
-const slots = formCardVariants();
+import { cn } from "tailwind-variants";
 
 interface FormCardHeaderProps extends CardHeaderProps {}
 
@@ -31,7 +19,7 @@ export function FormCardHeader({
   ...rest
 }: FormCardHeaderProps) {
   return (
-    <CardHeader className={slots.header({ className })} {...rest}>
+    <CardHeader className={cn("items-center gap-1", className)} {...rest}>
       {children}
     </CardHeader>
   );
@@ -46,9 +34,12 @@ export function FormCardTitle({
 }: FormCardTitleProps) {
   return (
     <h1
-      className={cardVariants().title({
-        className: slots.title({ className }),
-      })}
+      className={cn(
+        cardVariants().title({
+          className: cn("text-xl font-medium", className),
+        }),
+        className
+      )}
       {...rest}
     >
       {children}
@@ -64,7 +55,7 @@ export function FormCardDescription({
   ...rest
 }: FormCardDescriptionProps) {
   return (
-    <CardDescription className={slots.description({ className })} {...rest}>
+    <CardDescription className={cn("text-center", className)} {...rest}>
       {children}
     </CardDescription>
   );
@@ -78,7 +69,7 @@ export function FormCardContent({
   ...rest
 }: FormCardContentProps) {
   return (
-    <CardContent className={slots.content({ className })} {...rest}>
+    <CardContent className={cn("gap-2", className)} {...rest}>
       {children}
     </CardContent>
   );
@@ -92,7 +83,7 @@ export function FormCardFooter({
   ...rest
 }: FormCardFooterProps) {
   return (
-    <CardFooter className={slots.footer({ className })} {...rest}>
+    <CardFooter className={cn("mt-4 flex-col gap-2", className)} {...rest}>
       {children}
     </CardFooter>
   );
