@@ -16,10 +16,10 @@ import { cn } from "tailwind-variants";
 import { z } from "zod";
 
 import {
-  ActionForm,
   ActionFormAlert,
   type FormActionData,
-} from "~/components/action-form";
+} from "~/components/action-data-context";
+import { Form } from "~/components/form";
 import {
   FormCardContent,
   FormCardFooter,
@@ -71,7 +71,7 @@ export default function Signin() {
       <FormCardHeader>
         <FormCardTitle>How are your vitals?</FormCardTitle>
       </FormCardHeader>
-      <ActionForm actionData={actionData}>
+      <Form method="POST" actionData={actionData}>
         <FormCardContent>
           <ActionFormAlert />
           <FormFields>
@@ -98,7 +98,7 @@ export default function Signin() {
             Forgot password?
           </Link>
         </FormCardFooter>
-      </ActionForm>
+      </Form>
     </Card>
   );
 }

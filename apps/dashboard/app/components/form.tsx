@@ -1,40 +1,61 @@
+import { Form as UIForm } from "@lite-app/ui/components/form";
+import { useFetcher, useSubmit, type SubmitOptions } from "react-router";
+
 import {
-  Form as UIForm,
-  type FormProps as UIFormProps,
-} from "@lite-app/ui/components/form";
-import { useSubmit } from "react-router";
+  ActionDataContext,
+  type FormActionData,
+} from "~/components/action-data-context";
 
-export interface FormProps extends UIFormProps {}
+const INITIAL_ACTION_DATA: FormActionData = { status: "idle" };
 
-export type FormValidationErrors = NonNullable<FormProps["validationErrors"]>;
+export interface FormProps extends SubmitOptions {
+  children: React.ReactNode;
+  actionData?: FormActionData;
+}
 
 export function Form({
-  method = "post",
   children,
-  onSubmit,
-  ...rest
+  actionData = INITIAL_ACTION_DATA,
+  ...options
 }: FormProps) {
   const submit = useSubmit();
-  return (
-    <UIForm
-      method={method}
-      onSubmit={(e) => {
-        onSubmit?.(e);
 
-        // If the consumer called e.preventDefault() in their custom onSubmit,
-        // we should bail out and let them handle the submission entirely.
-        if (!e.isDefaultPrevented()) {
+  return (
+    <ActionDataContext value={actionData}>
+      <UIForm
+        onSubmit={(e) => {
           e.preventDefault();
-          if (method === "get" || method === "post") {
-            submit(e.currentTarget, {
-              method,
-            });
-          }
-        }
-      }}
-      {...rest}
-    >
-      {children}
-    </UIForm>
+          submit(e.currentTarget, options);
+        }}
+      >
+        {children}
+      </UIForm>
+    </ActionDataContext>
+  );
+}
+
+export interface FormFetcherProps extends SubmitOptions {
+  children: React.ReactNode;
+  actionData?: FormActionData;
+}
+
+export function FormFetcher({
+  children,
+  actionData = INITIAL_ACTION_DATA,
+  ...options
+}: FormFetcherProps) {
+  const fetcher = useFetcher();
+
+  return (
+    <ActionDataContext value={actionData}>
+      <UIForm
+        onSubmit={(e) => {
+          e.preventDefault();
+          fetcher.submit(e.currentTarget, options);
+        }}
+      >
+        {children}
+      </UIForm>
+    </ActionDataContext>
   );
 }

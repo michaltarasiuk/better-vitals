@@ -16,10 +16,10 @@ import {
 import { z } from "zod";
 
 import {
-  ActionForm,
   ActionFormAlert,
   type FormActionData,
-} from "~/components/action-form";
+} from "~/components/action-data-context";
+import { Form } from "~/components/form";
 import {
   FormCardContent,
   FormCardFooter,
@@ -73,7 +73,7 @@ export function OrganizationCreate() {
       <FormCardHeader>
         <FormCardTitle>Name your organization</FormCardTitle>
       </FormCardHeader>
-      <ActionForm actionData={actionData}>
+      <Form method="POST" actionData={actionData}>
         <FormCardContent>
           <ActionFormAlert />
           <FormFields>
@@ -91,7 +91,7 @@ export function OrganizationCreate() {
             }
           </SubmitButton>
         </FormCardFooter>
-      </ActionForm>
+      </Form>
     </Card>
   );
 }

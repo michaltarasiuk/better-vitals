@@ -1,8 +1,8 @@
 import { assertNever } from "@lite-app/shared/assert-never";
+import type { FormProps } from "@lite-app/ui/components/form";
 import { z } from "zod";
 
-import type { FormActionError } from "~/components/action-form";
-import type { FormValidationErrors } from "~/components/form";
+import type { FormActionError } from "~/components/action-data-context";
 
 type OrganizationAlertError = z.infer<typeof OrganizationAlertErrorSchema>;
 type OrganizationFormError = z.infer<typeof OrganizationFormErrorSchema>;
@@ -83,5 +83,5 @@ function mapOrganizationErrorToFields(error: OrganizationFormError) {
   }
   return {
     [field]: error.message,
-  } satisfies FormValidationErrors;
+  } satisfies FormProps["validationErrors"];
 }

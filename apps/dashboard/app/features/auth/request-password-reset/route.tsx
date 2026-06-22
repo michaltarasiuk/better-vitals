@@ -16,10 +16,10 @@ import { cn } from "tailwind-variants";
 import { z } from "zod";
 
 import {
-  ActionForm,
   ActionFormAlert,
   type FormActionData,
-} from "~/components/action-form";
+} from "~/components/action-data-context";
+import { Form } from "~/components/form";
 import {
   FormCardContent,
   FormCardDescription,
@@ -76,7 +76,7 @@ export default function RequestPasswordReset() {
           Enter your email — we'll send a reset link
         </FormCardDescription>
       </FormCardHeader>
-      <ActionForm actionData={actionData}>
+      <Form method="POST" actionData={actionData}>
         <FormCardContent>
           <ActionFormAlert />
           <FormFields>
@@ -95,7 +95,7 @@ export default function RequestPasswordReset() {
             Back to sign in
           </Link>
         </FormCardFooter>
-      </ActionForm>
+      </Form>
     </Card>
   );
 }
