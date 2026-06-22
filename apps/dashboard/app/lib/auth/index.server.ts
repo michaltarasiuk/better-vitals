@@ -2,12 +2,12 @@ import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { admin, organization } from "better-auth/plugins";
 
+import { ADMIN_ROLE } from "~/lib/auth/roles";
 import { db } from "~/lib/db/index.server";
 import * as schema from "~/lib/db/schema.server";
 import { hasUsers } from "~/lib/db/user.server";
 import { sendEmail } from "~/lib/email/send.server";
 import { env } from "~/lib/env.server";
-import { ADMIN_ROLE } from "~/lib/organization/roles";
 
 export const auth = betterAuth({
   secret: env.BETTER_AUTH_SECRET,

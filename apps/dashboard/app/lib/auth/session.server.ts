@@ -1,7 +1,7 @@
 import { isDefined } from "@lite-app/shared/is-defined";
 import { createContext } from "react-router";
 
-import { ADMIN_ROLE } from "~/lib/organization/roles";
+import { ADMIN_ROLE } from "~/lib/auth/roles";
 
 import { auth } from "./index.server";
 

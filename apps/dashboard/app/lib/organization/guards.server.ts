@@ -3,9 +3,8 @@ import { redirectDocument, type MiddlewareFunction } from "react-router";
 
 import { getAuthenticatedRedirectHref } from "~/lib/auth/href.server";
 import { auth } from "~/lib/auth/index.server";
+import { ADMIN_ROLE } from "~/lib/auth/roles";
 import { sessionContext } from "~/lib/auth/session.server";
-
-import { ADMIN_ROLE } from "./roles";
 
 export const requireAdminWithoutOrganization: MiddlewareFunction<
   Response

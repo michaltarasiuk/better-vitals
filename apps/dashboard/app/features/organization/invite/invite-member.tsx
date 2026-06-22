@@ -28,7 +28,7 @@ import { cn } from "tailwind-variants";
 
 import { Form } from "~/components/form";
 import { SubmitButton } from "~/components/submit-button";
-import { INVITE_MEMBER_ROLES } from "~/lib/organization/roles";
+import { INVITE_MEMBER_ROLES, MEMBER_ROLE } from "~/lib/organization/roles";
 import { formatUserRole } from "~/lib/user/format";
 
 export function InviteMemberModal() {
@@ -54,7 +54,7 @@ export function InviteMemberModal() {
                   </TextField>
                   <Select
                     name="role"
-                    defaultValue="member"
+                    defaultValue={MEMBER_ROLE}
                     variant="secondary"
                     fullWidth
                     isRequired
