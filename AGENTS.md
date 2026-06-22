@@ -3,6 +3,8 @@
 This codebase uses the errore.org convention.
 ALWAYS read the errore skill before editing any code.
 
+When writing or editing user-facing copy, follow `.agents/skills/ux-writing/SKILL.md`.
+
 This project uses **Ultracite**, a zero-config preset that enforces strict code quality standards through automated formatting and linting.
 
 ## Quick Reference

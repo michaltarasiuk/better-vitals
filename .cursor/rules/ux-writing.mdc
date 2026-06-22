@@ -1,0 +1,19 @@
+---
+description: UX writing voice, tone, and copy patterns for the dashboard
+globs: apps/dashboard/**/*.{tsx,ts}
+alwaysApply: false
+---
+
+# UX Writing
+
+When writing or editing user-facing copy in the dashboard, follow `.agents/skills/ux-writing/SKILL.md`.
+
+## Quick reference
+
+- Direct and technical, but human — no corporate filler, no apologies in errors
+- Sentence case everywhere
+- Buttons: action verbs ("Check my sites", "Sign in", "Delete site")
+- Toasts: mirror the button; success in past tense; errors say what failed + how to fix
+- Form errors: [what's wrong] + [how to fix it], inline
+- Empty states: invitation to act, not absence report
+- Terms: "Site", "Metrics", "Alert" — use consistently
