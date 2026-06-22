@@ -13,7 +13,6 @@ import {
   useNavigation,
   type ClientActionFunctionArgs,
 } from "react-router";
-import { cn } from "tailwind-variants";
 import { z } from "zod";
 
 import {
@@ -27,6 +26,7 @@ import {
   FormCardHeader,
   FormCardTitle,
 } from "~/components/form-card";
+import { FormFields } from "~/components/form-fields";
 import { SubmitButton } from "~/components/submit-button";
 import { organization } from "~/lib/auth";
 import { parseFormData } from "~/lib/form/form-data";
@@ -76,13 +76,13 @@ export function OrganizationCreate() {
       <ActionForm actionData={actionData}>
         <FormCardContent>
           <ActionFormAlert />
-          <div className={cn("flex flex-col gap-4")}>
+          <FormFields>
             <TextField name="name" type="text" isRequired>
               <Label>Name</Label>
               <Input variant="secondary" />
               <FieldError />
             </TextField>
-          </div>
+          </FormFields>
         </FormCardContent>
         <FormCardFooter>
           <SubmitButton isPending={isSubmitting}>

@@ -27,6 +27,7 @@ import { useState } from "react";
 import { cn } from "tailwind-variants";
 
 import { Form } from "~/components/form";
+import { FormFields } from "~/components/form-fields";
 import { SubmitButton } from "~/components/submit-button";
 import { INVITE_MEMBER_ROLES, MEMBER_ROLE } from "~/lib/organization/roles";
 import { formatUserRole } from "~/lib/user/format";
@@ -46,7 +47,7 @@ export function InviteMemberModal() {
             </ModalHeader>
             <Form>
               <ModalBody>
-                <div className={cn("flex flex-col gap-4")}>
+                <FormFields>
                   <TextField name="email" type="email" autoFocus isRequired>
                     <Label>Email</Label>
                     <Input variant="secondary" />
@@ -75,7 +76,7 @@ export function InviteMemberModal() {
                       </ListBox>
                     </SelectPopover>
                   </Select>
-                </div>
+                </FormFields>
               </ModalBody>
               <ModalFooter>
                 <Button slot="close" variant="secondary">

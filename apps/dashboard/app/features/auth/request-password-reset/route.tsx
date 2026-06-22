@@ -27,6 +27,7 @@ import {
   FormCardHeader,
   FormCardTitle,
 } from "~/components/form-card";
+import { FormFields } from "~/components/form-fields";
 import { SubmitButton } from "~/components/submit-button";
 import { requestPasswordReset } from "~/lib/auth";
 import { mapAuthErrorToFormActionError } from "~/lib/auth/error";
@@ -78,13 +79,13 @@ export default function RequestPasswordReset() {
       <ActionForm actionData={actionData}>
         <FormCardContent>
           <ActionFormAlert />
-          <div className={cn("flex flex-col gap-4")}>
+          <FormFields>
             <TextField name="email" type="email" isRequired>
               <Label>Email</Label>
               <Input variant="secondary" />
               <FieldError />
             </TextField>
-          </div>
+          </FormFields>
         </FormCardContent>
         <FormCardFooter>
           <SubmitButton isPending={isSubmitting}>

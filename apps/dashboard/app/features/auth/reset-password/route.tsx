@@ -27,6 +27,7 @@ import {
   FormCardHeader,
   FormCardTitle,
 } from "~/components/form-card";
+import { FormFields } from "~/components/form-fields";
 import { SubmitButton } from "~/components/submit-button";
 import { resetPassword } from "~/lib/auth";
 import {
@@ -93,7 +94,7 @@ export default function ResetPassword() {
       <ActionForm actionData={actionData}>
         <FormCardContent>
           <ActionFormAlert />
-          <div className={cn("flex flex-col gap-4")}>
+          <FormFields>
             <TextField name="password" type="password" isRequired>
               <Label>Password</Label>
               <Input variant="secondary" />
@@ -104,7 +105,7 @@ export default function ResetPassword() {
               <Input variant="secondary" />
               <FieldError />
             </TextField>
-          </div>
+          </FormFields>
         </FormCardContent>
         <FormCardFooter>
           <SubmitButton isPending={isSubmitting}>
