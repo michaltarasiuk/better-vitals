@@ -9,6 +9,7 @@ import {
   href,
   redirect,
   useActionData,
+  useNavigation,
   type ClientActionFunctionArgs,
 } from "react-router";
 import { cn } from "tailwind-variants";
@@ -82,6 +83,9 @@ export async function clientAction({
 
 export function Signup() {
   const actionData = useActionData<typeof clientAction>();
+  const navigation = useNavigation();
+
+  const isSubmitting = navigation.state === "submitting";
 
   return (
     <Card>
@@ -115,7 +119,7 @@ export function Signup() {
           </div>
         </FormCardContent>
         <CardFooter className={cn("mt-4")}>
-          <SubmitButton>
+          <SubmitButton isPending={isSubmitting}>
             {({ isPending }) =>
               isPending ? "Creating account" : "Create account"
             }

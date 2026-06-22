@@ -9,6 +9,7 @@ import { TextField } from "@lite-app/ui/components/textfield";
 import {
   redirectDocument,
   useActionData,
+  useNavigation,
   type ClientActionFunctionArgs,
 } from "react-router";
 import { cn } from "tailwind-variants";
@@ -59,6 +60,9 @@ export async function clientAction({
 
 export default function Signin() {
   const actionData = useActionData<typeof clientAction>();
+  const navigation = useNavigation();
+
+  const isSubmitting = navigation.state === "submitting";
 
   return (
     <Card>
@@ -82,7 +86,7 @@ export default function Signin() {
           </div>
         </FormCardContent>
         <CardFooter className={cn("mt-4 flex flex-col gap-2")}>
-          <SubmitButton>
+          <SubmitButton isPending={isSubmitting}>
             {({ isPending }) => (isPending ? "Signing in" : "Sign in")}
           </SubmitButton>
           <Link

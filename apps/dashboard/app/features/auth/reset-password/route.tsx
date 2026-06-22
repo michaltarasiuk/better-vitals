@@ -10,6 +10,7 @@ import {
   href,
   redirect,
   useActionData,
+  useNavigation,
   type ClientActionFunctionArgs,
 } from "react-router";
 import { cn } from "tailwind-variants";
@@ -79,6 +80,9 @@ export async function clientAction({
 
 export default function ResetPassword() {
   const actionData = useActionData<typeof clientAction>();
+  const navigation = useNavigation();
+
+  const isSubmitting = navigation.state === "submitting";
 
   return (
     <Card>
@@ -102,7 +106,7 @@ export default function ResetPassword() {
           </div>
         </FormCardContent>
         <CardFooter className={cn("mt-4 flex flex-col gap-2")}>
-          <SubmitButton>
+          <SubmitButton isPending={isSubmitting}>
             {({ isPending }) => (isPending ? "Updating" : "Update password")}
           </SubmitButton>
           <Link href="/signin" className={cn("text-center text-sm")}>
