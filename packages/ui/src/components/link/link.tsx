@@ -7,7 +7,7 @@ import { linkVariants, type LinkVariants } from "./link";
 
 const slots = linkVariants();
 
-interface LinkProps extends Aria.LinkProps, LinkVariants {}
+export interface LinkProps extends Aria.LinkProps, LinkVariants {}
 
 export function Link({ children, className, ...rest }: LinkProps) {
   return (
@@ -21,7 +21,7 @@ export function Link({ children, className, ...rest }: LinkProps) {
   );
 }
 
-interface LinkIconProps extends React.ComponentProps<"span"> {}
+export interface LinkIconProps extends React.ComponentProps<"span"> {}
 
 export function LinkIcon({ children, className, ...rest }: LinkIconProps) {
   return (

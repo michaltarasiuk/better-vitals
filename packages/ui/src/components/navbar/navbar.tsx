@@ -2,7 +2,7 @@ import { navbarVariants } from "./navbar";
 
 const slots = navbarVariants();
 
-interface NavbarProps extends React.ComponentProps<"nav"> {}
+export interface NavbarProps extends React.ComponentProps<"nav"> {}
 
 export function Navbar({ children, className, ...rest }: NavbarProps) {
   return (
@@ -18,7 +18,7 @@ export function Navbar({ children, className, ...rest }: NavbarProps) {
   );
 }
 
-interface NavbarSpacerProps extends React.ComponentProps<"div"> {}
+export interface NavbarSpacerProps extends React.ComponentProps<"div"> {}
 
 export function NavbarSpacer({
   children,

@@ -2,7 +2,7 @@ import * as Aria from "react-aria-components/Text";
 
 import { descriptionVariants, type DescriptionVariants } from "./description";
 
-interface DescriptionProps extends Aria.TextProps, DescriptionVariants {}
+export interface DescriptionProps extends Aria.TextProps, DescriptionVariants {}
 
 export function Description({
   children,

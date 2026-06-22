@@ -4,7 +4,7 @@ import { cnRenderProps } from "../../utils/cn-render-props";
 import { useTextFieldContext } from "../textfield";
 import { inputVariants, type InputVariants } from "./input";
 
-interface InputProps extends Aria.InputProps, InputVariants {}
+export interface InputProps extends Aria.InputProps, InputVariants {}
 
 export function Input({ variant, fullWidth, className, ...rest }: InputProps) {
   const textFieldContext = useTextFieldContext();

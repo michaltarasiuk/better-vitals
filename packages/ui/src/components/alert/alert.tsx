@@ -25,7 +25,8 @@ interface AlertContextValue extends AlertVariants {}
 const [AlertContext, useAlertContext] =
   createContext<AlertContextValue>("AlertContext");
 
-interface AlertProps extends React.ComponentProps<"div">, AlertVariants {}
+export interface AlertProps
+  extends React.ComponentProps<"div">, AlertVariants {}
 
 export function Alert({ children, status, className, ...rest }: AlertProps) {
   return (
@@ -54,7 +55,7 @@ export function Alert({ children, status, className, ...rest }: AlertProps) {
   );
 }
 
-interface AlertIndicatorProps extends React.ComponentProps<"div"> {}
+export interface AlertIndicatorProps extends React.ComponentProps<"div"> {}
 
 export function AlertIndicator({
   children,
@@ -78,7 +79,7 @@ export function AlertIndicator({
   );
 }
 
-interface AlertContentProps extends React.ComponentProps<"div"> {}
+export interface AlertContentProps extends React.ComponentProps<"div"> {}
 
 export function AlertContent({
   children,
@@ -98,7 +99,7 @@ export function AlertContent({
   );
 }
 
-interface AlertTitleProps extends React.ComponentProps<"p"> {}
+export interface AlertTitleProps extends React.ComponentProps<"p"> {}
 
 export function AlertTitle({ children, className, ...rest }: AlertTitleProps) {
   return (
@@ -114,7 +115,7 @@ export function AlertTitle({ children, className, ...rest }: AlertTitleProps) {
   );
 }
 
-interface AlertDescriptionProps extends React.ComponentProps<"span"> {}
+export interface AlertDescriptionProps extends React.ComponentProps<"span"> {}
 
 export function AlertDescription({
   children,

@@ -2,7 +2,7 @@ import { useId } from "react";
 
 import { spinnerVariants, type SpinnerVariants } from "./spinner";
 
-interface SpinnerProps
+export interface SpinnerProps
   extends
     Omit<React.ComponentProps<"span">, keyof SpinnerVariants>,
     SpinnerVariants {}
@@ -23,7 +23,7 @@ export function Spinner({ size, color, className, ...rest }: SpinnerProps) {
   );
 }
 
-interface SpinnerIconProps extends React.ComponentProps<"svg"> {}
+export interface SpinnerIconProps extends React.ComponentProps<"svg"> {}
 
 function SpinnerIcon(props: SpinnerIconProps) {
   const id = useId();

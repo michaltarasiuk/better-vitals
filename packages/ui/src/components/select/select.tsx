@@ -14,7 +14,7 @@ interface SelectContextValue extends SelectVariants {}
 const [SelectContext, useSelectContext] =
   createContext<SelectContextValue>("SelectContext");
 
-interface SelectProps<
+export interface SelectProps<
   T extends object,
   M extends "single" | "multiple" = "single",
 >
@@ -48,7 +48,7 @@ export function Select<
   );
 }
 
-interface SelectTriggerProps extends Aria.ButtonProps {}
+export interface SelectTriggerProps extends Aria.ButtonProps {}
 
 export function SelectTrigger({
   children,
@@ -73,7 +73,7 @@ export function SelectTrigger({
   );
 }
 
-interface SelectValueProps<
+export interface SelectValueProps<
   T extends object = object,
 > extends Aria.SelectValueProps<T> {}
 
@@ -93,7 +93,7 @@ export function SelectValue<T extends object = object>({
   );
 }
 
-interface SelectIndicatorProps extends React.ComponentProps<"span"> {}
+export interface SelectIndicatorProps extends React.ComponentProps<"span"> {}
 
 export function SelectIndicator({
   children,
@@ -115,7 +115,7 @@ export function SelectIndicator({
   );
 }
 
-interface SelectPopoverProps extends Aria.PopoverProps {}
+export interface SelectPopoverProps extends Aria.PopoverProps {}
 
 export function SelectPopover({
   children,

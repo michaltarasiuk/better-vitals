@@ -3,7 +3,8 @@ import { useSlottedContext } from "react-aria-components/slots";
 
 import { separatorVariants, type SeparatorVariants } from "./separator";
 
-interface SeparatorProps extends Aria.SeparatorProps, SeparatorVariants {}
+export interface SeparatorProps
+  extends Aria.SeparatorProps, SeparatorVariants {}
 
 export function Separator({
   variant,

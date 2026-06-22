@@ -12,7 +12,8 @@ interface TableContextValue extends TableVariants {}
 const [TableContext, useTableContext] =
   createContext<TableContextValue>("TableContext");
 
-interface TableProps extends React.ComponentProps<"div">, TableVariants {}
+export interface TableProps
+  extends React.ComponentProps<"div">, TableVariants {}
 
 export function Table({ children, variant, className, ...rest }: TableProps) {
   return (
@@ -35,7 +36,7 @@ export function Table({ children, variant, className, ...rest }: TableProps) {
   );
 }
 
-interface TableScrollContainerProps extends React.ComponentProps<"div"> {}
+export interface TableScrollContainerProps extends React.ComponentProps<"div"> {}
 
 export function TableScrollContainer({
   children,
@@ -57,7 +58,7 @@ export function TableScrollContainer({
   );
 }
 
-interface TableContentProps extends Aria.TableProps {}
+export interface TableContentProps extends Aria.TableProps {}
 
 export function TableContent({
   children,
@@ -81,7 +82,9 @@ export function TableContent({
   );
 }
 
-interface TableHeaderProps<T extends object> extends Aria.TableHeaderProps<T> {}
+export interface TableHeaderProps<
+  T extends object,
+> extends Aria.TableHeaderProps<T> {}
 
 export function TableHeader<T extends object>({
   children,
@@ -105,7 +108,7 @@ export function TableHeader<T extends object>({
   );
 }
 
-interface TableColumnProps extends Aria.ColumnProps {}
+export interface TableColumnProps extends Aria.ColumnProps {}
 
 export function TableColumn({
   children,
@@ -129,7 +132,9 @@ export function TableColumn({
   );
 }
 
-interface TableBodyProps<T extends object> extends Aria.TableBodyProps<T> {}
+export interface TableBodyProps<
+  T extends object,
+> extends Aria.TableBodyProps<T> {}
 
 export function TableBody<T extends object>({
   children,
@@ -153,7 +158,7 @@ export function TableBody<T extends object>({
   );
 }
 
-interface TableRowProps<T extends object> extends Aria.RowProps<T> {}
+export interface TableRowProps<T extends object> extends Aria.RowProps<T> {}
 
 export function TableRow<T extends object>({
   children,
@@ -177,7 +182,7 @@ export function TableRow<T extends object>({
   );
 }
 
-interface TableCellProps extends Aria.CellProps {}
+export interface TableCellProps extends Aria.CellProps {}
 
 export function TableCell({ children, className, ...rest }: TableCellProps) {
   const { variant } = useTableContext();
@@ -197,7 +202,7 @@ export function TableCell({ children, className, ...rest }: TableCellProps) {
   );
 }
 
-interface TableFooterProps extends React.ComponentProps<"div"> {}
+export interface TableFooterProps extends React.ComponentProps<"div"> {}
 
 export function TableFooter({
   children,
@@ -219,7 +224,7 @@ export function TableFooter({
   );
 }
 
-interface TableResizableContainerProps
+export interface TableResizableContainerProps
   extends Aria.ResizableTableContainerProps {}
 
 export function TableResizableContainer({
@@ -238,7 +243,7 @@ export function TableResizableContainer({
   );
 }
 
-interface TableColumnResizerProps extends Aria.ColumnResizerProps {}
+export interface TableColumnResizerProps extends Aria.ColumnResizerProps {}
 
 export function TableColumnResizer({
   children,
@@ -262,7 +267,7 @@ export function TableColumnResizer({
   );
 }
 
-interface TableLoadMoreItemProps extends Aria.TableLoadMoreItemProps {}
+export interface TableLoadMoreItemProps extends Aria.TableLoadMoreItemProps {}
 
 export function TableLoadMoreItem({
   children,
@@ -284,7 +289,7 @@ export function TableLoadMoreItem({
   );
 }
 
-interface TableLoadMoreContentProps extends React.ComponentProps<"div"> {}
+export interface TableLoadMoreContentProps extends React.ComponentProps<"div"> {}
 
 export function TableLoadMoreContent({
   children,

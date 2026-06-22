@@ -9,7 +9,7 @@ import {
 import * as Aria from "react-aria-components/Modal";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
-import { CloseButton } from "../close-button";
+import { CloseButton, type CloseButtonProps } from "../close-button";
 import { alertDialogVariants, type AlertDialogVariants } from "./alert-dialog";
 
 const ALERT_DIALOG_STATUS_ICONS = {
@@ -29,7 +29,7 @@ interface AlertDialogContextValue extends AlertDialogVariants {
 const [AlertDialogContext, useAlertDialogContext] =
   createContext<AlertDialogContextValue>("AlertDialogContext");
 
-interface AlertDialogProps
+export interface AlertDialogProps
   extends Aria.DialogTriggerProps, AlertDialogContextValue {}
 
 export function AlertDialog({
@@ -56,7 +56,7 @@ export function AlertDialog({
   );
 }
 
-interface AlertDialogTriggerProps extends React.ComponentProps<"div"> {}
+export interface AlertDialogTriggerProps extends React.ComponentProps<"div"> {}
 
 export function AlertDialogTrigger({
   children,
@@ -78,7 +78,7 @@ export function AlertDialogTrigger({
   );
 }
 
-interface AlertDialogBackdropProps extends Aria.ModalOverlayProps {
+export interface AlertDialogBackdropProps extends Aria.ModalOverlayProps {
   isDismissable?: boolean;
   isKeyboardDismissDisabled?: boolean;
 }
@@ -110,7 +110,7 @@ export function AlertDialogBackdrop({
   );
 }
 
-interface AlertDialogContainerProps extends Aria.ModalOverlayProps {}
+export interface AlertDialogContainerProps extends Aria.ModalOverlayProps {}
 
 export function AlertDialogContainer({
   children,
@@ -130,7 +130,7 @@ export function AlertDialogContainer({
   );
 }
 
-interface AlertDialogDialogProps extends Aria.DialogProps {}
+export interface AlertDialogDialogProps extends Aria.DialogProps {}
 
 export function AlertDialogDialog({
   children,
@@ -154,7 +154,7 @@ export function AlertDialogDialog({
   );
 }
 
-interface AlertDialogHeaderProps extends React.ComponentProps<"div"> {}
+export interface AlertDialogHeaderProps extends React.ComponentProps<"div"> {}
 
 export function AlertDialogHeader({
   children,
@@ -174,7 +174,7 @@ export function AlertDialogHeader({
   );
 }
 
-interface AlertDialogHeadingProps extends Aria.HeadingProps {}
+export interface AlertDialogHeadingProps extends Aria.HeadingProps {}
 
 export function AlertDialogHeading({
   children,
@@ -195,7 +195,7 @@ export function AlertDialogHeading({
   );
 }
 
-interface AlertDialogBodyProps extends React.ComponentProps<"div"> {}
+export interface AlertDialogBodyProps extends React.ComponentProps<"div"> {}
 
 export function AlertDialogBody({
   children,
@@ -215,7 +215,7 @@ export function AlertDialogBody({
   );
 }
 
-interface AlertDialogFooterProps extends React.ComponentProps<"div"> {}
+export interface AlertDialogFooterProps extends React.ComponentProps<"div"> {}
 
 export function AlertDialogFooter({
   children,
@@ -235,7 +235,7 @@ export function AlertDialogFooter({
   );
 }
 
-interface AlertDialogIconProps extends React.ComponentProps<"div"> {}
+export interface AlertDialogIconProps extends React.ComponentProps<"div"> {}
 
 export function AlertDialogIcon({
   children,
@@ -260,9 +260,7 @@ export function AlertDialogIcon({
   );
 }
 
-interface AlertDialogCloseTriggerProps extends React.ComponentProps<
-  typeof CloseButton
-> {}
+export interface AlertDialogCloseTriggerProps extends CloseButtonProps {}
 
 export function AlertDialogCloseTrigger({
   children,

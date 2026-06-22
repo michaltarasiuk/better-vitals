@@ -2,7 +2,7 @@ import { createContext } from "@lite-app/shared/create-context";
 import * as Aria from "react-aria-components/Modal";
 
 import { cnRenderProps } from "../../utils/cn-render-props";
-import { CloseButton } from "../close-button";
+import { CloseButton, type CloseButtonProps } from "../close-button";
 import { modalVariants, type ModalVariants } from "./modal";
 
 const slots = modalVariants();
@@ -14,7 +14,8 @@ interface ModalContextValue extends ModalVariants {
 const [ModalContext, useModalContext] =
   createContext<ModalContextValue>("ModalContext");
 
-interface ModalProps extends Aria.DialogTriggerProps, ModalContextValue {}
+export interface ModalProps
+  extends Aria.DialogTriggerProps, ModalContextValue {}
 
 export function Modal({
   children,
@@ -40,7 +41,7 @@ export function Modal({
   );
 }
 
-interface ModalTriggerProps extends React.ComponentProps<"div"> {}
+export interface ModalTriggerProps extends React.ComponentProps<"div"> {}
 
 export function ModalTrigger({
   children,
@@ -62,7 +63,7 @@ export function ModalTrigger({
   );
 }
 
-interface ModalBackdropProps extends Aria.ModalOverlayProps {
+export interface ModalBackdropProps extends Aria.ModalOverlayProps {
   isDismissable?: boolean;
   isKeyboardDismissDisabled?: boolean;
 }
@@ -94,7 +95,7 @@ export function ModalBackdrop({
   );
 }
 
-interface ModalContainerProps extends Aria.ModalOverlayProps {}
+export interface ModalContainerProps extends Aria.ModalOverlayProps {}
 
 export function ModalContainer({
   children,
@@ -120,7 +121,7 @@ export function ModalContainer({
   );
 }
 
-interface ModalDialogProps extends Aria.DialogProps {}
+export interface ModalDialogProps extends Aria.DialogProps {}
 
 export function ModalDialog({
   children,
@@ -144,7 +145,7 @@ export function ModalDialog({
   );
 }
 
-interface ModalHeaderProps extends React.ComponentProps<"div"> {}
+export interface ModalHeaderProps extends React.ComponentProps<"div"> {}
 
 export function ModalHeader({
   children,
@@ -164,7 +165,7 @@ export function ModalHeader({
   );
 }
 
-interface ModalHeadingProps extends Aria.HeadingProps {}
+export interface ModalHeadingProps extends Aria.HeadingProps {}
 
 export function ModalHeading({
   children,
@@ -185,7 +186,7 @@ export function ModalHeading({
   );
 }
 
-interface ModalBodyProps extends React.ComponentProps<"div"> {}
+export interface ModalBodyProps extends React.ComponentProps<"div"> {}
 
 export function ModalBody({ children, className, ...rest }: ModalBodyProps) {
   const { scroll } = useModalContext();
@@ -203,7 +204,7 @@ export function ModalBody({ children, className, ...rest }: ModalBodyProps) {
   );
 }
 
-interface ModalFooterProps extends React.ComponentProps<"div"> {}
+export interface ModalFooterProps extends React.ComponentProps<"div"> {}
 
 export function ModalFooter({
   children,
@@ -223,7 +224,7 @@ export function ModalFooter({
   );
 }
 
-interface ModalIconProps extends React.ComponentProps<"div"> {}
+export interface ModalIconProps extends React.ComponentProps<"div"> {}
 
 export function ModalIcon({ children, className, ...rest }: ModalIconProps) {
   return (
@@ -239,9 +240,7 @@ export function ModalIcon({ children, className, ...rest }: ModalIconProps) {
   );
 }
 
-interface ModalCloseTriggerProps extends React.ComponentProps<
-  typeof CloseButton
-> {}
+export interface ModalCloseTriggerProps extends CloseButtonProps {}
 
 export function ModalCloseTrigger({
   children,

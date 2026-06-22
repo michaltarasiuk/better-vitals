@@ -13,7 +13,7 @@ interface ListBoxItemContextValue extends ListBoxVariants {
 const [ListBoxItemContext, useListBoxItemContext] =
   createContext<ListBoxItemContextValue>("ListBoxItemContext");
 
-interface ListBoxProps<T extends object> extends Aria.ListBoxProps<T> {}
+export interface ListBoxProps<T extends object> extends Aria.ListBoxProps<T> {}
 
 export function ListBox<T extends object>({
   children,
@@ -31,7 +31,8 @@ export function ListBox<T extends object>({
   );
 }
 
-interface ListBoxItemProps extends Aria.ListBoxItemProps, ListBoxVariants {}
+export interface ListBoxItemProps
+  extends Aria.ListBoxItemProps, ListBoxVariants {}
 
 export function ListBoxItem({
   children,
@@ -64,7 +65,7 @@ export function ListBoxItem({
   );
 }
 
-interface ListBoxItemIndicatorProps extends React.ComponentProps<"span"> {}
+export interface ListBoxItemIndicatorProps extends React.ComponentProps<"span"> {}
 
 export function ListBoxItemIndicator({
   children,

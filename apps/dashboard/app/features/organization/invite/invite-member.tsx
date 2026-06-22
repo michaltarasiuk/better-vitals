@@ -1,4 +1,4 @@
-import { Button } from "@lite-app/ui/components/button";
+import { Button, type ButtonProps } from "@lite-app/ui/components/button";
 import { FieldError } from "@lite-app/ui/components/field-error";
 import { Input } from "@lite-app/ui/components/input";
 import { Label } from "@lite-app/ui/components/label";
@@ -94,7 +94,7 @@ export function InviteMemberModal() {
   );
 }
 
-function InviteButton(props: React.ComponentProps<typeof Button>) {
+function InviteButton(props: ButtonProps) {
   return (
     <Button variant="primary" size="sm" {...props}>
       <UserPlusIcon aria-hidden />

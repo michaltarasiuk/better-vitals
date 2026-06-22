@@ -3,7 +3,7 @@ import * as Aria from "react-aria-components/Button";
 import { cnRenderProps } from "../../utils/cn-render-props";
 import { buttonVariants, type ButtonVariants } from "./button";
 
-interface ButtonProps extends Aria.ButtonProps, ButtonVariants {}
+export interface ButtonProps extends Aria.ButtonProps, ButtonVariants {}
 
 export function Button({
   children,

@@ -11,7 +11,7 @@ interface TextFieldContextValue {
 export const [TextFieldContext, useTextFieldContext] =
   createContext<TextFieldContextValue>("TextFieldContext");
 
-interface TextFieldProps
+export interface TextFieldProps
   extends Aria.TextFieldProps, TextFieldVariants, TextFieldContextValue {}
 
 export function TextField({

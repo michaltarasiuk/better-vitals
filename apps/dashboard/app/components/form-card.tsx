@@ -4,6 +4,10 @@ import {
   CardFooter,
   CardHeader,
   cardVariants,
+  type CardContentProps,
+  type CardDescriptionProps,
+  type CardFooterProps,
+  type CardHeaderProps,
 } from "@lite-app/ui/components/card";
 import { tv } from "tailwind-variants";
 
@@ -19,7 +23,7 @@ const formCardVariants = tv({
 
 const slots = formCardVariants();
 
-interface FormCardHeaderProps extends React.ComponentProps<typeof CardHeader> {}
+interface FormCardHeaderProps extends CardHeaderProps {}
 
 export function FormCardHeader({
   children,
@@ -52,9 +56,7 @@ export function FormCardTitle({
   );
 }
 
-interface FormCardDescriptionProps extends React.ComponentProps<
-  typeof CardDescription
-> {}
+interface FormCardDescriptionProps extends CardDescriptionProps {}
 
 export function FormCardDescription({
   children,
@@ -68,9 +70,7 @@ export function FormCardDescription({
   );
 }
 
-interface FormCardContentProps extends React.ComponentProps<
-  typeof CardContent
-> {}
+interface FormCardContentProps extends CardContentProps {}
 
 export function FormCardContent({
   children,
@@ -84,7 +84,7 @@ export function FormCardContent({
   );
 }
 
-interface FormCardFooterProps extends React.ComponentProps<typeof CardFooter> {}
+interface FormCardFooterProps extends CardFooterProps {}
 
 export function FormCardFooter({
   children,

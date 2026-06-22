@@ -10,7 +10,7 @@ interface AvatarContextValue extends AvatarVariants {}
 export const [AvatarContext, useAvatarContext] =
   createContext<AvatarContextValue>("AvatarContext");
 
-interface AvatarProps
+export interface AvatarProps
   extends
     Omit<React.ComponentProps<typeof RadixAvatar.Root>, keyof AvatarVariants>,
     AvatarVariants {}
@@ -45,7 +45,7 @@ export function Avatar({
   );
 }
 
-interface AvatarImageProps extends React.ComponentProps<
+export interface AvatarImageProps extends React.ComponentProps<
   typeof RadixAvatar.Image
 > {}
 
@@ -64,7 +64,7 @@ export function AvatarImage({ className, ...rest }: AvatarImageProps) {
   );
 }
 
-interface AvatarFallbackProps extends React.ComponentProps<
+export interface AvatarFallbackProps extends React.ComponentProps<
   typeof RadixAvatar.Fallback
 > {}
 

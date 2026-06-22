@@ -2,7 +2,7 @@ import * as Aria from "react-aria-components/Label";
 
 import { labelVariants, type LabelVariants } from "./label";
 
-interface LabelProps extends Aria.LabelProps, LabelVariants {}
+export interface LabelProps extends Aria.LabelProps, LabelVariants {}
 
 export function Label({
   children,

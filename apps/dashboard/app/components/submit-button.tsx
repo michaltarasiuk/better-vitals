@@ -1,11 +1,8 @@
-import { Button } from "@lite-app/ui/components/button";
+import { Button, type ButtonProps } from "@lite-app/ui/components/button";
 import { Spinner } from "@lite-app/ui/components/spinner";
 import { cn } from "tailwind-variants";
 
-interface SubmitButtonProps extends Omit<
-  React.ComponentProps<typeof Button>,
-  "type"
-> {}
+interface SubmitButtonProps extends Omit<ButtonProps, "type"> {}
 
 export function SubmitButton({
   children,

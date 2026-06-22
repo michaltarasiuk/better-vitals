@@ -7,7 +7,7 @@ import { popoverVariants } from "./popover";
 
 const slots = popoverVariants();
 
-interface PopoverProps extends Aria.DialogTriggerProps {}
+export interface PopoverProps extends Aria.DialogTriggerProps {}
 
 export function Popover({ children, ...rest }: PopoverProps) {
   return (
@@ -17,7 +17,7 @@ export function Popover({ children, ...rest }: PopoverProps) {
   );
 }
 
-interface PopoverTriggerProps extends React.ComponentProps<"div"> {}
+export interface PopoverTriggerProps extends React.ComponentProps<"div"> {}
 
 export function PopoverTrigger({
   children,
@@ -39,7 +39,7 @@ export function PopoverTrigger({
   );
 }
 
-interface PopoverContentProps extends Aria.PopoverProps {}
+export interface PopoverContentProps extends Aria.PopoverProps {}
 
 export function PopoverContent({
   children,
@@ -63,7 +63,7 @@ export function PopoverContent({
   );
 }
 
-interface PopoverArrowProps extends Aria.OverlayArrowProps {}
+export interface PopoverArrowProps extends Aria.OverlayArrowProps {}
 
 export function PopoverArrow({ children, ...rest }: PopoverArrowProps) {
   return (
@@ -81,7 +81,7 @@ export function PopoverArrow({ children, ...rest }: PopoverArrowProps) {
   );
 }
 
-interface PopoverDialogProps extends Aria.DialogProps {}
+export interface PopoverDialogProps extends Aria.DialogProps {}
 
 export function PopoverDialog({
   children,
@@ -101,7 +101,7 @@ export function PopoverDialog({
   );
 }
 
-interface PopoverHeadingProps extends Aria.HeadingProps {}
+export interface PopoverHeadingProps extends Aria.HeadingProps {}
 
 export function PopoverHeading({
   children,

@@ -16,7 +16,8 @@ interface AccordionContextValue extends AccordionVariants {
 const [AccordionContext, useAccordionContext] =
   createContext<AccordionContextValue>("AccordionContext");
 
-interface AccordionProps extends Aria.DisclosureGroupProps, AccordionVariants {
+export interface AccordionProps
+  extends Aria.DisclosureGroupProps, AccordionVariants {
   hideSeparator?: boolean;
 }
 
@@ -63,7 +64,7 @@ export function Accordion({
   );
 }
 
-interface AccordionItemProps extends Aria.DisclosureProps {}
+export interface AccordionItemProps extends Aria.DisclosureProps {}
 
 export function AccordionItem({
   children,
@@ -88,7 +89,7 @@ export function AccordionItem({
   );
 }
 
-interface AccordionIndicatorProps extends React.ComponentProps<"span"> {}
+export interface AccordionIndicatorProps extends React.ComponentProps<"span"> {}
 
 export function AccordionIndicator({
   children,
@@ -112,7 +113,7 @@ export function AccordionIndicator({
   );
 }
 
-interface AccordionHeadingProps extends Aria.HeadingProps {}
+export interface AccordionHeadingProps extends Aria.HeadingProps {}
 
 export function AccordionHeading({
   children,
@@ -134,7 +135,7 @@ export function AccordionHeading({
   );
 }
 
-interface AccordionTriggerProps extends Aria.ButtonProps {}
+export interface AccordionTriggerProps extends Aria.ButtonProps {}
 
 export function AccordionTrigger({
   children,
@@ -159,7 +160,7 @@ export function AccordionTrigger({
   );
 }
 
-interface AccordionBodyProps extends React.ComponentProps<"div"> {}
+export interface AccordionBodyProps extends React.ComponentProps<"div"> {}
 
 export function AccordionBody({
   children,
@@ -187,7 +188,7 @@ export function AccordionBody({
   );
 }
 
-interface AccordionPanelProps extends Aria.DisclosurePanelProps {}
+export interface AccordionPanelProps extends Aria.DisclosurePanelProps {}
 
 export function AccordionPanel({
   children,

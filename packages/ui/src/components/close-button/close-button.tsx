@@ -5,7 +5,8 @@ import { composeRenderProps } from "react-aria-components/composeRenderProps";
 import { cnRenderProps } from "../../utils/cn-render-props";
 import { closeButtonVariants, type CloseButtonVariants } from "./close-button";
 
-interface CloseButtonProps extends Aria.ButtonProps, CloseButtonVariants {}
+export interface CloseButtonProps
+  extends Aria.ButtonProps, CloseButtonVariants {}
 
 export function CloseButton({
   children,

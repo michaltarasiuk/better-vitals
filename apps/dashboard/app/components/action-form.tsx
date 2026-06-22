@@ -1,6 +1,10 @@
 import { createContext } from "@lite-app/shared/create-context";
 
-import { Form, type FormValidationErrors } from "~/components/form";
+import {
+  Form,
+  type FormProps,
+  type FormValidationErrors,
+} from "~/components/form";
 import { FormAlert } from "~/components/form-alert";
 
 export type FormActionError =
@@ -17,7 +21,7 @@ const INITIAL_ACTION_DATA: FormActionData = { status: "idle" };
 const [ActionDataContext, useActionDataContext] =
   createContext<FormActionData>("ActionDataContext");
 
-interface ActionFormProps extends React.ComponentProps<typeof Form> {
+interface ActionFormProps extends FormProps {
   actionData?: FormActionData;
 }
 
