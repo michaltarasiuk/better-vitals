@@ -20,7 +20,7 @@
     box-shadow 150ms var(--ease-out);
 
   @variant within-invalid {
-    @apply bg-field-focus status-invalid-field;
+    @apply bg-field-focus invalid-field-ring;
   }
 
   @variant motion-reduce {
@@ -32,11 +32,11 @@
   }
 
   @variant focus-visible {
-    @apply border-field-border-focus bg-field-focus status-focused;
+    @apply border-field-border-focus bg-field-focus focus-ring;
   }
 
   @variant disabled {
-    @apply status-disabled;
+    @apply pointer-events-none cursor-(--cursor-disabled) opacity-(--disabled-opacity);
   }
 
   &:has(.select__indicator) {
@@ -52,7 +52,7 @@
   @apply bg-(--select-trigger-bg) shadow-none;
 
   @variant within-invalid {
-    @apply bg-(--select-trigger-bg-focus) status-invalid-field;
+    @apply bg-(--select-trigger-bg-focus) invalid-field-ring;
   }
 
   @variant hover {

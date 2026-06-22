@@ -22,7 +22,7 @@
   }
 
   @variant focus-visible {
-    @apply status-focused;
+    @apply focus-ring;
   }
 
   @variant selected {
@@ -36,7 +36,7 @@
   }
 
   @variant disabled {
-    @apply status-disabled;
+    @apply pointer-events-none cursor-(--cursor-disabled) opacity-(--disabled-opacity);
   }
 
   [data-slot="label"] {

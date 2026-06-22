@@ -10,7 +10,7 @@
   }
 
   @variant within-disabled {
-    @apply status-disabled;
+    @apply pointer-events-none cursor-(--cursor-disabled) opacity-(--disabled-opacity);
   }
 }
 
@@ -19,7 +19,7 @@
 }
 
 .label--disabled {
-  @apply status-disabled;
+  @apply pointer-events-none cursor-(--cursor-disabled) opacity-(--disabled-opacity);
 }
 
 .label--invalid {

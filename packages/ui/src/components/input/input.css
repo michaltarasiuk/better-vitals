@@ -10,7 +10,7 @@
   }
 
   @variant invalid {
-    @apply bg-field-focus status-invalid-field;
+    @apply bg-field-focus invalid-field-ring;
   }
 
   @variant motion-reduce {
@@ -22,11 +22,11 @@
   }
 
   @variant focus {
-    @apply border-field-border-focus bg-field-focus status-focused-field;
+    @apply border-field-border-focus bg-field-focus focus-field-ring;
   }
 
   @variant disabled {
-    @apply status-disabled;
+    @apply pointer-events-none cursor-(--cursor-disabled) opacity-(--disabled-opacity);
   }
 }
 
@@ -38,7 +38,7 @@
   @apply bg-(--input-bg) shadow-none;
 
   @variant invalid {
-    @apply bg-(--input-bg-focus) status-invalid-field;
+    @apply bg-(--input-bg-focus) invalid-field-ring;
   }
 
   @variant hover {

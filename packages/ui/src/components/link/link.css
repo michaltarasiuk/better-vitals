@@ -20,7 +20,7 @@
   }
 
   @variant focus-visible {
-    @apply status-focused;
+    @apply focus-ring;
 
     .link__icon {
       @apply opacity-100;
@@ -28,7 +28,7 @@
   }
 
   @variant disabled {
-    @apply status-disabled;
+    @apply pointer-events-none cursor-(--cursor-disabled) opacity-(--disabled-opacity);
   }
 
   .link__icon {

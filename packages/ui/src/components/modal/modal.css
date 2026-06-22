@@ -15,11 +15,11 @@
   }
 
   @variant focus-visible {
-    @apply status-focused;
+    @apply focus-ring;
   }
 
   @variant disabled {
-    @apply status-disabled;
+    @apply pointer-events-none cursor-(--cursor-disabled) opacity-(--disabled-opacity);
   }
 }
 

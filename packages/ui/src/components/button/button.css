@@ -28,15 +28,15 @@
   }
 
   @variant focus-visible {
-    @apply status-focused;
+    @apply focus-ring;
   }
 
   @variant pending {
-    @apply status-pending;
+    @apply pointer-events-none;
   }
 
   @variant disabled {
-    @apply status-disabled;
+    @apply pointer-events-none cursor-(--cursor-disabled) opacity-(--disabled-opacity);
   }
 
   svg:not([data-slot="spinner"] svg, [data-slot="link-icon"] svg) {

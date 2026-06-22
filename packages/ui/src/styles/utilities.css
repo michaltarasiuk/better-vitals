@@ -38,26 +38,6 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-@utility status-focused {
-  @apply focus-ring;
-}
-
-@utility status-focused-field {
-  @apply focus-field-ring;
-}
-
-@utility status-invalid-field {
-  @apply invalid-field-ring;
-}
-
-@utility status-disabled {
-  @apply pointer-events-none cursor-(--cursor-disabled) opacity-(--disabled-opacity);
-}
-
-@utility status-pending {
-  @apply pointer-events-none;
-}
-
 @utility scrollbar {
   scrollbar-width: var(--scrollbar-width);
   scrollbar-color: var(--scrollbar-color);
