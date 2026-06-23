@@ -3,6 +3,7 @@ import { useFetcher, useSubmit, type SubmitOptions } from "react-router";
 
 import {
   ActionDataContext,
+  getFormValidationErrors,
   type FormActionData,
 } from "~/components/action-data-context";
 
@@ -23,6 +24,7 @@ export function Form({
   return (
     <ActionDataContext value={actionData}>
       <UIForm
+        validationErrors={getFormValidationErrors(actionData)}
         onSubmit={(e) => {
           e.preventDefault();
           submit(e.currentTarget, options);
@@ -49,6 +51,7 @@ export function FormFetcher({
   return (
     <ActionDataContext value={actionData}>
       <UIForm
+        validationErrors={getFormValidationErrors(actionData)}
         onSubmit={(e) => {
           e.preventDefault();
           fetcher.submit(e.currentTarget, options);

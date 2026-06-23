@@ -12,6 +12,16 @@ export type FormActionData =
   | { status: "success"; title: string }
   | { status: "error"; error: FormActionError };
 
+export function getFormValidationErrors(
+  actionData: FormActionData
+): FormProps["validationErrors"] {
+  let validationErrors: FormProps["validationErrors"] = {};
+  if (actionData.status === "error" && actionData.error.type === "form") {
+    ({ validationErrors } = actionData.error);
+  }
+  return validationErrors;
+}
+
 const [ActionDataContext, useActionDataContext] =
   createContext<FormActionData>("ActionDataContext");
 
