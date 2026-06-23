@@ -5,10 +5,9 @@ import { FieldError } from "@lite-app/ui/components/field-error";
 import { Input } from "@lite-app/ui/components/input";
 import { Label } from "@lite-app/ui/components/label";
 import { TextField } from "@lite-app/ui/components/textfield";
-import slugify from "@sindresorhus/slugify";
 import {
   href,
-  redirectDocument,
+  redirect,
   useActionData,
   useNavigation,
   type ClientActionFunctionArgs,
@@ -28,41 +27,69 @@ import {
 } from "~/components/form-card";
 import { FormFields } from "~/components/form-fields";
 import { SubmitButton } from "~/components/submit-button";
-import { organization } from "~/lib/auth";
+import { signUp } from "~/lib/auth";
+import {
+  comparePasswords,
+  mapAuthErrorToFormActionError,
+} from "~/lib/auth/error";
+import { hasUsers } from "~/lib/db/user.server";
 import { parseFormData } from "~/lib/form/form-data";
-import { mapOrganizationErrorToFormActionError } from "~/lib/organization/error";
+import { pickAvatar } from "~/lib/user/avatar";
 
 const FormDataSchema = z.object({
   name: z.string(),
+  email: z.string(),
+  password: z.string(),
+  confirmPassword: z.string(),
 });
+
+export async function loader() {
+  if (await hasUsers()) {
+    throw redirect(href("/signin"));
+  }
+}
 
 export async function clientAction({
   request,
 }: ClientActionFunctionArgs): Promise<FormActionData> {
-  const { name } = await parseFormData(request, FormDataSchema);
+  const { name, email, password, confirmPassword } = await parseFormData(
+    request,
+    FormDataSchema
+  );
 
-  const { data, error } = await withMinimumDelay(
-    organization.create({
+  const passwordError = comparePasswords({ password, confirmPassword });
+  if (passwordError instanceof Error) {
+    return {
+      status: "error",
+      error: {
+        type: "form",
+        validationErrors: {
+          confirmPassword: passwordError.message,
+        },
+      },
+    };
+  }
+
+  const { error } = await withMinimumDelay(
+    signUp.email({
       name,
-      slug: slugify(name),
+      email,
+      password,
+      image: pickAvatar(),
     })
   );
-  const success = isDefined(data) && !isDefined(error);
+  const success = !isDefined(error);
 
   if (!success) {
     return {
       status: "error",
-      error: mapOrganizationErrorToFormActionError(error),
+      error: mapAuthErrorToFormActionError(error),
     };
   }
-  throw redirectDocument(
-    href("/organization/:slug", {
-      slug: data.slug,
-    })
-  );
+  throw redirect(href("/organization/create"));
 }
 
-export function OrganizationCreate() {
+export default function Signup() {
   const actionData = useActionData<typeof clientAction>();
   const navigation = useNavigation();
 
@@ -71,7 +98,7 @@ export function OrganizationCreate() {
   return (
     <Card>
       <FormCardHeader>
-        <FormCardTitle>Name your organization</FormCardTitle>
+        <FormCardTitle>Start monitoring vitals</FormCardTitle>
       </FormCardHeader>
       <Form method="POST" actionData={actionData}>
         <FormCardContent>
@@ -82,12 +109,27 @@ export function OrganizationCreate() {
               <Input variant="secondary" />
               <FieldError />
             </TextField>
+            <TextField name="email" type="email" isRequired>
+              <Label>Email</Label>
+              <Input variant="secondary" />
+              <FieldError />
+            </TextField>
+            <TextField name="password" type="password" isRequired>
+              <Label>Password</Label>
+              <Input variant="secondary" />
+              <FieldError />
+            </TextField>
+            <TextField name="confirmPassword" type="password" isRequired>
+              <Label>Confirm password</Label>
+              <Input variant="secondary" />
+              <FieldError />
+            </TextField>
           </FormFields>
         </FormCardContent>
         <FormCardFooter>
           <SubmitButton isPending={isSubmitting}>
             {({ isPending }) =>
-              isPending ? "Creating" : "Create organization"
+              isPending ? "Creating account" : "Create account"
             }
           </SubmitButton>
         </FormCardFooter>

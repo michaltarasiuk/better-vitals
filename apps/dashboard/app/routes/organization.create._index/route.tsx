@@ -5,9 +5,10 @@ import { FieldError } from "@lite-app/ui/components/field-error";
 import { Input } from "@lite-app/ui/components/input";
 import { Label } from "@lite-app/ui/components/label";
 import { TextField } from "@lite-app/ui/components/textfield";
+import slugify from "@sindresorhus/slugify";
 import {
   href,
-  redirect,
+  redirectDocument,
   useActionData,
   useNavigation,
   type ClientActionFunctionArgs,
@@ -27,62 +28,50 @@ import {
 } from "~/components/form-card";
 import { FormFields } from "~/components/form-fields";
 import { SubmitButton } from "~/components/submit-button";
-import { signUp } from "~/lib/auth";
-import {
-  comparePasswords,
-  mapAuthErrorToFormActionError,
-} from "~/lib/auth/error";
+import { organization } from "~/lib/auth";
+import { requireAuthenticated } from "~/lib/auth/guards.server";
 import { parseFormData } from "~/lib/form/form-data";
-import { pickAvatar } from "~/lib/user/avatar";
+import { mapOrganizationErrorToFormActionError } from "~/lib/organization/error";
+import { requireAdminWithoutOrganization } from "~/lib/organization/guards.server";
+
+import type { Route } from "./+types/route";
 
 const FormDataSchema = z.object({
   name: z.string(),
-  email: z.string(),
-  password: z.string(),
-  confirmPassword: z.string(),
 });
+
+export const middleware: Route.MiddlewareFunction[] = [
+  requireAuthenticated,
+  requireAdminWithoutOrganization,
+];
 
 export async function clientAction({
   request,
 }: ClientActionFunctionArgs): Promise<FormActionData> {
-  const { name, email, password, confirmPassword } = await parseFormData(
-    request,
-    FormDataSchema
-  );
+  const { name } = await parseFormData(request, FormDataSchema);
 
-  const passwordError = comparePasswords({ password, confirmPassword });
-  if (passwordError instanceof Error) {
-    return {
-      status: "error",
-      error: {
-        type: "form",
-        validationErrors: {
-          confirmPassword: passwordError.message,
-        },
-      },
-    };
-  }
-
-  const { error } = await withMinimumDelay(
-    signUp.email({
+  const { data, error } = await withMinimumDelay(
+    organization.create({
       name,
-      email,
-      password,
-      image: pickAvatar(),
+      slug: slugify(name),
     })
   );
-  const success = !isDefined(error);
+  const success = isDefined(data) && !isDefined(error);
 
   if (!success) {
     return {
       status: "error",
-      error: mapAuthErrorToFormActionError(error),
+      error: mapOrganizationErrorToFormActionError(error),
     };
   }
-  throw redirect(href("/organization/create"));
+  throw redirectDocument(
+    href("/organization/:slug", {
+      slug: data.slug,
+    })
+  );
 }
 
-export function Signup() {
+export default function OrganizationCreate() {
   const actionData = useActionData<typeof clientAction>();
   const navigation = useNavigation();
 
@@ -91,7 +80,7 @@ export function Signup() {
   return (
     <Card>
       <FormCardHeader>
-        <FormCardTitle>Start monitoring vitals</FormCardTitle>
+        <FormCardTitle>Name your organization</FormCardTitle>
       </FormCardHeader>
       <Form method="POST" actionData={actionData}>
         <FormCardContent>
@@ -102,27 +91,12 @@ export function Signup() {
               <Input variant="secondary" />
               <FieldError />
             </TextField>
-            <TextField name="email" type="email" isRequired>
-              <Label>Email</Label>
-              <Input variant="secondary" />
-              <FieldError />
-            </TextField>
-            <TextField name="password" type="password" isRequired>
-              <Label>Password</Label>
-              <Input variant="secondary" />
-              <FieldError />
-            </TextField>
-            <TextField name="confirmPassword" type="password" isRequired>
-              <Label>Confirm password</Label>
-              <Input variant="secondary" />
-              <FieldError />
-            </TextField>
           </FormFields>
         </FormCardContent>
         <FormCardFooter>
           <SubmitButton isPending={isSubmitting}>
             {({ isPending }) =>
-              isPending ? "Creating account" : "Create account"
+              isPending ? "Creating" : "Create organization"
             }
           </SubmitButton>
         </FormCardFooter>

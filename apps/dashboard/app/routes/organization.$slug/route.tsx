@@ -22,16 +22,30 @@ import { HomeIcon, LogOutIcon } from "lucide-react";
 import { Outlet, useLoaderData } from "react-router";
 import { cn } from "tailwind-variants";
 
-import { InviteModal } from "~/features/organization/invite/invite";
+import { requireAuthenticated } from "~/lib/auth/guards.server";
+import { sessionContext } from "~/lib/auth/session.server";
 import {
   formatUserRole,
   getAvatarFallback,
   getTimeOfDayGreeting,
-} from "~/lib/user/format";
+} from "~/lib/user/display";
+import { InviteModal } from "~/routes/organization.$slug.invite/invite";
 
-import type { loader } from "./layout";
+import type { Route } from "./+types/route";
 
-export function SidebarLayout() {
+export const middleware: Route.MiddlewareFunction[] = [requireAuthenticated];
+
+export function loader({ context }: Route.LoaderArgs) {
+  const session = context.get(sessionContext);
+  if (!isDefined(session)) {
+    throw new Error("Missing session");
+  }
+  return {
+    user: session.user,
+  };
+}
+
+export default function OrganizationLayout() {
   const { user } = useLoaderData<typeof loader>();
   return (
     <AppLayout

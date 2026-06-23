@@ -17,7 +17,7 @@ export async function getAuthenticatedRedirectHref(request: Request) {
   ]);
   if (!isDefined(activeOrganization)) {
     if (!admin || organizations.length > 0) {
-      return href("/organization/select");
+      return href("/organization/list");
     }
     return href("/organization/create");
   }

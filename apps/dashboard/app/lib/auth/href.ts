@@ -12,7 +12,7 @@ export async function getAuthenticatedRedirectHref() {
   ]);
   if (!isDefined(activeOrganization.data)) {
     if (!admin || (organizations.data ?? []).length > 0) {
-      return href("/organization/select");
+      return href("/organization/list");
     }
     return href("/organization/create");
   }

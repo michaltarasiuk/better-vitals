@@ -81,7 +81,7 @@ function isAuthFormError(value: unknown): value is AuthFormError {
   return AuthFormErrorSchema.safeParse(value).success;
 }
 
-function mapAuthErrorToFields(error: AuthFormError) {
+function mapAuthErrorToFields(error: AuthFormError): ValidationErrors {
   let field: "email" | "password";
   switch (error.code) {
     case "USER_ALREADY_EXISTS":
@@ -102,5 +102,5 @@ function mapAuthErrorToFields(error: AuthFormError) {
   }
   return {
     [field]: error.message,
-  } satisfies ValidationErrors;
+  };
 }

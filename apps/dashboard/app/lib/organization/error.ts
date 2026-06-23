@@ -68,7 +68,9 @@ function isOrganizationFormError(
   return OrganizationFormErrorSchema.safeParse(value).success;
 }
 
-function mapOrganizationErrorToFields(error: OrganizationFormError) {
+function mapOrganizationErrorToFields(
+  error: OrganizationFormError
+): ValidationErrors {
   let field: "name" | "email" | "role";
   switch (error.code) {
     case "ORGANIZATION_ALREADY_EXISTS":
@@ -92,5 +94,5 @@ function mapOrganizationErrorToFields(error: OrganizationFormError) {
   }
   return {
     [field]: error.message,
-  } satisfies ValidationErrors;
+  };
 }
