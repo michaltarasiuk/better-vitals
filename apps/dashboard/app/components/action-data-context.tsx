@@ -1,21 +1,19 @@
 import { createContext } from "@lite-app/shared/create-context";
-import type { FormProps } from "@lite-app/ui/components/form";
+import type { ValidationErrors } from "@react-types/shared";
 
 import { FormAlert } from "~/components/form-alert";
 
 export type FormActionError =
   | { type: "alert"; title: string }
-  | { type: "form"; validationErrors: FormProps["validationErrors"] };
+  | { type: "form"; validationErrors: ValidationErrors };
 
 export type FormActionData =
   | { status: "idle" }
   | { status: "success"; title: string }
   | { status: "error"; error: FormActionError };
 
-export function getFormValidationErrors(
-  actionData: FormActionData
-): FormProps["validationErrors"] {
-  let validationErrors: FormProps["validationErrors"] = {};
+export function getFormValidationErrors(actionData: FormActionData) {
+  let validationErrors: ValidationErrors = {};
   if (actionData.status === "error" && actionData.error.type === "form") {
     ({ validationErrors } = actionData.error);
   }
