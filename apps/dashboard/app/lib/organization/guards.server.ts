@@ -1,9 +1,9 @@
 import { isDefined } from "@lite-app/shared/is-defined";
 import { redirectDocument, type MiddlewareFunction } from "react-router";
 
-import { ADMIN_ROLE } from "~/lib/auth/consts";
 import { getAuthenticatedRedirectHref } from "~/lib/auth/href.server";
 import { auth } from "~/lib/auth/index.server";
+import { ADMIN_ROLE } from "~/lib/auth/roles";
 import { sessionContext } from "~/lib/auth/session.server";
 
 export const requireAdminWithoutOrganization: MiddlewareFunction<

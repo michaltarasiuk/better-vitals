@@ -44,12 +44,12 @@ import { FormFields } from "~/components/form-fields";
 import { SubmitButton } from "~/components/submit-button";
 import { organization } from "~/lib/auth";
 import { parseFormData } from "~/lib/form/form-data";
+import { mapOrganizationErrorToFormActionError } from "~/lib/organization/error";
 import {
   ADMIN_ROLE,
   INVITE_MEMBER_ROLES,
   MEMBER_ROLE,
-} from "~/lib/organization/consts";
-import { mapOrganizationErrorToFormActionError } from "~/lib/organization/error";
+} from "~/lib/organization/roles";
 import { formatUserRole } from "~/lib/user/display";
 
 const FormDataSchema = z.object({
