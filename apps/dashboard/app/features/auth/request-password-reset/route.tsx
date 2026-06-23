@@ -58,7 +58,10 @@ export async function clientAction({
   }
   return {
     status: "success",
-    title: data.message,
+    success: {
+      type: "alert",
+      title: data.message,
+    },
   };
 }
 

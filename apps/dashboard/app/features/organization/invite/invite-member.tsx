@@ -1,3 +1,5 @@
+import { withMinimumDelay } from "@lite-app/shared/delay";
+import { isDefined } from "@lite-app/shared/is-defined";
 import { Button, type ButtonProps } from "@lite-app/ui/components/button";
 import { FieldError } from "@lite-app/ui/components/field-error";
 import { Input } from "@lite-app/ui/components/input";
@@ -24,16 +26,71 @@ import {
 import { TextField } from "@lite-app/ui/components/textfield";
 import { UserPlusIcon } from "lucide-react";
 import { useState } from "react";
+import {
+  href,
+  useFetcher,
+  useParams,
+  type ClientActionFunctionArgs,
+} from "react-router";
 import { cn } from "tailwind-variants";
+import { z } from "zod";
 
+import {
+  ActionFormAlert,
+  type FormActionData,
+} from "~/components/action-data-context";
 import { Form } from "~/components/form";
 import { FormFields } from "~/components/form-fields";
 import { SubmitButton } from "~/components/submit-button";
-import { INVITE_MEMBER_ROLES, MEMBER_ROLE } from "~/lib/organization/roles";
+import { organization } from "~/lib/auth";
+import { parseFormData } from "~/lib/form/form-data";
+import { mapOrganizationErrorToFormActionError } from "~/lib/organization/error";
+import {
+  ADMIN_ROLE,
+  INVITE_MEMBER_ROLES,
+  MEMBER_ROLE,
+} from "~/lib/organization/roles";
 import { formatUserRole } from "~/lib/user/format";
 
+const FormDataSchema = z.object({
+  email: z.email(),
+  role: z.enum([MEMBER_ROLE, ADMIN_ROLE]),
+});
+
+export async function clientAction({
+  request,
+}: ClientActionFunctionArgs): Promise<FormActionData> {
+  const { email, role } = await parseFormData(request, FormDataSchema);
+
+  const { data, error } = await withMinimumDelay(
+    organization.inviteMember({
+      email,
+      role,
+    })
+  );
+  const success = isDefined(data) && !isDefined(error);
+
+  if (!success) {
+    return {
+      status: "error",
+      error: mapOrganizationErrorToFormActionError(error),
+    };
+  }
+  return {
+    status: "success",
+    success: {
+      type: "dismiss",
+    },
+  };
+}
+
 export function InviteMemberModal() {
+  const params = useParams();
+  const fetcher = useFetcher<typeof clientAction>();
+
   const [isOpen, setIsOpen] = useState(false);
+
+  const isSubmitting = fetcher.state === "submitting";
 
   return (
     <Modal isOpen={isOpen} onOpenChange={setIsOpen} size="sm">
@@ -45,8 +102,23 @@ export function InviteMemberModal() {
               <ModalHeading>Invite member</ModalHeading>
               <ModalCloseTrigger />
             </ModalHeader>
-            <Form>
-              <ModalBody>
+            <Form
+              actionData={fetcher.data}
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (!isDefined(params.slug)) {
+                  return;
+                }
+                fetcher.submit(e.currentTarget, {
+                  method: "POST",
+                  action: href("/organization/:slug/invite", {
+                    slug: params.slug,
+                  }),
+                });
+              }}
+            >
+              <ModalBody className={cn("flex flex-col gap-2")}>
+                <ActionFormAlert />
                 <FormFields>
                   <TextField name="email" type="email" autoFocus isRequired>
                     <Label>Email</Label>
@@ -82,8 +154,8 @@ export function InviteMemberModal() {
                 <Button slot="close" variant="secondary">
                   Cancel
                 </Button>
-                <SubmitButton className={cn("w-auto")}>
-                  Send invite
+                <SubmitButton className={cn("w-auto")} isPending={isSubmitting}>
+                  {({ isPending }) => (isPending ? "Sending" : "Send invite")}
                 </SubmitButton>
               </ModalFooter>
             </Form>
