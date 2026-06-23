@@ -28,11 +28,11 @@ type AuthFormError = z.infer<typeof AuthFormErrorSchema>;
 
 const AuthAlertErrorSchema = z.object({
   code: z.enum([
-    "EMAIL_PASSWORD_DISABLED",
-    "EMAIL_PASSWORD_SIGN_UP_DISABLED",
     "EMAIL_ALREADY_VERIFIED",
     "EMAIL_MISMATCH",
     "EMAIL_NOT_VERIFIED",
+    "EMAIL_PASSWORD_DISABLED",
+    "EMAIL_PASSWORD_SIGN_UP_DISABLED",
     "INVALID_EMAIL_OR_PASSWORD",
     "INVALID_TOKEN",
     "RESET_PASSWORD_DISABLED",
@@ -44,12 +44,12 @@ const AuthAlertErrorSchema = z.object({
 
 const AuthFormErrorSchema = z.object({
   code: z.enum([
-    "USER_ALREADY_EXISTS",
-    "USER_ALREADY_EXISTS_USE_ANOTHER_EMAIL",
     "INVALID_EMAIL",
     "INVALID_PASSWORD",
-    "PASSWORD_TOO_SHORT",
     "PASSWORD_TOO_LONG",
+    "PASSWORD_TOO_SHORT",
+    "USER_ALREADY_EXISTS",
+    "USER_ALREADY_EXISTS_USE_ANOTHER_EMAIL",
   ]),
   message: z.string(),
 });
@@ -91,8 +91,8 @@ function mapAuthErrorToFields(error: AuthFormError) {
       break;
     }
     case "INVALID_PASSWORD":
-    case "PASSWORD_TOO_SHORT":
-    case "PASSWORD_TOO_LONG": {
+    case "PASSWORD_TOO_LONG":
+    case "PASSWORD_TOO_SHORT": {
       field = "password";
       break;
     }
