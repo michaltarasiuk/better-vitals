@@ -25,7 +25,7 @@ import {
 } from "@lite-app/ui/components/select";
 import { TextField } from "@lite-app/ui/components/textfield";
 import { UserPlusIcon } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   href,
   useFetcher,
@@ -89,6 +89,18 @@ export function InviteMemberModal() {
   const fetcher = useFetcher<typeof clientAction>();
 
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isDefined(fetcher.data)) {
+      return;
+    }
+    const dismiss =
+      fetcher.data.status === "success" &&
+      fetcher.data.success.type === "dismiss";
+    if (dismiss) {
+      setIsOpen(false);
+    }
+  }, [fetcher.data]);
 
   const isSubmitting = fetcher.state === "submitting";
 
