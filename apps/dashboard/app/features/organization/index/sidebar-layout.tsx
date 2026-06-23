@@ -22,7 +22,7 @@ import { HomeIcon, LogOutIcon } from "lucide-react";
 import { Outlet, useLoaderData } from "react-router";
 import { cn } from "tailwind-variants";
 
-import { InviteMemberModal } from "~/features/organization/invite/invite-member";
+import { InviteModal } from "~/features/organization/invite/invite";
 import {
   formatUserRole,
   getAvatarFallback,
@@ -71,7 +71,7 @@ export function SidebarLayout() {
           <SidebarTrigger className={cn("-ms-2 hidden", "md:inline-flex")} />
           <UserGreeting user={user} />
           <NavbarSpacer />
-          <InviteMemberModal />
+          <InviteModal />
         </Navbar>
       }
     >

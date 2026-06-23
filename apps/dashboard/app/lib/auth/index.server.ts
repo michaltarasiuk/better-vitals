@@ -23,11 +23,33 @@ export const auth = betterAuth({
       void (await sendEmail({
         to: user.email,
         subject: "Reset password",
-        html: `<a href="${url}">Reset password</a>`,
+        html: `<a href="${url}">Reset your password</a>`,
         idempotencyKey: `password-reset/${token}`,
       })),
   },
-  plugins: [admin(), organization()],
+  plugins: [
+    admin(),
+    organization({
+      sendInvitationEmail: async ({
+        id,
+        email,
+        organization: { name, slug },
+      }) => {
+        const url = new URL(
+          `/organization/${slug}/invite/accept`,
+          env.BETTER_AUTH_URL
+        );
+        url.searchParams.set("id", id);
+
+        void (await sendEmail({
+          to: email,
+          subject: `Join ${name}`,
+          html: `<a href="${url.href}">Accept invitation</a>`,
+          idempotencyKey: `invitation/${id}`,
+        }));
+      },
+    }),
+  ],
   databaseHooks: {
     user: {
       create: {

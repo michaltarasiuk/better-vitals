@@ -84,7 +84,7 @@ export async function clientAction({
   };
 }
 
-export function InviteMemberModal() {
+export function InviteModal() {
   const params = useParams();
   const fetcher = useFetcher<typeof clientAction>();
 

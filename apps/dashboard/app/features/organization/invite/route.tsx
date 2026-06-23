@@ -1,1 +1,1 @@
-export { clientAction } from "./invite-member";
+export { clientAction } from "./invite";
