@@ -53,7 +53,10 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
   const { password, confirmPassword } = parsedFormData;
   const token = new URL(request.url).searchParams.get("token");
 
-  const passwordError = comparePasswords({ password, confirmPassword });
+  const passwordError = comparePasswords({
+    password,
+    confirmPassword,
+  });
   if (passwordError instanceof Error) {
     return formValidationErrorResponse({
       confirmPassword: passwordError.message,

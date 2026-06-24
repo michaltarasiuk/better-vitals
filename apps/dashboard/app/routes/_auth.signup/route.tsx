@@ -60,7 +60,10 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
   }
   const { name, email, password, confirmPassword } = parsedFormData;
 
-  const passwordError = comparePasswords({ password, confirmPassword });
+  const passwordError = comparePasswords({
+    password,
+    confirmPassword,
+  });
   if (passwordError instanceof Error) {
     return formValidationErrorResponse({
       confirmPassword: passwordError.message,
