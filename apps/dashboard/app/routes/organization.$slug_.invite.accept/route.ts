@@ -16,7 +16,6 @@ export async function loader({ params, request, url }: Route.LoaderArgs) {
     throw redirect(
       `${href("/signup")}?${new URLSearchParams({
         invitationId: id,
-        organizationSlug: params.slug,
       })}`
     );
   }
