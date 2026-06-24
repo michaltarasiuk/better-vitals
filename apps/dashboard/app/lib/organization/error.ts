@@ -38,10 +38,7 @@ const OrganizationFormErrorSchema = z.object({
 });
 
 export function mapOrganizationErrorToFormActionError(error: unknown) {
-  let actionError: FormActionError = {
-    type: "alert",
-    title: "Couldn't complete that — try again",
-  };
+  let actionError: FormActionError;
   if (isOrganizationAlertError(error)) {
     actionError = {
       type: "alert",
@@ -52,6 +49,12 @@ export function mapOrganizationErrorToFormActionError(error: unknown) {
       type: "form",
       validationErrors: mapOrganizationErrorToFields(error),
     };
+  } else {
+    actionError = {
+      type: "alert",
+      title: "Couldn't complete that — try again",
+    };
+    console.error(error);
   }
   return actionError;
 }

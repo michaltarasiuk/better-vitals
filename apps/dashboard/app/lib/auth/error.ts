@@ -55,10 +55,7 @@ const AuthFormErrorSchema = z.object({
 });
 
 export function mapAuthErrorToFormActionError(error: unknown) {
-  let actionError: FormActionError = {
-    type: "alert",
-    title: "Couldn't complete that — try again",
-  };
+  let actionError: FormActionError;
   if (isAuthAlertError(error)) {
     actionError = {
       type: "alert",
@@ -69,6 +66,12 @@ export function mapAuthErrorToFormActionError(error: unknown) {
       type: "form",
       validationErrors: mapAuthErrorToFields(error),
     };
+  } else {
+    actionError = {
+      type: "alert",
+      title: "Couldn't complete that — try again",
+    };
+    console.error(error);
   }
   return actionError;
 }

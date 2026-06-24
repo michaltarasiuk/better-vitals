@@ -26,7 +26,8 @@ export async function loader({ params, request, url }: Route.LoaderArgs) {
       },
       headers: request.headers,
     });
-  } catch {
+  } catch (error) {
+    console.error(error);
     throw new Response("Bad Request", { status: 400 });
   }
   throw redirect(

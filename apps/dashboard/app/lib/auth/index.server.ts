@@ -19,13 +19,17 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
     revokeSessionsOnPasswordReset: true,
-    sendResetPassword: async ({ user, url, token }) =>
-      void (await sendEmail({
+    sendResetPassword: async ({ user, url, token }) => {
+      const result = await sendEmail({
         to: user.email,
         subject: "Reset password",
         html: `<a href="${url}">Reset your password</a>`,
         idempotencyKey: `password-reset/${token}`,
-      })),
+      });
+      if (result instanceof Error) {
+        console.error(result);
+      }
+    },
   },
   plugins: [
     admin(),
@@ -41,12 +45,15 @@ export const auth = betterAuth({
         );
         url.searchParams.set("id", id);
 
-        void (await sendEmail({
+        const result = await sendEmail({
           to: email,
           subject: `Join ${name}`,
           html: `<a href="${url.href}">Accept invitation</a>`,
           idempotencyKey: `invitation/${id}`,
-        }));
+        });
+        if (result instanceof Error) {
+          console.error(result);
+        }
       },
     }),
   ],
