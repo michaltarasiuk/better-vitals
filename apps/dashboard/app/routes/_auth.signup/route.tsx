@@ -9,7 +9,6 @@ import {
   href,
   redirect,
   useActionData,
-  useLoaderData,
   useNavigation,
   type ClientActionFunctionArgs,
 } from "react-router";
@@ -28,7 +27,7 @@ import {
 } from "~/components/form-card";
 import { FormFields } from "~/components/form-fields";
 import { SubmitButton } from "~/components/submit-button";
-import { organization, signUp } from "~/lib/auth";
+import { signUp } from "~/lib/auth";
 import {
   comparePasswords,
   mapAuthErrorToFormActionError,
@@ -37,8 +36,6 @@ import { hasUsers } from "~/lib/db/user.server";
 import { parseFormData } from "~/lib/form/form-data";
 import { pickAvatar } from "~/lib/user/avatar";
 
-import type { Route } from "./+types/route";
-
 const FormDataSchema = z.object({
   name: z.string(),
   email: z.string(),
@@ -46,23 +43,10 @@ const FormDataSchema = z.object({
   confirmPassword: z.string(),
 });
 
-export async function loader({ url }: Route.LoaderArgs) {
-  const invitationId = url.searchParams.get("invitationId");
-  if (!isDefined(invitationId) || (await hasUsers())) {
+export async function loader() {
+  if (await hasUsers()) {
     throw redirect(href("/signin"));
   }
-  const invitation = await organization.getInvitation({
-    query: {
-      id: invitationId,
-    },
-  });
-  const success = isDefined(invitation.data);
-  if (!success) {
-    throw new Response("Invalid invitation", { status: 400 });
-  }
-  return {
-    invitation: invitation.data,
-  };
 }
 
 export async function clientAction({
@@ -116,7 +100,6 @@ export async function clientAction({
 }
 
 export default function Signup() {
-  const loaderData = useLoaderData<typeof loader>();
   const actionData = useActionData<typeof clientAction>();
   const navigation = useNavigation();
 
@@ -136,12 +119,7 @@ export default function Signup() {
               <Input variant="secondary" />
               <FieldError />
             </TextField>
-            <TextField
-              name="email"
-              type="email"
-              isRequired
-              defaultValue={loaderData.invitation?.email}
-            >
+            <TextField name="email" type="email" isRequired>
               <Label>Email</Label>
               <Input variant="secondary" />
               <FieldError />
