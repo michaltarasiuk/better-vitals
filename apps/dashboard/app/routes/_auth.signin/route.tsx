@@ -32,17 +32,24 @@ import { signIn } from "~/lib/auth";
 import { mapAuthErrorToFormActionError } from "~/lib/auth/error";
 import { getAuthenticatedRedirectHref } from "~/lib/auth/href";
 import { parseFormData } from "~/lib/form/form-data";
-import { invalidFormDataResponse } from "~/lib/form/response";
 
 const FormDataSchema = z.object({
   email: z.string(),
   password: z.string(),
 });
 
-export async function clientAction({ request }: ClientActionFunctionArgs) {
+export async function clientAction({
+  request,
+}: ClientActionFunctionArgs): Promise<FormActionData> {
   const parsedFormData = await parseFormData(request, FormDataSchema);
   if (parsedFormData instanceof Error) {
-    return invalidFormDataResponse(parsedFormData);
+    return {
+      status: "error",
+      error: {
+        type: "alert",
+        title: parsedFormData.message,
+      },
+    };
   }
   const { email, password } = parsedFormData;
 
@@ -58,7 +65,7 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
     return {
       status: "error",
       error: mapAuthErrorToFormActionError(error),
-    } satisfies FormActionData;
+    };
   }
   throw redirectDocument(await getAuthenticatedRedirectHref());
 }

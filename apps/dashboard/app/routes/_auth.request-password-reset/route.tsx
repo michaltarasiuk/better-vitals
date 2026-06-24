@@ -32,16 +32,23 @@ import { SubmitButton } from "~/components/submit-button";
 import { requestPasswordReset } from "~/lib/auth";
 import { mapAuthErrorToFormActionError } from "~/lib/auth/error";
 import { parseFormData } from "~/lib/form/form-data";
-import { invalidFormDataResponse } from "~/lib/form/response";
 
 const FormDataSchema = z.object({
   email: z.string(),
 });
 
-export async function clientAction({ request }: ClientActionFunctionArgs) {
+export async function clientAction({
+  request,
+}: ClientActionFunctionArgs): Promise<FormActionData> {
   const parsedFormData = await parseFormData(request, FormDataSchema);
   if (parsedFormData instanceof Error) {
-    return invalidFormDataResponse(parsedFormData);
+    return {
+      status: "error",
+      error: {
+        type: "alert",
+        title: parsedFormData.message,
+      },
+    };
   }
   const { email } = parsedFormData;
 
@@ -57,7 +64,7 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
     return {
       status: "error",
       error: mapAuthErrorToFormActionError(error),
-    } satisfies FormActionData;
+    };
   }
   return {
     status: "success",
@@ -65,7 +72,7 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
       type: "alert",
       title: data.message,
     },
-  } satisfies FormActionData;
+  };
 }
 
 export default function RequestPasswordReset() {

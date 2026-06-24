@@ -35,20 +35,24 @@ import {
   mapAuthErrorToFormActionError,
 } from "~/lib/auth/error";
 import { parseFormData } from "~/lib/form/form-data";
-import {
-  formValidationErrorResponse,
-  invalidFormDataResponse,
-} from "~/lib/form/response";
 
 const FormDataSchema = z.object({
   password: z.string(),
   confirmPassword: z.string(),
 });
 
-export async function clientAction({ request }: ClientActionFunctionArgs) {
+export async function clientAction({
+  request,
+}: ClientActionFunctionArgs): Promise<FormActionData> {
   const parsedFormData = await parseFormData(request, FormDataSchema);
   if (parsedFormData instanceof Error) {
-    return invalidFormDataResponse(parsedFormData);
+    return {
+      status: "error",
+      error: {
+        type: "alert",
+        title: parsedFormData.message,
+      },
+    };
   }
   const { password, confirmPassword } = parsedFormData;
   const token = new URL(request.url).searchParams.get("token");
@@ -58,9 +62,15 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
     confirmPassword,
   });
   if (passwordError instanceof Error) {
-    return formValidationErrorResponse({
-      confirmPassword: passwordError.message,
-    });
+    return {
+      status: "error",
+      error: {
+        type: "form",
+        validationErrors: {
+          confirmPassword: passwordError.message,
+        },
+      },
+    };
   }
 
   const { error } = await withMinimumDelay(
@@ -75,7 +85,7 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
     return {
       status: "error",
       error: mapAuthErrorToFormActionError(error),
-    } satisfies FormActionData;
+    };
   }
   throw redirect(href("/signin"));
 }

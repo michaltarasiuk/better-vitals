@@ -44,7 +44,6 @@ import { FormFields } from "~/components/form-fields";
 import { SubmitButton } from "~/components/submit-button";
 import { organization } from "~/lib/auth";
 import { parseFormData } from "~/lib/form/form-data";
-import { invalidFormDataResponse } from "~/lib/form/response";
 import { mapOrganizationErrorToFormActionError } from "~/lib/organization/error";
 import {
   ADMIN_ROLE,
@@ -58,10 +57,18 @@ const FormDataSchema = z.object({
   role: z.enum([MEMBER_ROLE, ADMIN_ROLE]),
 });
 
-export async function clientAction({ request }: ClientActionFunctionArgs) {
+export async function clientAction({
+  request,
+}: ClientActionFunctionArgs): Promise<FormActionData> {
   const parsedFormData = await parseFormData(request, FormDataSchema);
   if (parsedFormData instanceof Error) {
-    return invalidFormDataResponse(parsedFormData);
+    return {
+      status: "error",
+      error: {
+        type: "alert",
+        title: parsedFormData.message,
+      },
+    };
   }
   const { email, role } = parsedFormData;
 
@@ -77,14 +84,14 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
     return {
       status: "error",
       error: mapOrganizationErrorToFormActionError(error),
-    } satisfies FormActionData;
+    };
   }
   return {
     status: "success",
     success: {
       type: "dismiss",
     },
-  } satisfies FormActionData;
+  };
 }
 
 export function InviteModal() {

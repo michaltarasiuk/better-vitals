@@ -35,10 +35,6 @@ import {
 } from "~/lib/auth/error";
 import { hasUsers } from "~/lib/db/user.server";
 import { parseFormData } from "~/lib/form/form-data";
-import {
-  formValidationErrorResponse,
-  invalidFormDataResponse,
-} from "~/lib/form/response";
 import { pickAvatar } from "~/lib/user/avatar";
 
 import type { Route } from "./+types/route";
@@ -69,10 +65,18 @@ export async function loader({ url }: Route.LoaderArgs) {
   };
 }
 
-export async function clientAction({ request }: ClientActionFunctionArgs) {
+export async function clientAction({
+  request,
+}: ClientActionFunctionArgs): Promise<FormActionData> {
   const parsedFormData = await parseFormData(request, FormDataSchema);
   if (parsedFormData instanceof Error) {
-    return invalidFormDataResponse(parsedFormData);
+    return {
+      status: "error",
+      error: {
+        type: "alert",
+        title: parsedFormData.message,
+      },
+    };
   }
   const { name, email, password, confirmPassword } = parsedFormData;
 
@@ -81,9 +85,15 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
     confirmPassword,
   });
   if (passwordError instanceof Error) {
-    return formValidationErrorResponse({
-      confirmPassword: passwordError.message,
-    });
+    return {
+      status: "error",
+      error: {
+        type: "form",
+        validationErrors: {
+          confirmPassword: passwordError.message,
+        },
+      },
+    };
   }
 
   const { error } = await withMinimumDelay(
@@ -100,7 +110,7 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
     return {
       status: "error",
       error: mapAuthErrorToFormActionError(error),
-    } satisfies FormActionData;
+    };
   }
   throw redirect(href("/organization/create"));
 }
