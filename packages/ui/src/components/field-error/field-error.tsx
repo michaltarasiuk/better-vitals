@@ -1,6 +1,6 @@
 import * as Aria from "react-aria-components/FieldError";
 
-import { cnRenderProps } from "../../utils/cn-render-props";
+import { cnRenderProps } from "../../lib/cn-render-props";
 import { fieldErrorVariants, type FieldErrorVariants } from "./field-error";
 
 export interface FieldErrorProps

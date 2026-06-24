@@ -1,6 +1,6 @@
 import * as Aria from "react-aria-components/Input";
 
-import { cnRenderProps } from "../../utils/cn-render-props";
+import { cnRenderProps } from "../../lib/cn-render-props";
 import { useTextFieldContext } from "../textfield";
 import { inputVariants, type InputVariants } from "./input";
 

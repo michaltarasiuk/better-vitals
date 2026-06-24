@@ -3,7 +3,7 @@ import { ChevronDownIcon } from "lucide-react";
 import { use } from "react";
 import * as Aria from "react-aria-components/DisclosureGroup";
 
-import { cnRenderProps } from "../../utils/cn-render-props";
+import { cnRenderProps } from "../../lib/cn-render-props";
 import { SurfaceContext } from "../surface";
 import { accordionVariants, type AccordionVariants } from "./accordion";
 

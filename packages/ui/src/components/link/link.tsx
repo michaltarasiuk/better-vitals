@@ -2,7 +2,7 @@ import { isDefined } from "@lite-app/shared/is-defined";
 import { ArrowUpRightIcon } from "lucide-react";
 import * as Aria from "react-aria-components/Link";
 
-import { cnRenderProps } from "../../utils/cn-render-props";
+import { cnRenderProps } from "../../lib/cn-render-props";
 import { linkVariants, type LinkVariants } from "./link";
 
 const slots = linkVariants();

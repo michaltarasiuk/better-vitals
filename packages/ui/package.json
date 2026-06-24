@@ -9,11 +9,6 @@
       "types": "./src/components/*/index.ts",
       "import": "./src/components/*/index.ts",
       "default": "./src/components/*/index.ts"
-    },
-    "./utils/*": {
-      "types": "./src/utils/*.ts",
-      "import": "./src/utils/*.ts",
-      "default": "./src/utils/*.ts"
     }
   },
   "scripts": {

@@ -1,7 +1,7 @@
 import { createContext } from "@lite-app/shared/create-context";
 import * as Aria from "react-aria-components/ListBox";
 
-import { cnRenderProps } from "../../utils/cn-render-props";
+import { cnRenderProps } from "../../lib/cn-render-props";
 import { listboxVariants, type ListBoxVariants } from "./list-box";
 
 const slots = listboxVariants();

@@ -3,7 +3,7 @@ import { ChevronDownIcon } from "lucide-react";
 import { use } from "react";
 import * as Aria from "react-aria-components/Select";
 
-import { cnRenderProps } from "../../utils/cn-render-props";
+import { cnRenderProps } from "../../lib/cn-render-props";
 import { SurfaceContext } from "../surface";
 import { selectVariants, type SelectVariants } from "./select";
 

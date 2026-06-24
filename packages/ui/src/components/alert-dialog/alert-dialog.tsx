@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import * as Aria from "react-aria-components/Modal";
 
-import { cnRenderProps } from "../../utils/cn-render-props";
+import { cnRenderProps } from "../../lib/cn-render-props";
 import { CloseButton, type CloseButtonProps } from "../close-button";
 import { alertDialogVariants, type AlertDialogVariants } from "./alert-dialog";
 

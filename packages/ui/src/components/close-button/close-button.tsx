@@ -2,7 +2,7 @@ import { XIcon } from "lucide-react";
 import * as Aria from "react-aria-components/Button";
 import { composeRenderProps } from "react-aria-components/composeRenderProps";
 
-import { cnRenderProps } from "../../utils/cn-render-props";
+import { cnRenderProps } from "../../lib/cn-render-props";
 import { closeButtonVariants, type CloseButtonVariants } from "./close-button";
 
 export interface CloseButtonProps

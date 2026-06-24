@@ -1,7 +1,7 @@
 import { createContext } from "@lite-app/shared/create-context";
 import * as Aria from "react-aria-components/Modal";
 
-import { cnRenderProps } from "../../utils/cn-render-props";
+import { cnRenderProps } from "../../lib/cn-render-props";
 import { CloseButton, type CloseButtonProps } from "../close-button";
 import { modalVariants, type ModalVariants } from "./modal";
 
