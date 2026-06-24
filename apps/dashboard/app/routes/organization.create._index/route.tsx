@@ -31,6 +31,7 @@ import { SubmitButton } from "~/components/submit-button";
 import { organization } from "~/lib/auth";
 import { requireAuthenticated } from "~/lib/auth/guards.server";
 import { parseFormData } from "~/lib/form/form-data";
+import { invalidFormDataResponse } from "~/lib/form/response";
 import { mapOrganizationErrorToFormActionError } from "~/lib/organization/error";
 import { requireAdminWithoutOrganization } from "~/lib/organization/guards.server";
 
@@ -45,10 +46,12 @@ export const middleware: Route.MiddlewareFunction[] = [
   requireAdminWithoutOrganization,
 ];
 
-export async function clientAction({
-  request,
-}: ClientActionFunctionArgs): Promise<FormActionData> {
-  const { name } = await parseFormData(request, FormDataSchema);
+export async function clientAction({ request }: ClientActionFunctionArgs) {
+  const parsedFormData = await parseFormData(request, FormDataSchema);
+  if (parsedFormData instanceof Error) {
+    return invalidFormDataResponse(parsedFormData);
+  }
+  const { name } = parsedFormData;
 
   const { data, error } = await withMinimumDelay(
     organization.create({
@@ -62,7 +65,7 @@ export async function clientAction({
     return {
       status: "error",
       error: mapOrganizationErrorToFormActionError(error),
-    };
+    } satisfies FormActionData;
   }
   throw redirectDocument(
     href("/organization/:slug", {

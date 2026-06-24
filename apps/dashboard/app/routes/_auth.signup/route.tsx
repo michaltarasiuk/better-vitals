@@ -34,6 +34,10 @@ import {
 } from "~/lib/auth/error";
 import { hasUsers } from "~/lib/db/user.server";
 import { parseFormData } from "~/lib/form/form-data";
+import {
+  formValidationErrorResponse,
+  invalidFormDataResponse,
+} from "~/lib/form/response";
 import { pickAvatar } from "~/lib/user/avatar";
 
 const FormDataSchema = z.object({
@@ -49,25 +53,18 @@ export async function loader() {
   }
 }
 
-export async function clientAction({
-  request,
-}: ClientActionFunctionArgs): Promise<FormActionData> {
-  const { name, email, password, confirmPassword } = await parseFormData(
-    request,
-    FormDataSchema
-  );
+export async function clientAction({ request }: ClientActionFunctionArgs) {
+  const parsedFormData = await parseFormData(request, FormDataSchema);
+  if (parsedFormData instanceof Error) {
+    return invalidFormDataResponse(parsedFormData);
+  }
+  const { name, email, password, confirmPassword } = parsedFormData;
 
   const passwordError = comparePasswords({ password, confirmPassword });
   if (passwordError instanceof Error) {
-    return {
-      status: "error",
-      error: {
-        type: "form",
-        validationErrors: {
-          confirmPassword: passwordError.message,
-        },
-      },
-    };
+    return formValidationErrorResponse({
+      confirmPassword: passwordError.message,
+    });
   }
 
   const { error } = await withMinimumDelay(
@@ -84,7 +81,7 @@ export async function clientAction({
     return {
       status: "error",
       error: mapAuthErrorToFormActionError(error),
-    };
+    } satisfies FormActionData;
   }
   throw redirect(href("/organization/create"));
 }
