@@ -5,13 +5,15 @@ import type { FormActionData } from "~/components/action-data-context";
 
 import type { InvalidFormDataError } from "./form-data";
 
-export function invalidFormDataResponse(error: InvalidFormDataError) {
+export function invalidFormDataResponse(
+  invalidFormDataError: InvalidFormDataError
+) {
   return data<FormActionData>(
     {
       status: "error",
       error: {
         type: "alert",
-        title: error.message,
+        title: invalidFormDataError.message,
       },
     },
     {
