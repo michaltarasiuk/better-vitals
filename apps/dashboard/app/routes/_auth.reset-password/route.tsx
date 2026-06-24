@@ -44,17 +44,17 @@ const FormDataSchema = z.object({
 export async function clientAction({
   request,
 }: ClientActionFunctionArgs): Promise<FormActionData> {
-  const parsedFormData = await parseFormData(request, FormDataSchema);
-  if (parsedFormData instanceof Error) {
+  const formData = await parseFormData(request, FormDataSchema);
+  if (formData instanceof Error) {
     return {
       status: "error",
       error: {
         type: "alert",
-        title: parsedFormData.message,
+        title: formData.message,
       },
     };
   }
-  const { password, confirmPassword } = parsedFormData;
+  const { password, confirmPassword } = formData;
   const token = new URL(request.url).searchParams.get("token");
 
   const passwordError = comparePasswords({

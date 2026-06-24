@@ -40,17 +40,17 @@ const FormDataSchema = z.object({
 export async function clientAction({
   request,
 }: ClientActionFunctionArgs): Promise<FormActionData> {
-  const parsedFormData = await parseFormData(request, FormDataSchema);
-  if (parsedFormData instanceof Error) {
+  const formData = await parseFormData(request, FormDataSchema);
+  if (formData instanceof Error) {
     return {
       status: "error",
       error: {
         type: "alert",
-        title: parsedFormData.message,
+        title: formData.message,
       },
     };
   }
-  const { email } = parsedFormData;
+  const { email } = formData;
 
   const { data, error } = await withMinimumDelay(
     requestPasswordReset({

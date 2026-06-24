@@ -52,17 +52,17 @@ export async function loader() {
 export async function clientAction({
   request,
 }: ClientActionFunctionArgs): Promise<FormActionData> {
-  const parsedFormData = await parseFormData(request, FormDataSchema);
-  if (parsedFormData instanceof Error) {
+  const formData = await parseFormData(request, FormDataSchema);
+  if (formData instanceof Error) {
     return {
       status: "error",
       error: {
         type: "alert",
-        title: parsedFormData.message,
+        title: formData.message,
       },
     };
   }
-  const { name, email, password, confirmPassword } = parsedFormData;
+  const { name, email, password, confirmPassword } = formData;
 
   const passwordError = comparePasswords({
     password,
