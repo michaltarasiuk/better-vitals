@@ -125,9 +125,7 @@ export default function Signup() {
         </FormCardContent>
         <FormCardFooter>
           <SubmitButton isPending={isSubmitting}>
-            {({ isPending }) =>
-              isPending ? "Creating account" : "Create account"
-            }
+            {({ isPending }) => (isPending ? "Creating" : "Create account")}
           </SubmitButton>
         </FormCardFooter>
       </Form>
