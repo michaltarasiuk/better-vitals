@@ -6,14 +6,14 @@ import type { FormActionData } from "~/components/action-data-context";
 import type { InvalidFormDataError } from "./form-data";
 
 export function invalidFormDataResponse(error: InvalidFormDataError) {
-  return data(
+  return data<FormActionData>(
     {
       status: "error",
       error: {
         type: "alert",
         title: error.message,
       },
-    } satisfies FormActionData,
+    },
     {
       status: 400,
     }
@@ -23,14 +23,14 @@ export function invalidFormDataResponse(error: InvalidFormDataError) {
 export function formValidationErrorResponse(
   validationErrors: ValidationErrors
 ) {
-  return data(
+  return data<FormActionData>(
     {
       status: "error",
       error: {
         type: "form",
         validationErrors,
       },
-    } satisfies FormActionData,
+    },
     {
       status: 400,
     }

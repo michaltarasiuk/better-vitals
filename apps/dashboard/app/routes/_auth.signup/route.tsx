@@ -40,6 +40,8 @@ import {
 } from "~/lib/form/response";
 import { pickAvatar } from "~/lib/user/avatar";
 
+import type { Route } from "./+types/route";
+
 const FormDataSchema = z.object({
   name: z.string(),
   email: z.string(),
@@ -47,8 +49,9 @@ const FormDataSchema = z.object({
   confirmPassword: z.string(),
 });
 
-export async function loader() {
-  if (await hasUsers()) {
+export async function loader({ url }: Route.LoaderArgs) {
+  const invitationId = url.searchParams.get("invitationId");
+  if ((await hasUsers()) || !isDefined(invitationId)) {
     throw redirect(href("/signin"));
   }
 }
