@@ -61,7 +61,11 @@ export const auth = betterAuth({
     user: {
       create: {
         async before(data) {
-          if (!(await hasUsers())) {
+          const hasAnyUsers = await hasUsers();
+          if (hasAnyUsers instanceof Error) {
+            throw hasAnyUsers;
+          }
+          if (!hasAnyUsers) {
             data.role = ADMIN_ROLE;
           }
           return {

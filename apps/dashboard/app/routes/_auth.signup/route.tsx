@@ -44,7 +44,11 @@ const FormDataSchema = z.object({
 });
 
 export async function loader() {
-  if (await hasUsers()) {
+  const hasAnyUsers = await hasUsers();
+  if (hasAnyUsers instanceof Error) {
+    throw hasAnyUsers;
+  }
+  if (hasAnyUsers) {
     throw redirect(href("/signin"));
   }
 }

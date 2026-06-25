@@ -31,7 +31,11 @@ export const requireAuthenticated: MiddlewareFunction<Response> = async ({
 }) => {
   const session = await getServerSession(request);
   if (!isDefined(session)) {
-    throw redirect(await getUnauthenticatedRedirectHref());
+    const redirectHref = await getUnauthenticatedRedirectHref();
+    if (redirectHref instanceof Error) {
+      throw redirectHref;
+    }
+    throw redirect(redirectHref);
   }
   context.set(sessionContext, session);
 };

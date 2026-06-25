@@ -12,6 +12,8 @@ export async function loader({ request }: Route.LoaderArgs) {
   const redirectHref = (await isLoggedIn(request))
     ? await getAuthenticatedRedirectHref(request)
     : await getUnauthenticatedRedirectHref();
-
+  if (redirectHref instanceof Error) {
+    throw redirectHref;
+  }
   throw redirect(redirectHref);
 }

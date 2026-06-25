@@ -27,5 +27,9 @@ export async function getAuthenticatedRedirectHref(request: Request) {
 }
 
 export async function getUnauthenticatedRedirectHref() {
-  return (await hasUsers()) ? href("/signin") : href("/signup");
+  const hasAnyUsers = await hasUsers();
+  if (hasAnyUsers instanceof Error) {
+    return hasAnyUsers;
+  }
+  return hasAnyUsers ? href("/signin") : href("/signup");
 }
