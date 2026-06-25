@@ -6,7 +6,7 @@ import { env } from "~/lib/env.server";
 
 export class SendEmailError extends errore.createTaggedError({
   name: "SendEmailError",
-  message: "Failed to send email",
+  message: "Failed to send email to $to",
 }) {}
 
 export async function sendEmail({
@@ -32,9 +32,7 @@ export async function sendEmail({
   const success = isDefined(data) && !isDefined(error);
 
   if (!success) {
-    return new SendEmailError({
-      cause: error,
-    });
+    return new SendEmailError({ to, cause: error });
   }
   return data;
 }

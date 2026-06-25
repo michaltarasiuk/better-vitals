@@ -1,8 +1,14 @@
 import { assertNever } from "@lite-app/shared/assert-never";
 import type { ValidationErrors } from "@react-types/shared";
+import * as errore from "errore";
 import { z } from "zod";
 
 import type { FormActionError } from "~/components/action-data-context";
+
+export class OrganizationError extends errore.createTaggedError({
+  name: "OrganizationError",
+  message: "$operation failed",
+}) {}
 
 type OrganizationAlertError = z.infer<typeof OrganizationAlertErrorSchema>;
 type OrganizationFormError = z.infer<typeof OrganizationFormErrorSchema>;

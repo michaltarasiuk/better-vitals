@@ -5,6 +5,11 @@ import { z } from "zod";
 
 import type { FormActionError } from "~/components/action-data-context";
 
+export class SessionError extends errore.createTaggedError({
+  name: "SessionError",
+  message: "Session $operation failed",
+}) {}
+
 export class PasswordMismatchError extends errore.createTaggedError({
   name: "PasswordMismatchError",
   message: "Password mismatch",

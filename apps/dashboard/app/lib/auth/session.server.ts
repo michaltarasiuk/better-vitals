@@ -1,6 +1,7 @@
 import { isDefined } from "@lite-app/shared/is-defined";
 import { createContext } from "react-router";
 
+import { SessionError } from "~/lib/auth/error";
 import { ADMIN_ROLE } from "~/lib/auth/roles";
 
 import { auth } from "./index.server";
@@ -9,19 +10,35 @@ export type ServerSession = typeof auth.$Infer.Session;
 
 export const sessionContext = createContext<ServerSession>();
 
-export function getServerSession(request: Request) {
-  return auth.api.getSession({
-    headers: request.headers,
-  });
+export function getSession(...params: Parameters<typeof auth.api.getSession>) {
+  return auth.api.getSession(...params).catch(
+    (error) =>
+      new SessionError({
+        operation: "get session",
+        cause: error,
+      })
+  );
 }
 
 export async function isLoggedIn(request: Request) {
-  const session = await getServerSession(request);
+  const session = await getSession({
+    headers: request.headers,
+  });
+  if (session instanceof Error) {
+    console.error(session);
+    throw session;
+  }
   return isDefined(session);
 }
 
 export async function isAdmin(request: Request) {
-  const session = await getServerSession(request);
+  const session = await getSession({
+    headers: request.headers,
+  });
+  if (session instanceof Error) {
+    console.error(session);
+    throw session;
+  }
   if (!isDefined(session)) {
     return false;
   }

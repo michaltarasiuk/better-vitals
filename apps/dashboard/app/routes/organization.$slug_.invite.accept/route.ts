@@ -1,8 +1,8 @@
 import { isDefined } from "@lite-app/shared/is-defined";
 import { href, redirect } from "react-router";
 
-import { auth } from "~/lib/auth/index.server";
 import { isLoggedIn } from "~/lib/auth/session.server";
+import { acceptInvitation } from "~/lib/organization/index.server";
 
 import type { Route } from "./+types/route";
 
@@ -19,15 +19,14 @@ export async function loader({ params, request, url }: Route.LoaderArgs) {
       })}`
     );
   }
-  try {
-    await auth.api.acceptInvitation({
-      body: {
-        invitationId: id,
-      },
-      headers: request.headers,
-    });
-  } catch (error) {
-    console.error(error);
+  const invitation = await acceptInvitation({
+    body: {
+      invitationId: id,
+    },
+    headers: request.headers,
+  });
+  if (invitation instanceof Error) {
+    console.error(invitation);
     throw new Response("Bad Request", { status: 400 });
   }
   throw redirect(

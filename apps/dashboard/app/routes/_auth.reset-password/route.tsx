@@ -29,7 +29,7 @@ import {
 } from "~/components/form-card";
 import { FormFields } from "~/components/form-fields";
 import { SubmitButton } from "~/components/submit-button";
-import { resetPassword } from "~/lib/auth";
+import { authClient } from "~/lib/auth";
 import {
   comparePasswords,
   mapAuthErrorToFormActionError,
@@ -74,7 +74,7 @@ export async function clientAction({
   }
 
   const { error } = await withMinimumDelay(
-    resetPassword({
+    authClient.resetPassword({
       newPassword: password,
       ...(isDefined(token) && { token }),
     })

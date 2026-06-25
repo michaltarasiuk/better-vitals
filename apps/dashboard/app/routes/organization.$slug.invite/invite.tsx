@@ -42,7 +42,7 @@ import {
 import { Form } from "~/components/form";
 import { FormFields } from "~/components/form-fields";
 import { SubmitButton } from "~/components/submit-button";
-import { organization } from "~/lib/auth";
+import { authClient } from "~/lib/auth";
 import { parseFormData } from "~/lib/form/form-data";
 import { mapOrganizationErrorToFormActionError } from "~/lib/organization/error";
 import {
@@ -73,7 +73,7 @@ export async function clientAction({
   const { email, role } = formData;
 
   const { data, error } = await withMinimumDelay(
-    organization.inviteMember({
+    authClient.organization.inviteMember({
       email,
       role,
     })

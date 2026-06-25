@@ -2,9 +2,9 @@ import { isDefined } from "@lite-app/shared/is-defined";
 import { redirectDocument, type MiddlewareFunction } from "react-router";
 
 import { getAuthenticatedRedirectHref } from "~/lib/auth/href.server";
-import { auth } from "~/lib/auth/index.server";
 import { ADMIN_ROLE } from "~/lib/auth/roles";
 import { sessionContext } from "~/lib/auth/session.server";
+import { listOrganizations } from "~/lib/organization/index.server";
 
 export const requireAdminWithoutOrganization: MiddlewareFunction<
   Response
@@ -13,9 +13,13 @@ export const requireAdminWithoutOrganization: MiddlewareFunction<
   if (!isDefined(session)) {
     throw new Error("Missing session");
   }
-  const organizations = await auth.api.listOrganizations({
+  const organizations = await listOrganizations({
     headers: request.headers,
   });
+  if (organizations instanceof Error) {
+    console.error(organizations);
+    throw organizations;
+  }
   const admin = session.user.role === ADMIN_ROLE;
   if (!admin || organizations.length > 0) {
     const redirectHref = await getAuthenticatedRedirectHref(request);

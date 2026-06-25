@@ -29,7 +29,7 @@ import {
 } from "~/components/form-card";
 import { FormFields } from "~/components/form-fields";
 import { SubmitButton } from "~/components/submit-button";
-import { requestPasswordReset } from "~/lib/auth";
+import { authClient } from "~/lib/auth";
 import { mapAuthErrorToFormActionError } from "~/lib/auth/error";
 import { parseFormData } from "~/lib/form/form-data";
 
@@ -53,7 +53,7 @@ export async function clientAction({
   const { email } = formData;
 
   const { data, error } = await withMinimumDelay(
-    requestPasswordReset({
+    authClient.requestPasswordReset({
       email,
       redirectTo: href("/reset-password"),
     })

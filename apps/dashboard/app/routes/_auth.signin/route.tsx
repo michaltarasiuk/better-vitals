@@ -28,7 +28,7 @@ import {
 } from "~/components/form-card";
 import { FormFields } from "~/components/form-fields";
 import { SubmitButton } from "~/components/submit-button";
-import { signIn } from "~/lib/auth";
+import { authClient } from "~/lib/auth";
 import { mapAuthErrorToFormActionError } from "~/lib/auth/error";
 import { getAuthenticatedRedirectHref } from "~/lib/auth/href";
 import { parseFormData } from "~/lib/form/form-data";
@@ -54,7 +54,7 @@ export async function clientAction({
   const { email, password } = formData;
 
   const { error } = await withMinimumDelay(
-    signIn.email({
+    authClient.signIn.email({
       email,
       password,
     })

@@ -10,7 +10,7 @@ import {
   getUnauthenticatedRedirectHref,
 } from "~/lib/auth/href.server";
 import {
-  getServerSession,
+  getSession,
   isLoggedIn,
   sessionContext,
 } from "~/lib/auth/session.server";
@@ -18,7 +18,8 @@ import {
 export const requireUnauthenticated: MiddlewareFunction<Response> = async ({
   request,
 }) => {
-  if (!(await isLoggedIn(request))) {
+  const loggedIn = await isLoggedIn(request);
+  if (!loggedIn) {
     return;
   }
   const redirectHref = await getAuthenticatedRedirectHref(request);
@@ -29,7 +30,13 @@ export const requireAuthenticated: MiddlewareFunction<Response> = async ({
   request,
   context,
 }) => {
-  const session = await getServerSession(request);
+  const session = await getSession({
+    headers: request.headers,
+  });
+  if (session instanceof Error) {
+    console.error(session);
+    throw session;
+  }
   if (!isDefined(session)) {
     const redirectHref = await getUnauthenticatedRedirectHref();
     if (redirectHref instanceof Error) {

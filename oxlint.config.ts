@@ -30,6 +30,10 @@ export default defineConfig({
     "no-duplicate-imports": ["error", { allowSeparateTypeImports: false }],
     // Functions are hoisted
     "no-use-before-define": "off",
+    // Domain error modules often define multiple errore tagged-error classes together.
+    "max-classes-per-file": "off",
+    // Errore converts rejections with `.catch()` at async boundaries (not try/catch);
+    "promise/prefer-await-to-callbacks": "off",
     // Prefer logical key order (discriminant first, form field order, etc.) over alphabetical.
     "sort-keys": "off",
     "sort-vars": "off",

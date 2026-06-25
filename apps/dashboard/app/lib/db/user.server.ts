@@ -5,7 +5,7 @@ import * as schema from "~/lib/db/schema.server";
 export async function hasUsers() {
   const countPromise: Promise<number> = db.$count(schema.user);
   const count = await countPromise.catch(
-    (error) => new DbError({ cause: error })
+    (error) => new DbError({ operation: "count users", cause: error })
   );
   if (count instanceof Error) {
     return count;
