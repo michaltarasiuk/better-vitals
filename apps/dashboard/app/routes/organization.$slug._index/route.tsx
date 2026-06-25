@@ -31,9 +31,6 @@ export async function loader({ request, params }: Route.LoaderArgs) {
     console.error(activeOrganization);
     throw activeOrganization;
   }
-  if (!isDefined(activeOrganization)) {
-    throw new Response("Not Found", { status: 404 });
-  }
 }
 
 export default function Organization() {
