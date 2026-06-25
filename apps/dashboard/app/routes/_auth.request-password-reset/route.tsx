@@ -57,13 +57,13 @@ export async function clientAction({
       redirectTo: href("/reset-password"),
     })
   );
-
   if (passwordResetRequest instanceof Error) {
     return {
       status: "error",
       error: mapAuthErrorToFormActionError(passwordResetRequest.cause),
     };
   }
+
   return {
     status: "success",
     success: {

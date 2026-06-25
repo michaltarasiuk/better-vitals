@@ -58,13 +58,13 @@ export async function clientAction({
       password,
     })
   );
-
   if (session instanceof Error) {
     return {
       status: "error",
       error: mapAuthErrorToFormActionError(session.cause),
     };
   }
+
   throw redirectDocument(await getAuthenticatedRedirectHref());
 }
 

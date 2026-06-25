@@ -79,13 +79,13 @@ export async function clientAction({
       ...(isDefined(token) && { token }),
     })
   );
-
   if (passwordReset instanceof Error) {
     return {
       status: "error",
       error: mapAuthErrorToFormActionError(passwordReset.cause),
     };
   }
+
   throw redirect(href("/signin"));
 }
 

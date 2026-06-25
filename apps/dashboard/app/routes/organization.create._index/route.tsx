@@ -65,13 +65,13 @@ export async function clientAction({
       slug: slugify(name),
     })
   );
-
   if (organization instanceof Error) {
     return {
       status: "error",
       error: mapOrganizationErrorToFormActionError(organization.cause),
     };
   }
+
   throw redirectDocument(
     href("/organization/:slug", {
       slug: organization.slug,

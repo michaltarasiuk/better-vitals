@@ -78,13 +78,13 @@ export async function clientAction({
       role,
     })
   );
-
   if (invitation instanceof Error) {
     return {
       status: "error",
       error: mapOrganizationErrorToFormActionError(invitation.cause),
     };
   }
+
   return {
     status: "success",
     success: {

@@ -91,13 +91,13 @@ export async function clientAction({
       image: pickAvatar(),
     })
   );
-
   if (account instanceof Error) {
     return {
       status: "error",
       error: mapAuthErrorToFormActionError(account.cause),
     };
   }
+
   throw redirect(href("/organization/create"));
 }
 
