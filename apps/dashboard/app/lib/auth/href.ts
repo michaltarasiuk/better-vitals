@@ -19,7 +19,7 @@ export async function getAuthenticatedRedirectHref() {
     throw organizations;
   }
   if (!isDefined(activeOrganization)) {
-    if (!admin || (organizations ?? []).length > 0) {
+    if (!admin || organizations.length > 0) {
       return href("/organization/list");
     }
     return href("/organization/create");
