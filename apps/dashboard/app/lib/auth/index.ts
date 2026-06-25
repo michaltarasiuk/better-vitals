@@ -1,5 +1,4 @@
-import { isDefined } from "@lite-app/shared/is-defined";
-import { createAuthClient } from "better-auth/client";
+import { createAuthClient, type BetterFetchResponse } from "better-auth/client";
 import { adminClient, organizationClient } from "better-auth/client/plugins";
 
 import { AuthClientFetchError, AuthError } from "~/lib/auth/error";
@@ -13,7 +12,7 @@ async function unwrapAuthClientResult<T>({
   promise,
 }: {
   operation: string;
-  promise: Promise<{ data: T; error: unknown }>;
+  promise: Promise<BetterFetchResponse<T>>;
 }) {
   const result = await promise.catch(
     (error) =>
@@ -25,15 +24,13 @@ async function unwrapAuthClientResult<T>({
   if (result instanceof Error) {
     return result;
   }
-  const { data, error } = result;
-  const success = isDefined(data) && !isDefined(error);
-  if (!success) {
+  if (result.error !== null) {
     return new AuthError({
       operation,
-      cause: error,
+      cause: result.error,
     });
   }
-  return data;
+  return result.data;
 }
 
 export function getSession(

@@ -1,4 +1,4 @@
-import { isDefined } from "@lite-app/shared/is-defined";
+import type { BetterFetchResponse } from "better-auth/client";
 
 import { authClient } from "~/lib/auth";
 import { AuthClientFetchError } from "~/lib/auth/error";
@@ -9,7 +9,7 @@ async function unwrapOrganizationClientResult<T>({
   promise,
 }: {
   operation: string;
-  promise: Promise<{ data: T; error: unknown }>;
+  promise: Promise<BetterFetchResponse<T>>;
 }) {
   const result = await promise.catch(
     (error) =>
@@ -21,14 +21,13 @@ async function unwrapOrganizationClientResult<T>({
   if (result instanceof Error) {
     return result;
   }
-  const { data, error } = result;
-  if (isDefined(error) || !isDefined(data)) {
+  if (result.error !== null) {
     return new OrganizationError({
       operation,
-      cause: error,
+      cause: result.error,
     });
   }
-  return data;
+  return result.data;
 }
 
 export function getFullOrganization(
