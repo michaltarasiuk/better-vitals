@@ -1,5 +1,4 @@
 import { withMinimumDelay } from "@lite-app/shared/delay";
-import { isDefined } from "@lite-app/shared/is-defined";
 import { Card } from "@lite-app/ui/components/card";
 import { FieldError } from "@lite-app/ui/components/field-error";
 import { Input } from "@lite-app/ui/components/input";
@@ -27,7 +26,7 @@ import {
 } from "~/components/form-card";
 import { FormFields } from "~/components/form-fields";
 import { SubmitButton } from "~/components/submit-button";
-import { authClient } from "~/lib/auth";
+import { signUpEmail } from "~/lib/auth";
 import {
   comparePasswords,
   mapAuthErrorToFormActionError,
@@ -84,20 +83,19 @@ export async function clientAction({
     };
   }
 
-  const { error } = await withMinimumDelay(
-    authClient.signUp.email({
+  const account = await withMinimumDelay(
+    signUpEmail({
       name,
       email,
       password,
       image: pickAvatar(),
     })
   );
-  const success = !isDefined(error);
 
-  if (!success) {
+  if (account instanceof Error) {
     return {
       status: "error",
-      error: mapAuthErrorToFormActionError(error),
+      error: mapAuthErrorToFormActionError(account.cause),
     };
   }
   throw redirect(href("/organization/create"));

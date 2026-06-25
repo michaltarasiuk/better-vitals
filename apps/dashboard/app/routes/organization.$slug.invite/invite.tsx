@@ -42,8 +42,8 @@ import {
 import { Form } from "~/components/form";
 import { FormFields } from "~/components/form-fields";
 import { SubmitButton } from "~/components/submit-button";
-import { authClient } from "~/lib/auth";
 import { parseFormData } from "~/lib/form/form-data";
+import { inviteMember } from "~/lib/organization";
 import { mapOrganizationErrorToFormActionError } from "~/lib/organization/error";
 import {
   ADMIN_ROLE,
@@ -72,18 +72,17 @@ export async function clientAction({
   }
   const { email, role } = formData;
 
-  const { data, error } = await withMinimumDelay(
-    authClient.organization.inviteMember({
+  const invitation = await withMinimumDelay(
+    inviteMember({
       email,
       role,
     })
   );
-  const success = isDefined(data) && !isDefined(error);
 
-  if (!success) {
+  if (invitation instanceof Error) {
     return {
       status: "error",
-      error: mapOrganizationErrorToFormActionError(error),
+      error: mapOrganizationErrorToFormActionError(invitation.cause),
     };
   }
   return {

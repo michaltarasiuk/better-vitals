@@ -1,5 +1,4 @@
 import { withMinimumDelay } from "@lite-app/shared/delay";
-import { isDefined } from "@lite-app/shared/is-defined";
 import { Card } from "@lite-app/ui/components/card";
 import { FieldError } from "@lite-app/ui/components/field-error";
 import { Input } from "@lite-app/ui/components/input";
@@ -29,7 +28,7 @@ import {
 } from "~/components/form-card";
 import { FormFields } from "~/components/form-fields";
 import { SubmitButton } from "~/components/submit-button";
-import { authClient } from "~/lib/auth";
+import { requestPasswordReset } from "~/lib/auth";
 import { mapAuthErrorToFormActionError } from "~/lib/auth/error";
 import { parseFormData } from "~/lib/form/form-data";
 
@@ -52,25 +51,24 @@ export async function clientAction({
   }
   const { email } = formData;
 
-  const { data, error } = await withMinimumDelay(
-    authClient.requestPasswordReset({
+  const passwordResetRequest = await withMinimumDelay(
+    requestPasswordReset({
       email,
       redirectTo: href("/reset-password"),
     })
   );
-  const success = isDefined(data) && !isDefined(error);
 
-  if (!success) {
+  if (passwordResetRequest instanceof Error) {
     return {
       status: "error",
-      error: mapAuthErrorToFormActionError(error),
+      error: mapAuthErrorToFormActionError(passwordResetRequest.cause),
     };
   }
   return {
     status: "success",
     success: {
       type: "alert",
-      title: data.message,
+      title: passwordResetRequest.message,
     },
   };
 }

@@ -1,5 +1,4 @@
 import { withMinimumDelay } from "@lite-app/shared/delay";
-import { isDefined } from "@lite-app/shared/is-defined";
 import { Card } from "@lite-app/ui/components/card";
 import { FieldError } from "@lite-app/ui/components/field-error";
 import { Input } from "@lite-app/ui/components/input";
@@ -28,7 +27,7 @@ import {
 } from "~/components/form-card";
 import { FormFields } from "~/components/form-fields";
 import { SubmitButton } from "~/components/submit-button";
-import { authClient } from "~/lib/auth";
+import { signInEmail } from "~/lib/auth";
 import { mapAuthErrorToFormActionError } from "~/lib/auth/error";
 import { getAuthenticatedRedirectHref } from "~/lib/auth/href";
 import { parseFormData } from "~/lib/form/form-data";
@@ -53,18 +52,17 @@ export async function clientAction({
   }
   const { email, password } = formData;
 
-  const { error } = await withMinimumDelay(
-    authClient.signIn.email({
+  const session = await withMinimumDelay(
+    signInEmail({
       email,
       password,
     })
   );
-  const success = !isDefined(error);
 
-  if (!success) {
+  if (session instanceof Error) {
     return {
       status: "error",
-      error: mapAuthErrorToFormActionError(error),
+      error: mapAuthErrorToFormActionError(session.cause),
     };
   }
   throw redirectDocument(await getAuthenticatedRedirectHref());

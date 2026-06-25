@@ -1,12 +1,16 @@
 import { isDefined } from "@lite-app/shared/is-defined";
 
-import { authClient } from "~/lib/auth";
+import { getSession } from "~/lib/auth";
 import { ADMIN_ROLE } from "~/lib/auth/roles";
 
 export async function isAdmin() {
-  const session = await authClient.getSession();
-  if (!isDefined(session.data)) {
+  const session = await getSession();
+  if (session instanceof Error) {
+    console.error(session);
     return false;
   }
-  return session.data.user.role === ADMIN_ROLE;
+  if (!isDefined(session)) {
+    return false;
+  }
+  return session.user.role === ADMIN_ROLE;
 }

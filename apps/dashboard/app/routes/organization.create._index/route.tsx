@@ -1,5 +1,4 @@
 import { withMinimumDelay } from "@lite-app/shared/delay";
-import { isDefined } from "@lite-app/shared/is-defined";
 import { Card } from "@lite-app/ui/components/card";
 import { FieldError } from "@lite-app/ui/components/field-error";
 import { Input } from "@lite-app/ui/components/input";
@@ -28,9 +27,9 @@ import {
 } from "~/components/form-card";
 import { FormFields } from "~/components/form-fields";
 import { SubmitButton } from "~/components/submit-button";
-import { authClient } from "~/lib/auth";
 import { requireAuthenticated } from "~/lib/auth/guards.server";
 import { parseFormData } from "~/lib/form/form-data";
+import { createOrganization } from "~/lib/organization";
 import { mapOrganizationErrorToFormActionError } from "~/lib/organization/error";
 import { requireAdminWithoutOrganization } from "~/lib/organization/guards.server";
 
@@ -60,23 +59,22 @@ export async function clientAction({
   }
   const { name } = formData;
 
-  const { data, error } = await withMinimumDelay(
-    authClient.organization.create({
+  const organization = await withMinimumDelay(
+    createOrganization({
       name,
       slug: slugify(name),
     })
   );
-  const success = isDefined(data) && !isDefined(error);
 
-  if (!success) {
+  if (organization instanceof Error) {
     return {
       status: "error",
-      error: mapOrganizationErrorToFormActionError(error),
+      error: mapOrganizationErrorToFormActionError(organization.cause),
     };
   }
   throw redirectDocument(
     href("/organization/:slug", {
-      slug: data.slug,
+      slug: organization.slug,
     })
   );
 }

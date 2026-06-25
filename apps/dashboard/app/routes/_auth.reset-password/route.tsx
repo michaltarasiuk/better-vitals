@@ -29,7 +29,7 @@ import {
 } from "~/components/form-card";
 import { FormFields } from "~/components/form-fields";
 import { SubmitButton } from "~/components/submit-button";
-import { authClient } from "~/lib/auth";
+import { resetPassword } from "~/lib/auth";
 import {
   comparePasswords,
   mapAuthErrorToFormActionError,
@@ -73,18 +73,17 @@ export async function clientAction({
     };
   }
 
-  const { error } = await withMinimumDelay(
-    authClient.resetPassword({
+  const passwordReset = await withMinimumDelay(
+    resetPassword({
       newPassword: password,
       ...(isDefined(token) && { token }),
     })
   );
-  const success = !isDefined(error);
 
-  if (!success) {
+  if (passwordReset instanceof Error) {
     return {
       status: "error",
-      error: mapAuthErrorToFormActionError(error),
+      error: mapAuthErrorToFormActionError(passwordReset.cause),
     };
   }
   throw redirect(href("/signin"));
