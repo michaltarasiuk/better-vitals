@@ -5,11 +5,6 @@ import { z } from "zod";
 
 import type { FormActionError } from "~/components/action-data-context";
 
-export class AuthClientFetchError extends errore.createTaggedError({
-  name: "AuthClientFetchError",
-  message: "$operation request failed",
-}) {}
-
 export class AuthError extends errore.createTaggedError({
   name: "AuthError",
   message: "$operation failed",

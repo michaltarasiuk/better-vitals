@@ -1,7 +1,7 @@
 import type { BetterFetchResponse } from "better-auth/client";
 
 import { authClient } from "~/lib/auth";
-import { AuthClientFetchError } from "~/lib/auth/error";
+import { NetworkError } from "~/lib/http/error";
 import { OrganizationError } from "~/lib/organization/error";
 
 async function unwrapOrganizationClientResult<T>({
@@ -13,7 +13,7 @@ async function unwrapOrganizationClientResult<T>({
 }) {
   const result = await promise.catch(
     (error) =>
-      new AuthClientFetchError({
+      new NetworkError({
         operation,
         cause: error,
       })
