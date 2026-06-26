@@ -53,7 +53,7 @@ import {
 import { formatUserRole } from "~/lib/user/display";
 
 const FormDataSchema = z.object({
-  email: z.email(),
+  email: z.string(),
   role: z.enum([MEMBER_ROLE, ADMIN_ROLE]),
 });
 
