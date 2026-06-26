@@ -1,5 +1,5 @@
 {
-  "name": "@lite-app/ui",
+  "name": "@better-vitals/ui",
   "type": "module",
   "exports": {
     ".": {
@@ -15,7 +15,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@lite-app/shared": "workspace:*",
+    "@better-vitals/shared": "workspace:*",
     "@radix-ui/react-avatar": "^1.2.0",
     "@react-aria/utils": "^3.34.1",
     "lucide-react": "catalog:",
@@ -26,7 +26,7 @@
     "tw-animate-css": "catalog:"
   },
   "devDependencies": {
-    "@lite-app/tsconfig": "workspace:*",
+    "@better-vitals/tsconfig": "workspace:*",
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",

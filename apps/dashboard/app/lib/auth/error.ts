@@ -1,4 +1,4 @@
-import { assertNever } from "@lite-app/shared/assert-never";
+import { assertNever } from "@better-vitals/shared/assert-never";
 import type { ValidationErrors } from "@react-types/shared";
 import * as errore from "errore";
 import { z } from "zod";

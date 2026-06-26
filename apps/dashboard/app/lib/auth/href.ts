@@ -1,4 +1,4 @@
-import { isDefined } from "@lite-app/shared/is-defined";
+import { isDefined } from "@better-vitals/shared/is-defined";
 import { href } from "react-router";
 
 import { isAdmin } from "~/lib/auth/session";

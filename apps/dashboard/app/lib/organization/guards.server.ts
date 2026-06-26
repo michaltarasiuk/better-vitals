@@ -1,4 +1,4 @@
-import { isDefined } from "@lite-app/shared/is-defined";
+import { isDefined } from "@better-vitals/shared/is-defined";
 import { redirectDocument, type MiddlewareFunction } from "react-router";
 
 import { getAuthenticatedRedirectHref } from "~/lib/auth/href.server";

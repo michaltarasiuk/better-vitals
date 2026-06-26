@@ -1,11 +1,11 @@
-import { withMinimumDelay } from "@lite-app/shared/delay";
-import { isDefined } from "@lite-app/shared/is-defined";
-import { Card } from "@lite-app/ui/components/card";
-import { FieldError } from "@lite-app/ui/components/field-error";
-import { Input } from "@lite-app/ui/components/input";
-import { Label } from "@lite-app/ui/components/label";
-import { Link } from "@lite-app/ui/components/link";
-import { TextField } from "@lite-app/ui/components/textfield";
+import { withMinimumDelay } from "@better-vitals/shared/delay";
+import { isDefined } from "@better-vitals/shared/is-defined";
+import { Card } from "@better-vitals/ui/components/card";
+import { FieldError } from "@better-vitals/ui/components/field-error";
+import { Input } from "@better-vitals/ui/components/input";
+import { Label } from "@better-vitals/ui/components/label";
+import { Link } from "@better-vitals/ui/components/link";
+import { TextField } from "@better-vitals/ui/components/textfield";
 import {
   href,
   redirect,

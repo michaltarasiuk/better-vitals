@@ -1,4 +1,4 @@
-import { createContext } from "@lite-app/shared/create-context";
+import { createContext } from "@better-vitals/shared/create-context";
 import * as Aria from "react-aria-components/Table";
 import { cn } from "tailwind-variants";
 

@@ -1,4 +1,4 @@
-import { createContext } from "@lite-app/shared/create-context";
+import { createContext } from "@better-vitals/shared/create-context";
 
 import { SurfaceContext } from "../surface";
 import { cardVariants, type CardVariants } from "./card";

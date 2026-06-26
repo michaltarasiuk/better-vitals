@@ -1,5 +1,5 @@
 {
-  "extends": "@lite-app/tsconfig/vite.json",
+  "extends": "@better-vitals/tsconfig/vite.json",
   "include": ["**/*.ts", "**/*.tsx", "./.react-router/types/**/*"],
   "compilerOptions": {
     "allowImportingTsExtensions": true,

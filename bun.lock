@@ -17,10 +17,10 @@
       },
     },
     "apps/dashboard": {
-      "name": "@lite-app/dashboard",
+      "name": "@better-vitals/dashboard",
       "dependencies": {
-        "@lite-app/shared": "workspace:*",
-        "@lite-app/ui": "workspace:*",
+        "@better-vitals/shared": "workspace:*",
+        "@better-vitals/ui": "workspace:*",
         "@react-router/node": "8.0.1",
         "@react-router/serve": "8.0.1",
         "@remix-run/node-fetch-server": "^0.13.3",
@@ -41,7 +41,7 @@
         "zod": "^4.4.3",
       },
       "devDependencies": {
-        "@lite-app/tsconfig": "workspace:*",
+        "@better-vitals/tsconfig": "workspace:*",
         "@react-router/dev": "8.0.1",
         "@react-router/fs-routes": "^8.0.1",
         "@react-types/shared": "^3.36.0",
@@ -59,9 +59,9 @@
       },
     },
     "packages/shared": {
-      "name": "@lite-app/shared",
+      "name": "@better-vitals/shared",
       "devDependencies": {
-        "@lite-app/tsconfig": "workspace:*",
+        "@better-vitals/tsconfig": "workspace:*",
         "@types/node": "catalog:",
         "@types/react": "catalog:",
         "react": "catalog:",
@@ -72,12 +72,12 @@
       },
     },
     "packages/tsconfig": {
-      "name": "@lite-app/tsconfig",
+      "name": "@better-vitals/tsconfig",
     },
     "packages/ui": {
-      "name": "@lite-app/ui",
+      "name": "@better-vitals/ui",
       "dependencies": {
-        "@lite-app/shared": "workspace:*",
+        "@better-vitals/shared": "workspace:*",
         "@radix-ui/react-avatar": "^1.2.0",
         "@react-aria/utils": "^3.34.1",
         "lucide-react": "catalog:",
@@ -88,7 +88,7 @@
         "tw-animate-css": "catalog:",
       },
       "devDependencies": {
-        "@lite-app/tsconfig": "workspace:*",
+        "@better-vitals/tsconfig": "workspace:*",
         "@types/node": "catalog:",
         "@types/react": "catalog:",
         "@types/react-dom": "catalog:",
@@ -193,6 +193,14 @@
 
     "@better-fetch/fetch": ["@better-fetch/fetch@1.3.1", "", {}, "sha512-ABkD1WhyfPZprKRQI3bhATjeiFuNWC9PXhfGWqL+sg/gKrM977oFrYkdb4msM3hgUGonr7KlOsOFT5TU2rht9g=="],
 
+    "@better-vitals/dashboard": ["@better-vitals/dashboard@workspace:apps/dashboard"],
+
+    "@better-vitals/shared": ["@better-vitals/shared@workspace:packages/shared"],
+
+    "@better-vitals/tsconfig": ["@better-vitals/tsconfig@workspace:packages/tsconfig"],
+
+    "@better-vitals/ui": ["@better-vitals/ui@workspace:packages/ui"],
+
     "@clack/core": ["@clack/core@1.4.1", "", { "dependencies": { "fast-wrap-ansi": "^0.2.0", "sisteransi": "^1.0.5" } }, "sha512-FILJa1gGKEFTGZAJE9RpVhrjKz3c3h4ar60dSv6cGuDqufQ84YEIS3GAGvZiN+H6yaLbbvTFNejjCC4tXpZEuw=="],
 
     "@clack/prompts": ["@clack/prompts@1.5.1", "", { "dependencies": { "@clack/core": "1.4.1", "fast-string-width": "^3.0.2", "fast-wrap-ansi": "^0.2.0", "sisteransi": "^1.0.5" } }, "sha512-zccHj2z2oCCO4yrDiRSlFOxWerGqRiysP7a5jPK6uoI9URKAquwY42Dd/iUP8JWHxEzdRe4TlbvZCo8z1/mhrw=="],
@@ -278,14 +286,6 @@
     "@jridgewell/sourcemap-codec": ["@jridgewell/sourcemap-codec@1.5.5", "", {}, "sha512-cYQ9310grqxueWbl+WuIUIaiUaDcj7WOq5fVhEljNVgRfOUhY9fy2zTvfoqWsnebh8Sl70VScFbICvJnLKB0Og=="],
 
     "@jridgewell/trace-mapping": ["@jridgewell/trace-mapping@0.3.31", "", { "dependencies": { "@jridgewell/resolve-uri": "^3.1.0", "@jridgewell/sourcemap-codec": "^1.4.14" } }, "sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw=="],
-
-    "@lite-app/dashboard": ["@lite-app/dashboard@workspace:apps/dashboard"],
-
-    "@lite-app/shared": ["@lite-app/shared@workspace:packages/shared"],
-
-    "@lite-app/tsconfig": ["@lite-app/tsconfig@workspace:packages/tsconfig"],
-
-    "@lite-app/ui": ["@lite-app/ui@workspace:packages/ui"],
 
     "@napi-rs/wasm-runtime": ["@napi-rs/wasm-runtime@1.1.6", "", { "dependencies": { "@tybys/wasm-util": "^0.10.3" }, "peerDependencies": { "@emnapi/core": "^1.7.1", "@emnapi/runtime": "^1.7.1" } }, "sha512-ZLv/JdUfkvOy9eCnnBaGfiO+XimbjebAeO+MRQqD/B+FR1tnRN0tpKSJHRbE8sFfS6aqsXZ67TQjfwfsxULVbg=="],
 

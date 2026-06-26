@@ -1,4 +1,4 @@
-import { isDefined } from "@lite-app/shared/is-defined";
+import { isDefined } from "@better-vitals/shared/is-defined";
 import { ArrowUpRightIcon } from "lucide-react";
 import * as Aria from "react-aria-components/Link";
 

@@ -11,7 +11,7 @@ export default defineConfig({
     {
       files: ["packages/ui/src/components/**/index.ts"],
       rules: {
-        // Ultracite discourages barrel files, but `@lite-app/ui/components/*` exports
+        // Ultracite discourages barrel files, but `@better-vitals/ui/components/*` exports
         // require an index.ts entry point per component folder.
         "oxc/no-barrel-file": "off",
       },

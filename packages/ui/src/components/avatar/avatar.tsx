@@ -1,4 +1,4 @@
-import { createContext } from "@lite-app/shared/create-context";
+import { createContext } from "@better-vitals/shared/create-context";
 import * as RadixAvatar from "@radix-ui/react-avatar";
 
 import { avatarVariants, type AvatarVariants } from "./avatar";

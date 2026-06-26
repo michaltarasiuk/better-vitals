@@ -5,7 +5,7 @@ description: >-
   Use when writing or editing user-facing copy — buttons, toasts, form errors,
   empty states, loading states, auth pages, or auditing UI text.
 metadata:
-  author: lite-app
+  author: better-vitals
   version: "1.0.0"
 ---
 

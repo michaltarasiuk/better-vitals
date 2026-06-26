@@ -1,4 +1,4 @@
-import { createContext } from "@lite-app/shared/create-context";
+import { createContext } from "@better-vitals/shared/create-context";
 import { PanelLeftIcon } from "lucide-react";
 import { useState } from "react";
 import { composeRenderProps } from "react-aria-components/composeRenderProps";

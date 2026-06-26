@@ -18,8 +18,8 @@ export default defineConfig({
   },
   ssr: {
     noExternal: [
-      "@lite-app/ui",
-      "@lite-app/shared",
+      "@better-vitals/ui",
+      "@better-vitals/shared",
       "react-aria-components",
       "react-aria",
       "react-stately",

@@ -1,4 +1,4 @@
-import { isDefined } from "@lite-app/shared/is-defined";
+import { isDefined } from "@better-vitals/shared/is-defined";
 import { createContext } from "react-router";
 
 import { SessionError } from "~/lib/auth/error";

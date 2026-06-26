@@ -1,7 +1,7 @@
 import {
   Form as UIForm,
   type FormProps as UIFormProps,
-} from "@lite-app/ui/components/form";
+} from "@better-vitals/ui/components/form";
 import { useSubmit, type SubmitOptions } from "react-router";
 
 import {

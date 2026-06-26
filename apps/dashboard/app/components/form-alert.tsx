@@ -3,7 +3,7 @@ import {
   AlertContent,
   AlertIndicator,
   AlertTitle,
-} from "@lite-app/ui/components/alert";
+} from "@better-vitals/ui/components/alert";
 import { tv, type VariantProps } from "tailwind-variants";
 
 const formAlertVariants = tv({

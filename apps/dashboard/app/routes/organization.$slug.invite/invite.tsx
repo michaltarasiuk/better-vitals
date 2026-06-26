@@ -1,10 +1,10 @@
-import { withMinimumDelay } from "@lite-app/shared/delay";
-import { isDefined } from "@lite-app/shared/is-defined";
-import { Button, type ButtonProps } from "@lite-app/ui/components/button";
-import { FieldError } from "@lite-app/ui/components/field-error";
-import { Input } from "@lite-app/ui/components/input";
-import { Label } from "@lite-app/ui/components/label";
-import { ListBox, ListBoxItem } from "@lite-app/ui/components/list-box";
+import { withMinimumDelay } from "@better-vitals/shared/delay";
+import { isDefined } from "@better-vitals/shared/is-defined";
+import { Button, type ButtonProps } from "@better-vitals/ui/components/button";
+import { FieldError } from "@better-vitals/ui/components/field-error";
+import { Input } from "@better-vitals/ui/components/input";
+import { Label } from "@better-vitals/ui/components/label";
+import { ListBox, ListBoxItem } from "@better-vitals/ui/components/list-box";
 import {
   Modal,
   ModalBackdrop,
@@ -15,15 +15,15 @@ import {
   ModalFooter,
   ModalHeader,
   ModalHeading,
-} from "@lite-app/ui/components/modal";
+} from "@better-vitals/ui/components/modal";
 import {
   Select,
   SelectIndicator,
   SelectPopover,
   SelectTrigger,
   SelectValue,
-} from "@lite-app/ui/components/select";
-import { TextField } from "@lite-app/ui/components/textfield";
+} from "@better-vitals/ui/components/select";
+import { TextField } from "@better-vitals/ui/components/textfield";
 import { UserPlusIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import {

@@ -1,11 +1,11 @@
-import { isDefined } from "@lite-app/shared/is-defined";
-import { AppLayout } from "@lite-app/ui/components/app-layout";
+import { isDefined } from "@better-vitals/shared/is-defined";
+import { AppLayout } from "@better-vitals/ui/components/app-layout";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@lite-app/ui/components/avatar";
-import { Navbar, NavbarSpacer } from "@lite-app/ui/components/navbar";
+} from "@better-vitals/ui/components/avatar";
+import { Navbar, NavbarSpacer } from "@better-vitals/ui/components/navbar";
 import {
   Sidebar,
   SidebarContent,
@@ -17,7 +17,7 @@ import {
   SidebarMenuItemContent,
   SidebarMenuLabel,
   SidebarTrigger,
-} from "@lite-app/ui/components/sidebar";
+} from "@better-vitals/ui/components/sidebar";
 import { HomeIcon, LogOutIcon } from "lucide-react";
 import { Outlet, useLoaderData } from "react-router";
 import { cn } from "tailwind-variants";

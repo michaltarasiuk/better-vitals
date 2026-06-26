@@ -1,5 +1,5 @@
 {
-  "extends": "@lite-app/tsconfig/react.json",
+  "extends": "@better-vitals/tsconfig/react.json",
   "compilerOptions": {
     "allowImportingTsExtensions": true,
     "noEmit": true

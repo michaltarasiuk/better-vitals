@@ -1,5 +1,5 @@
 {
-  "name": "@lite-app/shared",
+  "name": "@better-vitals/shared",
   "type": "module",
   "exports": {
     "./*": {
@@ -12,7 +12,7 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "@lite-app/tsconfig": "workspace:*",
+    "@better-vitals/tsconfig": "workspace:*",
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "react": "catalog:",

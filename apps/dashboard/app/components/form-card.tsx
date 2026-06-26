@@ -8,7 +8,7 @@ import {
   type CardDescriptionProps,
   type CardFooterProps,
   type CardHeaderProps,
-} from "@lite-app/ui/components/card";
+} from "@better-vitals/ui/components/card";
 import { cn } from "tailwind-variants";
 
 interface FormCardHeaderProps extends CardHeaderProps {}

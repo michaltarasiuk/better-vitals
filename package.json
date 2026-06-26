@@ -1,5 +1,5 @@
 {
-  "name": "lite-app",
+  "name": "better-vitals",
   "type": "module",
   "scripts": {
     "prepare": "lefthook install",

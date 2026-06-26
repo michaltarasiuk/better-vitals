@@ -1,5 +1,5 @@
-import { Button, type ButtonProps } from "@lite-app/ui/components/button";
-import { Spinner } from "@lite-app/ui/components/spinner";
+import { Button, type ButtonProps } from "@better-vitals/ui/components/button";
+import { Spinner } from "@better-vitals/ui/components/spinner";
 import { cn } from "tailwind-variants";
 
 interface SubmitButtonProps extends Omit<ButtonProps, "type"> {}

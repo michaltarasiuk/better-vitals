@@ -1,4 +1,4 @@
-import { isDefined } from "@lite-app/shared/is-defined";
+import { isDefined } from "@better-vitals/shared/is-defined";
 import * as errore from "errore";
 
 import { resend } from "~/lib/email/index.server";

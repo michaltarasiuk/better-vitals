@@ -1,5 +1,5 @@
 {
-  "name": "@lite-app/dashboard",
+  "name": "@better-vitals/dashboard",
   "type": "module",
   "scripts": {
     "dev": "react-router dev",
@@ -12,8 +12,8 @@
     "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
-    "@lite-app/shared": "workspace:*",
-    "@lite-app/ui": "workspace:*",
+    "@better-vitals/shared": "workspace:*",
+    "@better-vitals/ui": "workspace:*",
     "@react-router/node": "8.0.1",
     "@react-router/serve": "8.0.1",
     "@remix-run/node-fetch-server": "^0.13.3",
@@ -34,7 +34,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@lite-app/tsconfig": "workspace:*",
+    "@better-vitals/tsconfig": "workspace:*",
     "@react-router/dev": "8.0.1",
     "@react-router/fs-routes": "^8.0.1",
     "@react-types/shared": "^3.36.0",
