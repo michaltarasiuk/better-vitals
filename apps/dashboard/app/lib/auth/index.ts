@@ -1,8 +1,7 @@
 import { createAuthClient, type BetterFetchResponse } from "better-auth/client";
 import { adminClient, organizationClient } from "better-auth/client/plugins";
 
-import { AuthError } from "~/lib/auth/error";
-import { NetworkError } from "~/lib/http/error";
+import { AuthClientFetchError, AuthError } from "~/lib/auth/error";
 
 export const authClient = createAuthClient({
   plugins: [adminClient(), organizationClient()],
@@ -17,7 +16,7 @@ async function unwrapAuthClientResult<T>({
 }) {
   const result = await promise.catch(
     (error) =>
-      new NetworkError({
+      new AuthClientFetchError({
         operation,
         cause: error,
       })
