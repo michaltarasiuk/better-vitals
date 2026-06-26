@@ -36,15 +36,3 @@ export function setActiveOrganization(
       })
   );
 }
-
-export function acceptInvitation(
-  ...params: Parameters<typeof auth.api.acceptInvitation>
-) {
-  return auth.api.acceptInvitation(...params).catch(
-    (error) =>
-      new OrganizationError({
-        operation: "accept invitation",
-        cause: error,
-      })
-  );
-}
