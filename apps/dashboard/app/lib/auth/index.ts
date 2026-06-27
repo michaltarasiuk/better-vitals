@@ -7,7 +7,7 @@ export const authClient = createAuthClient({
   plugins: [adminClient(), organizationClient()],
 });
 
-async function unwrapAuthClientResult<T>({
+async function unwrapAuthResponse<T>({
   operation,
   promise,
 }: {
@@ -36,7 +36,7 @@ async function unwrapAuthClientResult<T>({
 export function getSession(
   ...params: Parameters<typeof authClient.getSession>
 ) {
-  return unwrapAuthClientResult({
+  return unwrapAuthResponse({
     operation: "get session",
     promise: authClient.getSession(...params),
   });
@@ -45,7 +45,7 @@ export function getSession(
 export function signUpEmail(
   ...params: Parameters<typeof authClient.signUp.email>
 ) {
-  return unwrapAuthClientResult({
+  return unwrapAuthResponse({
     operation: "sign up",
     promise: authClient.signUp.email(...params),
   });
@@ -54,7 +54,7 @@ export function signUpEmail(
 export function signInEmail(
   ...params: Parameters<typeof authClient.signIn.email>
 ) {
-  return unwrapAuthClientResult({
+  return unwrapAuthResponse({
     operation: "sign in",
     promise: authClient.signIn.email(...params),
   });
@@ -63,7 +63,7 @@ export function signInEmail(
 export function requestPasswordReset(
   ...params: Parameters<typeof authClient.requestPasswordReset>
 ) {
-  return unwrapAuthClientResult({
+  return unwrapAuthResponse({
     operation: "request password reset",
     promise: authClient.requestPasswordReset(...params),
   });
@@ -72,7 +72,7 @@ export function requestPasswordReset(
 export function resetPassword(
   ...params: Parameters<typeof authClient.resetPassword>
 ) {
-  return unwrapAuthClientResult({
+  return unwrapAuthResponse({
     operation: "reset password",
     promise: authClient.resetPassword(...params),
   });

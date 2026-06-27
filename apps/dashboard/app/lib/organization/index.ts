@@ -4,7 +4,7 @@ import { authClient } from "~/lib/auth";
 import { AuthClientFetchError } from "~/lib/auth/error";
 import { OrganizationError } from "~/lib/organization/error";
 
-async function unwrapOrganizationClientResult<T>({
+async function unwrapOrganizationResponse<T>({
   operation,
   promise,
 }: {
@@ -33,7 +33,7 @@ async function unwrapOrganizationClientResult<T>({
 export function getFullOrganization(
   ...params: Parameters<typeof authClient.organization.getFullOrganization>
 ) {
-  return unwrapOrganizationClientResult({
+  return unwrapOrganizationResponse({
     operation: "get full organization",
     promise: authClient.organization.getFullOrganization(...params),
   });
@@ -42,7 +42,7 @@ export function getFullOrganization(
 export function listOrganizations(
   ...params: Parameters<typeof authClient.organization.list>
 ) {
-  return unwrapOrganizationClientResult({
+  return unwrapOrganizationResponse({
     operation: "list organizations",
     promise: authClient.organization.list(...params),
   });
@@ -51,7 +51,7 @@ export function listOrganizations(
 export function createOrganization(
   ...params: Parameters<typeof authClient.organization.create>
 ) {
-  return unwrapOrganizationClientResult({
+  return unwrapOrganizationResponse({
     operation: "create organization",
     promise: authClient.organization.create(...params),
   });
@@ -60,7 +60,7 @@ export function createOrganization(
 export function inviteMember(
   ...params: Parameters<typeof authClient.organization.inviteMember>
 ) {
-  return unwrapOrganizationClientResult({
+  return unwrapOrganizationResponse({
     operation: "invite member",
     promise: authClient.organization.inviteMember(...params),
   });
