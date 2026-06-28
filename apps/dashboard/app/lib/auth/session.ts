@@ -6,8 +6,7 @@ import { ADMIN_ROLE } from "~/lib/auth/roles";
 export async function isAdmin() {
   const session = await getSession();
   if (session instanceof Error) {
-    console.error(session);
-    return false;
+    return session;
   }
   if (!isDefined(session)) {
     return false;

@@ -1,6 +1,7 @@
 import { isDefined } from "@better-vitals/shared/is-defined";
 import { redirectDocument, type MiddlewareFunction } from "react-router";
 
+import { MissingSessionError } from "~/lib/auth/error";
 import { getAuthenticatedRedirectHref } from "~/lib/auth/href.server";
 import { ADMIN_ROLE } from "~/lib/auth/roles";
 import { sessionContext } from "~/lib/auth/session.server";
@@ -11,7 +12,7 @@ export const requireAdminWithoutOrganization: MiddlewareFunction<
 > = async ({ request, context }) => {
   const session = context.get(sessionContext);
   if (!isDefined(session)) {
-    throw new Error("Missing session");
+    throw new MissingSessionError();
   }
   const organizations = await listOrganizations({
     headers: request.headers,
@@ -23,6 +24,9 @@ export const requireAdminWithoutOrganization: MiddlewareFunction<
   const admin = session.user.role === ADMIN_ROLE;
   if (!admin || organizations.length > 0) {
     const redirectHref = await getAuthenticatedRedirectHref(request);
+    if (redirectHref instanceof Error) {
+      throw redirectHref;
+    }
     throw redirectDocument(redirectHref);
   }
 };

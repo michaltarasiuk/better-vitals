@@ -18,13 +18,14 @@ export async function getAuthenticatedRedirectHref(request: Request) {
       headers: request.headers,
     }),
   ]);
+  if (admin instanceof Error) {
+    return admin;
+  }
   if (activeOrganization instanceof Error) {
-    console.error(activeOrganization);
-    throw activeOrganization;
+    return activeOrganization;
   }
   if (organizations instanceof Error) {
-    console.error(organizations);
-    throw organizations;
+    return organizations;
   }
   if (!isDefined(activeOrganization)) {
     if (!admin || organizations.length > 0) {

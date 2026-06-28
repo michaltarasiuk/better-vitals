@@ -65,7 +65,17 @@ export async function clientAction({
     };
   }
 
-  throw redirectDocument(await getAuthenticatedRedirectHref());
+  const redirectHref = await getAuthenticatedRedirectHref();
+  if (redirectHref instanceof Error) {
+    return {
+      status: "error",
+      error: {
+        type: "alert",
+        title: redirectHref.message,
+      },
+    };
+  }
+  throw redirectDocument(redirectHref);
 }
 
 export default function Signin() {

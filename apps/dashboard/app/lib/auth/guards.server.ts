@@ -19,10 +19,16 @@ export const requireUnauthenticated: MiddlewareFunction<Response> = async ({
   request,
 }) => {
   const loggedIn = await isLoggedIn(request);
+  if (loggedIn instanceof Error) {
+    throw loggedIn;
+  }
   if (!loggedIn) {
     return;
   }
   const redirectHref = await getAuthenticatedRedirectHref(request);
+  if (redirectHref instanceof Error) {
+    throw redirectHref;
+  }
   throw redirectDocument(redirectHref);
 };
 

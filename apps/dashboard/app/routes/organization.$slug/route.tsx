@@ -22,6 +22,7 @@ import { HomeIcon, LogOutIcon } from "lucide-react";
 import { Outlet, useLoaderData } from "react-router";
 import { cn } from "tailwind-variants";
 
+import { MissingSessionError } from "~/lib/auth/error";
 import { requireAuthenticated } from "~/lib/auth/guards.server";
 import { sessionContext } from "~/lib/auth/session.server";
 import {
@@ -38,7 +39,7 @@ export const middleware: Route.MiddlewareFunction[] = [requireAuthenticated];
 export function loader({ context }: Route.LoaderArgs) {
   const session = context.get(sessionContext);
   if (!isDefined(session)) {
-    throw new Error("Missing session");
+    throw new MissingSessionError();
   }
   return {
     user: session.user,

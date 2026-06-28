@@ -20,6 +20,11 @@ export class SessionError extends errore.createTaggedError({
   message: "Session $operation failed",
 }) {}
 
+export class MissingSessionError extends errore.createTaggedError({
+  name: "MissingSessionError",
+  message: "Session is missing after authentication middleware",
+}) {}
+
 export class PasswordMismatchError extends errore.createTaggedError({
   name: "PasswordMismatchError",
   message: "Password mismatch",

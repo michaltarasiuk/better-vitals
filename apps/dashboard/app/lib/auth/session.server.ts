@@ -25,8 +25,7 @@ export async function isLoggedIn(request: Request) {
     headers: request.headers,
   });
   if (session instanceof Error) {
-    console.error(session);
-    throw session;
+    return session;
   }
   return isDefined(session);
 }
@@ -36,8 +35,7 @@ export async function isAdmin(request: Request) {
     headers: request.headers,
   });
   if (session instanceof Error) {
-    console.error(session);
-    throw session;
+    return session;
   }
   if (!isDefined(session)) {
     return false;

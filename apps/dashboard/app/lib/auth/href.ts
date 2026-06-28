@@ -10,13 +10,14 @@ export async function getAuthenticatedRedirectHref() {
     getFullOrganization(),
     listOrganizations(),
   ]);
+  if (admin instanceof Error) {
+    return admin;
+  }
   if (activeOrganization instanceof Error) {
-    console.error(activeOrganization);
-    throw activeOrganization;
+    return activeOrganization;
   }
   if (organizations instanceof Error) {
-    console.error(organizations);
-    throw organizations;
+    return organizations;
   }
   if (!isDefined(activeOrganization)) {
     if (!admin || organizations.length > 0) {
