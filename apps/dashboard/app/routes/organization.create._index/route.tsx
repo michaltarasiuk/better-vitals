@@ -5,6 +5,7 @@ import { Input } from "@better-vitals/ui/components/input";
 import { Label } from "@better-vitals/ui/components/label";
 import { TextField } from "@better-vitals/ui/components/textfield";
 import slugify from "@sindresorhus/slugify";
+import { useState } from "react";
 import {
   href,
   redirectDocument,
@@ -37,6 +38,7 @@ import type { Route } from "./+types/route";
 
 const FormDataSchema = z.object({
   name: z.string(),
+  slug: z.string(),
 });
 
 export const middleware: Route.MiddlewareFunction[] = [
@@ -57,12 +59,12 @@ export async function clientAction({
       },
     };
   }
-  const { name } = formData;
+  const { name, slug } = formData;
 
   const organization = await withMinimumDelay(
     createOrganization({
       name,
-      slug: slugify(name),
+      slug,
     })
   );
   if (organization instanceof Error) {
@@ -83,7 +85,23 @@ export default function OrganizationCreate() {
   const actionData = useActionData<typeof clientAction>();
   const navigation = useNavigation();
 
+  const [name, setName] = useState("");
+  const [slug, setSlug] = useState("");
+
+  const [isSlugEdited, setIsSlugEdited] = useState(false);
+
   const isSubmitting = navigation.state === "submitting";
+
+  function handleNameChange(value: string) {
+    setName(value);
+    if (!isSlugEdited) {
+      setSlug(slugify(value));
+    }
+  }
+  function handleSlugChange(value: string) {
+    setSlug(value);
+    setIsSlugEdited(true);
+  }
 
   return (
     <Card>
@@ -94,8 +112,25 @@ export default function OrganizationCreate() {
         <FormCardContent>
           <ActionFormAlert />
           <FormFields>
-            <TextField name="name" type="text" isRequired>
+            <TextField
+              name="name"
+              type="text"
+              value={name}
+              onChange={handleNameChange}
+              isRequired
+            >
               <Label>Name</Label>
+              <Input variant="secondary" />
+              <FieldError />
+            </TextField>
+            <TextField
+              name="slug"
+              type="text"
+              value={slug}
+              onChange={handleSlugChange}
+              isRequired
+            >
+              <Label>Slug</Label>
               <Input variant="secondary" />
               <FieldError />
             </TextField>

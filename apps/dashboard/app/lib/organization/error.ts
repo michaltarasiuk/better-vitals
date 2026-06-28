@@ -79,11 +79,11 @@ function isOrganizationFormError(
 function mapOrganizationErrorToFields(
   error: OrganizationFormError
 ): ValidationErrors {
-  let field: "name" | "email" | "role";
+  let field: "slug" | "email" | "role";
   switch (error.code) {
     case "ORGANIZATION_ALREADY_EXISTS":
     case "ORGANIZATION_SLUG_ALREADY_TAKEN": {
-      field = "name";
+      field = "slug";
       break;
     }
     case "USER_IS_ALREADY_A_MEMBER_OF_THIS_ORGANIZATION":
