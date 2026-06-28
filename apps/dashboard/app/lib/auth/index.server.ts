@@ -20,14 +20,14 @@ export const auth = betterAuth({
     enabled: true,
     revokeSessionsOnPasswordReset: true,
     sendResetPassword: async ({ user, url, token }) => {
-      const result = await sendEmail({
+      const email = await sendEmail({
         to: user.email,
         subject: "Reset password",
         html: `<a href="${url}">Reset your password</a>`,
         idempotencyKey: `password-reset/${token}`,
       });
-      if (result instanceof Error) {
-        console.error(result);
+      if (email instanceof Error) {
+        console.error(email);
       }
     },
   },
@@ -36,7 +36,7 @@ export const auth = betterAuth({
     organization({
       sendInvitationEmail: async ({
         id,
-        email,
+        email: to,
         organization: { name, slug },
       }) => {
         const url = new URL(
@@ -45,14 +45,14 @@ export const auth = betterAuth({
         );
         url.searchParams.set("id", id);
 
-        const result = await sendEmail({
-          to: email,
+        const email = await sendEmail({
+          to,
           subject: `Join ${name}`,
           html: `<a href="${url.href}">Accept invitation</a>`,
           idempotencyKey: `invitation/${id}`,
         });
-        if (result instanceof Error) {
-          console.error(result);
+        if (email instanceof Error) {
+          console.error(email);
         }
       },
     }),

@@ -10,16 +10,21 @@ export async function parseFormData<T extends z.ZodType>(
   request: Request,
   schema: T
 ) {
-  const formData = await request
-    .formData()
-    .catch((error) => new InvalidFormDataError({ cause: error }));
+  const formData = await request.formData().catch(
+    (error) =>
+      new InvalidFormDataError({
+        cause: error,
+      })
+  );
   if (formData instanceof Error) {
     return formData;
   }
   const formDataObject = Object.fromEntries(formData);
-  const formDataParseResult = schema.safeParse(formDataObject);
-  if (!formDataParseResult.success) {
-    return new InvalidFormDataError({ cause: formDataParseResult.error });
+  const formDataResult = schema.safeParse(formDataObject);
+  if (!formDataResult.success) {
+    return new InvalidFormDataError({
+      cause: formDataResult.error,
+    });
   }
-  return formDataParseResult.data;
+  return formDataResult.data;
 }
