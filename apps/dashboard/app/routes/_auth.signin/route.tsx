@@ -74,6 +74,7 @@ export async function clientAction({
       },
     };
   }
+
   throw redirectDocument(redirectHref);
 }
 
