@@ -3,7 +3,7 @@ import type { ValidationErrors } from "@react-types/shared";
 import * as errore from "errore";
 import { z } from "zod";
 
-import type { FormActionError } from "~/components/action-data-context";
+import type { FormActionError } from "~/components/form-context";
 
 export class AuthClientFetchError extends errore.createTaggedError({
   name: "AuthClientFetchError",

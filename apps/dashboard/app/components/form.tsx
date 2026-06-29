@@ -1,44 +1,33 @@
-import {
-  Form as UIForm,
-  type FormProps as UIFormProps,
-} from "@better-vitals/ui/components/form";
+import type { ValidationErrors } from "@react-types/shared";
+import * as Aria from "react-aria-components/Form";
 import { useSubmit, type SubmitOptions } from "react-router";
 
-import {
-  ActionDataContext,
-  getFormValidationErrors,
-  type FormActionData,
-} from "~/components/action-data-context";
-
-const INITIAL_ACTION_DATA: FormActionData = { status: "idle" };
+import { useFormContext } from "~/components/form-context";
 
 export interface FormProps
-  extends Pick<UIFormProps, "children" | "onSubmit">, SubmitOptions {
-  actionData?: FormActionData;
-}
+  extends Pick<Aria.FormProps, "children" | "onSubmit">, SubmitOptions {}
 
-export function Form({
-  children,
-  actionData = INITIAL_ACTION_DATA,
-  onSubmit,
-  ...rest
-}: FormProps) {
+export function Form({ children, onSubmit, ...rest }: FormProps) {
+  const context = useFormContext();
   const submit = useSubmit();
 
+  let validationErrors: ValidationErrors = {};
+  if (context.status === "error" && context.error.type === "form") {
+    ({ validationErrors } = context.error);
+  }
+
   return (
-    <ActionDataContext value={actionData}>
-      <UIForm
-        validationErrors={getFormValidationErrors(actionData)}
-        onSubmit={(e) => {
-          onSubmit?.(e);
-          if (!e.defaultPrevented) {
-            e.preventDefault();
-            submit(e.currentTarget, rest);
-          }
-        }}
-      >
-        {children}
-      </UIForm>
-    </ActionDataContext>
+    <Aria.Form
+      validationErrors={validationErrors}
+      onSubmit={(event) => {
+        onSubmit?.(event);
+        if (!event.defaultPrevented) {
+          event.preventDefault();
+          submit(event.currentTarget, rest);
+        }
+      }}
+    >
+      {children}
+    </Aria.Form>
   );
 }

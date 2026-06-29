@@ -13,17 +13,15 @@ import {
 } from "react-router";
 import { z } from "zod";
 
-import {
-  ActionFormAlert,
-  type FormActionData,
-} from "~/components/action-data-context";
 import { Form } from "~/components/form";
+import { FormAlert } from "~/components/form-alert";
 import {
   FormCardContent,
   FormCardFooter,
   FormCardHeader,
   FormCardTitle,
 } from "~/components/form-card";
+import { FormProvider, type FormActionData } from "~/components/form-context";
 import { FormFields } from "~/components/form-fields";
 import { SubmitButton } from "~/components/submit-button";
 import { signUpEmail } from "~/lib/auth";
@@ -112,38 +110,40 @@ export default function Signup() {
       <FormCardHeader>
         <FormCardTitle>Start monitoring vitals</FormCardTitle>
       </FormCardHeader>
-      <Form method="POST" actionData={actionData}>
-        <FormCardContent>
-          <ActionFormAlert />
-          <FormFields>
-            <TextField name="name" type="text" isRequired>
-              <Label>Name</Label>
-              <Input variant="secondary" />
-              <FieldError />
-            </TextField>
-            <TextField name="email" type="email" isRequired>
-              <Label>Email</Label>
-              <Input variant="secondary" />
-              <FieldError />
-            </TextField>
-            <TextField name="password" type="password" isRequired>
-              <Label>Password</Label>
-              <Input variant="secondary" />
-              <FieldError />
-            </TextField>
-            <TextField name="confirmPassword" type="password" isRequired>
-              <Label>Confirm password</Label>
-              <Input variant="secondary" />
-              <FieldError />
-            </TextField>
-          </FormFields>
-        </FormCardContent>
-        <FormCardFooter>
-          <SubmitButton isPending={isSubmitting}>
-            {({ isPending }) => (isPending ? "Creating" : "Create account")}
-          </SubmitButton>
-        </FormCardFooter>
-      </Form>
+      <FormProvider value={actionData}>
+        <Form method="POST">
+          <FormCardContent>
+            <FormAlert />
+            <FormFields>
+              <TextField name="name" type="text" isRequired>
+                <Label>Name</Label>
+                <Input variant="secondary" />
+                <FieldError />
+              </TextField>
+              <TextField name="email" type="email" isRequired>
+                <Label>Email</Label>
+                <Input variant="secondary" />
+                <FieldError />
+              </TextField>
+              <TextField name="password" type="password" isRequired>
+                <Label>Password</Label>
+                <Input variant="secondary" />
+                <FieldError />
+              </TextField>
+              <TextField name="confirmPassword" type="password" isRequired>
+                <Label>Confirm password</Label>
+                <Input variant="secondary" />
+                <FieldError />
+              </TextField>
+            </FormFields>
+          </FormCardContent>
+          <FormCardFooter>
+            <SubmitButton isPending={isSubmitting}>
+              {({ isPending }) => (isPending ? "Creating" : "Create account")}
+            </SubmitButton>
+          </FormCardFooter>
+        </Form>
+      </FormProvider>
     </Card>
   );
 }

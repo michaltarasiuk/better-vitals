@@ -4,7 +4,9 @@ import {
   AlertIndicator,
   AlertTitle,
 } from "@better-vitals/ui/components/alert";
-import { tv, type VariantProps } from "tailwind-variants";
+import { tv } from "tailwind-variants";
+
+import { useFormContext } from "~/components/form-context";
 
 const formAlertVariants = tv({
   slots: {
@@ -28,17 +30,28 @@ const formAlertVariants = tv({
   },
 });
 
-interface FormAlertProps extends VariantProps<typeof formAlertVariants> {
-  title: string;
-}
+export function FormAlert() {
+  const context = useFormContext();
 
-export function FormAlert({ title, status }: FormAlertProps) {
+  let status: "success" | "danger";
+  let title: string;
+
+  if (context.status === "success" && context.success.type === "alert") {
+    status = "success";
+    ({ title } = context.success);
+  } else if (context.status === "error" && context.error.type === "alert") {
+    status = "danger";
+    ({ title } = context.error);
+  } else {
+    return null;
+  }
+
   const slots = formAlertVariants({
     status,
   });
 
   return (
-    <Alert status={status} className={slots.root()}>
+    <Alert status="danger" className={slots.root()}>
       <AlertIndicator className={slots.indicator()} />
       <AlertContent>
         <AlertTitle className={slots.title()}>{title}</AlertTitle>

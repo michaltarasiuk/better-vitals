@@ -35,11 +35,9 @@ import {
 import { cn } from "tailwind-variants";
 import { z } from "zod";
 
-import {
-  ActionFormAlert,
-  type FormActionData,
-} from "~/components/action-data-context";
 import { Form } from "~/components/form";
+import { FormAlert } from "~/components/form-alert";
+import { FormProvider, type FormActionData } from "~/components/form-context";
 import { FormFields } from "~/components/form-fields";
 import { SubmitButton } from "~/components/submit-button";
 import { parseFormData } from "~/lib/form/form-data";
@@ -123,63 +121,67 @@ export function InviteModal() {
               <ModalHeading>Invite member</ModalHeading>
               <ModalCloseTrigger />
             </ModalHeader>
-            <Form
-              actionData={fetcher.data}
-              onSubmit={(e) => {
-                e.preventDefault();
-                if (!isDefined(params.slug)) {
-                  return;
-                }
-                fetcher.submit(e.currentTarget, {
-                  method: "POST",
-                  action: href("/organization/:slug/invite", {
-                    slug: params.slug,
-                  }),
-                });
-              }}
-            >
-              <ModalBody className={cn("flex flex-col gap-2")}>
-                <ActionFormAlert />
-                <FormFields>
-                  <TextField name="email" type="email" autoFocus isRequired>
-                    <Label>Email</Label>
-                    <Input variant="secondary" />
-                    <FieldError />
-                  </TextField>
-                  <Select
-                    name="role"
-                    defaultValue={MEMBER_ROLE}
-                    variant="secondary"
-                    fullWidth
-                    isRequired
+            <FormProvider value={fetcher.data}>
+              <Form
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  if (!isDefined(params.slug)) {
+                    return;
+                  }
+                  fetcher.submit(event.currentTarget, {
+                    method: "POST",
+                    action: href("/organization/:slug/invite", {
+                      slug: params.slug,
+                    }),
+                  });
+                }}
+              >
+                <ModalBody className={cn("flex flex-col gap-2")}>
+                  <FormAlert />
+                  <FormFields>
+                    <TextField name="email" type="email" autoFocus isRequired>
+                      <Label>Email</Label>
+                      <Input variant="secondary" />
+                      <FieldError />
+                    </TextField>
+                    <Select
+                      name="role"
+                      defaultValue={MEMBER_ROLE}
+                      variant="secondary"
+                      fullWidth
+                      isRequired
+                    >
+                      <Label>Role</Label>
+                      <SelectTrigger>
+                        <SelectValue />
+                        <SelectIndicator />
+                      </SelectTrigger>
+                      <FieldError />
+                      <SelectPopover>
+                        <ListBox items={INVITE_MEMBER_ROLES}>
+                          {(item) => (
+                            <ListBoxItem id={item.id} textValue={item.label}>
+                              {formatUserRole(item.id)}
+                            </ListBoxItem>
+                          )}
+                        </ListBox>
+                      </SelectPopover>
+                    </Select>
+                  </FormFields>
+                </ModalBody>
+                <ModalFooter>
+                  <Button slot="close" variant="secondary">
+                    Cancel
+                  </Button>
+                  <SubmitButton
+                    className={cn("w-auto")}
+                    isPending={isSubmitting}
                   >
-                    <Label>Role</Label>
-                    <SelectTrigger>
-                      <SelectValue />
-                      <SelectIndicator />
-                    </SelectTrigger>
-                    <FieldError />
-                    <SelectPopover>
-                      <ListBox items={INVITE_MEMBER_ROLES}>
-                        {(item) => (
-                          <ListBoxItem id={item.id} textValue={item.label}>
-                            {formatUserRole(item.id)}
-                          </ListBoxItem>
-                        )}
-                      </ListBox>
-                    </SelectPopover>
-                  </Select>
-                </FormFields>
-              </ModalBody>
-              <ModalFooter>
-                <Button slot="close" variant="secondary">
-                  Cancel
-                </Button>
-                <SubmitButton className={cn("w-auto")} isPending={isSubmitting}>
-                  {({ isPending }) => (isPending ? "Sending" : "Send invite")}
-                </SubmitButton>
-              </ModalFooter>
-            </Form>
+                    {({ isPending }) => (isPending ? "Sending" : "Send invite")}
+                  </SubmitButton>
+                </ModalFooter>
+              </Form>
+            </FormProvider>
           </ModalDialog>
         </ModalContainer>
       </ModalBackdrop>

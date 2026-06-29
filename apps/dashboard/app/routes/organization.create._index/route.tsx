@@ -15,17 +15,15 @@ import {
 } from "react-router";
 import { z } from "zod";
 
-import {
-  ActionFormAlert,
-  type FormActionData,
-} from "~/components/action-data-context";
 import { Form } from "~/components/form";
+import { FormAlert } from "~/components/form-alert";
 import {
   FormCardContent,
   FormCardFooter,
   FormCardHeader,
   FormCardTitle,
 } from "~/components/form-card";
+import { FormProvider, type FormActionData } from "~/components/form-context";
 import { FormFields } from "~/components/form-fields";
 import { SubmitButton } from "~/components/submit-button";
 import { requireAuthenticated } from "~/lib/auth/guards.server";
@@ -108,42 +106,44 @@ export default function OrganizationCreate() {
       <FormCardHeader>
         <FormCardTitle>Name your organization</FormCardTitle>
       </FormCardHeader>
-      <Form method="POST" actionData={actionData}>
-        <FormCardContent>
-          <ActionFormAlert />
-          <FormFields>
-            <TextField
-              name="name"
-              type="text"
-              value={name}
-              onChange={handleNameChange}
-              isRequired
-            >
-              <Label>Name</Label>
-              <Input variant="secondary" />
-              <FieldError />
-            </TextField>
-            <TextField
-              name="slug"
-              type="text"
-              value={slug}
-              onChange={handleSlugChange}
-              isRequired
-            >
-              <Label>Slug</Label>
-              <Input variant="secondary" />
-              <FieldError />
-            </TextField>
-          </FormFields>
-        </FormCardContent>
-        <FormCardFooter>
-          <SubmitButton isPending={isSubmitting}>
-            {({ isPending }) =>
-              isPending ? "Creating" : "Create organization"
-            }
-          </SubmitButton>
-        </FormCardFooter>
-      </Form>
+      <FormProvider value={actionData}>
+        <Form method="POST">
+          <FormCardContent>
+            <FormAlert />
+            <FormFields>
+              <TextField
+                name="name"
+                type="text"
+                value={name}
+                onChange={handleNameChange}
+                isRequired
+              >
+                <Label>Name</Label>
+                <Input variant="secondary" />
+                <FieldError />
+              </TextField>
+              <TextField
+                name="slug"
+                type="text"
+                value={slug}
+                onChange={handleSlugChange}
+                isRequired
+              >
+                <Label>Slug</Label>
+                <Input variant="secondary" />
+                <FieldError />
+              </TextField>
+            </FormFields>
+          </FormCardContent>
+          <FormCardFooter>
+            <SubmitButton isPending={isSubmitting}>
+              {({ isPending }) =>
+                isPending ? "Creating" : "Create organization"
+              }
+            </SubmitButton>
+          </FormCardFooter>
+        </Form>
+      </FormProvider>
     </Card>
   );
 }

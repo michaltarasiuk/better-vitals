@@ -16,17 +16,15 @@ import {
 import { cn } from "tailwind-variants";
 import { z } from "zod";
 
-import {
-  ActionFormAlert,
-  type FormActionData,
-} from "~/components/action-data-context";
 import { Form } from "~/components/form";
+import { FormAlert } from "~/components/form-alert";
 import {
   FormCardContent,
   FormCardFooter,
   FormCardHeader,
   FormCardTitle,
 } from "~/components/form-card";
+import { FormProvider, type FormActionData } from "~/components/form-context";
 import { FormFields } from "~/components/form-fields";
 import { SubmitButton } from "~/components/submit-button";
 import { resetPassword } from "~/lib/auth";
@@ -100,31 +98,33 @@ export default function ResetPassword() {
       <FormCardHeader>
         <FormCardTitle>Set a new password</FormCardTitle>
       </FormCardHeader>
-      <Form method="POST" actionData={actionData}>
-        <FormCardContent>
-          <ActionFormAlert />
-          <FormFields>
-            <TextField name="password" type="password" isRequired>
-              <Label>Password</Label>
-              <Input variant="secondary" />
-              <FieldError />
-            </TextField>
-            <TextField name="confirmPassword" type="password" isRequired>
-              <Label>Confirm password</Label>
-              <Input variant="secondary" />
-              <FieldError />
-            </TextField>
-          </FormFields>
-        </FormCardContent>
-        <FormCardFooter>
-          <SubmitButton isPending={isSubmitting}>
-            {({ isPending }) => (isPending ? "Updating" : "Update password")}
-          </SubmitButton>
-          <Link href="/signin" className={cn("text-center text-sm")}>
-            Back to sign in
-          </Link>
-        </FormCardFooter>
-      </Form>
+      <FormProvider value={actionData}>
+        <Form method="POST">
+          <FormCardContent>
+            <FormAlert />
+            <FormFields>
+              <TextField name="password" type="password" isRequired>
+                <Label>Password</Label>
+                <Input variant="secondary" />
+                <FieldError />
+              </TextField>
+              <TextField name="confirmPassword" type="password" isRequired>
+                <Label>Confirm password</Label>
+                <Input variant="secondary" />
+                <FieldError />
+              </TextField>
+            </FormFields>
+          </FormCardContent>
+          <FormCardFooter>
+            <SubmitButton isPending={isSubmitting}>
+              {({ isPending }) => (isPending ? "Updating" : "Update password")}
+            </SubmitButton>
+            <Link href="/signin" className={cn("text-center text-sm")}>
+              Back to sign in
+            </Link>
+          </FormCardFooter>
+        </Form>
+      </FormProvider>
     </Card>
   );
 }

@@ -19,7 +19,7 @@
     "@radix-ui/react-avatar": "^1.2.0",
     "@react-aria/utils": "^3.34.1",
     "lucide-react": "catalog:",
-    "react-aria-components": "^1.19.0",
+    "react-aria-components": "catalog:",
     "tailwind-merge": "catalog:",
     "tailwind-variants": "catalog:",
     "tailwindcss-react-aria-components": "catalog:",
