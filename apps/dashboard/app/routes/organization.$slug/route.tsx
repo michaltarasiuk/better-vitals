@@ -20,13 +20,7 @@ import {
   SidebarTrigger,
 } from "@better-vitals/ui/components/sidebar";
 import { HomeIcon, LogOutIcon, UserPlusIcon } from "lucide-react";
-import {
-  href,
-  Outlet,
-  Link as RouterLink,
-  useLoaderData,
-  useLocation,
-} from "react-router";
+import { href, Outlet, Link as RouterLink, useLoaderData } from "react-router";
 import { cn } from "tailwind-variants";
 
 import { MissingSessionError } from "~/lib/auth/error";
@@ -144,16 +138,11 @@ interface InviteButtonProps {
 }
 
 function InviteButton({ slug }: InviteButtonProps) {
-  const location = useLocation();
-
   return (
     <RouterLink
       to={href("/organization/:slug/invite", {
         slug,
       })}
-      state={{
-        from: location.pathname,
-      }}
       className={buttonVariants({
         variant: "primary",
         size: "sm",
