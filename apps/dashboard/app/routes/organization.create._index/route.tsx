@@ -86,19 +86,19 @@ export default function OrganizationCreate() {
   const [name, setName] = useState("");
   const [slug, setSlug] = useState("");
 
-  const [isSlugEdited, setIsSlugEdited] = useState(false);
+  const [isSlugDirty, setIsSlugDirty] = useState(false);
 
   const isSubmitting = navigation.state === "submitting";
 
   function handleNameChange(value: string) {
     setName(value);
-    if (!isSlugEdited) {
+    if (!isSlugDirty) {
       setSlug(slugify(value));
     }
   }
   function handleSlugChange(value: string) {
     setSlug(value);
-    setIsSlugEdited(true);
+    setIsSlugDirty(true);
   }
 
   return (
