@@ -51,7 +51,7 @@ export function FormAlert() {
   });
 
   return (
-    <Alert status="danger" className={slots.root()}>
+    <Alert status={status} className={slots.root()}>
       <AlertIndicator className={slots.indicator()} />
       <AlertContent>
         <AlertTitle className={slots.title()}>{title}</AlertTitle>
