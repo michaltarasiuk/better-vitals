@@ -1,4 +1,5 @@
 import { withMinimumDelay } from "@better-vitals/shared/delay";
+import { isDefined } from "@better-vitals/shared/is-defined";
 import { Button } from "@better-vitals/ui/components/button";
 import { FieldError } from "@better-vitals/ui/components/field-error";
 import { Input } from "@better-vitals/ui/components/input";
@@ -24,10 +25,13 @@ import {
 } from "@better-vitals/ui/components/select";
 import { TextField } from "@better-vitals/ui/components/textfield";
 import {
+  href,
   redirect,
   useActionData,
+  useLocation,
   useNavigate,
   useNavigation,
+  type To,
 } from "react-router";
 import { cn } from "tailwind-variants";
 import { z } from "zod";
@@ -49,12 +53,18 @@ import { formatUserRole } from "~/lib/user/display";
 
 import type { Route } from "./+types/route";
 
+const LocationStateSchema = z.object({
+  from: z.string(),
+});
+
 const FormDataSchema = z.object({
   email: z.string(),
   role: z.enum([MEMBER_ROLE, ADMIN_ROLE]),
+  from: z.string().optional(),
 });
 
 export async function clientAction({
+  params,
   request,
 }: Route.ClientActionArgs): Promise<FormActionData> {
   const formData = await parseFormData(request, FormDataSchema);
@@ -67,7 +77,7 @@ export async function clientAction({
       },
     };
   }
-  const { email, role } = formData;
+  const { email, role, from = getOrganizationHref(params.slug) } = formData;
 
   const invitation = await withMinimumDelay(
     inviteMember({
@@ -82,18 +92,31 @@ export async function clientAction({
     };
   }
 
-  throw redirect("..");
+  throw redirect(from);
 }
 
-export default function OrganizationInvite() {
+function getOrganizationHref(slug: string) {
+  return href("/organization/:slug", {
+    slug,
+  });
+}
+
+export default function OrganizationInvite({ params }: Route.ComponentProps) {
+  const location = useLocation();
   const navigate = useNavigate();
   const navigation = useNavigation();
   const actionData = useActionData<typeof clientAction>();
 
+  function getFromHref() {
+    const parsed = LocationStateSchema.safeParse(location.state);
+    return parsed.success ? parsed.data.from : null;
+  }
   function closeModal() {
-    navigate("..");
+    const to: To = getFromHref() ?? getOrganizationHref(params.slug);
+    navigate(to);
   }
 
+  const fromHref = getFromHref();
   const isSubmitting = navigation.state === "submitting";
 
   return (
@@ -107,6 +130,10 @@ export default function OrganizationInvite() {
             </ModalHeader>
             <FormProvider value={actionData}>
               <Form method="POST">
+                {isDefined(fromHref) && (
+                  <input type="hidden" name="from" value={fromHref} />
+                )}
+
                 <ModalBody className={cn("flex flex-col gap-2")}>
                   <FormAlert />
                   <FormFields>
