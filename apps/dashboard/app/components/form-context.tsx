@@ -2,17 +2,13 @@ import { createContext } from "@better-vitals/shared/create-context";
 import type { ValidationErrors } from "@react-types/shared";
 import type { ContextType } from "react";
 
-export type FormActionSuccess =
-  | { type: "alert"; title: string }
-  | { type: "dismiss" };
-
 export type FormActionError =
   | { type: "alert"; title: string }
   | { type: "form"; validationErrors: ValidationErrors };
 
 export type FormActionData =
   | { status: "idle" }
-  | { status: "success"; success: FormActionSuccess }
+  | { status: "success"; success: { type: "alert"; title: string } }
   | { status: "error"; error: FormActionError };
 
 type FormContextValue = ContextType<typeof FormContext>;
@@ -20,16 +16,16 @@ type FormContextValue = ContextType<typeof FormContext>;
 export const [FormContext, useFormContext] =
   createContext<FormActionData>("FormContext");
 
-const INITIAL_VALUE: FormContextValue = {
-  status: "idle",
-};
+const INITIAL_VALUE: FormContextValue = { status: "idle" };
+
+interface FormProviderProps {
+  value?: FormContextValue;
+  children: React.ReactNode;
+}
 
 export function FormProvider({
   value = INITIAL_VALUE,
   children,
-}: {
-  value?: FormContextValue;
-  children: React.ReactNode;
-}) {
+}: FormProviderProps) {
   return <FormContext value={value}>{children}</FormContext>;
 }

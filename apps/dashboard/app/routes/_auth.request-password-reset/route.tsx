@@ -3,7 +3,6 @@ import { Card } from "@better-vitals/ui/components/card";
 import { FieldError } from "@better-vitals/ui/components/field-error";
 import { Input } from "@better-vitals/ui/components/input";
 import { Label } from "@better-vitals/ui/components/label";
-import { Link } from "@better-vitals/ui/components/link";
 import { TextField } from "@better-vitals/ui/components/textfield";
 import {
   href,
@@ -25,6 +24,7 @@ import {
 } from "~/components/form-card";
 import { FormProvider, type FormActionData } from "~/components/form-context";
 import { FormFields } from "~/components/form-fields";
+import { Link } from "~/components/link";
 import { SubmitButton } from "~/components/submit-button";
 import { requestPasswordReset } from "~/lib/auth";
 import { mapAuthErrorToFormActionError } from "~/lib/auth/error";
@@ -101,7 +101,7 @@ export default function RequestPasswordReset() {
             <SubmitButton isPending={isSubmitting}>
               {({ isPending }) => (isPending ? "Sending" : "Send reset link")}
             </SubmitButton>
-            <Link href="/signin" className={cn("text-center text-sm")}>
+            <Link href={href("/signin")} className={cn("text-center text-sm")}>
               Back to sign in
             </Link>
           </FormCardFooter>

@@ -5,6 +5,7 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@better-vitals/ui/components/avatar";
+import { buttonVariants } from "@better-vitals/ui/components/button";
 import { Navbar, NavbarSpacer } from "@better-vitals/ui/components/navbar";
 import {
   Sidebar,
@@ -18,8 +19,8 @@ import {
   SidebarMenuLabel,
   SidebarTrigger,
 } from "@better-vitals/ui/components/sidebar";
-import { HomeIcon, LogOutIcon } from "lucide-react";
-import { Outlet, useLoaderData } from "react-router";
+import { HomeIcon, LogOutIcon, UserPlusIcon } from "lucide-react";
+import { href, Outlet, Link as RouterLink, useLoaderData } from "react-router";
 import { cn } from "tailwind-variants";
 
 import { MissingSessionError } from "~/lib/auth/error";
@@ -30,7 +31,6 @@ import {
   getAvatarFallback,
   getTimeOfDayGreeting,
 } from "~/lib/user/display";
-import { InviteModal } from "~/routes/organization.$slug.invite/invite";
 
 import type { Route } from "./+types/route";
 
@@ -46,7 +46,7 @@ export function loader({ context }: Route.LoaderArgs) {
   };
 }
 
-export default function OrganizationLayout() {
+export default function OrganizationLayout({ params }: Route.ComponentProps) {
   const { user } = useLoaderData<typeof loader>();
   return (
     <AppLayout
@@ -86,7 +86,7 @@ export default function OrganizationLayout() {
           <SidebarTrigger className={cn("-ms-2 hidden", "md:inline-flex")} />
           <UserGreeting user={user} />
           <NavbarSpacer />
-          <InviteModal />
+          <InviteButton slug={params.slug} />
         </Navbar>
       }
     >
@@ -130,5 +130,26 @@ function UserProfile({ user }: UserProfileProps) {
         )}
       </div>
     </div>
+  );
+}
+
+interface InviteButtonProps {
+  slug: Route.ComponentProps["params"]["slug"];
+}
+
+function InviteButton({ slug }: InviteButtonProps) {
+  return (
+    <RouterLink
+      to={href("/organization/:slug/invite", {
+        slug,
+      })}
+      className={buttonVariants({
+        variant: "primary",
+        size: "sm",
+      })}
+    >
+      <UserPlusIcon aria-hidden />
+      Invite
+    </RouterLink>
   );
 }
