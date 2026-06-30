@@ -87,9 +87,7 @@ export function ListBoxItemIndicator({
         <svg
           aria-hidden
           data-slot="list-box-item-indicator--checkmark"
-          fill="none"
           role="presentation"
-          stroke="currentColor"
           strokeDasharray={22}
           strokeDashoffset={isSelected ? 44 : 66}
           strokeLinecap="round"

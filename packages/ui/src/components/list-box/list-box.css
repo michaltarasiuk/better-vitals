@@ -60,7 +60,7 @@
   }
 
   [data-slot="list-box-item-indicator--checkmark"] {
-    @apply size-2 transition-all duration-300;
+    @apply size-2 fill-none stroke-current transition-all duration-300;
 
     @variant motion-reduce {
       @apply transition-none;
