@@ -188,11 +188,6 @@
       var(--surface-foreground) 6%,
       transparent
     );
-    --sidebar-edge-outline: color-mix(
-      in oklab,
-      var(--foreground) 8%,
-      transparent
-    );
 
     --scrollbar: var(--scrollbar-thumb);
     --scrollbar-thumb: color-mix(in oklch, var(--foreground) 15%, transparent);
@@ -371,12 +366,6 @@
 
     --focus: var(--accent);
     --link: var(--foreground);
-
-    --sidebar-edge-outline: color-mix(
-      in oklab,
-      var(--foreground) 10%,
-      transparent
-    );
 
     --scrollbar: var(--scrollbar-thumb);
     --scrollbar-thumb: color-mix(in oklch, var(--foreground) 15%, transparent);
