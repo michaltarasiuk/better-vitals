@@ -54,13 +54,15 @@ import { formatUserRole } from "~/lib/user/display";
 import type { Route } from "./+types/route";
 
 const LocationStateSchema = z.object({
-  from: z.string(),
+  background: z.object({
+    href: z.string(),
+  }),
 });
 
 const FormDataSchema = z.object({
   email: z.string(),
   role: z.enum([MEMBER_ROLE, ADMIN_ROLE]),
-  from: z.string().optional(),
+  backgroundHref: z.string().optional(),
 });
 
 export async function clientAction({
@@ -77,7 +79,11 @@ export async function clientAction({
       },
     };
   }
-  const { email, role, from = getOrganizationHref(params.slug) } = formData;
+  const {
+    email,
+    role,
+    backgroundHref = getOrganizationHref(params.slug),
+  } = formData;
 
   const invitation = await withMinimumDelay(
     inviteMember({
@@ -92,7 +98,7 @@ export async function clientAction({
     };
   }
 
-  throw redirect(from);
+  throw redirect(backgroundHref);
 }
 
 function getOrganizationHref(slug: string) {
@@ -107,16 +113,16 @@ export default function OrganizationInvite({ params }: Route.ComponentProps) {
   const navigation = useNavigation();
   const actionData = useActionData<typeof clientAction>();
 
-  function getFromHref() {
+  function getBackgroundHref() {
     const parsed = LocationStateSchema.safeParse(location.state);
-    return parsed.success ? parsed.data.from : null;
+    return parsed.success ? parsed.data.background.href : null;
   }
   function closeModal() {
-    const to: To = getFromHref() ?? getOrganizationHref(params.slug);
+    const to: To = getBackgroundHref() ?? getOrganizationHref(params.slug);
     navigate(to);
   }
 
-  const fromHref = getFromHref();
+  const backgroundHref = getBackgroundHref();
   const isSubmitting = navigation.state === "submitting";
 
   return (
@@ -130,8 +136,12 @@ export default function OrganizationInvite({ params }: Route.ComponentProps) {
             </ModalHeader>
             <FormProvider value={actionData}>
               <Form method="POST">
-                {isDefined(fromHref) && (
-                  <input type="hidden" name="from" value={fromHref} />
+                {isDefined(backgroundHref) && (
+                  <input
+                    type="hidden"
+                    name="backgroundHref"
+                    value={backgroundHref}
+                  />
                 )}
 
                 <ModalBody className={cn("flex flex-col gap-2")}>

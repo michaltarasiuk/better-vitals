@@ -152,7 +152,7 @@ function InviteButton({ slug }: InviteButtonProps) {
         slug,
       })}
       state={{
-        from: location.pathname,
+        background: location,
       }}
       className={buttonVariants({
         variant: "primary",
