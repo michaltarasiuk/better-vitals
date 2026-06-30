@@ -2,18 +2,17 @@ import { createContext } from "@better-vitals/shared/create-context";
 import type { ValidationErrors } from "@react-types/shared";
 import type { ContextType } from "react";
 
-export interface FormAlert {
-  type: "alert";
-  title: string;
-}
+export type FormActionSuccess =
+  | { type: "alert"; title: string }
+  | { type: "dismiss" };
 
 export type FormActionError =
-  | FormAlert
+  | { type: "alert"; title: string }
   | { type: "form"; validationErrors: ValidationErrors };
 
 export type FormActionData =
   | { status: "idle" }
-  | { status: "success"; success: FormAlert }
+  | { status: "success"; success: FormActionSuccess }
   | { status: "error"; error: FormActionError };
 
 type FormContextValue = ContextType<typeof FormContext>;
