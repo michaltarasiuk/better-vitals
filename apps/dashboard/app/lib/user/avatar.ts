@@ -1,3 +1,7 @@
+export function getAvatarFallback([first = ""]: string) {
+  return first.toUpperCase();
+}
+
 export function pickAvatar() {
   return AVATARS[Math.floor(Math.random() * AVATARS.length)];
 }
