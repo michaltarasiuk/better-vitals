@@ -51,6 +51,7 @@ export interface AvatarImageProps extends React.ComponentProps<
 
 export function AvatarImage({ className, ...rest }: AvatarImageProps) {
   const { variant, size, color } = useAvatarContext();
+
   return (
     <RadixAvatar.Image
       className={slots.image({
@@ -74,6 +75,7 @@ export function AvatarFallback({
   ...rest
 }: AvatarFallbackProps) {
   const { variant, size, color } = useAvatarContext();
+
   return (
     <RadixAvatar.Fallback
       data-slot="avatar-fallback"

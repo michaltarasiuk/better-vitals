@@ -100,7 +100,7 @@
 
 .accordion--surface .accordion__item {
   &::after {
-    @apply inset-s-4 inset-e-4 w-auto;
+    @apply inset-s-4 inset-e-4;
   }
 
   &:first-child [data-slot="accordion-trigger"] {

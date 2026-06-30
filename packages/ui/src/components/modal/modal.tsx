@@ -244,12 +244,11 @@ export interface ModalCloseTriggerProps extends CloseButtonProps {}
 
 export function ModalCloseTrigger({
   children,
-  className,
   ...rest
 }: ModalCloseTriggerProps) {
   return (
     <div data-slot="modal-close-trigger" className={slots.closeTrigger()}>
-      <CloseButton slot="close" className={className} {...rest}>
+      <CloseButton slot="close" {...rest}>
         {children}
       </CloseButton>
     </div>

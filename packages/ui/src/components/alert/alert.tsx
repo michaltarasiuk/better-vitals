@@ -64,6 +64,7 @@ export function AlertIndicator({
 }: AlertIndicatorProps) {
   const { status = "default" } = useAlertContext();
   const Icon = ALERT_STATUS_ICONS[status];
+
   return (
     <div
       data-slot="alert-indicator"
@@ -72,9 +73,7 @@ export function AlertIndicator({
       })}
       {...rest}
     >
-      {children ?? (
-        <Icon aria-hidden data-slot="alert-default-icon" size={16} />
-      )}
+      {children ?? <Icon aria-hidden data-slot="alert-default-icon" />}
     </div>
   );
 }

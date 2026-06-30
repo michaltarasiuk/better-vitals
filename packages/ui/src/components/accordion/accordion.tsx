@@ -24,8 +24,8 @@ export interface AccordionProps
 export function Accordion({
   children,
   variant,
-  className,
   hideSeparator = false,
+  className,
   ...rest
 }: AccordionProps) {
   const content = (
@@ -72,6 +72,7 @@ export function AccordionItem({
   ...rest
 }: AccordionItemProps) {
   const { variant, hideSeparator } = useAccordionContext();
+
   return (
     <Aria.Disclosure
       data-slot="accordion-item"
@@ -98,6 +99,7 @@ export function AccordionIndicator({
 }: AccordionIndicatorProps) {
   const { variant } = useAccordionContext();
   const { isExpanded = false } = use(Aria.DisclosureStateContext) ?? {};
+
   return (
     <span
       data-slot="accordion-indicator"
@@ -108,7 +110,7 @@ export function AccordionIndicator({
       })}
       {...rest}
     >
-      {children ?? <ChevronDownIcon aria-hidden size={16} />}
+      {children ?? <ChevronDownIcon aria-hidden />}
     </span>
   );
 }
@@ -121,6 +123,7 @@ export function AccordionHeading({
   ...rest
 }: AccordionHeadingProps) {
   const { variant } = useAccordionContext();
+
   return (
     <Aria.Heading
       data-slot="accordion-heading"
@@ -143,6 +146,7 @@ export function AccordionTrigger({
   ...rest
 }: AccordionTriggerProps) {
   const { variant } = useAccordionContext();
+
   return (
     <Aria.Button
       slot="trigger"
@@ -168,6 +172,7 @@ export function AccordionBody({
   ...rest
 }: AccordionBodyProps) {
   const { variant } = useAccordionContext();
+
   return (
     <div
       data-slot="accordion-body"
@@ -197,6 +202,7 @@ export function AccordionPanel({
 }: AccordionPanelProps) {
   const { variant } = useAccordionContext();
   const { isExpanded = false } = use(Aria.DisclosureStateContext) ?? {};
+
   return (
     <Aria.DisclosurePanel
       data-slot="accordion-panel"

@@ -1,5 +1,5 @@
 .alert {
-  @apply flex w-full flex-row items-start justify-start gap-4 rounded-[min(32px,var(--radius-3xl))] bg-surface px-4 py-3 shadow-surface;
+  @apply flex w-full items-start gap-4 rounded-[min(32px,var(--radius-3xl))] bg-surface px-4 py-3 shadow-surface;
 }
 
 .alert__content {
@@ -22,42 +22,32 @@
   @apply text-sm text-muted;
 }
 
-.alert--default .alert__indicator {
-  @apply text-foreground;
+.alert--default {
+  :is(.alert__indicator, .alert__title) {
+    @apply text-foreground;
+  }
 }
 
-.alert--default .alert__title {
-  @apply text-foreground;
+.alert--accent {
+  :is(.alert__indicator, .alert__title) {
+    @apply text-accent-soft-foreground;
+  }
 }
 
-.alert--accent .alert__indicator {
-  @apply text-accent-soft-foreground;
+.alert--success {
+  :is(.alert__indicator, .alert__title) {
+    @apply text-success-soft-foreground;
+  }
 }
 
-.alert--accent .alert__title {
-  @apply text-accent-soft-foreground;
+.alert--warning {
+  :is(.alert__indicator, .alert__title) {
+    @apply text-warning-soft-foreground;
+  }
 }
 
-.alert--success .alert__indicator {
-  @apply text-success-soft-foreground;
-}
-
-.alert--success .alert__title {
-  @apply text-success-soft-foreground;
-}
-
-.alert--warning .alert__indicator {
-  @apply text-warning-soft-foreground;
-}
-
-.alert--warning .alert__title {
-  @apply text-warning-soft-foreground;
-}
-
-.alert--danger .alert__indicator {
-  @apply text-danger-soft-foreground;
-}
-
-.alert--danger .alert__title {
-  @apply text-danger-soft-foreground;
+.alert--danger {
+  :is(.alert__indicator, .alert__title) {
+    @apply text-danger-soft-foreground;
+  }
 }

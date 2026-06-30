@@ -4,12 +4,12 @@ export const separatorVariants = tv({
   base: "separator",
   variants: {
     variant: {
-      default: "separator--default",
+      default: "",
       secondary: "separator--secondary",
       tertiary: "separator--tertiary",
     },
     orientation: {
-      horizontal: "separator--horizontal",
+      horizontal: "",
       vertical: "separator--vertical",
     },
   },

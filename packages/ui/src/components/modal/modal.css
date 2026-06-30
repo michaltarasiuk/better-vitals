@@ -24,7 +24,7 @@
 }
 
 .modal__backdrop {
-  @apply fixed inset-0 z-50 flex h-(--visual-viewport-height) w-full flex-row items-center justify-center;
+  @apply fixed inset-0 z-50 flex h-(--visual-viewport-height) w-full items-center justify-center;
 
   @variant entering {
     @apply animate-in duration-150 ease-out will-change-[opacity] fade-in-0;
@@ -197,7 +197,7 @@
 }
 
 .modal__body {
-  @apply -m-1 mbs-0 mbe-0 min-h-0 flex-1 overflow-visible p-1 text-sm leading-snug text-muted;
+  @apply -m-1 mbs-0 mbe-0 min-h-0 flex-1 p-1 text-sm leading-snug text-muted;
 }
 
 .modal__body--scroll-inside {
@@ -210,7 +210,7 @@
 }
 
 .modal__footer {
-  @apply mbs-0 flex flex-row items-center justify-end gap-2;
+  @apply mbs-0 flex items-center justify-end gap-2;
 }
 
 .modal__close-trigger {

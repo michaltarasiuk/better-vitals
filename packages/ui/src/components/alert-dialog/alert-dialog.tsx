@@ -85,11 +85,12 @@ export interface AlertDialogBackdropProps extends Aria.ModalOverlayProps {
 
 export function AlertDialogBackdrop({
   children,
-  className,
   onClick,
+  className,
   ...rest
 }: AlertDialogBackdropProps) {
   const { variant } = useAlertDialogContext();
+
   return (
     <Aria.ModalOverlay
       data-slot="alert-dialog-backdrop"
@@ -118,6 +119,7 @@ export function AlertDialogContainer({
   ...rest
 }: AlertDialogContainerProps) {
   const { placement } = useAlertDialogContext();
+
   return (
     <Aria.Modal
       data-slot="alert-dialog-container"
@@ -138,6 +140,7 @@ export function AlertDialogDialog({
   ...rest
 }: AlertDialogDialogProps) {
   const { size, placement } = useAlertDialogContext();
+
   return (
     <Aria.Dialog
       role="alertdialog"
@@ -244,6 +247,7 @@ export function AlertDialogIcon({
 }: AlertDialogIconProps) {
   const { status = "danger" } = useAlertDialogContext();
   const Icon = ALERT_DIALOG_STATUS_ICONS[status];
+
   return (
     <div
       data-slot="alert-dialog-icon"
@@ -253,9 +257,7 @@ export function AlertDialogIcon({
       })}
       {...rest}
     >
-      {children ?? (
-        <Icon aria-hidden data-slot="alert-dialog-default-icon" size={16} />
-      )}
+      {children ?? <Icon aria-hidden data-slot="alert-dialog-default-icon" />}
     </div>
   );
 }

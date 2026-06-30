@@ -4,7 +4,7 @@
   --button-bg-pressed: var(--button-bg-hover);
   --button-fg: currentColor;
 
-  @apply relative isolate inline-flex h-10 w-fit origin-center transform-gpu cursor-(--cursor-interactive) items-center justify-center gap-2 rounded-3xl bg-(--button-bg) px-4 text-sm font-medium whitespace-nowrap text-(--button-fg) outline-none select-none no-highlight;
+  @apply relative isolate inline-flex h-10 w-fit transform-gpu cursor-(--cursor-interactive) items-center justify-center gap-2 rounded-3xl bg-(--button-bg) px-4 text-sm font-medium whitespace-nowrap text-(--button-fg) outline-none select-none no-highlight;
   transition:
     transform 250ms var(--ease-smooth),
     scale 250ms var(--ease-smooth),
@@ -40,7 +40,7 @@
   }
 
   svg:not([data-slot="spinner"] svg, [data-slot="link-icon"] svg) {
-    @apply pointer-events-none -ms-1 -me-1 mbs-1 mbe-1 size-5 shrink-0 self-center;
+    @apply pointer-events-none -ms-1 -me-1 mbs-1 mbe-1 size-5 shrink-0;
 
     @variant sm {
       @apply mbs-1 mbe-1 size-4;
@@ -107,7 +107,7 @@
 .button--outline {
   --button-bg-hover: var(--default-soft-hover);
 
-  @apply border-(length:--border-width) border-solid border-border;
+  @apply border-(length:--border-width) border-border;
 }
 
 .button--danger {

@@ -13,38 +13,14 @@
 
   @variant hover {
     @apply decoration-muted;
-
-    .link__icon {
-      @apply opacity-100;
-    }
   }
 
   @variant focus-visible {
     @apply focus-ring;
-
-    .link__icon {
-      @apply opacity-100;
-    }
   }
 
   @variant disabled {
     @apply pointer-events-none cursor-(--cursor-disabled) opacity-(--disabled-opacity);
-  }
-
-  .link__icon {
-    @apply pointer-events-none inline-flex size-2 shrink-0 items-center justify-center text-current opacity-60 transition-[opacity] duration-150 ease-out;
-
-    &[data-default-icon="true"] {
-      @apply ms-1 pb-2;
-    }
-
-    @variant motion-reduce {
-      @apply transition-none;
-    }
-
-    svg {
-      @apply transform-gpu;
-    }
   }
 
   &.button {

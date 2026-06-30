@@ -69,13 +69,7 @@ export function PopoverArrow({ children, ...rest }: PopoverArrowProps) {
   return (
     <Aria.OverlayArrow data-slot="popover-overlay-arrow-group" {...rest}>
       {children ?? (
-        <TriangleIcon
-          aria-hidden
-          data-slot="popover-overlay-arrow"
-          fill="currentColor"
-          size={12}
-          stroke="none"
-        />
+        <TriangleIcon aria-hidden data-slot="popover-overlay-arrow" />
       )}
     </Aria.OverlayArrow>
   );

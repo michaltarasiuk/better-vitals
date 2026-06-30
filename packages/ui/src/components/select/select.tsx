@@ -56,6 +56,7 @@ export function SelectTrigger({
   ...rest
 }: SelectTriggerProps) {
   const { variant, fullWidth } = useSelectContext();
+
   return (
     <Aria.Button
       data-slot="select-trigger"
@@ -101,6 +102,7 @@ export function SelectIndicator({
   ...rest
 }: SelectIndicatorProps) {
   const { isOpen = false } = use(Aria.SelectStateContext) ?? {};
+
   return (
     <span
       data-slot="select-indicator"
@@ -110,7 +112,7 @@ export function SelectIndicator({
       })}
       {...rest}
     >
-      {children ?? <ChevronDownIcon aria-hidden size={16} />}
+      {children ?? <ChevronDownIcon aria-hidden />}
     </span>
   );
 }
@@ -131,8 +133,8 @@ export function SelectPopover({
     >
       <Aria.Popover
         data-slot="select-popover"
-        className={cnRenderProps(className, slots.popover())}
         placement={placement}
+        className={cnRenderProps(className, slots.popover())}
         {...rest}
       >
         {children}

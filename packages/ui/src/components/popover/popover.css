@@ -52,7 +52,7 @@
   }
 
   [data-slot="popover-overlay-arrow"] {
-    @apply block size-3 origin-center text-overlay;
+    @apply block size-3 fill-current stroke-0 text-overlay;
   }
 
   [data-slot="popover-overlay-arrow-group"] {

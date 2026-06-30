@@ -3,7 +3,7 @@
 }
 
 .list-box-item {
-  @apply relative flex min-h-9 w-full origin-center transform-gpu cursor-(--cursor-interactive) items-center justify-start gap-3 rounded-2xl px-2 py-2 outline-none no-highlight;
+  @apply relative flex min-h-9 w-full transform-gpu cursor-(--cursor-interactive) items-center gap-3 rounded-2xl px-2 py-2 outline-none no-highlight;
   transition:
     transform 250ms var(--ease-out-quart),
     scale 250ms var(--ease-out-quart),
@@ -69,11 +69,7 @@
 }
 
 .list-box-item--danger {
-  .list-box-item__indicator {
-    @apply text-danger;
-  }
-
-  [data-slot="label"] {
+  :is(.list-box-item__indicator, [data-slot="label"]) {
     @apply text-danger;
   }
 }

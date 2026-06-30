@@ -13,7 +13,7 @@
 }
 
 .select__trigger {
-  @apply relative isolate inline-flex min-h-9 cursor-(--cursor-interactive) rounded-field border-(length:--border-width-field) border-solid border-(--field-border) bg-field px-3 py-2 text-sm text-field-foreground shadow-field outline-none select-none no-highlight;
+  @apply relative isolate inline-flex min-h-9 cursor-(--cursor-interactive) rounded-field border-(length:--border-width-field) border-(--field-border) bg-field px-3 py-2 text-sm text-field-foreground shadow-field outline-none select-none no-highlight;
   transition:
     background-color 150ms var(--ease-smooth),
     border-color 150ms var(--ease-smooth),
@@ -65,7 +65,7 @@
 }
 
 .select__value {
-  @apply flex-1 text-start text-base wrap-break-word text-current;
+  @apply flex-1 text-base wrap-break-word text-current;
 
   @variant sm {
     @apply text-sm;

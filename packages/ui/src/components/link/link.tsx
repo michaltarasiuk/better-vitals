@@ -1,5 +1,3 @@
-import { isDefined } from "@better-vitals/shared/is-defined";
-import { ArrowUpRightIcon } from "lucide-react";
 import * as Aria from "react-aria-components/Link";
 
 import { cnRenderProps } from "../../lib/cn-render-props";
@@ -18,22 +16,5 @@ export function Link({ children, className, ...rest }: LinkProps) {
     >
       {children}
     </Aria.Link>
-  );
-}
-
-export interface LinkIconProps extends React.ComponentProps<"span"> {}
-
-export function LinkIcon({ children, className, ...rest }: LinkIconProps) {
-  return (
-    <span
-      data-slot="link-icon"
-      data-default-icon={!isDefined(children)}
-      className={slots.icon({
-        className,
-      })}
-      {...rest}
-    >
-      {children ?? <ArrowUpRightIcon aria-hidden size={9} />}
-    </span>
   );
 }

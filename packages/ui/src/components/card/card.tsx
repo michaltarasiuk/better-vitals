@@ -13,7 +13,7 @@ const [CardContext, useCardContext] =
 export interface CardProps extends React.ComponentProps<"div">, CardVariants {}
 
 export function Card({ children, variant, className, ...rest }: CardProps) {
-  const root = (
+  const content = (
     <div
       data-slot="card"
       className={slots.base({
@@ -32,14 +32,14 @@ export function Card({ children, variant, className, ...rest }: CardProps) {
       }}
     >
       {variant === "transparent" ? (
-        root
+        content
       ) : (
         <SurfaceContext
           value={{
             variant,
           }}
         >
-          {root}
+          {content}
         </SurfaceContext>
       )}
     </CardContext>
@@ -50,6 +50,7 @@ export interface CardHeaderProps extends React.ComponentProps<"div"> {}
 
 export function CardHeader({ children, className, ...rest }: CardHeaderProps) {
   const { variant } = useCardContext();
+
   return (
     <div
       data-slot="card-header"
@@ -68,6 +69,7 @@ export interface CardTitleProps extends React.ComponentProps<"h3"> {}
 
 export function CardTitle({ children, className, ...rest }: CardTitleProps) {
   const { variant } = useCardContext();
+
   return (
     <h3
       data-slot="card-title"
@@ -90,6 +92,7 @@ export function CardDescription({
   ...rest
 }: CardDescriptionProps) {
   const { variant } = useCardContext();
+
   return (
     <p
       data-slot="card-description"
@@ -112,6 +115,7 @@ export function CardContent({
   ...rest
 }: CardContentProps) {
   const { variant } = useCardContext();
+
   return (
     <div
       data-slot="card-content"
@@ -130,6 +134,7 @@ export interface CardFooterProps extends React.ComponentProps<"div"> {}
 
 export function CardFooter({ children, className, ...rest }: CardFooterProps) {
   const { variant } = useCardContext();
+
   return (
     <div
       data-slot="card-footer"

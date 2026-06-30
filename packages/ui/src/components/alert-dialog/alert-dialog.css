@@ -24,7 +24,7 @@
 }
 
 .alert-dialog__backdrop {
-  @apply fixed inset-0 z-50 flex h-(--visual-viewport-height) w-full flex-row items-center justify-center;
+  @apply fixed inset-0 z-50 flex h-(--visual-viewport-height) w-full items-center justify-center;
 
   @variant entering {
     @apply animate-in duration-150 ease-out will-change-[opacity] fade-in-0;
@@ -184,12 +184,12 @@
 }
 
 .alert-dialog__body {
-  @apply -m-1 mbs-0 mbe-0 min-h-0 flex-1 scrollbar overflow-y-auto overscroll-contain p-1 text-sm leading-snug text-muted;
+  @apply -ms-1 -me-1 min-h-0 flex-1 scrollbar overflow-y-auto overscroll-contain p-1 text-sm leading-snug text-muted;
   -webkit-overflow-scrolling: touch;
 }
 
 .alert-dialog__footer {
-  @apply mbs-0 flex flex-row items-center justify-end gap-2;
+  @apply mbs-0 flex items-center justify-end gap-2;
 }
 
 .alert-dialog__close-trigger {

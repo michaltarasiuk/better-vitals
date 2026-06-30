@@ -19,7 +19,7 @@
 }
 
 .card__footer {
-  @apply flex flex-row items-center;
+  @apply flex items-center;
 }
 
 .card--transparent {

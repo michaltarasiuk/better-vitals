@@ -7,14 +7,15 @@ import { inputVariants, type InputVariants } from "./input";
 export interface InputProps extends Aria.InputProps, InputVariants {}
 
 export function Input({ variant, fullWidth, className, ...rest }: InputProps) {
-  const textFieldContext = useTextFieldContext();
+  const context = useTextFieldContext();
+
   return (
     <Aria.Input
       data-slot="input"
       className={cnRenderProps(
         className,
         inputVariants({
-          variant: variant ?? textFieldContext.variant,
+          variant: variant ?? context.variant,
           fullWidth,
         })
       )}

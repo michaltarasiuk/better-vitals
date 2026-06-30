@@ -27,7 +27,7 @@ export function CloseButton({
     >
       {composeRenderProps(
         children,
-        (userChildren) => userChildren ?? <XIcon aria-hidden size={16} />
+        (userChildren) => userChildren ?? <XIcon aria-hidden />
       )}
     </Aria.Button>
   );

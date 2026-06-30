@@ -44,6 +44,7 @@ export function TableScrollContainer({
   ...rest
 }: TableScrollContainerProps) {
   const { variant } = useTableContext();
+
   return (
     <div
       data-slot="table-scroll-container"
@@ -66,6 +67,7 @@ export function TableContent({
   ...rest
 }: TableContentProps) {
   const { variant } = useTableContext();
+
   return (
     <Aria.Table
       data-slot="table-content"
@@ -92,6 +94,7 @@ export function TableHeader<T extends object>({
   ...rest
 }: TableHeaderProps<T>) {
   const { variant } = useTableContext();
+
   return (
     <Aria.TableHeader
       data-slot="table-header"
@@ -116,6 +119,7 @@ export function TableColumn({
   ...rest
 }: TableColumnProps) {
   const { variant } = useTableContext();
+
   return (
     <Aria.Column
       data-slot="table-column"
@@ -142,6 +146,7 @@ export function TableBody<T extends object>({
   ...rest
 }: TableBodyProps<T>) {
   const { variant } = useTableContext();
+
   return (
     <Aria.TableBody
       data-slot="table-body"
@@ -166,6 +171,7 @@ export function TableRow<T extends object>({
   ...rest
 }: TableRowProps<T>) {
   const { variant } = useTableContext();
+
   return (
     <Aria.Row
       data-slot="table-row"
@@ -186,6 +192,7 @@ export interface TableCellProps extends Aria.CellProps {}
 
 export function TableCell({ children, className, ...rest }: TableCellProps) {
   const { variant } = useTableContext();
+
   return (
     <Aria.Cell
       data-slot="table-cell"
@@ -210,6 +217,7 @@ export function TableFooter({
   ...rest
 }: TableFooterProps) {
   const { variant } = useTableContext();
+
   return (
     <div
       data-slot="table-footer"
@@ -251,6 +259,7 @@ export function TableColumnResizer({
   ...rest
 }: TableColumnResizerProps) {
   const { variant } = useTableContext();
+
   return (
     <Aria.ColumnResizer
       data-slot="table-column-resizer"
@@ -275,6 +284,7 @@ export function TableLoadMoreItem({
   ...rest
 }: TableLoadMoreItemProps) {
   const { variant } = useTableContext();
+
   return (
     <Aria.TableLoadMoreItem
       data-slot="table-load-more"
@@ -297,6 +307,7 @@ export function TableLoadMoreContent({
   ...rest
 }: TableLoadMoreContentProps) {
   const { variant } = useTableContext();
+
   return (
     <div
       data-slot="table-load-more-content"

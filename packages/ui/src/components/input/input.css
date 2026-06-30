@@ -1,5 +1,5 @@
 .input {
-  @apply rounded-field border-(length:--border-width-field) border-solid border-(--field-border) bg-field px-3 py-2 text-base text-field-foreground shadow-field outline-none placeholder:text-field-placeholder;
+  @apply rounded-field border-(length:--border-width-field) border-(--field-border) bg-field px-3 py-2 text-base text-field-foreground shadow-field outline-none placeholder:text-field-placeholder;
   transition:
     background-color 150ms var(--ease-smooth),
     border-color 150ms var(--ease-smooth),

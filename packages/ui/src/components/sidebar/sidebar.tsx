@@ -80,6 +80,7 @@ export interface SidebarProps extends React.ComponentProps<"div"> {}
 export function Sidebar({ children, className, ...rest }: SidebarProps) {
   const { open } = useSidebar();
   const state = open ? "expanded" : "collapsed";
+
   return (
     <div
       data-state={state}
