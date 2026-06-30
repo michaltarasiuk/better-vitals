@@ -56,3 +56,12 @@ export function createOrganization(
     promise: authClient.organization.create(...params),
   });
 }
+
+export function inviteMember(
+  ...params: Parameters<typeof authClient.organization.inviteMember>
+) {
+  return unwrapOrganizationResponse({
+    operation: "invite member",
+    promise: authClient.organization.inviteMember(...params),
+  });
+}
