@@ -19,12 +19,12 @@
     border-color 150ms var(--ease-smooth),
     box-shadow 150ms var(--ease-out);
 
-  @variant within-invalid {
-    @apply bg-field-focus invalid-field-ring;
-  }
-
   @variant motion-reduce {
     @apply transition-none;
+  }
+
+  @variant within-invalid {
+    @apply bg-field-focus invalid-field-ring;
   }
 
   @variant hover {
@@ -83,12 +83,12 @@
 .select__indicator {
   @apply absolute inset-y-0 inset-e-2 my-auto flex size-4 shrink-0 items-center justify-center text-field-placeholder transition duration-150;
 
-  &[data-expanded="true"] {
-    @apply rotate-180;
-  }
-
   @variant motion-reduce {
     @apply transition-none;
+  }
+
+  &[data-expanded="true"] {
+    @apply rotate-180;
   }
 
   svg {

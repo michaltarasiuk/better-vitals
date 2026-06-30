@@ -11,12 +11,12 @@
     @apply relative block w-(--sidebar-width) shrink-0 transition-[width] duration-200 ease-out-quad;
   }
 
-  &[data-state="collapsed"] {
-    @apply w-0;
-  }
-
   @variant motion-reduce {
     @apply transition-none;
+  }
+
+  &[data-state="collapsed"] {
+    @apply w-0;
   }
 }
 
@@ -30,12 +30,12 @@
     @apply sticky top-0 z-20 flex h-svh w-(--sidebar-width) min-w-(--sidebar-width-collapsed) shrink-0 flex-col bg-background transition-[translate,visibility] duration-200 ease-out-quad;
   }
 
-  &[data-state="collapsed"] {
-    @apply invisible w-(--sidebar-width) -translate-x-full rtl:translate-x-full;
-  }
-
   @variant motion-reduce {
     @apply transition-none;
+  }
+
+  &[data-state="collapsed"] {
+    @apply invisible w-(--sidebar-width) -translate-x-full rtl:translate-x-full;
   }
 }
 

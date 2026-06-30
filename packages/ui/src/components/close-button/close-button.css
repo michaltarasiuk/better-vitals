@@ -19,20 +19,20 @@
     @apply transition-none;
   }
 
-  @variant hover {
-    @apply bg-default-hover;
+  @variant pending {
+    @apply pointer-events-none;
   }
 
-  @variant pressed {
-    @apply scale-(--scale-pressed);
+  @variant hover {
+    @apply bg-default-hover;
   }
 
   @variant focus-visible {
     @apply focus-ring;
   }
 
-  @variant pending {
-    @apply pointer-events-none;
+  @variant pressed {
+    @apply scale-(--scale-pressed);
   }
 
   @variant disabled {

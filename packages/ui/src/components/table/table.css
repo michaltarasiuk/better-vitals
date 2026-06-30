@@ -108,6 +108,12 @@
 .table__row {
   @apply relative h-full border-b border-separator-muted;
 
+  @variant selected {
+    .table__cell {
+      @apply bg-fill-surface-faint;
+    }
+  }
+
   @variant hover {
     .table__cell {
       @apply bg-fill-surface-muted;
@@ -145,12 +151,6 @@
     }
   }
 
-  @variant selected {
-    .table__cell {
-      @apply bg-fill-surface-faint;
-    }
-  }
-
   @variant dragging {
     @apply opacity-50;
   }
@@ -173,12 +173,12 @@
 .table__cell {
   @apply h-full border-b border-separator-tertiary-muted bg-surface px-4 py-3 align-middle text-sm text-foreground;
 
-  &[data-tree-column="true"] {
-    @apply ps-[calc(1rem*var(--table-row-level,1))];
-  }
-
   @variant focus-visible {
     @apply rounded-lg shadow-[inset_0_0_0_2px_var(--focus)] outline-none;
+  }
+
+  &[data-tree-column="true"] {
+    @apply ps-[calc(1rem*var(--table-row-level,1))];
   }
 }
 

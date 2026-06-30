@@ -9,12 +9,12 @@
     @apply text-sm;
   }
 
-  @variant invalid {
-    @apply bg-field-focus invalid-field-ring;
-  }
-
   @variant motion-reduce {
     @apply transition-none;
+  }
+
+  @variant invalid {
+    @apply bg-field-focus invalid-field-ring;
   }
 
   @variant hover {

@@ -17,12 +17,12 @@
 .accordion__indicator {
   @apply ms-auto inline-flex size-4 shrink-0 items-center justify-center text-muted transition duration-250;
 
-  &[data-expanded="true"] {
-    @apply -rotate-180;
-  }
-
   @variant motion-reduce {
     @apply transition-none;
+  }
+
+  &[data-expanded="true"] {
+    @apply -rotate-180;
   }
 
   svg {
@@ -73,12 +73,12 @@
 .accordion__panel {
   @apply h-(--disclosure-panel-height) overflow-clip opacity-0 transition-[height,opacity] duration-200 ease-out-quad;
 
-  &[data-expanded="true"] {
-    @apply opacity-100 will-change-[opacity,height];
-  }
-
   @variant motion-reduce {
     @apply transition-none;
+  }
+
+  &[data-expanded="true"] {
+    @apply opacity-100 will-change-[opacity,height];
   }
 }
 

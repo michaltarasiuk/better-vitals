@@ -10,12 +10,12 @@
     @apply transition-none;
   }
 
-  @variant pressed {
-    @apply scale-(--scale-pressed);
-  }
-
   @variant focus-visible {
     @apply focus-ring;
+  }
+
+  @variant pressed {
+    @apply scale-(--scale-pressed);
   }
 
   @variant disabled {
