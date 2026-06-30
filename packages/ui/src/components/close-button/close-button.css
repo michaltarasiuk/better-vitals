@@ -1,5 +1,5 @@
 .close-button {
-  @apply relative isolate inline-flex h-6 w-6 shrink-0 transform-gpu cursor-(--cursor-interactive) items-center justify-center rounded-xl p-1 select-none no-highlight;
+  @apply relative isolate inline-flex h-6 w-6 shrink-0 transform-gpu cursor-pointer items-center justify-center rounded-xl p-1 select-none no-highlight;
   transition:
     transform 250ms var(--ease-out-quart),
     scale 250ms var(--ease-out-quart),
@@ -32,10 +32,10 @@
   }
 
   @variant pressed {
-    @apply scale-(--scale-pressed);
+    @apply scale-(--scale-pressed-md);
   }
 
   @variant disabled {
-    @apply pointer-events-none cursor-(--cursor-disabled) opacity-(--disabled-opacity);
+    @apply pointer-events-none cursor-not-allowed opacity-50;
   }
 }

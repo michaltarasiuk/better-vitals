@@ -5,6 +5,11 @@ import { cn } from "tailwind-variants";
 import { cnRenderProps } from "../../lib/cn-render-props";
 import { tableVariants, type TableVariants } from "./table";
 
+export {
+  Collection as TableCollection,
+  type CollectionProps as TableCollectionProps,
+} from "react-aria-components/Table";
+
 const slots = tableVariants();
 
 interface TableContextValue extends TableVariants {}
@@ -84,11 +89,9 @@ export function TableContent({
   );
 }
 
-export interface TableHeaderProps<
-  T extends object,
-> extends Aria.TableHeaderProps<T> {}
+export interface TableHeaderProps<T> extends Aria.TableHeaderProps<T> {}
 
-export function TableHeader<T extends object>({
+export function TableHeader<T>({
   children,
   className,
   ...rest
@@ -136,11 +139,9 @@ export function TableColumn({
   );
 }
 
-export interface TableBodyProps<
-  T extends object,
-> extends Aria.TableBodyProps<T> {}
+export interface TableBodyProps<T> extends Aria.TableBodyProps<T> {}
 
-export function TableBody<T extends object>({
+export function TableBody<T>({
   children,
   className,
   ...rest
@@ -163,9 +164,9 @@ export function TableBody<T extends object>({
   );
 }
 
-export interface TableRowProps<T extends object> extends Aria.RowProps<T> {}
+export interface TableRowProps<T> extends Aria.RowProps<T> {}
 
-export function TableRow<T extends object>({
+export function TableRow<T>({
   children,
   className,
   ...rest
@@ -321,5 +322,3 @@ export function TableLoadMoreContent({
     </div>
   );
 }
-
-export const TableCollection = Aria.Collection;

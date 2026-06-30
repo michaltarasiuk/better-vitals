@@ -13,7 +13,7 @@
 }
 
 .select__trigger {
-  @apply relative isolate inline-flex min-h-9 cursor-(--cursor-interactive) rounded-field border-(length:--border-width-field) border-(--field-border) bg-field px-3 py-2 text-sm text-field-foreground shadow-field outline-none select-none no-highlight;
+  @apply relative isolate inline-flex min-h-9 cursor-pointer rounded-field border-(length:--border-width-field) border-(--field-border) bg-field px-3 py-2 text-sm text-field-foreground shadow-field outline-none select-none no-highlight;
   transition:
     background-color 150ms var(--ease-smooth),
     border-color 150ms var(--ease-smooth),
@@ -36,7 +36,7 @@
   }
 
   @variant disabled {
-    @apply pointer-events-none cursor-(--cursor-disabled) opacity-(--disabled-opacity);
+    @apply pointer-events-none cursor-not-allowed opacity-50;
   }
 
   &:has(.select__indicator) {

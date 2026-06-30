@@ -14,16 +14,16 @@ interface SelectContextValue extends SelectVariants {}
 const [SelectContext, useSelectContext] =
   createContext<SelectContextValue>("SelectContext");
 
-export interface SelectProps<
-  T extends object,
-  M extends "single" | "multiple" = "single",
->
+export interface SelectProps<T, M extends "single" | "multiple" = "single">
   extends Aria.SelectProps<T, M>, SelectVariants {}
 
-export function Select<
-  T extends object = object,
-  M extends "single" | "multiple" = "single",
->({ children, variant, fullWidth, className, ...rest }: SelectProps<T, M>) {
+export function Select<T = object, M extends "single" | "multiple" = "single">({
+  children,
+  variant,
+  fullWidth,
+  className,
+  ...rest
+}: SelectProps<T, M>) {
   return (
     <SelectContext
       value={{
@@ -75,10 +75,10 @@ export function SelectTrigger({
 }
 
 export interface SelectValueProps<
-  T extends object = object,
+  T = object,
 > extends Aria.SelectValueProps<T> {}
 
-export function SelectValue<T extends object = object>({
+export function SelectValue<T = object>({
   children,
   className,
   ...rest

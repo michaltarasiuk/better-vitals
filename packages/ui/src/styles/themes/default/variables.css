@@ -1,9 +1,6 @@
 @layer base {
   :root,
-  .light,
-  .default,
-  [data-theme="light"],
-  [data-theme="default"] {
+  [data-theme="light"] {
     color-scheme: light;
 
     --white: oklch(100% 0 0);
@@ -14,6 +11,12 @@
     --spacing: 0.25rem;
     --radius: 0.5rem;
     --field-radius: calc(var(--radius) * 1.5);
+    --border-width: 1px;
+    --ring-offset-width: 2px;
+
+    --scale-pressed-sm: 0.98;
+    --scale-pressed-md: 0.97;
+    --scale-pressed-lg: 0.96;
 
     --background: oklch(0.9702 0 0);
     --background-secondary: color-mix(
@@ -40,10 +43,17 @@
       var(--surface) 92%,
       var(--surface-foreground) 8%
     );
+    --surface-foreground-muted: color-mix(
+      in oklab,
+      var(--surface-foreground) 6%,
+      transparent
+    );
 
     --overlay: var(--white);
     --overlay-foreground: var(--foreground);
     --backdrop: rgba(0, 0, 0, 0.5);
+
+    --muted: oklch(0.5517 0.0138 285.94);
 
     --default: oklch(94% 0.001 286.375);
     --default-foreground: var(--eclipse);
@@ -55,8 +65,6 @@
     --default-soft: color-mix(in oklab, var(--default) 50%, transparent);
     --default-soft-foreground: var(--default-foreground);
     --default-soft-hover: color-mix(in oklab, var(--default) 60%, transparent);
-
-    --muted: oklch(0.5517 0.0138 285.94);
 
     --accent: oklch(0.6204 0.195 253.83);
     --accent-foreground: var(--snow);
@@ -144,7 +152,6 @@
     --segment-foreground: var(--eclipse);
 
     --border: oklch(90% 0.004 286.32);
-    --border-width: 1px;
     --border-secondary: color-mix(
       in oklab,
       var(--surface) 78%,
@@ -181,13 +188,6 @@
 
     --focus: var(--accent);
     --link: var(--foreground);
-    --ring-offset-width: 2px;
-
-    --surface-foreground-muted: color-mix(
-      in oklab,
-      var(--surface-foreground) 6%,
-      transparent
-    );
 
     --scrollbar: var(--scrollbar-thumb);
     --scrollbar-thumb: color-mix(in oklch, var(--foreground) 15%, transparent);
@@ -195,14 +195,6 @@
     --scrollbar-gutter: auto;
     --scrollbar-width: thin;
     --scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
-
-    --cursor-interactive: pointer;
-    --cursor-disabled: not-allowed;
-    --disabled-opacity: 0.5;
-
-    --scale-pressed: 0.97;
-    --scale-pressed-sm: 0.98;
-    --scale-pressed-lg: 0.96;
 
     --surface-shadow:
       0 2px 4px 0 rgba(0, 0, 0, 0.04), 0 1px 2px 0 rgba(0, 0, 0, 0.06),
@@ -217,7 +209,6 @@
     --skeleton-animation: shimmer;
   }
 
-  .dark,
   [data-theme="dark"] {
     color-scheme: dark;
 

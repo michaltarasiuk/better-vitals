@@ -13,13 +13,9 @@ interface ListBoxItemContextValue extends ListBoxVariants {
 const [ListBoxItemContext, useListBoxItemContext] =
   createContext<ListBoxItemContextValue>("ListBoxItemContext");
 
-export interface ListBoxProps<T extends object> extends Aria.ListBoxProps<T> {}
+export interface ListBoxProps<T> extends Aria.ListBoxProps<T> {}
 
-export function ListBox<T extends object>({
-  children,
-  className,
-  ...rest
-}: ListBoxProps<T>) {
+export function ListBox<T>({ children, className, ...rest }: ListBoxProps<T>) {
   return (
     <Aria.ListBox
       data-slot="list-box"

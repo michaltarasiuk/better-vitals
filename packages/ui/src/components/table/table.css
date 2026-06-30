@@ -66,7 +66,7 @@
   @apply relative px-4 py-2 text-start text-xs font-medium text-muted;
 
   @variant allows-sorting {
-    @apply cursor-(--cursor-interactive);
+    @apply cursor-pointer;
 
     @variant hover {
       @apply text-foreground;
@@ -162,7 +162,7 @@
   }
 
   @variant disabled {
-    @apply pointer-events-none cursor-(--cursor-disabled) opacity-(--disabled-opacity);
+    @apply pointer-events-none cursor-not-allowed opacity-50;
   }
 
   &:last-child {

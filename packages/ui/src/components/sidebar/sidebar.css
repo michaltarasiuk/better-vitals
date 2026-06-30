@@ -56,7 +56,7 @@
 }
 
 .sidebar__menu-item {
-  @apply relative flex w-full cursor-(--cursor-interactive) items-center text-foreground transition-[box-shadow] duration-150 ease-out outline-none no-highlight;
+  @apply relative flex w-full cursor-pointer items-center text-foreground transition-[box-shadow] duration-150 ease-out outline-none no-highlight;
 
   @variant motion-reduce {
     @apply transition-none;
@@ -89,7 +89,7 @@
   }
 
   @variant disabled {
-    @apply pointer-events-none cursor-(--cursor-disabled) opacity-(--disabled-opacity);
+    @apply pointer-events-none cursor-not-allowed opacity-50;
   }
 }
 

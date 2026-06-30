@@ -1,9 +1,7 @@
 import { tv, type VariantProps } from "tailwind-variants";
 
 export const linkVariants = tv({
-  slots: {
-    base: "link",
-  },
+  base: "link",
 });
 
 export type LinkVariants = VariantProps<typeof linkVariants>;

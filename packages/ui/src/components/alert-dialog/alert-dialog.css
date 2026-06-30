@@ -1,5 +1,5 @@
 .alert-dialog__trigger {
-  @apply inline-block cursor-(--cursor-interactive);
+  @apply inline-block cursor-pointer;
   transition:
     transform 250ms var(--ease-out-quart),
     scale 250ms var(--ease-out-quart),
@@ -15,11 +15,11 @@
   }
 
   @variant pressed {
-    @apply scale-(--scale-pressed);
+    @apply scale-(--scale-pressed-md);
   }
 
   @variant disabled {
-    @apply pointer-events-none cursor-(--cursor-disabled) opacity-(--disabled-opacity);
+    @apply pointer-events-none cursor-not-allowed opacity-50;
   }
 }
 

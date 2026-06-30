@@ -12,7 +12,6 @@ import {
   useNavigation,
   type ClientActionFunctionArgs,
 } from "react-router";
-import { cn } from "tailwind-variants";
 import { z } from "zod";
 
 import { Form } from "~/components/form";
@@ -119,7 +118,7 @@ export default function ResetPassword() {
             <SubmitButton isPending={isSubmitting}>
               {({ isPending }) => (isPending ? "Updating" : "Update password")}
             </SubmitButton>
-            <Link href={href("/signin")} className={cn("text-center text-sm")}>
+            <Link href={href("/signin")} className="text-center text-sm">
               Back to sign in
             </Link>
           </FormCardFooter>

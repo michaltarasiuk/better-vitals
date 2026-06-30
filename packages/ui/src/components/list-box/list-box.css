@@ -3,7 +3,7 @@
 }
 
 .list-box-item {
-  @apply relative flex min-h-9 w-full transform-gpu cursor-(--cursor-interactive) items-center gap-3 rounded-2xl px-2 py-2 outline-none no-highlight;
+  @apply relative flex min-h-9 w-full transform-gpu cursor-pointer items-center gap-3 rounded-2xl px-2 py-2 outline-none no-highlight;
   transition:
     transform 250ms var(--ease-out-quart),
     scale 250ms var(--ease-out-quart),
@@ -32,11 +32,11 @@
   }
 
   @variant pressed {
-    @apply scale-(--scale-pressed);
+    @apply scale-(--scale-pressed-md);
   }
 
   @variant disabled {
-    @apply pointer-events-none cursor-(--cursor-disabled) opacity-(--disabled-opacity);
+    @apply pointer-events-none cursor-not-allowed opacity-50;
   }
 
   [data-slot="label"] {

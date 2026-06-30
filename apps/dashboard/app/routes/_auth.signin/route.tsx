@@ -11,7 +11,6 @@ import {
   useNavigation,
   type ClientActionFunctionArgs,
 } from "react-router";
-import { cn } from "tailwind-variants";
 import { z } from "zod";
 
 import { Form } from "~/components/form";
@@ -112,7 +111,7 @@ export default function Signin() {
             </SubmitButton>
             <Link
               href={href("/request-password-reset")}
-              className={cn("text-center text-sm")}
+              className="text-center text-sm"
             >
               Forgot password?
             </Link>
